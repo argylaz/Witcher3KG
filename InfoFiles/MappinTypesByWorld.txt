@@ -1,0 +1,121 @@
+World: White Orchard (Code: WO)
+Mappin types found:
+- ArmorRepairTable
+- BanditCampfire
+- BossAndTreasure
+- Contraband
+- Entrance
+- Herbalist
+- Merchant
+- MonsterNest
+- NoticeBoard
+- PlaceOfPower
+- PlayerStash
+- RescuingTown
+- RoadSign
+- SideQuest
+- SpoilsOfWar
+- TreasureHuntMappin
+- TreasureQuest
+- Whetstone
+
+World: Velen/Novigrad (Code: NO)
+Mappin types found:
+- ArmorRepairTable
+- Armorer
+- BanditCamp
+- BanditCampfire
+- Blacksmith
+- BossAndTreasure
+- ChapterQuest
+- Contraband
+- DungeonCrawl
+- Enchant
+- Entrance
+- GwentPlayer
+- GwentSeller
+- Harbor
+- Herbalist
+- HorseRace
+- MagicLamp
+- Merchant
+- MonsterNest
+- MonsterQuest
+- NoticeBoard
+- PlaceOfPower
+- PlayerStash
+- RescuingTown
+- RoadSign
+- SideQuest
+- SpoilsOfWar
+- Teleport
+- TreasureHuntMappin
+- Whetstone
+
+World: Skellige (Code: SK)
+Mappin types found:
+- ArmorRepairTable
+- Armorer
+- BanditCamp
+- BanditCampfire
+- BossAndTreasure
+- Contraband
+- DungeonCrawl
+- Entrance
+- GwentPlayer
+- GwentSeller
+- Harbor
+- MonsterNest
+- NoticeBoard
+- PlaceOfPower
+- PlayerStash
+- RescuingTown
+- RoadSign
+- SideQuest
+- SpoilsOfWar
+- TreasureHuntMappin
+- TreasureQuest
+- Whetstone
+
+World: Touissant (Code: TO)
+Mappin types found:
+- AlchemyTable
+- ArmorRepairTable
+- Armorer
+- BanditCamp
+- BanditCampfire
+- Bed
+- Blacksmith
+- BossAndTreasure
+- DungeonCrawl
+- Entrance
+- Harbor
+- Hideout
+- InfestedVineyard
+- KnightErrant
+- MonsterNest
+- MutagenDismantle
+- NoticeBoard
+- PlaceOfPower
+- PlayerStash
+- Plegmund
+- RescuingTown
+- RoadSign
+- SideQuest
+- SignalingStake
+- TreasureHuntMappin
+- Whetstone
+- WineContract
+
+World: Kaer Morhen (Code: KM)
+Mappin types found:
+- ArmorRepairTable
+- BossAndTreasure
+- Entrance
+- PlaceOfPower
+- PlayerStash
+- RoadSign
+- SideQuest
+- TreasureHuntMappin
+- Whetstone
+
