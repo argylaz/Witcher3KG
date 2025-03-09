@@ -1,9 +1,10 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix witcher: <http://example.org/witcher/ontology#> .  
+@prefix witcher: <http://cgi.di.uoa.gr/witcher/ontology#> .  
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix geof: <http://www.opengis.net/def/function/geosparql/> .
+
 
 # Define classes
 witcher:MapPin a rdfs:Class .

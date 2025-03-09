@@ -1,0 +1,1035 @@
+<pages>
+<page>
+  <title>Witcher Wiki:Protected page</title>
+  <ns>4</ns>
+  <text>[[Project:Administrators|Administrators]] can '''protect''' and unprotect pages. Protection of a page or image means that a non-admin cannot modify it.
+
+The majority of pages on all Wikia should remain publicly editable, and '''not protected'''. Pages may, however, be temporarily or permanently protected for legal reasons (for example, license texts should not be changed) or in cases of extreme vandalism or edit warring. 
+
+==Uses==
+
+*Protecting highly vandalised pages, such as the [[Witcher Wiki|Main Page]] on large wikis.
+*Maintaining the integrity of the site's logo and favicon.
+*Maintaining the integrity of key [[Project:copyrights|copyright]] and license pages.
+*Protecting the interface and system messages in the MediaWiki namespace (these are protected automatically)
+
+A '''temporary''' protection is used for:
+*Enforcing a "cool down" period to stop an "edit war", upon request.
+*Protecting a page or image that has been a recent target of ''persistent'' vandalism or ''persistent'' edits by a banned user. 
+
+There is no need to protect personal .css and .js pages like user/monobook.css or user/cologneblue.js. Only the accounts associated with these pages (and admins) are able to edit them. (For more information on using these pages, see the [[Wikia:Help:User style|help page on Central]]
+
+==Rules==
+#Do not make the common mistake of protecting pages unnecessarily. For example, do not protect a page simply because it is the Main Page.
+#Do not [[Help:Editing|edit]] a temporarily protected page except to add a notice explaining the page is protected.
+#Do not protect a page you are involved in an edit dispute over. Admin powers are not editor privileges - admins should only act as servants to the user community at large. 
+#Avoid favoring one version of the article over another, unless one version is vandalism. 
+#Temporarily protected pages should not be left protected for very long.
+#Talk pages and user talk pages are not protected except in extreme circumstances.
+#The protection of a page on any particular version is not meant to express support for that version and requests should therefore not be made that the protected version be reverted to a different one.
+
+[[Category:Administration of this site|protected page]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Administrators</title>
+  <ns>4</ns>
+  <text>==Introduction==
+Different users have access to different functions of the site. While anyone can do most things on the site, including reading and editing, '''administrators''' can access a few additional functions: 
+
+* Deleting and undeleting pages, page histories, and uploaded files.
+* Locking ([[project:Protected page|protecting]]) a page so it cannot be edited or renamed by users without admin rights.
+* Blocking IP addresses or user names from editing; and very quick "rollback" of undesirable edits.
+* Editing the interface by changing system messages and skins.
+
+A '''bureaucrat''' can make other users into bureaucrats or administrators on their own wiki. He or she is not currently able to remove admin access from any user; please contact one of the community staff if you need that done.
+
+Some Wikia staff members have full access to all Wikia. They will be shown in [[Special:Listusers/staff]] on any wiki. Please see the Central Wikia [[Wikia:Contact us|contact page]] for details on how to contact Wikia staff.
+
+== Who are this wiki's administrators? ==
+
+The "founder" of a wiki, the person who first requested it, is given administrator access automatically. Founders are also given bureaucrat access so they can make any other user on their wiki an administrator or bureaucrat. For a complete list of users with administrator access, see [[Special:Listusers/sysop]].
+
+Current Admins:
+
+*[[User: Drewf0|Drewf0]] (bureaucrat)
+*[[User:AnuChemicalCo|AnuChemicalCo]] (bureaucrat)
+*[[User:Juraj103|Juraj103]] (bureaucrat) {{Condition|Text = Note}} contact this admin if you have any questions about editing/style guides
+*[[User:Mechemik|Mechemik]] (bureaucrat)
+*[[User: Documentalist|Documentalist]]
+*[[User:Gulfwulf|Gulfwulf]]
+*[[User:Bizippo|Bizippo]]
+*[[User:SMiki55|SMiki55]]
+
+== How do I use administrator powers? ==
+
+See the [[Help:Administrators' how-to guide|administrators' how-to guide]] for a guide on using admin functions.
+
+== Becoming an administrator ==
+
+For you to become an administrator, someone with bureaucrat access must make you one.  Please contact a bureaucrat directly to make a request for administrator status.
+
+== What can administrators not do? ==
+
+Administrators should not use their administrator powers to settle editing disputes; for example, to lock a page on a version he or she prefers in an editing dispute that isn't vandalism. Administrator powers should be used to help keep the wiki clear of vandalism, spam, and users who make malicious edits, but not for simple disagreements between users acting in good faith.  Ideally an admin shouldn't be considered "in charge". The ideal admin is just someone who is trusted to have a few extra buttons and to use them for the benefit of the Wikia community.
+
+[[cs:Zaklínač Wiki:Správci]]
+[[pl:Wiedźmin Wiki:Administracja]]
+[[ru:Ведьмак Вики:Администраторы]]
+[[uk:Відьмакопедія:Адміністратори]]
+[[Category:Administration of this site|Administrators]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Copyrights</title>
+  <ns>4</ns>
+  <text>:'''''Please see [[w:Wikia:Licensing|Wikia:Licensing]] for details of the licensing on this wiki.'''''
+:'''<span style="color:red; font-size: 150%;">Warning!</span> Information below may be outdated or incorrect.'''
+The '''text''' of this site is freely licensed under the terms of the '''GNU Free Documentation License''' (GFDL). Reusers of the content must retain it under the same licence, ensuring it remains free.
+
+Please read the [[Wikia:Text of the GNU Free Documentation License]] for full details of this licence.
+
+<!--- the exact wording of the paragraph below is required by the licence; please don't change it!--->
+:<b>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, with no Front-Cover Texts, and with no Back-Cover Texts.</b>
+:<b>A copy of the license is included in the section entitled "[[Wikia:Text of the GNU Free Documentation License|GNU Free Documentation License]]".</b>
+:<b>Content on Wikia is covered by disclaimers and the Wikia terms of use (see below).</b>
+
+==GNU Free Documentation License==
+
+The '''GNU Free Documentation License''' ('''GFDL''') is a copyleft license for free content, designed by the Free Software Foundation (FSF).
+
+The GFDL is a "copyleft" license, meaning the content can be copied, modified, and redistributed so long as the new version grants the same freedoms to others and acknowledges the authors of the Wikia page. Wikia content will, therefore, will remain free forever and can be used by anybody subject to certain restrictions, most of which serve to ensure that freedom.
+
+Wikipedia, one of the web's most popular reference works, uses the GFDL. Using the same license as that site makes it easy for Wikia users to reuse the content from Wikipedia. You must adhere to the GFDL when using Wikipedia content. 
+
+==Image guidelines==
+
+GFDL or public domain images are strongly preferred on Wikia. Copyright-violating images are subject to deletion. Copyright information must be added to the image description page of every uploaded image. Images and other uploaded files may be available under an alternative free license, or used under fair use guidelines.
+
+==See also==
+
+For more information, see the following pages on the Central Wikia:
+
+* [[Wikia:Wikia disclaimers]]
+* [[Wikia:terms of use]]
+* '''[[Wikia:Designated agent]]'''
+* [[Wikia:Multi-licensing]]: License your own edits under the GFDL plus something else
+
+[[Category:Witcher Wiki|{{PAGENAME}}]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:About</title>
+  <ns>4</ns>
+  <text>''This page is all about the {{SITENAME}}.''
+
+Witcher Wiki is a community that aims to create the best resource for [[:Category:Books|witcher books]] by [[Andrzej Sapkowski]], [[:Category:Games|''The Witcher'' games]] and other [[:Category:Adaptations|adaptations]]. We are [[Special:Recentchanges|currently editing]] over [[Special:Statistics|{{NUMBEROFARTICLES}}]] articles.
+
+All pages can be edited and you are welcome to join us and contribute to this wiki. Everyone is free to create a new page or edit an existing one.
+
+[[Category:Witcher Wiki|{{PAGENAME}}]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Community Portal</title>
+  <ns>4</ns>
+  <text>This page is the starting point for all editors of this Wikia.  It lists some of the pages you might like to use as you contribute here.
+
+* To follow the changes to this wiki, and to look out for new events and problem edits, use '''[[Special:Recentchanges|recent changes]]'''.
+
+* If you want to discuss anything about an article, you can use '''[[Help:Talk page|the talk pages]]'''.
+
+* For more general discussion, use '''[[Special:Forum|the forum]]'''.
+
+* If you need help editing, you could start with '''[[Help:Editing]]''' or '''[[Wikia:Help:Tutorial|the tutorial]] on the Central Wikia'''.
+
+* There are also more help pages in '''[[:category:Help|the help category]]'''.
+
+[[category:help|Community Portal]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:General disclaimer</title>
+  <ns>4</ns>
+  <text><div style="background-color:#586572; border:1px solid #2F6FAB; padding:10px">
+
+Wikia holds no responsibility for the content of external sites that are linked to from Wikia wikis. 
+
+Wikia are created predominantly by volunteers, so we can make no guarantee of validity of the content. The wikis are not guaranteed to be complete, accurate or reliable. 
+
+Please be aware that Wikia may contain content you find objectionable. You use Wikia at your own risk. 
+
+All text on Wikia is licensed under the [http://en.wikipedia.org/wiki/GNU_Free_Documentation_License GNU Free Documentation License] unless otherwise stated. See the [[Wikia:Wikia copyrights|Central Wikia page on copyrights]] for details.
+
+Please be aware of the '''[[Wikia:Terms of use|Wikia terms of use]]''' before using this site. </div>
+
+<br />
+''See also'': [[Wikia:Help:Disclaimer|Help:Disclaimer]] (on Central Wikia) for information on adding wiki-specific disclaimers to this notice.
+
+[[Category:Witcher Wiki|{{PAGENAME}}]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Mailing list</title>
+  <ns>4</ns>
+  <text>Every Wikia has a '''mailing list'''. See the [http://www.wikia.com/mailman/listinfo/ list info] page for a list and options to subscribe. There is also a [http://www.wikia.com/mailman/listinfo/wikia-l mailing list for Wikia as a whole], which all users are encouraged to join. This list can be used for making project-wide announcements, or for asking for help on a wiki problem from the Wikia community.
+
+All mailing lists are publicly readable, but you need to subscribe to be able to post to the lists. Posts from non-subscribers may be delayed or accidentally discarded, as they need to be approved by a list administrator to prevent spam.
+
+Archives of posts to any list can be found at http://www.wikia.com/pipermail/*-l/<br />
+Information on any list can be found at http://www.wikia.com/mailman/listinfo/*-l<br />
+<nowiki>*</nowiki>Replace the asterisk with the [[w:name for the wiki|name of the wiki]] (as shown in the address bar above, between the "//" and the first dot).
+
+Alternative means of communication include user [[help:talk page|talk page]]s, and the [[w:Wikia IRC channel|Wikia IRC channel]].
+
+==Mailing list admins==
+
+The default mailing list administrator is the person who requested the wiki. Their primary responsibility is helping people get subscribed to, or unsubscribed from, the list (as not everyone is comfortable with the tricky web interface). Note that subscription applications must be distinguished from spam, which should be deleted. DO NOT send spammers any messages, like "You need to subscribe", because this will increase the amount of spam you receive.
+
+Other tasks include:
+# cross-posting messages that pertain to other lists;
+# gently suggesting that contributors keep on topic and/or avoid flaming each other.
+
+List admins can change specific options on their mailing list and edit the moderation queue. The admin interface is reachable by using the link http://lists.wikia.com/mailman/admin/*-l where * is the name of the wiki. Not all changes are permitted. You cannot, for example, <!-- (can't mark them public if they want to be public??) mark users' email addresses as public if they have chosen to remain public, and you cannot --> prevent the lists being publicly readable.
+
+See [[m:Mailing list administration|Mailing list administration]] on Meta.wikimedia for more details.
+
+
+
+[[category:community|Mailing list]] [[category:help|Mailing list]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Protected titles</title>
+  <ns>4</ns>
+  <text>This page is used for protecting nonexistent pages against creation.
+
+Pages transcluded on this page may not be created (except by admins). Usually this is because the page titles were being repeatedly created by spammers or because the community has decided a page should not exist and users were repeatedly creating it. 
+
+Only [[Special:Listadmins|administrators]] and [[w:Community Team|Wikia's community staff]] are able to list titles here. 
+
+To add a page:
+# ensure this page ([[{{SITENAME}}:Protected titles]]) is protected with cascading protection enabled.
+# delete the page to be protected
+# list the page in the section below inside curved brackets like this: <nowiki>{{Article title}}</nowiki>
+
+==Protected titles==
+
+[[Category:Witcher Wiki|{{PAGENAME}}]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Easter egg hunt</title>
+  <ns>4</ns>
+  <text>[[image:CDP-Red-logo.png|200px|right]]
+The '''Easter egg hunt''' was a contest by [[CD PROJEKT RED]] and [[w:|Wikia]] for fans of {{Tw1}}. The contest started on 31 January and ended on 6 February 2008. The winners of the contest were '''Lord Lethris''' and '''Stanley Smith''' and they received sweet Witcher prize packages including a medallion, t-shirt, mousepad and The Witcher dice game.
+
+==Part 1==
+Hidden amongst the articles, there is a fake character with a hidden link. The goal was to find the fake character and follow the link to enter the contest. The fake character was [[Bertha Maggot]] and the link was hidden in the final full stop of the article.
+
+The people who found Bertha were:
+* Talorc, 
+* Lord_Lethris, 
+* Shade666, 
+* Stanley Smith, 
+* SadeLyrate, 
+* kalniel, 
+* DustinMuyo, 
+* Planewalker, 
+* ilis, 
+* Licaon_Kter, 
+* Michael Pritchard, 
+* zc82, 
+* Feinar, 
+* Cirian, 
+* Unkreativ
+
+==Part 2==
+Those who solved the first part of the quest proceeded to the second, harder one. They received an e-mail with "Ingredients" in the subject line, containing the question "what is the Witcher sword?"
+
+The answer was hidden in the [[The Witcher ingredients|Ingredients]] article on the wiki as a comment - to see it, you had to click on the "edit" tab of the article. It was "The witcher sword is happiness of the grave-digger."
+
+The two people who solved the second part were '''Lord Lethris''' and '''Stanley Smith'''. Congratulations!
+
+== Note ==
+Many changes have been made to the wiki since then, so these easter eggs no longer exist.
+
+[[Category:Witcher Wiki|{{PAGENAME}}]]
+
+[[it:Witcher Wiki:Caccia all'Easter egg]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Bureaucrats</title>
+  <ns>4</ns>
+  <text>==Introduction==
+Different users have access to different functions of the site. While anyone can do most things on the site, including reading and editing, '''administrators''' can access a few additional functions: 
+
+* Deleting and undeleting pages, page histories, and uploaded files.
+* Locking ([[project:Protected page|protecting]]) a page so it cannot be edited or renamed by users without admin rights.
+* Blocking IP addresses or user names from editing; and very quick "rollback" of undesirable edits.
+* Editing the interface by changing system messages and skins.
+
+A '''bureaucrat''' can make other users into bureaucrats or administrators on their own wiki. He or she is not currently able to remove admin access from any user; please contact one of the community staff if you need that done.
+
+Some Wikia staff members have full access to all Wikia. They will be shown in [[Special:Listusers/staff]] on any wiki. Please see the Central Wikia [[Wikia:Contact us|contact page]] for details on how to contact Wikia staff.
+
+== Who are this wiki's bureaucrats? ==
+
+The "founder" of a wiki, the person who first requested it, is given administrator access automatically. Founders are also given bureaucrat access so they can make any other user on their wiki an administrator or bureaucrat. For a complete list of users with administrator access, see [[Special:Listusers/bureaucrat]].
+
+You may also wish to list them on this page:
+
+*[[User:Drewf0|Drew]] Bureaucrat/Adopter of this wikia
+*[[User:Juraj103|Juraj103]] Bureaucrat/Admin of this wikia
+*[[User:AnuChemicalCo|AnuChemicalCo]] Bureaucrat/Admin of this wikia
+
+[[Category:Administration of this site]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Wikia Gaming Newsletter</title>
+  <ns>4</ns>
+  <text><div class="floatright plainlinks">
+http://images3.wikia.nocookie.net/egamia/images/thumb/9/93/Wordmark_gaming.png/250px-Wordmark_gaming.png</div>
+<div style="font-size:1.2em;text-align: left;">'''Welcome to the first edition of the  [[w:c:Gaming|Wikia Gaming]]  Community Newsletter'''.  I'll be sending these out periodically to give you tips on community best practices, maximizing traffic, upcoming events and random other musings (and I do mean random). 
+ 
+I have been at Wikia for far too long not to have met all of you, so here I am, circa 1980 [http://images1.wikia.nocookie.net/central/images/c/ce/Wikia_jdk.jpg James Bond ski suit] and all, to let you know who I am and why I'm here. It is my job to ensure sustainable growth continues in the gaming vertical and more importantly, that you succeed at running a community. Over the past year we have blasted through milestones and into the large gaming-site stratosphere, a feat really only possible because of the content you add, and the community you help build. So, kudos and congrats on a job well done!
+
+I'll make it short and sweet for the first time...er, that sounds a little dirty. How about, I'll try not to inundate you with useless factoids and laborious steps...yet  (cue maniacal laughter). 
+
+Let's kick it like Bruce Lee - you enjoy writing about stuff you love, we totally get that, and now you want your content to be seen by as many eyeballs as possible. Well, the best way to capture that many readers, is to up your Google mojo. 
+
+<div style="background-color:#FDFFDF; color:#000; border: 1px solid black; padding:10px; font-size:90%;">
+<span style="font-size:110%">Here are two simple steps you can do to ensure you dominate search engine traffic:</span>
+
+;Change Your Pagetitle
+<div class="floatright plainlinks">[http://gaming.wikia.com/wiki/File:Fallout_Search.png http://images4.wikia.nocookie.net/egamia/images/thumb/f/f2/Fallout_Search.png/200px-Fallout_Search.png]</div>
+:Think page titles are for weenies, or an elaborate hoax by unicorns to undermine the color purple? Close, but not exactly...it turns out it's really important for Google. Make sure your page title follows this format:  '''the topic of the wiki + Wiki + 3 search friendly keywords'''. For example, if your Pookie wiki is called Pookapedia, and that's all that is in the page title, then anyone searching for Pookie won't find you. Your pagetitle should say something like "Pookie Wiki - Pookapedia- Pookie quests, walkthroughs and Pookie 2 news". You can make things right by editing ''MediaWiki:Pagetitle'' and ''MediaWiki:Pagetitle-view-mainpage'' -- check out [[w:c:demigod:MediaWiki:Pagetitle|Demigod's pagetitle]] for a great example. 
+
+;Update Your Main Page
+:Google starts indexing your wiki from the main page, so make sure you send Google to the right place. You should '''link to the most important content on the wiki''' from your main page.  For example, if your wiki is about a role playing game, you should link to 50 of the important characters, items, maps, quests and relevant category pages.  Google recommends that you link to no more than 100 pages from your main page.  You can use ''Special:MostLinked'' to find the most relevant content in case you aren't sure what peeps care about.  For a great example, of a lean and mean mainpage, check out [[w:c:lastremnant|Last Remnant]].</div>
+
+<!-- START COMMUNITY CALLOUTS -->
+<h3 style="color:#00a0f0;"> '''Did you know ...''' </h3>
+<div class="floatleft plainlinks">[http://gaming.wikia.com http://images4.wikia.nocookie.net/egamia/images/thumb/9/93/Wordmark_gaming.png/80px-Wordmark_gaming.png]</div>
+...The gaming team is happy to help you with any questions. Our resident theme gurus and rockstar gaming team members [[w:User:JoePlay|Joe]] and [[w:User:Richard1990|Richard]] will help make sure your wiki packs more punch than a Sham-Wow commercial. So if you've got questions, we've got answers. 
+<br style="clear:both" />
+<div class="floatleft plainlinks">[http://diablo.wikia.com http://images3.wikia.nocookie.net/egamia/images/thumb/2/21/DiabloPortal.png/80px-DiabloPortal.png]</div>
+... Image based character portals and walkthroughs are the some of the most popular pages on Wikia!  For some great examples, check out a new [[w:c:Diablo:Category:Classes|character portal]] at Diablo, and the [[w:c:championsonline:Category:Villains|villain portal]] at Champions Online.  Fallout has also designed a creative [[w:c:fallout:Fallout_3_Guide|walkthrough]] to help navigate the Wasteland.  
+-----
+<!-- END COMMUNITY CALLOUTS -->
+</div>
+<div style="font-size:1.2em">Please add this newsletter to your '''[http://gaming.wikia.com/index.php?title=Wikia_Gaming:The_Magic_Bullet&action=watch watchlist]''' to ensure you receive future editions.
+
+Want more? Tell us what you would like to have featured or what hot wiki skills you're interested in learning about 
+
+Thanks!<br/>
+-- [[w:User:Lleowen|<font color="Blue">Doug</font>]]<staff /> ([[w:User talk:Lleowen|<font color="Blue" size="1">talk</font>]])</div></text>
+</page>
+<page>
+  <title>Witcher Wiki:Manual of Style</title>
+  <ns>4</ns>
+  <text>
+This '''Manual of Style''' outlines a standard of clean, consistent formatting for articles on this wiki. The formatting described here is a ''guideline'' and can be overridden where circumstances warrant it. These guidelines will never be unerringly perfect for every situation. However, please try your best to keep to the advice outlined in this article so others may use your edits as an example when creating and editing their own articles.
+
+These guidelines are a summary of the most important guidelines for this wiki, but a more expansive set of style  guidelines can be found on Wikipedia at [[wikipedia:Wikipedia:Manual of Style|Wikipedia Manual of Style]].
+
+== General ==
+One of the most important parts of wiki editing is how to structure an article. The structure is a powerful thing: it dictates what information the reader reads and when he or she reads it. It can influence what people contribute, where it goes, and how it might be written. Structure has the power to inform or confuse the same way good or bad writing does. Keep a well structured article, and you're more likely to have a high quality one.
+
+Organize sections in an article in a hierarchical structure like you would an outline. Keep it logical, but feel free to forsake strict logic for readability. Wherever possible, try to have an introduction for each section. Just like the article as a whole, the section should start with an introduction and then have its subsections below it. Try using a shallow structure rather than a deep one. Too many nested sections usually leads to a confusing or unreadable article.
+
+Above all, keep your layout consistent. Don't throw your reader a curve ball too often. The following sections will offer some good advice on keeping your articles clean, consistent, and clear.
+
+=== Article layout examples ===
+The wiki has guidelines for how to lay out different types of articles.
+
+* [[Witcher Wiki: Manual of Style/Basic layout|Basic layout]]
+* [[Witcher Wiki: Manual of Style/Character guide|Character guidelines]]
+* [[Witcher Wiki: Manual of Style/Location guide|Location guidelines]]
+* [[Witcher Wiki: Manual of Style/Quest guide|Quest guidelines]]
+* [[Witcher Wiki: Manual of Style/Race guide|Race guidelines]]
+
+[[Category:Policy]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Manual of Style/Basic layout</title>
+  <ns>4</ns>
+  <text>This is a '''basic layout''' which is encouraged to use for most articles on the wiki.
+
+== Lead section ==
+The lead section is anything included before the table of contents and/or the article content. It does not have any headings. With the exception of the introductory text, they are optional, depending on the situation, and must follow this order:
+
+# '''Disambiguation links''' if there is another article of the same name, or may be confused with another.
+# '''Article maintenance tags''' Alternatively, the maintenance tags can be included within a specific section of the article, with the exception of "stub" which must always in the lead section.
+# '''Infobox/transformer template'''. They are generally wrapped in <code>onlyinclude</code> tags.
+# '''Short introductory text''', explaining what this article is about.
+# '''Table of contents''', which generally appears after the lead, provided there is more than four headings. If the page is long but does not have any table of contents, you may manually add it with <code><nowiki>__TOC__</nowiki></code>.
+
+== Article content ==
+This depends on the type of article. All sections are optional.<br><br>
+
+=== Notes ===
+Notes should be listed using <code>
+*</code>Anything that is not a trivia or a bug may be listed here.<br><br>
+
+=== Trivia ===
+Trivia should be listed using <code>
+*</code><br><br>
+
+=== Bugs ===
+Bugs should be listed using <code>
+*</code>
+
+Additionally, you may include one link to a fan-made bug fix per bug. However, the link should be removed once it has been patched.<br><br>
+
+=== Gallery ===
+Use <code><nowiki><gallery></gallery></nowiki></code> to display the pictures in a table.<br>
+
+=== See also ===
+Links should be listed using <code>
+*</code> You may, alternatively, use <code>iconmini</code> for some links (such as linking other items to display the tooltip). Links in the section should be somewhat related to the article, but have not been linked anywhere else in the article. Do not clog the section with too many links if the category provides the same links.<br><br>
+
+=== References ===
+Add <code><nowiki><references/></nowiki></code> when at least one <code><nowiki><ref></ref></nowiki></code> has been used within the article. The wiki will automatically list the references.
+
+For more information on how to format references, see the [[wikipedia:Help:Footnotes|help page]] on Wikipedia.<br><br>
+
+=== External links ===
+Links should be listed using <code>
+*</code>There are no strict guidelines on what kind of off-wiki links may be included in this section, as long it is related to the article and it does not constitute spam. Their inclusion (and removal) depends on the situation.
+
+=== Navboxes ===
+Not a heading onto itself, generally navboxes will go right after the gallery. However, with pages that have no gallery, navboxes will tend to go at the bottom of the page (after external links).
+
+== Categories ==
+Avoid clogging the article with categories of subcategories.  Always use the lowest subcategory possible and don't use any supercategories above a subcategory that is already listed.
+
+To make the article sort different than the page name, you may use <code><nowiki>{{DEFAULTSORT:}}</nowiki></code>. If you want the article to appear at the top the category page.
+
+For more information on categories, see the [[wikipedia:Help:Category|help page]] on Wikipedia.
+
+== Interlanguage links ==
+If the page exists in another language, you are welcome to add it.</text>
+</page>
+<page>
+  <title>Witcher Wiki:Editing Guidelines</title>
+  <ns>4</ns>
+  <text>The following are some '''editing guidelines''' that the Witcher Wiki follows.  If you read nothing else here keep in mind these three key tenets of editing.
+# '''BE BOLD!''' in updating pages. Go ahead, it's a wiki!  Encourage others, including those who disagree with you, likewise to  '''BE BOLD!'''
+# '''Be civil''' to other users at all times.
+# '''Speak up'''. If the rules discourage you from improving or maintaining the wiki's quality, ask about them. We might agree and change them to fit better!
+
+If you need any additional clarification, please contact one of the wiki's [[Witcher Wiki: Administrators|admins]] or post on the [[:Board:General_Discussion|forums]].
+== Writing guidelines ==
+
+=== When to edit ===
+
+The wiki encourages editors to make an edit whenever they see an article that needs improving. Whether it be something as minor as a spelling mistake, or something larger like gaps in the facts provided, don't be afraid to jump in and improve the site. However, the wiki expects editors to be more circumspect when it comes to editing templates. The design and layout of the wiki's templates have been carefully considered; as such please consult an admin if you wish to propose a major change.
+
+=== When Polish and English translations conflict ===
+Translators aren't perfect, and from time to time we come across names in the books that were mistranslated to the English books. When this happens, the books are considered canon over all other material (like anything from the games) even if they're incorrect grammatically. If you see this, simply add a note to the page about the error to explain the incorrect name.
+* Also, for continuity purposes, please use the canon name in a character's biography section and only use the non-canon where non-canon entries are present (for example Mousesack is only known as Ermion in the games so his biography always uses "Mousesack" but his game journal entry and name on quest pages would be Ermion).
+
+=== What tone to use ===
+While the wiki does not expect editors to use an academic tone, there is still an expectation that articles maintain some level of formality. This means that while contractions such as "it's" are acceptable, informal language such as "ur" in place of "your" is not. Further to this, please avoid writing in first person. 
+
+=== What spelling to use ===
+As the Witcher wiki has editors from across the world, British and American spelling and grammar styles are both accepted. Editors are strongly discouraged from changing another editor's spelling or grammar purely because it is different to the style they are accustomed to. However, users are expected to follow the spelling used in-game. For example, Juggernaut Armor would always be spelt as such.
+
+=== When to use past or present tense ===
+In the stories, everything is written as past tense as the current present is around the 1520s. Therefore, when writing and edits articles, put everything in the past tense unless it's in the current present (1520s). For example, "Emhyr is the emperor of Nilfgaard" would be "Emhyr was the emperor of Nilfgaard."
+
+The one exception to this rule are items from the game, where one can directly reference the games instead and what the item was used for.
+
+=== When to use the edit summary ===
+Whenever there are significant changes to an article, please leave an explanation in the edit summary. If the change is minor (things like fixing spelling or adding links) there is less of a need to explain, though editors are welcome to.  When using the "undo" function to completely undo the previous edit, it is advisable to leave a detailed summary as to why the edit is being undone, with a link the associated guideline if applicable (i.e. "too many images on page per...").
+=== When to sign and when not to sign ===
+
+Always sign comments in the forums and on talk pages with four tildes (~). Conversely, never sign mainspace articles.
+
+=== When to use a spoiler tag ===
+The Witcher wiki tries to go by the "safer than sorry" approach and uses the spoiler banner at the top of pages when plot information is revealed, big or small. However, we expect our readers to understand that a walkthrough or biography section will indeed contain information that could spoil things in the games and/or books.
+
+=== What to call the protagonist ===
+See the [[Witcher Wiki:Manual of Style|Manual of Style]]
+
+=== How to reference CDPR ===
+When referring to the company, the correct format should be in all caps as "CD PROJEKT RED" or "CDPR". The "RED" should always be used in the name (in reference to their developer side) as opposed to just "CD PROJEKT" unless official statements use only the "CD PROJEKT" format.
+
+== Page Names ==
+Sometimes a particular person, location, item, etc. may not have a clear name, or share the same name as another page that already exists. When this happens, try to do the following:
+* If the character's last name is the only thing known and others share it, try to name the page by their title (such as Count X or Prince Y)
+* If no other page shares the name, you may name it simply by the name known
+* If it's a first name shared among many other characters and no last name is known, try to add a one word descriptor to the title like "[[Olaf (bear)]]" or "[[Olaf (guardsman)]]".
+* If it's a page name shared across games for quests, like Finders Keepers, add the shortened game title after it like "(The Witcher 2)" or "(The Witcher)". You may also do this with some quest items, though weapons and armor are ok sharing one page.
+* If it doesn't have an official name but is important enough to have a page, try to keep the name short and to the point like [[Longlocks' tower]].
+
+== What pages should not include ==
+=== Speculation ===
+
+Speculation should be avoided. If there is a strong reason to add something related to upcoming releases, or that is not made explicit in the canonical works it must be accompanied by a reliable source. This is to make it clear that you are not adding speculation.
+=== Personal comments ===
+
+If you have a question about a page, or comment about a particular edit, do not write it in the article. Instead use the forums, or the relevant talk page.
+=== Mods ===
+
+Linking to fan-created mods are not allowed on the wiki, as their inclusion depends on the editor and we're not able to verify it won't implode someone's computer. You are allowed to suggest sites, like for a player to check Nexus, but do not link out to them please. You can, however, list known steps if you know of any.
+
+You can also visit the [https://forums.cdprojektred.com/index.php?forums/the-witcher-series.22/ official forums] for the game for any help on this as well.
+
+=== Self Promotion ===
+This isn't the place to self-promote your Twitch account or YouTube channel. This wiki is meant to give concise, practical information on everything related to ''The Witcher'' series and while submitted videos and images are nice, rarely do we need 10 images of a minor location or videos just showcasing a house. Your best chances of us keeping a video is if it's a walkthrough, high quality, and to the point (no running around doing other quests, looting every container imaginable, etc.). Bear in mind if we already have walkthrough videos for a quest we may delete any new ones unless they prove to be better.
+
+=== Plagiarism ===
+
+Whether it is an online site or published source, do '''not''' directly copy another author's words. Instead, take any relevant information and properly paraphrase it to fit the tone of the wiki. '''Remember to reference any paraphrased information.'''
+== Minimum standard for pages ==
+=== Characters ===
+
+If a character is from a game and has no interactive dialogue, or three or less lines of dialogue, that page will normally be nominated for deletion. If a character is a historical character, they will generally be considered notable enough to warrant their own page if more than one source documents their actions and these sources provide a reasonable amount of basic information.
+=== Families ===
+
+Families generally warrant their own article if three members pass the notability requirements for characters or if the family's involvement in the series cannot be adequately portrayed in individual character articles.
+
+== Edit Warring ==
+An '''edit war''' occurs when editors who disagree about the content of a page repeatedly override each other's contributions, rather than trying to resolve the disagreement by discussion. Edit warring is nonconstructive and creates animosity between editors, making it harder to reach a consensus. Users who engage in edit wars risk being blocked.
+
+Not every revert or controversial edit is regarded as edit warring:
+*The Witcher Wiki encourages editors to be bold. A potentially controversial change may be made to find out whether it is opposed. Another editor may revert it. An edit war only arises if the situation develops into a series of back-and-forth reverts.
+* Reverting vandalism is not edit warring (vandalism can be anything from adding a biased point of view, removing information, adding irrelevant notes, etc.). If you see a lot of vandalism edits for one page, please let an admin know! We have tools to help us undo it all with one click whether as a normal editor would have to manually fix each one. 
+* Reverting to enforce certain overriding policies is not considered edit warring. 
+It is better to seek help in addressing the issue than to engage in edit warring over it. When disagreement becomes apparent, one, both, or all participants should '''cease warring''' and try to discuss the issue on the talk page, or approach appropriate venues for help.
+
+If, despite trying, one or more users will not cease edit warring, refuse to work collaboratively or heed the information given to them, or will not move on to appropriate dispute resolution, then a request for administrative involvement is the norm. A warning is not required, but if the user appears unaware that edit warring is prohibited, they can be told about this policy by posting a link to this policy on their user talk page. 
+
+The bottom line: ''use common sense, and do not participate in edit wars.'' Rather than reverting repeatedly, discuss the matter with others; if a revert is necessary, another editor may conclude the same and do it (without you prompting them), which would then demonstrate consensus for the action. 
+
+== Unobtainable items and cut content ==
+Pages can be created for items that are within the game files as long as the item in question was not solely created for cutscene purposes or for an NPC. This is regardless if the player can obtain them through a mod. Generally, those items should be considered cut content.
+
+== Red links ==
+Red links may occasionally occur on talk pages or forums. In cases where the pages have been deleted or moved, a fake external link should be created. For example, [{{fullurl:Talk:Achievements}} Talk:Achievements] (<code><nowiki>[{{fullurl:Talk:Achievements}} Talk:Achievements]</nowiki></code> or simply <code><nowiki>[http://witcher.wikia.com/wiki/Talk:Achievements]</nowiki></code>). The links should be edited without changing the meaning of the user's comment.
+[[Category:Policy]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Image Guidelines</title>
+  <ns>4</ns>
+  <text>All users are encouraged to follow these '''image guidelines''' regarding the use of images.
+
+== Uploading images ==
+Before hitting the the Upload button, make sure you've done the following:
+
+# If the image file on your computer has a meaningless name like "12345.jpg", use the "Destination filename" box to write in a clear, descriptive title that will make it easy for viewers to know what the image depicts.
+# Use the "Summary" box to write a brief summary of what the image depicts and where you discovered it (if applicable).
+# Use the "Summary" box to add appropriate categories (see [[:Category:Images]] for available image categories).
+# Click on the licensing box and select the appropriate license.
+# Now you're ready to upload!
+
+If you forget to add the summary, license, or category before you upload, it's not too late. Once you've uploaded it an edit button will appear next to the image title. Hit the edit button and use wikitext to add whatever you might have missed. However, images can only be renamed by admins, so it's important to get that right before you upload.
+
+''Note: Be aware that files without a license may be deleted to avoid [http://en.wikipedia.org/wiki/Fair_use Fair Use] violations.''
+
+== General rules ==
+* Avoid taking a picture with the user interface on or subtitles, unless it is to prove a point.
+* Please make sure that images have high resolution and reasonably illustrate the subject in question.
+* Images should have a descriptive name related to their purpose (i.e.: instead of just "Geralt" use something like "Tw1 Geralt fighting drowners")
+* If you find a page where there are more images than there is text, consider removing less informative pictures, or making a gallery. If you have the option, consider uploading your file in PNG format.
+* Try to keep file sizes 1.5 MB or less, especially if it's a minor page. If needed, JPG format is fine in this situation.
+* do '''NOT''' upload images taken from other fan sites (even if you edit it, crop it, etc.)
+* Article images violating any of these rules are subject for deletion.
+
+== Re-uploading pictures ==
+Unless there is a significant problem with a picture (such as poor resolution or lighting), we encourage people not to change pictures. This is because there can be many different opinions about what looks good which can lead to multiple changes with no improvement. Essentially, when it comes to pictures, "if it ain't broke don't fix it".
+
+* Before uploading an image please check to make sure it doesn't already exist in the wiki.
+* If it does, but you believe your version is better, click on the "Upload a new version of this file" option in the file's page, below the file history.
+* If it is a different picture format (e.g: yours is a PNG and the old is a JPG), upload your image as a completely different file instead by using [[Special:Upload]].
+
+== Character infobox pictures ==
+* Since the image used in infoboxes is particularly important, use a screenshot that shows their head and/or shoulders clearly. If you can't get a better image of just their head/shoulders, showing some or all of their body is fine too.
+* As there is numerous official artwork across several games and books, use the following criteria to determine which to use in the infobox:
+*# If they appear across multiple official adaptations, use the image that best fits the book (canon) appearance if they were described in the books. For example, if a character is described as having blonde hair in the books, but was shown with brown hair in the games while blonde in a graphic novel, the graphic novel image is used. Likewise, if they're clean shaven in the books and Netflix series, but have facial hair in the games, the Netflix one is used here.
+*# If they appear in any of the three main ''Witcher'' games, use an image of the latest game they appeared in
+*# If they never appeared in one of the main games, but have an associated Gwent card from the stand alone game, use that (you don't need to crop the image in this case unless there's a lot of characters in it)
+*# If neither of the above, use an image from one of the official books (Polish or an official translated version)
+*# If no official artwork exists, leave it be
+* If replacing with a new game image, move the older game image(s) to a gallery at the bottom of article's page.
+
+== Player character ==
+Apart from images officially released by [[CD Projekt|CD Projekt Red]], '''the wiki does not use images of individual player characters'''. However, there are exceptions to when they can be featured, such as showing an armor or weapon. Pictures for all characters should be portrayed with their default presets if possible to avoid confusion and to keep it consistent.
+
+== Item sets ==
+A player's character can be featured when taking pictures for showing the armor.
+
+== Galleries ==
+Images which cannot be used elsewhere in the article can be featured in a "Gallery" section on the article. Generally an article should have no more than 12 images in its gallery.
+
+'''There should not be multiple images to prove the same point'''. For example, an article that displays several pictures of the character attacking enemies in a similar stance. Even though some of these images were released by CD Projekt Red, it does not mean they should all be used on the wiki.
+
+'''Concept art''' should generally be featured in the gallery.
+
+== "Blank" images ==
+In some cases, images taken with the game's screenshot feature may not be uploaded properly: it will appear as a white thumbnail. You may have to use a third-party software to take the picture, or resave the image with a third-party software such as Photoshop or GIMP.
+
+== User page images ==
+* Only 10 user page images are allowed per user. If you wish to free up your "image slots", you need to mark your old images with the <nowiki>{{delete}}</nowiki> tag.
+* The user page images you have uploaded should be categorized under the "[[:Category:User images|User images]]" category in order to avoid confusion with images used in articles.
+* Any image used in your signature is considered a user page image.
+
+== Forum, blog, and talk page images ==
+* Any image used on a discussion page must be related to the topic of the forum, blog, or talk page.
+* Forum and talk page images violating any of these rules are subjected for deletion.
+
+== Deletion of images ==
+If a picture is not used at all for a lengthy period of time (more than one month), [[Witcher Wiki: Administrators |administrators]] may delete the picture for maintenance.[[Category:Policy]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Manual of Style/Quest guide</title>
+  <ns>4</ns>
+  <text>This is a quest layout which is encouraged to use for all quest articles on the wiki.
+== Lead section ==
+The lead section is anything included before the table of contents and/or the article content.  With the exception of the introductory text, they are optional, depending on the situation, and must follow this order:
+# '''Disambiguation links''' if there is another article of the same name, or may be confused with another.
+# '''Article maintenance tags''' Alternatively, the maintenance tags can be included within a specific section of the article, with the exception of "stub" which must always in the lead section.
+# '''Infobox/transformer template'''. They are generally wrapped in <code>onlyinclude</code> tags.
+# '''Short introductory text''', including the quest name in Bold followed by information about which game the quest appears in, which chapter of the game, any relevant information about the sequence of completing this quest in relation to other quests etc.
+# '''Table of contents''', which generally appears after the lead, provided there is more than four headings. If the page is long but does not have any table of contents, you may manually add it with <code><nowiki>__TOC__</nowiki></code>.
+== Walkthrough ==
+Walkthrough should list the objectives associated with the walkthrough in subheader text for easy access in the table of contents.  Use discretion when copying the names of the objectives, if it is too long consider shortening the objective but keeping the same meaning for instance:
+ "''Use Witcher Senses to discover the Location of the Door''" shortened to "''Locate the Door''"
+Include all quest objectives if able. For quests with branching or optional objectives indicate as such.
+
+''Note: Sections should be formatted like this in italics''
+
+== Journal entry ==
+This is where to put the complete journal entry for a quest/character. To do so, italicize each paragraph and make sure to indent using a colon ( : ) in the source editor like below. Note that line breaks will look extra wide in edit mode, but will go back to normal in the final version. For quests that don't have journal entries, it's ok to put "''This quest has no journal entry''."
+:''This is an example of a journal entry layout. Make sure to add a line break so paragraphs don't butt up against each other (unless it is so in the game format).''
+
+:'''For choices, also indent and make bold (don't italicize)'''
+::''then double indent the choice underneath (using :: ) to indicate it's only shown if the choice above is made. Keep adding : for more nesting choices.''
+
+== Objectives ==
+This area is for the quest's objectives and should be marked with bullet points. For some quests that have a lot of objectives, indenting (using ** in the script editor or simply hitting tab when on the bullet point) can help sort them. Note that for quests that don't appear in the journal, it is fine to say "''This quest has no journal objectives''."
+* this is an example objective
+** this is a nested objctive
+
+== Notes ==
+Notes should be listed using bullet lists. This includes things '''related''' to the game in some way. 
+*Anything that is not a trivia or a bug may be listed here.
+
+== Trivia ==
+Trivia should be listed using bullet points. This includes anything '''not''' related to the game (like easter egg examples would go here). 
+*Anything that is not a note or bug goes here
+
+== Bugs ==
+Bugs should be listed using bullet points. This includes examples that were not intentionally meant to be in the game. Additionally, you may include one link to a fan-made bug fix per bug. However, the link should be removed once it has been patched. 
+*Anything that is not a note or trivia goes here
+
+== Videos ==
+Only one quest walkthrough/playthrough is allowed per article and it should generally be free from advertising of an individual's youtube channel or in other ways support a particular person as this is contrary to the spirit of a wiki community. Other videos may explain particular parts of the quest: boss fights, loot locations, bugs etc.
+
+== Maps ==
+Any map(s) relevant to the quest can be included here. This can include a map from the customized map tab or pictures of maps from the game. If putting up pictures, use <code><nowiki><gallery></gallery></nowiki></code> for uniform formatting.
+
+== Gallery ==
+Use <code><nowiki><gallery></gallery></nowiki></code> to display the pictures in a table.
+
+== See also ==
+Links should be listed using bullet points. 
+*You may, alternatively, use <code>iconmini</code> for some links (such as linking other items to display the tooltip). Links in the section should be somewhat related to the article, but have not been linked anywhere else in the article. Do not clog the section with too many links if the category provides the same links.
+
+== Navboxes ==
+While not a heading onto itself, this is where any navboxes go, with a few exceptions (for example, a page that has no information other than a really long infobox, pushing all other content out of sight).
+
+== External links ==
+Links should be listed using bullet points. 
+*There are no strict guidelines on what kind of off-wiki links may be included in this section, as long it is related to the article and it does not constitute spam. Their inclusion (and removal) depends on the situation.
+== References ==
+Add <code><nowiki><references/></nowiki></code> when at least one <code><nowiki><ref></ref></nowiki></code> has been used within the article. The wiki will automatically list the references.
+
+For more information on how to format references, see the [[wikipedia:Help:Footnotes|help page]] on Wikipedia.
+== Categories ==
+Avoid clogging the article with categories of subcategories.  Always use the lowest subcategory possible and don't use any supercategories above a subcategory that is already listed.
+
+To make the article sort different than the page name, you may use <code><nowiki>{{DEFAULTSORT:}}</nowiki></code>. If you want the article to appear at the top of the category page.
+
+For more information on categories, see the [[wikipedia:Help:Category|help page]] on Wikipedia.
+== Interlanguage links ==
+
+If the page exists in another language, you are welcome to add it.</text>
+</page>
+<page>
+  <title>Witcher Wiki:Naming Conventions</title>
+  <ns>4</ns>
+  <text>The following '''naming conventions''' apply for article titles, section headings, categories as well as text within an article. In general, they should be written in correct English, unless they refer to a name or a title.
+== Capitalization ==
+Please note that we tend to follow in-game and book capitalization for article names. For example, if in-game an item is written as "Steel Plates" we use that but it does not mean you have to write it as such within an article.
+
+When to use lowercase
+* '''Creatures'''. While these some types of creatures encountered in-game are written with capitalized, they are not names.
+:{{tick|Yes}} "A [[water hag]]..."
+:{{tick|No}} "A Water Hag..."
+=== When to capitalize ===
+
+These are treated as names and should be capitalized as proper nouns.
+* '''Quest''', e.g., "[[Lilac and Gooseberries]]"
+* '''Ability''', e.g., "[[Igni sign|Igni]]"
+* '''Place''', e.g., "[[White Orchard]]"
+* Any kind of '''title''', '''event''', etc., e.g., "[[War of the Two Unicorns]]"
+
+=== Exceptions ===
+Some words must always be capitalized, regardless of the above guidelines.
+* '''Races''', such at [[Dwarf|Dwarves]]
+* '''Named creatures''', such as [[White Lady]].
+
+== Differences between capitalized and non-capitalized words ==
+* '''Nilfgaard''':
+:Capitalized: "Nilfgaard" refers to the kingdom or group of people (e.g., he is loyal to Nilfgaard)
+:Non-capitalized: "nilfgaard" refers to the adjective used to identify a particular person or object (e.g., nilfgaard soldiers)
+*'''king''' or '''queen''': 
+:Capitalized: "King" or "Queen" is attached to a specific name (e.g., King [[Radovid V]] is the ruler of [[Redania]].)
+:Non-capitalized: "king" or "queen" is not attached to any name (e.g., The queen of [[Toussaint]] is [[Anna Henrietta]].)
+
+== Game terminology ==
+Sometimes, the terminology in one game differs from that of another. If using a newer/different terminology ensure that a distinction is somehow made to show that it refers specifically to the game from which it originated.
+
+=== Acts ===
+Like the official game guide, the wiki refers to "Acts" to delineate major sections of the games. Always capitalize them and use the Arabic numeral system or Roman numerals when referring to a specific act, e.g.:
+:{{tick|yes}} "During Act 1..." or "During Act I..."
+:{{tick|no}} "During act I..."
+
+== Personal titles ==
+When creating a page about a character who has a title, the title should not be used in the page name. This is done for the sake of brevity and because the title a character has may change over the course of their involvement in the series.
+
+== Plurals ==
+In general only create page titles that are in the singular, unless that term is always in a plural form in English.
+
+== See also ==
+* [[Wikipedia:Wikipedia:Naming conventions (capitalization)|Naming conventions]] on Wikipedia.</text>
+</page>
+<page>
+  <title>Witcher Wiki:Code of Conduct</title>
+  <ns>4</ns>
+  <text>The '''Code of Conduct''' is a standard of conduct that sets out how editors should interact: editors should always endeavor to treat each other with consideration and respect. Even during heated debates, editors should behave politely, calmly and reasonably, in order to keep the focus on improving the wiki and to help maintain a pleasant editing environment.
+
+Please also note Fandom's [https://www.fandom.com/terms-of-use Terms of Use], especially in regards to leaving page comments. If your comment is found to be in violation of this or borders on such that it invites such remarks to violate it, it will be deleted.
+==Incivility==
+Incivility consists of personal attacks, rudeness, and aggressive behaviors that disrupt the project and lead to unproductive stress and conflict. Editors are human, capable of mistakes, so a few, minor incidents of incivility are not in themselves a major concern. A behavioral pattern of incivility is disruptive and unacceptable, and may result in blocks if it rises to the level of harassment or egregious personal attacks. A single act of incivility can also cross the line if it is severe enough: for instance, extreme verbal abuse or profanity directed at another contributor, or a threat against another person can all result in blocks without consideration of a pattern.
+
+In general, ''be understanding and non-retaliatory in dealing with incivility''. If others are uncivil, be understanding (people do say things when they get upset) rather than judgmental, and do not respond in kind. If necessary, point out gently that you think the comment might be considered uncivil, and make it clear that you want to move on and focus on the content issue. Bear in mind that the editor may not have considered it uncivil and that to insist that an editor be sanctioned for an isolated, minor offense, or to treat constructive criticism as an attack, is itself potentially disruptive, and may result in warnings or even blocks if repeated.
+
+== Co-operation ==
+
+Differences of opinion are inevitable in a collaborative project. When discussing these differences some editors, in trying to be forthright, can seem unnecessarily harsh. Other editors can seem oversensitive when their views are challenged. Silent and faceless words on talk pages and in edit summaries do not transmit fully the nuances of verbal conversation, sometimes leading to misinterpretation of an editor's comments. An uncivil remark can escalate spirited discussion into a personal argument that no longer focuses objectively on the problem at hand. Such exchanges waste our efforts and undermine a positive, productive working environment. Resolve differences of opinion through civil discussion; disagree without being disagreeable. Discussion of other editors should be limited to polite discourse about their actions.
+
+Try to treat your fellow editors as respected colleagues with whom you are working on an important project. Be especially welcoming and patient towards new users.  Welcome other people to edit the articles but do discourage non constructive edits.
+
+=== Avoiding incivility ===
+Incivility - or the appearance of incivility - typically arises from heated content disputes. 
+* ''Be careful with edit summaries''. Edit summaries are relatively short comments (so potentially subject to misinterpretation, or to oversimplification), cannot be changed after pressing Save, and often written in haste, particularly if there is an edit war brewing or in progress. Especially when things are getting heated, remember to explain your edit, avoid personal comments about any editors you have disputes with, and consider using the talk page to further explain your view of the situation.
+* ''Explain yourself''. Not sufficiently explaining edits can be perceived as uncivil, whether that's the editor's intention or not. Use good edit summaries, and use the talk page if the edit summary doesn't provide enough space or if a more substantive debate is likely to be needed.
+=== No personal attacks or harassment ===
+
+Editors are expected to avoid personal attacks. It is as unacceptable to attack a user with a history of foolish or boorish behavior, as it is to attack any other user.  The Witcher Wiki encourages a positive online community: people make mistakes, but they are encouraged to learn from them and change their ways.  Personal attacks and harassment are contrary to this spirit, damaging to the work of building a wiki, and may result in blocks.
+
+== Identifying incivility ==
+
+It is sometimes difficult to make a hard-and-fast judgement of what is uncivil and what is not. Such a judgement may need to take into account such matters as (i) the intensity of the language/behavior; (ii) whether the behavior has occurred on a single occasion, or is occasional or regular; (iii) whether a request has already been made to stop the behavior, and whether that request is recent; (iv) whether the behavior has been provoked; and (v) the extent to which the behavior of others need to be treated at the same time. 
+
+The following behaviors all contribute to an uncivil environment:
+
+'''1. Direct rudeness'''
+*(a) Rudeness, insults, name-calling, gross profanity or indecent suggestions
+*(b) Personal attacks, including racial, ethnic, sexual and religious slurs, and derogatory references to groups such as social classes or nationalities
+*(c) Ill-considered accusations of impropriety;
+*(d) Belittling a fellow editor, including the use of judgmental edit summaries or talk-page posts (e.g. "snipped rambling crap", "that is the stupidest thing I have ever seen")
+
+'''2. Other uncivil behaviors'''
+*(a) Taunting or baiting: deliberately pushing others to the point of breaching civility even if not seeming to commit such a breach themselves
+*(b) Harassment, including, personal or legal threats, posting of personal information, repeated email or user space postings
+*(c) Lying to mislead, including deliberately asserting false information
+*(d) Quoting another editor out of context to give the impression they hold views they do not hold, or to malign them.
+
+=== Assume good faith ===
+
+Unless there is strong evidence to the contrary, assume that people who work on the project are trying to help it, not hurt it. Everyone makes mistakes, and a reminder is sufficient most of the time, but even when difficult disagreements occur, it may well be that no one involved has any ill intent.
+
+Assume good faith as much as possible. The Assume Good Faith guideline does not require that editors continue to assume good faith in the presence of obvious contrary evidence; however, do not assume any more intentional wrongdoing than the evidence clearly supports, and given equally plausible interpretations of the evidence, choose the ''most'' positive one. Attempting to believe the best of your fellow editors, and they of you, helps to eliminate some of the problems that arise when we communicate only in text, and cannot use all the verbal and visual cues used in talking face-to-face.
+
+==Dealing with incivility==
+=== Dispute resolution ===
+In a case of ongoing incivility, first decide if anything needs to be done. Confronting someone over a minor incident – particularly if it turns out that you misinterpreted what they meant – may produce more stress and drama than the incident itself. Consider your own behavior, and, if you find you have been uncivil, apologize to him or her instead.
+
+In escalating order of seriousness, here are the venues you may use for dispute resolution if the relevant page's talk page is insufficient:
+* ''User talk page''. If some action is necessary, first consider discussing it on that user's talk page. Be careful not to escalate the situation, and politely explain your objection. 
+*''Contact an [[Witcher Wiki:Administrators|admin]]''
+
+=== Removing uncivil comments ===
+Where the uncivil comment is yours, any of these options will help to reduce the impact:
+
+* Where someone is taking offense at your comment where none was intended, calmly explain what you meant.
+* Strike it out (using <s><s>HTML strikeout tags</s></s>), to show, publicly, that you withdraw the comment.
+* Quietly remove it, or rewrite the comment to be more civil – Usually only a good idea if you think better of it before anyone took offense to it. If someone has taken offense already, you should acknowledge the change in a quick comment after the changed text, for instance, ''Comment removed by author''.
+* Simply apologize. This option ''never'' hurts, and can be combined well with any of the others. Even if you feel the thrust of your words is true, or that they are misunderstanding what you meant, you can still apologize for the offense caused.
+
+In the event of rudeness or incivility on the part of another editor, it is usually appropriate to discuss the offending words with that editor, and to request that editor to change that specific wording. Some care is necessary, however, so as not to further inflame the situation. It is not normally appropriate to edit or remove another editor's comment. Exceptions include to remove obvious trolling or vandalism, or if the comment is on your own user talk page.
+
+=== Apologizing ===
+
+For some people, it may be crucial to receive an apology from those who have offended them. ''Demanding'' an apology is almost never helpful and often inflames the situation further, though a polite, good faith ''request'' for an apology may be acceptable. ''Offering'' an apology is even better, and can be a key to resolving conflict.  An apology provides the opportunity for a fresh start, and can clear the air when one person's perceived incivility has offended another.
+
+=== Blocking for incivility ===
+Editors are generally not blocked for minor incivility.  Civility is a goal rather than an objective standard. Editors from around the world may have different cultural standards of civility, so a certain amount of tolerance is required. However, when incivility rises to the level of disruption, personal attacks, or harassment editors will likely be blocked.
+[[Category:Policy]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Piracy Policy</title>
+  <ns>4</ns>
+  <text>Every users of this Wiki (both registered and unregistered) are obligated to follow the below regulations regarding piracy related activities.  Because {{Tw3}} has been released Digital Rights Management (DRM) free, it is especially susceptible to piracy and it is the responsibility of all wiki users discourage piracy.
+
+1. Users cannot post links that leads to pirated copies of any Witcher 3 related interactive entertainment or any other interactive entertainment; within the Witcher Wiki (this includes forum pages, user pages, user-talk pages and article pages etc.). 
+
+2. Users cannot post information (within the Witcher Wiki) related to pirated copies that can be used by others to find the corresponding pirated copies of any interactive entertainment (such as logins to GOG accounts etc.).
+
+3. Users cannot post links that leads to pirated copies of any other media (comics, books and movies etc.) within the Witcher Wiki.
+
+5. Users should not post any content that supports piracy or that indicates they are using pirated copies, within the Witcher Wiki.
+
+: Penalty – Any of the administrators can ban the user without a prior warning (The time period of the ban varies from one week to one month).  Any of the administrators may alternatively decide to give a warning to the corresponding user. If that user already has received two “piracy related” warnings, an administrator is encouraged to decide to ban the corresponding user (The time period of the ban varies from one week to one month).
+[[Category:Policy]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:AutoWikiBrowser/CheckPage</title>
+  <ns>4</ns>
+  <text>This page is to run [[w:c:community:Help:Bots|bots]] using [https://en.wikipedia.org/wiki/Wikipedia:AutoWikiBrowser AutoWikiBrowser].
+
+== Global settings ==
+<pre>
+<nowiki>
+<!--Typos-en:http://en.wikipedia.org/w/index.php?title=Wikipedia:AutoWikiBrowser/Typos&action=raw-->
+<!--Typos-es:http://es.wikia.com/wiki/Wikia:AutoWikiBrowser/Typos&action=raw-->
+<!--Typos-ru:http://ru.wikipedia.org/w/index.php?title=Википедия:AutoWikiBrowser/Typos&action=raw-->
+<!--foo bar-->
+</nowiki>
+</pre>
+
+==Approved users==
+<!--enabledusersbegins-->
+
+===Bots===
+<!--enabledbots-->
+* Witcher Bot
+<!--enabledbotsends-->
+<!--enabledusersends-->
+[[Category:Administration of this site]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:Manual of Style/Character guide</title>
+  <ns>4</ns>
+  <text>This is a character layout which is encouraged to use for all character articles on the wiki.
+== Lead section ==
+The lead section is anything included before the table of contents and/or the article content.  With the exception of the introductory text, they are optional, depending on the situation, and must follow this order:
+# '''Disambiguation links''' if there is another article of the same name, or may be confused with another.
+# '''Article maintenance tags''' Alternatively, the maintenance tags can be included within a specific section of the article, with the exception of "spoiler" and "stub" which must always be at the top of the page.
+# '''Infobox/transformer template'''. They are generally wrapped in <code>onlyinclude</code> tags.
+# '''Short introductory text''', including the character name in Bold followed by a brief synapse of who they are, how they were first introduced to us, etc.
+# '''Table of contents''', which generally appears after the lead, provided there is more than four headings. If the page is long but does not have any table of contents, you may manually add it with <code><nowiki>__TOC__</nowiki></code>.
+
+== Biography ==
+Write out the full story of the character from all the sources available and keeping the following in mind:
+* make sure to keep things in past tense.
+* use third person when talking about the character.
+* try to cite a year when possible in the writing. For example, instead of "Calanthe and Roegner were married and Pavetta was born 2 years later" use "In 1235, Calanthe and Roegner were married and 2 years later Pavetta was born."
+* don't make direct comments to sources. For example, instead of "Geralt gained the nickname 'Butcher of Blaviken' from what happened in ''The Last Wish'' book" just say "Geralt gained the nickname 'Butcher of Blaviken' for what happened in Blaviken's marketplace" and add a reference after it to the appropriate source.
+
+== Trivia ==
+Trivia should be listed using bullet points. This includes anything '''not''' related to the game (like easter egg examples would go here). 
+*Anything that is not a note or bug goes here
+== Notes ==
+Notes should be listed using bullet lists. This includes things '''related''' to the game in some way. More importantly, this is where you list any game, TV show, etc. appearances and information. 
+*Anything that is not a trivia or a bug may be listed here.
+== Gallery ==
+Use <code><nowiki><gallery></gallery></nowiki></code> to display the pictures in a table.
+
+== References ==
+Add <code><nowiki><references/></nowiki></code> when at least one <code><nowiki><ref></ref></nowiki></code> has been used within the article. The wiki will automatically list the references.
+
+For more information on how to format references, see the [[wikipedia:Help:Footnotes|help page]] on Wikipedia.
+== Categories ==
+Avoid clogging the article with categories of subcategories.  Always use the lowest subcategory possible and don't use any supercategories above a subcategory that is already listed.
+
+To make the article sort different than the page name, you may use <code><nowiki>{{DEFAULTSORT:}}</nowiki></code>. If you want the article to appear at the top of the category page.
+
+For more information on categories, see the [[wikipedia:Help:Category|help page]] on Wikipedia.
+== Interlanguage links ==
+
+If the page exists in another language, you are welcome to add it.</text>
+</page>
+<page>
+  <title>Witcher Wiki:Manual of Style/Location guide</title>
+  <ns>4</ns>
+  <text>This is a location layout which is encouraged to use for all location articles on the wiki.
+{{Tocright}}
+== Lead section ==
+The lead section is anything included before the table of contents and/or the article content.  With the exception of the introductory text, they are optional, depending on the situation, and must follow this order:
+# '''Disambiguation links''' if there is another article of the same name, or may be confused with another.
+# '''Article maintenance tags''' Alternatively, the maintenance tags can be included within a specific section of the article, with the exception of "stub" which must always in the lead section.
+# '''Infobox/transformer template'''.
+# '''Short introductory text''', including the location name in Bold followed by a short summary about where it's located in the world (if information is given).
+# '''Table of contents''', which generally appears after the lead, provided there is more than four headings. If the page is long but does not have any table of contents, you may manually add it with <code><nowiki>__TOC__</nowiki></code>.
+
+== Overview ==
+This generally only pertains to well known kingdoms that have a lot of information provided, like [[Temeria]] and [[Redania]], and is meant to give an overview of the country's economy, society, and culture.
+
+== Map description ==
+If the location has a description in the game (usually indicated by a signpost) it goes here and is indented and italics like so:
+
+:''Map description example.''
+
+== History ==
+This can be placed here if it's a minor location (like a small settlement) and doesn't have a long history. Otherwise, it should go below "locations".
+
+== National emblems ==
+This generally only pertains to kingdoms or locations that have known coats of arms and/or flags represented in the lore. Sometimes this section is further divided into "Coats of arms" and "Flags".
+
+== Geography ==
+If there's enough information on a location's geography (about 4 sentences) it goes here. Same rules apply to any climate (which will go here as a sub-heading). If there's not enough information, please just add to the "Notes" section instead.
+
+== Locations ==
+Locations should be listed using bullet points. If it's a large country/kingdom, it's further divided into appropriate lists such as "Territories, vassal states, and provinces" (list all of them) and "Notable locations" (keep list to around 25).
+
+If it's a region (like [[Caroberta Woods]]), it's preferable to list all known locations in the list, even if there's no plans to create a page for a particular location.
+
+== Economy ==
+If there's enough information on a location's economy (about 4 sentences) it goes here.
+
+== Demographics ==
+If there's enough information on a location's demographics (about 4 sentences) it goes here. Same rules apply to any Clans (which will go here as a sub-heading). If there's not enough information, please just add to the "Notes" section instead.
+
+== Notable people ==
+This header name may reflect the demonym if it's known, like Temeria would be "Notable Temerians" and the people are put in a bulleted list. There are a few different rules here depending on the article:
+* If it's a location with many people (Redanians, [[Nilfgaardian Empire|Nilfgaardians]], etc.) only list notable people in alphabetical order (keep list to around 25). As this is very subjective, it's best to go by how much importance the character plays in the lore compared to others in the list.
+** One exception are those with monarchies: even if minor, every ruler and royal family member gets listed in a separate section above the regular list of people (see [[Temeria]] page as an example). Alphabetical order does '''not''' apply to the rulers list: instead, list them in order of when they ruled from earliest to latest.
+** To link to all known people for a large group, use the [[Template:For|For template]] to link to the appropriate category.
+
+== Culture ==
+This will likely never come up on most locations as most can be covered under "Overview" but for locations with a detailed, established culture it'd go here. This will also be the section to put a Religion subheader if there's enough information to go on.
+
+== Military ==
+This generally only pertains to kingdoms with well established armies. This should be a simple overview though as most cases, these have full articles related to them already (in which case using the [[Template:For|For template]] works well here).
+
+== Associated quests ==
+Associated quests should be listed using bullet points. This only pertains to local locations if quests happen in them. For example, [[Velen]] shouldn't have a list as it's a huge region, but a location within Velen, like [[Crow's Perch]], should have a bulleted list.
+
+== Game headers ==
+This includes journal entries for the location from the games, with each game having its own header and then a "Journal entry" sub-header. It's important to note nothing else should go in here: if it's describing events, that should go under "History" while any miscellaneous info should go under "Notes".
+
+== Trivia ==
+Trivia should be listed using bullet points. This includes anything '''not''' related to the game (like easter egg examples would go here). 
+*Anything that is not a note goes here
+== Notes ==
+Notes should be listed using bullet lists. This includes things '''related''' to the game in some way. More importantly, this is where you list any game, TV show, etc. information. 
+*Anything that is not trivia may be listed here
+== Gallery ==
+Use <code><nowiki><gallery></gallery></nowiki></code> to display the pictures in a table. Note this should only pertain to regions and smaller (like cities). For kingdoms, only images that should be added are world map images (which are usually put in the infobox). This is to keep from clogging up a gallery with images of every region within that kingdom.
+
+== References ==
+Add <code><nowiki><references/></nowiki></code> when at least one <code><nowiki><ref></ref></nowiki></code> has been used within the article. The wiki will automatically list the references.
+
+For more information on how to format references, see the [[wikipedia:Help:Footnotes|help page]] on Wikipedia.
+== Categories ==
+Avoid clogging the article with categories of subcategories.  Always use the lowest subcategory possible and don't use any supercategories above a subcategory that is already listed.
+
+To make the article sort different than the page name, you may use <code><nowiki>{{DEFAULTSORT:}}</nowiki></code>. If you want the article to appear at the top of the category page.
+
+For more information on categories, see the [[wikipedia:Help:Category|help page]] on Wikipedia.
+
+== Interlanguage links ==
+
+This isn't a header onto itself but where you'd list interlanguage wikis If the page exists in another language.</text>
+</page>
+<page>
+  <title>Witcher Wiki:Site Images</title>
+  <ns>4</ns>
+  <text>This is to help list images that are actually in use with CSS to keep from clogging up the "unused photos" category, as with CSS it thinks they're not. Do not edit this page unless it's to fix the DPL.
+
+As always, double-check CSS and the templates to make sure an image is in use (or not).
+
+<dpl>
+category = Flags - interwiki|*Wiki skin images
+format = <gallery>,%PAGE%\n,,</gallery>
+allowcachedresults = true
+</dpl>
+
+[[Category:Images]]</text>
+</page>
+<page>
+  <title>Witcher Wiki:The Witcher Netflix</title>
+  <ns>4</ns>
+  <text><mainpage-leftcolumn-start />
+{{LP Welcome}}
+{{LP Characters}}
+{{LP Episodes}}
+<mainpage-endcolumn />
+<mainpage-rightcolumn-start />
+{{LP About}}
+{{LP Share}}
+{{LP Videos}}
+{{LP News}}
+<mainpage-endcolumn /></text>
+</page>
+<page>
+  <title>Witcher Wiki:Manual of Style/Race guide</title>
+  <ns>4</ns>
+  <text>This is a basic race layout which is encouraged to use for all race related articles on the wiki.
+
+== Lead section ==
+The lead section is anything included before the table of contents and/or the article content.  With the exception of the introductory text, they are optional, depending on the situation, and must follow this order:
+# '''Disambiguation links''' if there is another article of the same name, or may be confused with another.
+# '''Article maintenance tags''' Alternatively, the maintenance tags can be included within a specific section of the article, with the exception of "spoiler" and "stub" which must always be at the top of the page.
+# '''Infobox/transformer template'''. They are generally wrapped in <code>onlyinclude</code> tags.
+# '''Short introductory text''', including the race name in Bold followed by a brief synapse of who they are, how they were first introduced to us, etc.
+# '''Table of contents''', which generally appears after the lead, provided there is more than four headings. If the page is long but does not have any table of contents, you may manually add it with <code><nowiki>__TOC__</nowiki></code>.
+
+== History ==
+This is where any history that we know of goes. This should include all official sources available and keep the following in mind:
+* Make sure to keep things in past tense.
+* Try to cite a year when possible in the writing or, if a year is not known but a general timeline (like knowing something occurred sometime after the 1230s) can note this.
+* Don't make direct comments to sources. For example, instead of saying "Geralt gained the nickname 'Butcher of Blaviken' from what happened in ''The Last Wish'' book" just say "Geralt gained the nickname 'Butcher of Blaviken' for what happened in Blaviken's marketplace" and add a reference after it to the appropriate source.
+* If a certain timeframe only has details from outside the books (like the games, show, etc.) and can't be added on as a minor note into the page with a reference (such as within the history text or under the Notes header), make use of the [[Template:Canon Marker|Canon Marker]] and [[Template:Canon Marker End|Canon Marker End]] templates to section this information off.
+* It is ok to note when something is not made clear how something occurred if it's to reference a drastic jump in the information we have. For example, [[Lyria]] is noted to have eventually separated from [[Rivia]], with Rivia long gone by the known present (1520s), but we don't know if Lyria still exists by then.
+** Keep in mind this is separate from speculation, which makes assumptions based on a mix of probable evidence and theories. If there's reasonable belief that something caused another via evidence in official sources, this can be added to the Notes section but must be backed by considerable evidence.
+
+== Culture ==
+This is where any known culture about the race goes. Sections in here can range widely based on how much information is known. Some examples can be society, technology, art, clothing, weapons, language, architecture, religion, etc..
+* Use general judgement based on if there's enough info to separate info sub-sections or not. For instance, if the only culture details known are a couple sentences, it likely does not need a sub-header for each topic we know of. However, if we know a lot about their weapons, but only have a few sentences about their religion, that can be separated off so it's not lost in the weapons topic.
+
+== Characteristics ==
+This includes sections such as physical appearance, personality traits, and similar topics.
+* Some may have unique characteristics that require unique headers, like "Mental traits"
+
+== Notable [race] ==
+This header name will reflect the race being mentioned. For example, it could be "Notable vrans", "Notable unicorns", etc. and those listed are put in a bulleted list. There are a few different rules here depending on the article:
+* If it's a race with many known under it (humans, elves, etc.) only list notable beings in alphabetical order (keep list to around 25). As this is very subjective, it's best to go by how much importance the character plays in the lore compared to others in the list.
+** To link to all known beings for a large group, use the [[Template:For|For template]] to link to the appropriate category.
+
+== Trivia ==
+Trivia should be listed using bullet points. This includes anything '''not''' directly related to the series (like easter egg examples would go here). 
+*Anything that is not a note goes here
+
+== Notes ==
+Notes should be listed using bullet lists. This includes things '''related''' to the series in some way.
+*Anything that is not a trivia or a bug may be listed here.
+
+== Gallery ==
+Use <code><nowiki><gallery></gallery></nowiki></code> to display the pictures in a table.
+
+== References ==
+Add <code><nowiki><references/></nowiki></code> when at least one <code><nowiki><ref></ref></nowiki></code> has been used within the article. The wiki will automatically list the references.
+
+For more information on how to format references, see the [[wikipedia:Help:Footnotes|help page]] on Wikipedia.
+
+== Categories ==
+Avoid clogging the article with categories of subcategories.  Always use the lowest subcategory possible and don't use any supercategories above a subcategory that is already listed.
+
+To make the article sort different than the page name, you may use <code><nowiki>{{DEFAULTSORT:}}</nowiki></code>. If you want the article to appear at the top of the category page.
+
+For more information on categories, see the [[wikipedia:Help:Category|help page]] on Wikipedia.
+
+== Interlanguage links ==
+
+If the page exists in another language, you are welcome to add it.</text>
+</page>
+</pages>
