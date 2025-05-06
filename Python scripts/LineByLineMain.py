@@ -24,7 +24,15 @@ print("Loaded OWL Classes:", existing_classes)
 title_pattern = re.compile(r"<title>(.*?)</title>")
 category_pattern = re.compile(r"\[\[Category:(.*?)\]\]")
 infobox_pattern = re.compile(r"\{\{Infobox (.*?)\}\}", re.DOTALL)
-infobox_property_pattern = re.compile(r"\|(.*?)=(.*)")
+infobox_property_pattern = re.compile(
+    r"^\|\s*([^=]+?)\s*=\s*(.*?)\s*$",
+    re.MULTILINE
+)
+# Regex to split on <br>, <br/>, or <br />
+BR_SPLIT = re.compile(r'<br\s*/?\s*>', re.IGNORECASE)
+# Regex to find [[Link|Label]] or [[Link]]
+WIKILINK = re.compile(r'\[\[([^|\]]+)(?:\|([^\]]+))?\]\]')
+
 
 # **Processing file as plain text**
 with open('../Wiki_Dump_Namespaces/namespace_0_main.xml', 'r', encoding='utf-8') as file:
@@ -52,13 +60,17 @@ with open('../Wiki_Dump_Namespaces/namespace_0_main.xml', 'r', encoding='utf-8')
             # Process the previous page before moving to the next
             infobox_match = infobox_pattern.search(page_text)
             if infobox_match:
-                subject = dbr[re.sub(r'\W+', '_', current_title).strip('_')]
-                for prop_match in infobox_property_pattern.findall(infobox_match.group(1)):
-                    prop_name = prop_match[0].strip()
-                    prop_value = prop_match[1].strip()
-                    prop_uri = witcher[re.sub(r"[^a-zA-Z0-9_-]", "", prop_name.replace(' ', '_'))]
-                    g.add((subject, prop_uri, Literal(prop_value)))
-                    print(f"Added property: {current_title} -> {prop_name} = {prop_value}")
+                infobox_text = infobox_match.group(1)  # the whole {{Infobox…}} body
+                subject = dbr[ re.sub(r'\W+', '_', current_title).strip('_') ]       
+                for prop_name, raw_value in infobox_property_pattern.findall(infobox_text):
+                    prop_name = prop_name.strip()
+                    prop_uri = witcher[ re.sub(r"[^A-Za-z0-9_-]", "", prop_name.replace(' ', '_')) ]
+
+                    # 2) split true single-line value into parts
+                    parts = [p.strip() for p in BR_SPLIT.split(raw_value) if p.strip()]
+                    for part in parts:
+                        g.add((subject, prop_uri, Literal(part)))
+                        print(f"Added property: {current_title} -> {prop_name} = {part}")
                 
             current_title = title_match.group(1).strip()
             page_text = ""  # Reset text storage for new page
@@ -83,15 +95,21 @@ with open('../Wiki_Dump_Namespaces/namespace_0_main.xml', 'r', encoding='utf-8')
                 g.add((subject, RDF.type, class_uri))
                 g.add((subject, RDFS.label, Literal(current_title)))
                 print(f"Added instance: {current_title} -> {cat}")
+
         infobox_match = infobox_pattern.search(page_text)
         if infobox_match:
-            subject = dbr[re.sub(r'\W+', '_', current_title).strip('_')]
-            for prop_match in infobox_property_pattern.findall(infobox_match.group(1)):
-                prop_name = prop_match[0].strip()
-                prop_value = prop_match[1].strip()
-                prop_uri = witcher[re.sub(r"[^a-zA-Z0-9_-]", "", prop_name.replace(' ', '_'))]
-                g.add((subject, prop_uri, Literal(prop_value)))
-                print(f"Added property: {current_title} -> {prop_name} = {prop_value}")
+            infobox_text = infobox_match.group(1)  # the whole {{Infobox…}} body
+            subject = dbr[ re.sub(r'\W+', '_', current_title).strip('_') ]
+       
+            for prop_name, raw_value in infobox_property_pattern.findall(infobox_text):
+                prop_name = prop_name.strip()
+                prop_uri = witcher[ re.sub(r"[^A-Za-z0-9_-]", "", prop_name.replace(' ', '_')) ]
+
+                # 2) split true single-line value into parts
+                parts = [p.strip() for p in BR_SPLIT.split(raw_value) if p.strip()]
+                for part in parts:
+                    g.add((subject, prop_uri, Literal(part)))
+                    print(f"Added property: {current_title} -> {prop_name} = {part}")
 
 # **Save RDF Output**
 g.serialize('../RDF/main.n3', format='n3')
