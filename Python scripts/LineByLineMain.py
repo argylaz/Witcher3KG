@@ -41,16 +41,16 @@ title_pattern = re.compile(r"<title>(.*?)</title>")               # Used for pag
 
 category_pattern = re.compile(r"\[\[Category:(.*?)\]\]")          # Used for extracting categories (class types)
 infobox_pattern = re.compile(r"\{\{Infobox (.*?)\}\}", re.DOTALL) # Used for extracting infobox data (property/value pairs)
+
 infobox_property_pattern = re.compile(
-    r"^\|\s*([^=]+?)\s*=\s*(.*?)\s*$",
-    re.MULTILINE | re.DOTALL                                      # DOTALL allows multiline values
+    r"^\|\s*([^=]+?)\s*=\s*(.*?)(?=\n\s*\||\n\s*\}\})",           # stops at the next property or end of infobox using lookahead
+    re.DOTALL | re.MULTILINE                                      # DOTALL allows . to match newlines
 )
 
 br_split_pattern = re.compile(r'<br\s*/?\s*>', re.IGNORECASE)     # Used to split infobox values that use <br> tags
 
-# Regex to match a complete wiki-link, capturing the page and optional label
-# e.g., [[Geralt of Rivia]] or [[Monster|Vampire]]
-wikilink_pattern = re.compile(r'^\s*\[\[([^|\]]+)(?:\|([^\]]+))?\]\]\s*$')
+# This pattern is for FINDING all links inside a value. It returns a list of strings.
+wikilink_find_pattern = re.compile(r'\[\[([^|\]]+)(?:\|[^\]]+)?\]\]')
 
 # ——————————————————————————————
 # 3. Processing Logic
@@ -104,6 +104,21 @@ def find_infobox_content(page_text: str) -> Union[str, None]:
         return None
 
 
+def clean_value(value: str) -> str:
+    """
+    Cleans a raw wikitext value that does NOT contain links.
+    Its main job is to remove leftover templates and markup.
+    """
+    # Remove any remaining templates like {{...}}
+    while re.search(r'\{\{[^\{\}]*?\}\}', value):
+         value = re.sub(r'\{\{[^\{\}]*?\}\}', '', value)
+
+    # Remove any leftover link brackets, quotes, etc.
+    value = value.replace("'''", "").replace("''", "")
+    value = value.replace('[[', '').replace(']]', '')
+    return value.strip()
+
+
 def process_page_content(title, text, graph):
     """
     Extracts categories and infobox data from a wiki page's text and adds triples to the graph.
@@ -143,23 +158,24 @@ def process_page_content(title, text, graph):
             values = [v.strip() for v in br_split_pattern.split(raw_value) if v.strip()] # Split value by <br> tags and clean whitespace
 
             for value in values:
-                link_match = wikilink_pattern.match(value)
+                # 1. Try to find all linkable entities within the value
+                found_links = wikilink_find_pattern.findall(value)
                 
-                if link_match:
-                    page, label = link_match.groups()
-                    page_clean = page.strip()
-                    linked_uri = dbr[sanitize_for_uri(page_clean)]
-                    
-                    graph.add((subject_uri, prop_uri, linked_uri))
-                    print(f"  - Added object property: {title} -> {prop_name_clean} -> {page_clean}")
+                # 2. For each link found, create a separate object property (a structured link)
+                # This correctly loops over a list of strings.
+                for link_target in found_links:
+                    link_target = link_target.strip()
+                    if link_target:
+                        linked_uri = dbr[sanitize_for_uri(link_target)]
+                        graph.add((subject_uri, prop_uri, linked_uri)) 
+                        print(f"  - Added object property: {title} -> {prop_name_clean} -> {link_target}")
 
-                    if label:
-                        graph.add((linked_uri, RDFS.label, Literal(label.strip())))
-                else:
-                    # The value might still have templates or other wiki markup.
-                    # For now, we add it as a literal string.
-                    graph.add((subject_uri, prop_uri, Literal(value)))
-                    print(f"  - Added data property: {title} -> {prop_name_clean} = '{value}'")
+                # 3. ALWAYS clean the original value and add it as a single data property.
+                # This preserves the full human-readable text context.
+                cleaned_literal = clean_value(value)
+                if cleaned_literal:
+                    graph.add((subject_uri, prop_uri, Literal(cleaned_literal)))
+                    print(f"  - Added data property: {title} -> {prop_name_clean} = '{cleaned_literal}'")
 
 
 # ——————————————————————————————
