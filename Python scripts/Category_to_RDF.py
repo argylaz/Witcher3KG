@@ -1,72 +1,94 @@
 import xml.etree.ElementTree as ET
 import re
+from rdflib import Graph, Namespace, URIRef, Literal, RDF, RDFS, OWL
 
-# Define the ontology prefix
-ontology_prefix = "witcher"
-base_uri = f"http://cgi.di.uoa.gr/{ontology_prefix}/ontology#"
+# --- Configuration ---
+ONTOLOGY_PREFIX = "witcher"
+BASE_URI = f"http://cgi.di.uoa.gr/{ONTOLOGY_PREFIX}/ontology#"
 
-# Parse the XML file
-tree = ET.parse('../Wiki_Dump_Namespaces/namespace_14_Category.xml')
-root = tree.getroot()
+# Initialize the graph and bind namespaces
+g = Graph()
+witcher = Namespace(BASE_URI)
+dbr = Namespace(f"http://cgi.di.uoa.gr/{ONTOLOGY_PREFIX}/resource/") # Resource namespace
+g.bind("witcher", witcher)
+g.bind("dbr", dbr)
+g.bind("owl", OWL)
+g.bind("rdfs", RDFS)
 
-# Function to sanitize category titles (replace all invalid characters with underscores)
-def sanitize_category_title(category_title):
-    # Replace all non-alphanumeric characters (except underscores) with underscores
-    sanitized_title = re.sub(r'[^a-zA-Z0-9_]', '_', category_title)
-    return sanitized_title
+# --- Helper Functions ---
+def sanitize_for_uri(title):
+    """Replaces all non-alphanumeric characters with underscores."""
+    return re.sub(r'[^a-zA-Z0-9_]', '_', title)
 
-# Function to generate RDF class name with prefix
-def get_class_name(category_title):
-    sanitized_title = sanitize_category_title(category_title.replace("Category:", ""))
-    return f"witcher:{sanitized_title}"
-
-# Function to generate RDF triples with prefixes
-def generate_rdf_triples(category_title, parent_category=None):
-    class_name = get_class_name(category_title)
-    triples = [f"{class_name} a owl:Class ."]
-    
-    if parent_category:
-        parent_class_name = get_class_name(parent_category)
-        triples.append(f"{class_name} rdfs:subClassOf {parent_class_name} .")
-    
-    return triples
-
-# Function to extract full text content, including text after child elements
 def extract_full_text(element):
-    if element is None:
-        return ""
-    
-    # Start with the .text of the element
-    full_text = element.text or ""
-    
-    # Iterate through child elements and add their .tail
-    for child in element:
-        if child.tail:
-            full_text += child.tail
-    
-    return full_text
+    """Extracts text from an element, including from its children's tails."""
+    if element is None: return ""
+    return "".join(element.itertext())
 
-# Iterate through each category and generate RDF triples
-rdf_triples = []
-for page in root.findall('page'):
-    title = page.find('title').text
-    text_element = page.find('text')
-    
-    # Extract full text content, including text after child elements
-    text = extract_full_text(text_element)
-    
-    # Extract parent category if any
-    parent_category = None
-    if "[[Category:" in text:
-        parent_category = text.split("[[Category:")[1].split("]]")[0]
-    
-    # Generate RDF triples
-    triples = generate_rdf_triples(title, parent_category)
-    rdf_triples.extend(triples)
+# --- 1. Generate Class Hierarchy from Wiki Categories ---
+print("Parsing wiki categories to build class hierarchy...")
+try:
+    tree = ET.parse('../Wiki_Dump_Namespaces/namespace_14_Category.xml')
+    root = tree.getroot()
 
-# Write the RDF triples to a file in Turtle format
+    for page in root.findall('page'):
+        title_text = page.find('title').text.replace("Category:", "")
+        class_uri = witcher[sanitize_for_uri(title_text)]
+        
+        # Declare the class
+        g.add((class_uri, RDF.type, OWL.Class))
+        g.add((class_uri, RDFS.label, Literal(title_text.replace("_", " "))))
+        
+        # Find and add parent class relationships
+        text = extract_full_text(page.find('text'))
+        parent_matches = re.findall(r'\[\[Category:([^\]]+)\]\]', text)
+        for parent_title in parent_matches:
+            parent_uri = witcher[sanitize_for_uri(parent_title)]
+            g.add((class_uri, RDFS.subClassOf, parent_uri))
+    print("Successfully generated class hierarchy from categories.")
+
+except FileNotFoundError:
+    print("Warning: Category XML file not found. No class hierarchy will be built.")
+
+# --- 2. Manually Define Mappin Ontology and Relationships ---
+print("Adding specific axioms for map pins and game concepts...")
+
+# Define a top-level class for all map pins
+mappin_base_class = witcher.Mappin
+g.add((mappin_base_class, RDF.type, OWL.Class))
+g.add((mappin_base_class, RDFS.label, Literal("Map Pin")))
+
+# Define functional sub-categories of map pins
+crafting_station = witcher.Crafting_Station
+g.add((crafting_station, RDFS.subClassOf, mappin_base_class))
+g.add((crafting_station, RDFS.label, Literal("Crafting Station")))
+
+road_sign = witcher.RoadSign
+g.add((road_sign, RDFS.subClassOf, mappin_base_class))
+g.add((road_sign, RDFS.label, Literal("Road Sign")))
+
+# Define specific mappin types as subclasses
+g.add((witcher.Blacksmith, RDFS.subClassOf, crafting_station))
+g.add((witcher.Armorer, RDFS.subClassOf, crafting_station))
+g.add((witcher.Whetstone, RDFS.subClassOf, crafting_station))
+g.add((witcher.AlchemyTable, RDFS.subClassOf, crafting_station))
+g.add((witcher.AlchemyTable, RDFS.subClassOf, crafting_station))
+g.add((witcher.Grindstone, RDFS.subClassOf, witcher.Whetstone)) # A Grindstone is a type of Whetstone
+
+# Link game concepts (professions) to the mappin types they use
+# This creates the crucial connection between the person and the map icon.
+uses_mappin_type = witcher.usesMappinType
+g.add((uses_mappin_type, RDF.type, OWL.ObjectProperty))
+g.add((uses_mappin_type, RDFS.label, Literal("uses mappin type")))
+
+# The Blacksmith profession uses the Blacksmith mappin type
+g.add((dbr.Blacksmith, uses_mappin_type, witcher.Blacksmith))
+g.add((dbr.Armorer, uses_mappin_type, witcher.Armorer))
+
+print("Ontology augmentation complete.")
+
+# --- 3. Save the Combined Ontology ---
 with open('../RDF/Classes.ttl', 'w', encoding='utf-8') as f:
-    f.write("@prefix witcher: <{}> .\n".format(base_uri))
-    f.write("@prefix owl: <http://www.w3.org/2002/07/owl#> .\n")
-    f.write("@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n")
-    f.write("\n".join(rdf_triples))
+    f.write(g.serialize(format='turtle'))
+
+print(f"\nSuccessfully generated enriched ontology file at '../RDF/Classes.ttl'")

@@ -1,8 +1,11 @@
 import re
 import json
+import xml.etree.ElementTree as ET
+import numpy as np
+from shapely.geometry import Point, Polygon
 from rdflib import Graph, Namespace, URIRef, Literal, RDF, RDFS, OWL
 from rdflib.namespace import XSD
-from typing import Union 
+from typing import Tuple, Optional, Union
 
 # ——————————————————————————————
 # 1. Configuration & Initialization
@@ -21,6 +24,10 @@ g.bind("witcher", witcher)
 g.bind("dbr", dbr)
 g.bind("rdfs", RDFS)
 g.bind("owl", OWL)
+
+
+city_names = []    # For contextual matching of map pins
+city_polygons = {} # For storing city polygons
 
 
 # ——————————————————————————————
@@ -218,6 +225,9 @@ def integrate_geo_file(graph, json_path, feature_class, map_context_uri, uri_pre
             name = attributes.get(name_attribute)
             if name:
                 subject_uri = dbr[sanitize_for_uri(name)]
+            if name.lower() not in city_names: city_names.append(name.lower()) # Populate city list (only cities are named)
+            if feature_class == witcher.City:
+                city_polygons[name.lower()] = Polygon(geometry['rings'][0])
         else:
             # Logic for anonymous features (like swamps e.g. dbr:Novigrad_Swamp_1)
             object_id = attributes.get('OBJECTID')
@@ -266,9 +276,10 @@ def integrate_geo_file(graph, json_path, feature_class, map_context_uri, uri_pre
 
 
 # Function to add a map border geometry directly to the map entity
-def add_map_border_geometry(graph, json_path, map_uri):
+def add_map_border_geometry(graph, json_path, map_uri) -> Optional[Tuple[Point,Point, Point]]:
     """
     Reads a border file and assigns its geometry directly to the map entity.
+    Returns the centroid and northernmost point of the border polygon.
     """
     print(f"\n--- Defining Geometry for Map <{map_uri}> from {json_path} ---")
     try:
@@ -283,19 +294,182 @@ def add_map_border_geometry(graph, json_path, map_uri):
     geometry = feature.get('geometry', {})
 
     if 'rings' in geometry:
+        # Define shapely polygon and calculate centroid
+        all_points = geometry['rings'][0]
+        poly = Polygon(all_points)
+        centroid = poly.centroid
+
+        # Find the northernmost and easternmost points of the border
+        min_x, min_y, max_x, max_y = poly.bounds
+        north_point = Point(centroid.x, max_y)
+        east_point = Point(max_x, centroid.y)
+
         geometry_uri = URIRef(f"{map_uri}_geometry")
         points = geometry['rings'][0]
         wkt_points = ", ".join([f"{p[0]} {p[1]}" for p in points])
         wkt_string = f"POLYGON (({wkt_points}))"
         wkt_literal = Literal(wkt_string, datatype=GEO.wktLiteral)
 
-        graph.add((map_uri, RDF.type, witcher.Map))
+        graph.add((map_uri, RDF.type, witcher.Maps))
         graph.add((map_uri, RDF.type, GEO.Feature))
         graph.add((map_uri, RDFS.label, Literal("Novigrad and Velen Map")))
         graph.add((map_uri, GEO.hasGeometry, geometry_uri))
         graph.add((geometry_uri, RDF.type, GEO.Geometry))
         graph.add((geometry_uri, GEO.asWKT, wkt_literal))
         print(f"  - Successfully attached border geometry to {map_uri.n3(graph.namespace_manager)}")
+
+        return (centroid, north_point, east_point)
+    return None
+
+# Function to calculate an affine transformation matrix
+# This is used to convert game coordinates to GIS coordinates
+def calculate_affine_transform(game_coords, gis_coords):
+    """Calculates the 2D affine transformation matrix from 3 control points."""
+    game_pts = np.array(game_coords)
+    gis_pts = np.array(gis_coords)
+    
+    # We need to solve for a 2x3 matrix: [[a, b, c], [d, e, f]]
+    # Each point gives us two equations, so 3 points give us 6 equations for 6 unknowns.
+    A = np.zeros((6, 6))
+    b = np.zeros(6)
+    
+    for i in range(3):
+        A[2*i, 0:3] = [game_pts[i,0], game_pts[i,1], 1]
+        A[2*i+1, 3:6] = [game_pts[i,0], game_pts[i,1], 1]
+        b[2*i] = gis_pts[i,0]
+        b[2*i+1] = gis_pts[i,1]
+        
+    try:
+        solution = np.linalg.solve(A, b)
+        transform_matrix = solution.reshape(2, 3)
+        print("\n--- Calculated Transformation Matrix ---")
+        print(transform_matrix)
+        return transform_matrix
+    except np.linalg.LinAlgError as e:
+        print(f"!!! FATAL ERROR in transformation calculation: {e} !!!")
+        print("This usually means your control points are collinear (in a straight line).")
+        return None
+ 
+def transform_point(point, matrix):
+    game_pt = np.array([point[0], point[1], 1])
+    gis_pt = matrix @ game_pt     # Apply transformation
+    return (gis_pt[0], gis_pt[1]) 
+ 
+# Map pin integration logic
+def integrate_map_pins(graph, xml_path, transform_matrix):
+    """
+    Reads an XML file of map pins, performs spatial and contextual linking to existing
+    entities, and adds their point geometry to the graph
+    """
+    print(f"\n--- Integrating and Linking Map Pins from {xml_path} ---")
+
+    # 1. Build a lookup map of {lowercase_label: uri} from the existing graph
+    label_to_uri_map = {
+        str(o).lower(): s
+        for s, o in graph.subject_objects(RDFS.label)
+        # if isinstance(o, Literal)
+    }
+    print(f"  - Built lookup map with {len(label_to_uri_map)} existing labels.")
+
+    # A list of generic names that REQUIRE spatial context for accurate linking
+    generic_pin_names = ["blacksmith", "armorer", "merchant", "innkeep", "herbalist", "whetstone", "grindstone", "notice board"]
+
+    try:
+        tree = ET.parse(xml_path)
+        root = tree.getroot()
+    except Exception as e:
+        print(f"Error reading or parsing {xml_path}: {e}")
+        return
+
+    # Iterate through each <world> (e.g., White Orchard, Velen & Novigrad)
+    for world in root.findall('world'):
+        world_name = world.get('name')
+        world_map_uri = dbr[sanitize_for_uri(f"{world_name}_Map")]
+        
+        # Ensure the map entity exists
+        graph.add((world_map_uri, RDF.type, witcher.Maps))
+        graph.add((world_map_uri, RDFS.label, Literal(f"{world_name} Map")))
+
+        # Iterate through each <mappin> in the world
+        for mappin in world.findall('mappin'):
+            name_elem = mappin.find('name')
+            internal_name_elem = mappin.find('internalname')
+            pos = mappin.find('position')
+            mappin_type = mappin.get('type')
+
+            # Skip pins with missing essential info
+            if name_elem is None or name_elem.text is None or pos is None:
+                continue
+
+            name = name_elem.text
+            internal_name = internal_name_elem.text if internal_name_elem is not None else ""
+            game_x, game_y = float(pos.get('x')), float(pos.get('y'))
+            
+            subject_uri = None
+
+            # --- Linking Logic ---
+
+            # Transform the pin's game coordinates into the GIS coordinate system
+            gis_x, gis_y = transform_point((game_x, game_y), transform_matrix)
+            pin_point = Point(gis_x, gis_y)
+
+            # First, check if the pin has a generic name that requires spatial context
+            if name.lower() in generic_pin_names:
+                # Spatially search for the containing city first
+                for city_name, city_poly in city_polygons.items():
+                    if pin_point.within(city_poly):
+                        # The pin is inside this city. Now look for a contextual label.
+                        contextual_label = f"{name} ({city_name})"
+                        if contextual_label.lower() in label_to_uri_map:
+                            subject_uri = label_to_uri_map[contextual_label.lower()]
+                            print(f"  - Spatially & contextually matched '{name}' in '{city_name}' to: {subject_uri.n3(graph.namespace_manager)}")
+                        # We found the containing city, so stop searching other cities
+                        break
+
+            else:
+                # If the name is NOT generic (e.g., a quest), do a direct match. This is safe.
+                if name.lower() in label_to_uri_map:
+                    subject_uri = label_to_uri_map[name.lower()]
+                    print(f"  - Matched unique pin '{name}' to existing entity: {subject_uri.n3(graph.namespace_manager)}")
+     
+            # Fallback: If no match was found by any method, create a new entity for the pin.
+
+            # No match found, create a new, clean URI for a generic pin
+            if not subject_uri:
+                # Create a clean, unique URI using coordinates to avoid name collisions
+                safe_x = str(game_x).replace('-', 'm').replace('.', 'p')
+                safe_y = str(game_y).replace('-', 'm').replace('.', 'p')
+                uri_base = f"{world_name}_{name}_Pin_{safe_x}_{safe_y}"
+                subject_uri = dbr[sanitize_for_uri(uri_base)]
+                
+                # Add the essential types and label for this new entity
+                graph.add((subject_uri, RDFS.label, Literal(name)))
+                graph.add((subject_uri, RDF.type, witcher[sanitize_for_uri(mappin_type)])) 
+                print(f"  - No match found. Created new pin entity '{name}': {subject_uri.n3(graph.namespace_manager)}")
+ 
+            # --- Augment BOTH matched and new entities with pin info ---
+            # 1. This entity is now a geo:Feature
+            graph.add((subject_uri, RDF.type, GEO.Feature))
+            
+            # 2. Add other pin-specific properties
+            if internal_name:
+                graph.add((subject_uri, witcher.hasInternalName, Literal(internal_name)))
+            
+            # Add relationship linking this feature to the map it's on
+            graph.add((subject_uri, witcher.isPartOf, world_map_uri))
+
+            # 3. Create and add the point geometry, using the GIS coordinates
+            wkt_point = f"POINT ({gis_x} {gis_y})"
+            wkt_literal = Literal(wkt_point, datatype=GEO.wktLiteral)
+            # Using a new geometry URI to avoid conflicts
+            geometry_uri = URIRef(f"{subject_uri}_point_geometry")
+
+            graph.add((subject_uri, GEO.hasGeometry, geometry_uri))
+            graph.add((geometry_uri, RDF.type, GEO.Geometry))
+            graph.add((geometry_uri, GEO.asWKT, wkt_literal))
+
+            # Also add the in-game coordinates as a separate property
+            graph.add((subject_uri, witcher.hasInGameCoordinates, Literal(f"xy({game_x},{game_y})", datatype=XSD.string)))
 
 
 # ——————————————————————————————
@@ -334,19 +508,16 @@ with open(input_file, 'r', encoding='utf-8') as file:
 
 # 1. Define the central URI for the map itself
 novigrad_map_uri = dbr.Novigrad_And_Velen_Map
-g.add((novigrad_map_uri, RDF.type, witcher.Map))
+g.add((novigrad_map_uri, RDF.type, witcher.Maps))
 g.add((novigrad_map_uri, RDFS.label, Literal("Novigrad and Velen Map")))
 g.add((dbr.Novigrad, witcher.isPartOf, novigrad_map_uri))  # Link Novigrad to the map (with isPartOf)
 g.add((dbr.Velen, witcher.isPartOf, novigrad_map_uri))  # Link Velen to the map (with isPartOf)
 
 # 2. Add the border geometry TO the map URI
 borders_file = '../InfoFiles/novigrad_borders.json'
-add_map_border_geometry(g, borders_file, novigrad_map_uri)
+gis_control_data = add_map_border_geometry(g, borders_file, novigrad_map_uri)
 
 # 3. Integrate all other features and link them TO the map URI
-cities_file = '../InfoFiles/novigrad_cities.json'
-integrate_geo_file(g, cities_file, witcher.City, novigrad_map_uri, name_attribute='name')
-
 swamps_file = '../InfoFiles/novigrad_swamps.json'
 integrate_geo_file(g, swamps_file, witcher.Swamp, novigrad_map_uri, uri_prefix="Novigrad")
 
@@ -359,12 +530,43 @@ integrate_geo_file(g, terrain_file, witcher.Terrain, novigrad_map_uri, uri_prefi
 roads_file = '../InfoFiles/novigrad_roads.json'
 integrate_geo_file(g, roads_file, witcher.Road, novigrad_map_uri, uri_prefix="Novigrad")
 
+cities_file = '../InfoFiles/novigrad_cities.json'
+integrate_geo_file(g, cities_file, witcher.City, novigrad_map_uri, name_attribute='name')
+
+# 4. Define control points for auto-calibration and calculate the transformation matrix
+if gis_control_data:
+    gis_center, gis_north_point, gis_east_point = gis_control_data
+    
+    # This is an approximation of the game map's Y extent (might need to change)
+    game_map_extent = 3000.0  # Assuming both go up to 3000 units in-game (for now
+
+    # We now create the control points automatically
+    game_control_points = [
+        (0.0, 0.0),                # In-game center
+        (0.0, game_map_extent),     # In-game "North"
+        (game_map_extent, 0.0)     # In-game "East"
+    ]
+    gis_control_points = [
+        (gis_center.x, gis_center.y), # GIS map center
+        (gis_north_point.x, gis_north_point.y), # GIS map "North"
+        (gis_east_point.x, gis_east_point.y)
+    ]
+    
+    print("\n--- Auto-Calibrating Using Control Points ---")
+    print(f"Game Control Points: {game_control_points}")
+    print(f"GIS Control Points: {gis_control_points}")
+
+    transformation_matrix = calculate_affine_transform(game_control_points, gis_control_points)
+ 
+# 5. Integrate and Spatially Link Map Pins using the calculated matrix
+mappins_xml_file = '../InfoFiles/MapPins.xml'
+integrate_map_pins(g, mappins_xml_file, transformation_matrix)
 
 # ——————————————————————————————
 # 5. Save Final RDF Output
 # ——————————————————————————————
 
-output_file = '../RDF/main_linked.n3'
+output_file = '../RDF/main_linked_geo.n3'
 g.serialize(output_file, format='n3')
 
 print("\n-------------------------------------------")
