@@ -299,10 +299,10 @@ def add_map_border_geometry(graph, json_path, map_uri) -> Optional[Tuple[Point,P
         poly = Polygon(all_points)
         centroid = poly.centroid
 
-        # Find the northernmost and easternmost points of the border
+        # Find the top-right and top-left corner points of the border
         min_x, min_y, max_x, max_y = poly.bounds
-        north_point = Point(centroid.x, max_y)
-        east_point = Point(max_x, centroid.y)
+        top_right_corner = (max_x, max_y)
+        top_left_corner = (min_x, max_y)
 
         geometry_uri = URIRef(f"{map_uri}_geometry")
         points = geometry['rings'][0]
@@ -318,7 +318,7 @@ def add_map_border_geometry(graph, json_path, map_uri) -> Optional[Tuple[Point,P
         graph.add((geometry_uri, GEO.asWKT, wkt_literal))
         print(f"  - Successfully attached border geometry to {map_uri.n3(graph.namespace_manager)}")
 
-        return (centroid, north_point, east_point)
+        return (centroid, top_right_corner, top_left_corner)
     return None
 
 # Function to calculate an affine transformation matrix
@@ -535,21 +535,22 @@ integrate_geo_file(g, cities_file, witcher.City, novigrad_map_uri, name_attribut
 
 # 4. Define control points for auto-calibration and calculate the transformation matrix
 if gis_control_data:
-    gis_center, gis_north_point, gis_east_point = gis_control_data
+    gis_center, gis_top_right, gis_top_left = gis_control_data
     
     # This is an approximation of the game map's Y extent (might need to change)
-    game_map_extent = 3000.0  # Assuming both go up to 3000 units in-game (for now
+    game_map_y_extent = 3000.0 # Approximate Y extent of the game map in-game coordinates (couldn't find actual value)
+    game_map_x_extent = game_map_y_extent * 0.906  # Aspect ratio of the GIS map (approximately) - Coul  
 
     # We now create the control points automatically
     game_control_points = [
         (0.0, 0.0),                # In-game center
-        (0.0, game_map_extent),     # In-game "North"
-        (game_map_extent, 0.0)     # In-game "East"
+        (game_map_x_extent, game_map_y_extent),     # In-game top-right corner 
+        (-game_map_x_extent, game_map_y_extent)     # In-game top-left corner
     ]
     gis_control_points = [
         (gis_center.x, gis_center.y), # GIS map center
-        (gis_north_point.x, gis_north_point.y), # GIS map "North"
-        (gis_east_point.x, gis_east_point.y)
+        gis_top_right, # GIS map top-right corner
+        gis_top_left   # GIS map top-left corner
     ]
     
     print("\n--- Auto-Calibrating Using Control Points ---")
