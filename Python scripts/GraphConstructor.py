@@ -47,7 +47,7 @@ except FileNotFoundError:
     print("Warning: Classes.ttl not found. No instances will be typed from categories.")
     existing_classes = set()
 
- 
+
 title_pattern = re.compile(r"<title>(.*?)</title>")               # Used for page titles
 category_pattern = re.compile(r"\[\[Category:(.*?)\]\]")          # Used for extracting categories (class types)
 infobox_pattern = re.compile(r"\{\{Infobox (.*?)\}\}", re.DOTALL) # Used for extracting infobox data (property/value pairs)
@@ -324,31 +324,32 @@ def add_map_border_geometry(graph, json_path, map_uri) -> Optional[Tuple[Point,P
 # Function to calculate an affine transformation matrix
 # This is used to convert game coordinates to GIS coordinates
 def calculate_affine_transform(game_coords, gis_coords):
-    """Calculates the 2D affine transformation matrix from 3 control points."""
+    """
+    Calculates the 2D affine transformation matrix using a robust
+    least-squares method that is stable for 3 or more points.
+    """
     game_pts = np.array(game_coords)
     gis_pts = np.array(gis_coords)
     
-    # We need to solve for a 2x3 matrix: [[a, b, c], [d, e, f]]
-    # Each point gives us two equations, so 3 points give us 6 equations for 6 unknowns.
-    A = np.zeros((6, 6))
-    b = np.zeros(6)
+    # Pad the game coordinates with a column of ones to handle translation
+    A = np.hstack([game_pts, np.ones((game_pts.shape[0], 1))])
     
-    for i in range(3):
-        A[2*i, 0:3] = [game_pts[i,0], game_pts[i,1], 1]
-        A[2*i+1, 3:6] = [game_pts[i,0], game_pts[i,1], 1]
-        b[2*i] = gis_pts[i,0]
-        b[2*i+1] = gis_pts[i,1]
-        
+    # Use least squares to solve for the transformation parameters for X and Y
+    # This is more robust than np.linalg.solve for this problem
     try:
-        solution = np.linalg.solve(A, b)
-        transform_matrix = solution.reshape(2, 3)
-        print("\n--- Calculated Transformation Matrix ---")
-        print(transform_matrix)
-        return transform_matrix
+        params_x, _, _, _ = np.linalg.lstsq(A, gis_pts[:, 0], rcond=None)
+        params_y, _, _, _ = np.linalg.lstsq(A, gis_pts[:, 1], rcond=None)
     except np.linalg.LinAlgError as e:
-        print(f"!!! FATAL ERROR in transformation calculation: {e} !!!")
-        print("This usually means your control points are collinear (in a straight line).")
+        print(f"!!! FATAL LINALG ERROR: {e} !!!")
+        print("This means your control points are still collinear. You must choose points that form a triangle.")
         return None
+    
+    # The solution gives us the rows of the 2x3 transformation matrix
+    transform_matrix = np.array([params_x, params_y])
+    
+    print("\n--- Calculated Transformation Matrix ---")
+    print(transform_matrix)
+    return transform_matrix
  
 def transform_point(point, matrix):
     game_pt = np.array([point[0], point[1], 1])
@@ -427,7 +428,7 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
                         break
 
             else:
-                # If the name is NOT generic (e.g., a quest), do a direct match. This is safe.
+                # If the name is NOT generic (e.g., a quest), do a direct match
                 if name.lower() in label_to_uri_map:
                     subject_uri = label_to_uri_map[name.lower()]
                     print(f"  - Matched unique pin '{name}' to existing entity: {subject_uri.n3(graph.namespace_manager)}")
@@ -444,9 +445,10 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
                 
                 # Add the essential types and label for this new entity
                 graph.add((subject_uri, RDFS.label, Literal(name)))
-                graph.add((subject_uri, RDF.type, witcher[sanitize_for_uri(mappin_type)])) 
+                graph.add((subject_uri, RDF.type, dbr[sanitize_for_uri(mappin_type)])) 
                 print(f"  - No match found. Created new pin entity '{name}': {subject_uri.n3(graph.namespace_manager)}")
  
+
             # --- Augment BOTH matched and new entities with pin info ---
             # 1. This entity is now a geo:Feature
             graph.add((subject_uri, RDF.type, GEO.Feature))
@@ -470,6 +472,8 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
 
             # Also add the in-game coordinates as a separate property
             graph.add((subject_uri, witcher.hasInGameCoordinates, Literal(f"xy({game_x},{game_y})", datatype=XSD.string)))
+
+    # print(city_polygons)
 
 
 # ——————————————————————————————
@@ -543,14 +547,16 @@ if gis_control_data:
 
     # We now create the control points automatically
     game_control_points = [
-        (0.0, 0.0),                # In-game center
-        (game_map_x_extent, game_map_y_extent),     # In-game top-right corner 
-        (-game_map_x_extent, game_map_y_extent)     # In-game top-left corner
+        (-768.57, 2685.09),  # top left corner of playable area 
+        (2583.86, -1294.50), # bottom right corner of playable area
+        (-768.57, -1294.50), # bottom left corner of playable area
+        (2583.86, 2685.09)   # top right corner of playable area
     ]
     gis_control_points = [
-        (gis_center.x, gis_center.y), # GIS map center
-        gis_top_right, # GIS map top-right corner
-        gis_top_left   # GIS map top-left corner
+        (21.0036502117724, -21.0036501982966), # top left corner of playable area 
+        (615.670143636147, -677.368416076594), # bottom right corner of playable area
+        (21.0036502117724, -677.368416076594), # bottom left corner of playable area
+        (615.670143636147, -21.0036501982966)  # top right corner of playable area
     ]
     
     print("\n--- Auto-Calibrating Using Control Points ---")
