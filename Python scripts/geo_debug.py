@@ -1,9 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Point, Polygon, LineString, MultiLineString, mapping
 import json
+import xml.etree.ElementTree as ET
+import glob
 
-# --- 1. The Numerically Stable Transformation Function ---
+# --- 1. The Numerically Stable Transformation Function (Unchanged) ---
 def calculate_affine_transform(game_coords, gis_coords):
     """
     Calculates the 2D affine transformation matrix using a robust
@@ -11,23 +13,13 @@ def calculate_affine_transform(game_coords, gis_coords):
     """
     game_pts = np.array(game_coords)
     gis_pts = np.array(gis_coords)
-    
-    # Pad the game coordinates with a column of ones to handle translation
     A = np.hstack([game_pts, np.ones((game_pts.shape[0], 1))])
-    
-    # Use least squares to solve for the transformation parameters for X and Y
-    # This is more robust than np.linalg.solve for this problem
     try:
         params_x, _, _, _ = np.linalg.lstsq(A, gis_pts[:, 0], rcond=None)
         params_y, _, _, _ = np.linalg.lstsq(A, gis_pts[:, 1], rcond=None)
     except np.linalg.LinAlgError as e:
-        print(f"!!! FATAL LINALG ERROR: {e} !!!")
-        print("This means your control points are still collinear. You must choose points that form a triangle.")
-        return None
-    
-    # The solution gives us the rows of the 2x3 transformation matrix
+        print(f"!!! FATAL LINALG ERROR: {e} !!!"); return None
     transform_matrix = np.array([params_x, params_y])
-    
     print("\n--- Calculated Transformation Matrix ---")
     print(transform_matrix)
     return transform_matrix
@@ -39,86 +31,109 @@ def transform_point(point, matrix):
     return (gis_pt[0], gis_pt[1])
 
 # --- 2. Your Control Point Data ---
-
-# Define the extents of the game map (approximate values) not used in the code
-# game_map_y_extent = 2500.0
-# game_map_x_extent = game_map_y_extent * 0.906
-
-
+# These are the manually found coordinates that correctly align the maps.
 GIS_CONTROL_POINTS = [
-    # (214.811774233621, -139.481429540745),  # Novigrad polygon left peak (/\)
-    # (201.451320267247, -520.246408777688),  # Oreton polygon right-most corner
-    # (369.613548687602, -306.024182113144)   # Codger's Quarry polygon left-most corner
-
-    (21.0036502117724, -21.0036501982966), # top left corner of playable area 
-    (615.670143636147, -677.368416076594), # bottom right corner of playable area
-    (21.0036502117724, -677.368416076594), # bottom left corner of playable area
-    (615.670143636147, -21.0036501982966)  # top right corner of playable area
+    (21.0036502117724, -21.0036501982966),  # Top-left corner
+    (615.670143636147, -677.368416076594), # Bottom-right corner
+    (21.0036502117724, -677.368416076594), # Bottom-left corner
+    (615.670143636147, -21.0036501982966)   # Top-right corner
 ]
 
-# Inverting the Y-axis of the game coordinates to match the GIS system's direction.
 GAME_CONTROL_POINTS = [
-    # (329.77, -187.0),   # Novigrad Y: 187 -> -187
-    # (199.45, 455.0),   # Oreton Y: -455 -> 455
-    # (1199.0, -852.0)    # Codger's Quarry Y: 852 -> -852
-
-    (-768.57, 2685.09), # top left corner of playable area 
-    (2583.86, -1294.50), # bottom right corner of playable area
-    (-768.57, -1294.50), # bottom left corner of playable area
-    (2583.86, 2685.09)   # top right corner of playable area
+    (-768.57, 2685.09),  # In-game top-left corner
+    (2583.86, -1294.50), # In-game bottom-right corner
+    (-768.57, -1294.50), # In-game bottom-left corner
+    (2583.86, 2685.09)   # In-game top-right corner
 ]
 
-# --- 3. Visualization Code ---
+# --- 3. Upgraded Visualization Code ---
 def visualize(transform_matrix):
-    """Generates the debug_map.png image."""
+    """
+    Generates a rich, multi-layered debug map with color-coded pins.
+    """
     
-    # Load the GIS polygons directly from the source file
-    polygons = []
-    with open('../InfoFiles/novigrad_cities.json', 'r', encoding='utf-16') as f:
-        data = json.load(f)
-        for feature in data.get('features', []):
-            if 'rings' in feature.get('geometry', {}):
-                polygons.append(Polygon(feature['geometry']['rings'][0]))
+    # --- Load all GIS Polygon and Polyline data ---
+    gis_shapes = {'polygons': [], 'lines': []}
+    # Use glob to find all json files in the directory
+    gis_files = glob.glob('../InfoFiles/*.json')
+    print(f"\nFound GIS files to load: {gis_files}")
 
-    # Load the game map pins directly from the source file
-    import xml.etree.ElementTree as ET
-    game_pins = []
+    for file_path in gis_files:
+        print(f"  - Loading {file_path}...")
+        with open(file_path, 'r', encoding='utf-16') as f:
+            data = json.load(f)
+            for feature in data.get('features', []):
+                geometry = feature.get('geometry', {})
+                if 'rings' in geometry:
+                    gis_shapes['polygons'].append(Polygon(geometry['rings'][0]))
+                elif 'paths' in geometry:
+                    gis_shapes['lines'].append(MultiLineString(geometry['paths']))
+
+    # --- Load and Categorize Game Map Pins ---
+    game_pins_by_type = {}
     tree = ET.parse('../InfoFiles/MapPins.xml')
     root = tree.getroot()
-    for mappin in root.findall('.//mappin'):
+    for mappin in root.findall('.//world[@code="NO"]/mappin'): # Only load Novigrad/Velen pins
         pos = mappin.find('position')
+        pin_type = mappin.get('type', 'Unknown')
         if pos is not None:
-            game_pins.append(Point(float(pos.get('x')), float(pos.get('y'))))
+            if pin_type not in game_pins_by_type:
+                game_pins_by_type[pin_type] = []
+            game_pins_by_type[pin_type].append(Point(float(pos.get('x')), float(pos.get('y'))))
 
-    # Transform the game pins to GIS coordinates
-    transformed_pins = [Point(transform_point((p.x, p.y), transform_matrix)) for p in game_pins]
+    # --- Define a Color Map for Pin Types ---
+    # You can customize these colors
+    color_map = {
+        'RoadSign': 'yellow', 'Harbor': 'orange',
+        'Blacksmith': 'black', 'Armorer': 'dimgray', 'Whetstone': 'gray',
+        'Merchant': 'purple', 'Herbalist': 'green',
+        'NoticeBoard': 'brown',
+        'PlaceOfPower': 'cyan',
+        'MonsterNest': 'red', 'BanditCamp': 'darkred',
+        'SideQuest': 'magenta', 'TreasureHuntMappin': 'gold',
+        'Entrance': 'white',
+        'default': 'lime' # A default color for any other type
+    }
 
-    # Create the plot
-    fig, ax = plt.subplots(figsize=(12, 12))
-    for poly in polygons:
-        x, y = poly.exterior.xy
-        ax.fill(x, y, alpha=0.5, fc='blue', ec='black')
+    # --- Create the Plot ---
+    fig, ax = plt.subplots(figsize=(15, 20)) # Make the plot larger
     
-    if transformed_pins:
+    # Plot all GIS Polygons
+    for poly in gis_shapes['polygons']:
+        x, y = poly.exterior.xy
+        ax.fill(x, y, alpha=0.4, fc='cornflowerblue', ec='black')
+        
+    # Plot all GIS Lines (Roads)
+    for line in gis_shapes['lines']:
+        for part in line.geoms:
+            x, y = part.xy
+            ax.plot(x, y, color='saddlebrown', linewidth=0.8)
+
+    # Transform and plot each category of map pins with its own color
+    print("\nTransforming and plotting map pins by type...")
+    for pin_type, points in game_pins_by_type.items():
+        transformed_pins = [Point(transform_point((p.x, p.y), transform_matrix)) for p in points]
         xs = [pt.x for pt in transformed_pins]
         ys = [pt.y for pt in transformed_pins]
-        ax.plot(xs, ys, 'ro', markersize=2, label='Transformed Map Pins')
+        color = color_map.get(pin_type, color_map['default'])
+        ax.plot(xs, ys, 'o', color=color, markersize=3, label=pin_type)
+        print(f"  - Plotted {len(points)} '{pin_type}' pins in {color}")
 
-    ax.set_title('Diagnostic Map Alignment')
+    ax.set_title('Full Diagnostic Map Alignment', fontsize=16)
     ax.set_xlabel('GIS X-Coordinate')
     ax.set_ylabel('GIS Y-Coordinate')
-    ax.legend()
+    ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.) # Place legend outside
     ax.set_aspect('equal', 'box')
-    plt.savefig('debug_map.png')
-    print("\n--- Diagnostic plot saved to debug_map.png ---")
+    ax.set_facecolor('lightsteelblue') # Add a background color
+    fig.tight_layout() # Adjust layout to make room for legend
+    plt.savefig('debug_map_full.png', bbox_inches='tight')
+    print("\n--- Full diagnostic plot saved to debug_map_full.png ---")
 
 if __name__ == '__main__':
     print("--- Running Standalone Diagnostic Script ---")
-    
-    # Use a minimum of 3 NON-COLLINEAR points for stability
-    matrix = calculate_affine_transform(GAME_CONTROL_POINTS, GIS_CONTROL_POINTS)
-    
-    if matrix is not None:
-        visualize(matrix)
+    if len(GAME_CONTROL_POINTS) < 3:
+        print("!!! Please define at least 3 non-collinear control points to run the diagnostic. !!!")
     else:
-        print("Could not generate visualization because transformation failed.")
+        matrix = calculate_affine_transform(GAME_CONTROL_POINTS, GIS_CONTROL_POINTS)
+        if matrix is not None:
+            visualize(matrix)
