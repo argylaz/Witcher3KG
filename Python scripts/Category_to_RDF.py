@@ -168,7 +168,7 @@ g.add((witcher.Teleport, RDFS.subClassOf, mappin_base_class))
 g.add((witcher.Teleport, RDFS.label, Literal("Teleport")))
 
 g.add((witcher.Bed, RDFS.subClassOf, mappin_base_class))
-g.adwitcherwitcher.Bed, RDFS.label, Literal("Bed")))
+g.add((witcher.Bed, RDFS.label, Literal("Bed")))
 
 g.add((witcher.Hideout, RDFS.subClassOf, mappin_base_class))
 g.add((witcher.Hideout, RDFS.label, Literal("Hideout")))
