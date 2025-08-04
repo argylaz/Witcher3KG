@@ -56,7 +56,7 @@ except FileNotFoundError:
 print("Adding specific axioms for map pins and game concepts...")
 
 # Define a top-level class for all map pins
-mappin_base_class = dbr.Mappin
+mappin_base_class = witcher.Mappin
 g.add((mappin_base_class, RDF.type, OWL.Class))
 g.add((mappin_base_class, RDFS.label, Literal("Map Pin")))
 g.add((mappin_base_class, RDF.type, GEO.Feature))  # Every map pin is also a geographic feature
