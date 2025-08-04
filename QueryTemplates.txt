@@ -116,7 +116,7 @@ WHERE {
 
 
 Template 6: Simple Property Lookup (Who/What is...)
-User Prompt: "What is the hair color of {character_name}?"
+User Prompt: "What is the hair color of {character_name}?" // More general: What is the {property} of {character name}
 Example: "What is the hair color of Geralt of Rivia?"
 SPARQL Template:
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -144,7 +144,7 @@ WHERE {
 
 
 Template 8: Relationship Query (Who is affiliated with...)
-User Prompt: "Who is affiliated with the {organization_name}?"
+User Prompt: "Who is affiliated with the {organization_name}?" # Na kanw pio generic
 Example: "Who is affiliated with the School of the Cat?"
 SPARQL Template:
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -211,7 +211,7 @@ WHERE {
 
 
 Template 12: Quests by Region
-User Prompt: "List all quests in {region_name}."
+User Prompt: "List all quests in {region_name}."  // List all {geospatial entity} in {region name}
 Example: "List all quests in Novigrad."
 SPARQL Template:
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -284,7 +284,7 @@ WHERE {
 
 
 Template 16: Yes/No Query (ASK)
-User Prompt: "Is {location_A} inside {location_B}?"
+User Prompt: "Is {location_A} inside {location_B}?"    // Generalise geospatial relation (inside)
 Example: "Is the Inn at the Crossroads inside Velen?"
 SPARQL Template:
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
