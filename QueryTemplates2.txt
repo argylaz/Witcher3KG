@@ -1,0 +1,291 @@
+Template 1: Generalized Spatial Relationship Query
+Purpose: Finds entities of a given type that have a specific spatial relationship with a given entity.
+User Prompt Example: "List all herbalists inside Novigrad."
+Required Inputs: {entity_type_A_uri}, {spatial_function}, {entity_B_uri}.
+SPARQL Template:
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?featureA ?featureALabel
+WHERE {
+  <{entity_B_uri}> geo:hasGeometry/geo:asWKT ?geomB_WKT .
+  
+  ?featureA a <{entity_type_A_uri}> ;
+            rdfs:label ?featureALabel ;
+            geo:hasGeometry/geo:asWKT ?geomA_WKT .
+  
+  FILTER(geof:{spatial_function}(?geomA_WKT, ?geomB_WKT))
+}
+
+
+Template 2: Proximity Search (Closest/Farthest)
+Purpose: Finds the single entity of a given type that is closest to or farthest from a reference entity.
+User Prompt Example: "What is the closest Place of Power to Kaer Morhen?"
+Required Inputs: {entity_type_A_uri}, {entity_B_uri}, {order_direction} (ASC or DESC).
+SPARQL Template:
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance)
+WHERE {
+  <{entity_B_uri}> geo:hasGeometry/geo:asWKT ?wktB .
+  
+  ?featureA a <{entity_type_A_uri}> ;
+            rdfs:label ?featureALabel ;
+            geo:hasGeometry/geo:asWKT ?wktA .
+}
+ORDER BY {order_direction}(?distance)
+LIMIT 1
+
+
+Template 3: Location Context Discovery
+Purpose: Finds the containing geographical feature (like a city or map) for a given entity.
+User Prompt Example: "Which city is the Kingfisher Inn in?"
+Required Inputs: {entity_uri}, {container_type_uri}.
+SPARQL Template:
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX witcher: <http://cgi.di.uoa.gr/witcher/ontology#>
+
+SELECT ?containerLabel
+WHERE {
+  # Handles geometric containment (e.g., point in polygon)
+  {
+    ?container a <{container_type_uri}> ;
+               rdfs:label ?containerLabel ;
+               geo:hasGeometry/geo:asWKT ?polygonWKT .
+    <{entity_uri}> geo:hasGeometry/geo:asWKT ?pointWKT .
+    FILTER(geof:sfWithin(?pointWKT, ?polygonWKT))
+  }
+  UNION
+  # Handles direct relationship (e.g., isPartOf a map)
+  {
+     <{entity_uri}> witcher:isPartOf ?container .
+     ?container a <{container_type_uri}> ;
+                rdfs:label ?containerLabel .
+  }
+}
+
+
+Template 4: Geospatial Verification (ASK)
+Purpose: Verifies if a spatial relationship exists between two specific entities.
+User Prompt Example: "Is the Inn at the Crossroads inside Velen?"
+Required Inputs: {entity_A_uri}, {spatial_function}, {entity_B_uri}.
+SPARQL Template:
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+
+ASK WHERE {
+  <{entity_A_uri}> geo:hasGeometry/geo:asWKT ?geomA_WKT .
+  <{entity_B_uri}> geo:hasGeometry/geo:asWKT ?geomB_WKT .
+  
+  FILTER(geof:{spatial_function}(?geomA_WKT, ?geomB_WKT))
+}
+
+
+Template 5: Property Lookup (Direct & Inverse)
+Purpose: Retrieves a property value for an entity (direct) or finds entities with a specific property value (inverse).
+User Prompt Examples: "What is the hair color of Geralt?" (Direct) / "Which characters have white hair?" (Inverse)
+SPARQL Template (Direct):
+SELECT ?objectLabel
+WHERE {
+  <{subject_uri}> <{property_uri}> ?object .
+  OPTIONAL { ?object rdfs:label ?objLabel . }
+  BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel)
+}
+SPARQL Template (Inverse):
+Required Inputs: {property_uri}, {object_uri_or_literal}
+Generated sparql
+SELECT ?subjectLabel
+WHERE {
+  ?subject <{property_uri}> {object_uri_or_literal} .
+  ?subject rdfs:label ?subjectLabel .
+}
+
+
+Template 6: Relationship Lookup
+Purpose: Finds subjects that have a specific relationship to a known object entity.
+User Prompt Example: "Who is affiliated with the School of the Cat?"
+Required Inputs: {relationship_uri}, {object_uri}.
+SPARQL Template:
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?subjectLabel
+WHERE {
+  ?subject <{relationship_uri}> <{object_uri}> .
+  ?subject rdfs:label ?subjectLabel .
+}
+
+
+Template 7: Multi-Hop Query (Relationship -> Property)
+Purpose: Finds a property of an entity that is linked via an intermediate relationship.
+User Prompt Example: "What is the profession of characters affiliated with the School of the Griffin?"
+Required Inputs: {start_entity_uri}, {hop1_relationship_uri}, {hop2_property_uri}.
+SPARQL Template:
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?targetValueLabel
+WHERE {
+  ?member <{hop1_relationship_uri}> <{start_entity_uri}> .
+  ?member <{hop2_property_uri}> ?targetValue .
+  ?targetValue rdfs:label ?targetValueLabel .
+}
+
+
+Template 8: Composed Query (Spatial + Attribute Filter)
+Purpose: Finds entities that meet both a spatial condition and an attribute condition.
+User Prompt Example: "Which characters in Velen have white hair?"
+Required Inputs: {location_uri}, {entity_type_uri}, {property_uri}, {value_literal}.
+SPARQL Template:
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?entityLabel
+WHERE {
+  <{location_uri}> geo:hasGeometry/geo:asWKT ?polygonWKT .
+
+  ?entity a <{entity_type_uri}> ;
+          <{property_uri}> {value_literal} ;
+          rdfs:label ?entityLabel ;
+          geo:hasGeometry/geo:asWKT ?pointWKT .
+          
+  FILTER(geof:sfWithin(?pointWKT, ?polygonWKT))
+}
+
+
+Template 9: Spatial Counting
+Purpose: Counts entities of a certain type within a specific location.
+User Prompt Example: "How many monster nests are there in Velen?"
+Required Inputs: {entity_type_uri}, {location_uri}.
+SPARQL Template:
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (COUNT(?feature) as ?count)
+WHERE {
+  <{location_uri}> geo:hasGeometry/geo:asWKT ?polygonWKT .
+  ?feature a <{entity_type_uri}> ;
+           geo:hasGeometry/geo:asWKT ?pointWKT .
+  FILTER(geof:sfWithin(?pointWKT, ?polygonWKT))
+}
+
+
+Template 10: Comparative Counting (ASK)
+Purpose: Compares the count of an entity type in two different locations.
+User Prompt Example: "Does Skellige have more Places of Power than Velen?"
+Required Inputs: {location_A_uri}, {location_B_uri}, {entity_type_uri}.
+SPARQL Template:
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (IF(?countA > ?countB, "Yes", "No") AS ?result)
+WHERE {
+  {
+    SELECT (COUNT(?featureA) as ?countA) WHERE {
+      <{location_A_uri}> geo:hasGeometry/geo:asWKT ?polyA .
+      ?featureA a <{entity_type_uri}> ; geo:hasGeometry/geo:asWKT ?pointA .
+      FILTER(geof:sfWithin(?pointA, ?polyA))
+    }
+  }
+  {
+    SELECT (COUNT(?featureB) as ?countB) WHERE {
+      <{location_B_uri}> geo:hasGeometry/geo:asWKT ?polyB .
+      ?featureB a <{entity_type_uri}> ; geo:hasGeometry/geo:asWKT ?pointB .
+      FILTER(geof:sfWithin(?pointB, ?polyB))
+    }
+  }
+}
+
+
+Template 11: Superlative by Attribute
+Purpose: Finds the entity with the highest or lowest value for a numeric attribute.
+User Prompt Example: "What is the largest city on the Novigrad and Velen Map?"
+Required Inputs: {entity_type_uri}, {attribute_uri}, {order_direction} (ASC or DESC).
+SPARQL Template:
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?featureLabel ?value
+WHERE {
+  ?feature a <{entity_type_uri}> ;
+           rdfs:label ?featureLabel ;
+           <{attribute_uri}> ?value .
+}
+ORDER BY {order_direction}(?value)
+LIMIT 1
+
+
+Template 12: Schema Lookup (Hierarchy)
+Purpose: Finds the direct parent class of a given class.
+User Prompt Example: "What kind of thing is a Blacksmith?"
+Required Inputs: {subclass_uri}.
+SPARQL Template:
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?parentClassLabel
+WHERE {
+  <{subclass_uri}> rdfs:subClassOf ?parentClass .
+  ?parentClass rdfs:label ?parentClassLabel .
+}
+
+
+Template 13: Find Location by Feature Combination
+Purpose: Finds a location that contains at least one of two different types of features.
+User Prompt Example: "Which city has both a blacksmith and an armorer?"
+Required Inputs: {location_type_uri}, {feature_type_A_uri}, {feature_type_B_uri}.
+SPARQL Template:
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?locationLabel
+WHERE {
+  ?location a <{location_type_uri}> ;
+            rdfs:label ?locationLabel ;
+            geo:hasGeometry/geo:asWKT ?polygonWKT .
+  
+  FILTER EXISTS {
+    ?featureA a <{feature_type_A_uri}> ; geo:hasGeometry/geo:asWKT ?pointA .
+    FILTER(geof:sfWithin(?pointA, ?polygonWKT))
+  }
+  FILTER EXISTS {
+    ?featureB a <{feature_type_B_uri}> ; geo:hasGeometry/geo:asWKT ?pointB .
+    FILTER(geof:sfWithin(?pointB, ?polygonWKT))
+  }
+}
+
+
+Template 14: Instance Listing by Class
+Purpose: A straightforward listing of all individuals belonging to a class.
+User Prompt Example: "List all known witchers."
+Required Inputs: {class_uri}.
+SPARQL Template:
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?instanceLabel
+WHERE {
+  ?instance a <{class_uri}> .
+  ?instance rdfs:label ?instanceLabel .
+}
+
+
+Template 15: Path/Route Verification (ASK)
+Purpose: A simplified check to see if a single path (like a road) connects two locations.
+User Prompt Example: "Is there a road that connects the Baron's castle to the Inn at the Crossroads?"
+Required Inputs: {location_A_uri}, {location_B_uri}, {path_type_uri} (e.g., witcher:Road).
+SPARQL Template:
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+
+ASK WHERE {
+  <{location_A_uri}> geo:hasGeometry/geo:asWKT ?geomA.
+  <{location_B_uri}> geo:hasGeometry/geo:asWKT ?geomB.
+  
+  ?path a <{path_type_uri}> ;
+        geo:hasGeometry/geo:asWKT ?pathGeom .
+        
+  FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB))
+}
