@@ -6,7 +6,7 @@ from shapely.geometry import Point, Polygon, MultiLineString
 import json
 import xml.etree.ElementTree as ET
 
-# --- 1. Transformation Functions (Finalized) ---
+# --- 1. Transformation Functions (This logic is correct and finalized) ---
 def calculate_affine_transform(game_coords, gis_coords):
     game_pts = np.array(game_coords)
     gis_pts = np.array(gis_coords)
@@ -26,7 +26,7 @@ def transform_point(point, matrix):
     gis_pt = matrix @ game_pt
     return (gis_pt[0], gis_pt[1])
 
-# --- 2. Your Control Point Data (Finalized) ---
+# --- 2. Your Control Point Data (This is correct and finalized) ---
 GIS_CONTROL_POINTS = [
     (21.0036502117724, -677.368416076594), # Bottom-left corner
     (615.670143636147, -21.0036501982966),  # Top-right corner
@@ -40,37 +40,9 @@ GAME_CONTROL_POINTS = [
     (2583.86, -1294.50)   # In-game bottom-right
 ]
 
-# --- 3. DEFINITIVE Visualization Code with Correct MultiPolygon Parsing ---
-
-def parse_esri_feature(feature):
-    """
-    Parses an entire Esri JSON feature into a list of shapely Polygons or Lines.
-    Correctly handles MultiPolygons by creating a separate Polygon for each exterior ring.
-    """
-    geometry = feature.get('geometry', {})
-    shapes = []
-    
-    if 'rings' in geometry and geometry['rings']:
-        # This structure handles multipolygons, where each item in 'rings' is a separate polygon.
-        for ring in geometry['rings']:
-            # The actual coordinate list might be nested one level deeper.
-            points = ring[0] if isinstance(ring[0][0], list) else ring
-            try:
-                if len(points) >= 4:
-                    poly = Polygon(points)
-                    if not poly.is_valid:
-                        poly = poly.buffer(0)
-                    shapes.append(poly)
-            except Exception:
-                continue # Skip malformed rings
-                
-    elif 'paths' in geometry and geometry['paths']:
-        shapes.append(MultiLineString(geometry['paths']))
-        
-    return shapes
-
+# --- 3. DEFINITIVE Visualization Code with Correct Polygon Parsing ---
 def plot_polygon(ax, poly, **kwargs):
-    """A robust function to plot any shapely Polygon, handling holes."""
+    """A robust function to plot a shapely Polygon, correctly handling holes."""
     path = Path.make_compound_path(
         Path(np.asarray(poly.exterior.coords)[:, :2]),
         *[Path(np.asarray(ring.coords)[:, :2]) for ring in poly.interiors]
@@ -79,7 +51,7 @@ def plot_polygon(ax, poly, **kwargs):
     ax.add_patch(patch)
 
 def visualize(transform_matrix):
-    """Generates the final map with robust MultiPolygon parsing."""
+    """Generates the final map with robust polygon parsing."""
     
     gis_layers = {
         'Terrain': {'path': '../InfoFiles/novigrad_terrain.json', 'fc': '#A69078', 'alpha': 1.0, 'zorder': 1},
@@ -90,7 +62,7 @@ def visualize(transform_matrix):
     }
 
     fig, ax = plt.subplots(figsize=(18, 22))
-    ax.set_facecolor('#87CEEB')
+    ax.set_facecolor('#87CEEB') # Set water background
 
     print("\nLoading and plotting GIS layers...")
     for layer_name, style in gis_layers.items():
@@ -99,23 +71,38 @@ def visualize(transform_matrix):
             
             has_been_labeled = False
             for feature in data.get('features', []):
+                geometry = feature.get('geometry', {})
                 label = layer_name if not has_been_labeled else "_nolegend_"
                 
-                # Use the new robust parser which returns a list of shapes
-                shapes = parse_esri_feature(feature)
-                for shape in shapes:
-                    if shape.geom_type == 'Polygon':
-                        plot_polygon(ax, shape, fc=style['fc'], alpha=style.get('alpha', 1.0), ec='darkslategray', linewidth=0.2, label=label, zorder=style['zorder'])
+                if 'rings' in geometry and geometry['rings']:
+                    try:
+                        # --- THE CRITICAL FIX IS HERE ---
+                        # The exterior is the first list of points in the first ring.
+                        # Interiors are any subsequent lists of points.
+                        exterior = geometry['rings'][0]
+                        interiors = geometry['rings'][1:]
+                        poly = Polygon(exterior, interiors)
+                        
+                        if not poly.is_valid: poly = poly.buffer(0)
+                        
+                        plot_polygon(ax, poly, fc=style['fc'], alpha=style.get('alpha', 1.0), ec='darkslategray', linewidth=0.2, label=label, zorder=style['zorder'])
                         has_been_labeled = True
-                    elif shape.geom_type == 'MultiLineString':
-                        for part in shape.geoms:
-                            x, y = part.xy
-                            ax.plot(x, y, color=style['color'], linewidth=style['linewidth'], label=label, zorder=style['zorder'])
-                        has_been_labeled = True
+
+                    except Exception as geo_error:
+                        object_id = feature.get('attributes', {}).get('OBJECTID', 'N/A')
+                        print(f"  - Could not process a polygon in {layer_name} (ID: {object_id}): {geo_error}")
+
+                elif 'paths' in geometry:
+                    line = MultiLineString(geometry['paths'])
+                    for part in line.geoms:
+                        x, y = part.xy
+                        ax.plot(x, y, color=style['color'], linewidth=style['linewidth'], label=label, zorder=style['zorder'])
+                    has_been_labeled = True
         except FileNotFoundError:
             print(f"  - WARNING: Could not find file for layer '{layer_name}': {style['path']}")
 
-    # --- Load and Plot Map Pins ---
+    # --- Load and Plot Map Pins (Unchanged) ---
+    # ... (This logic is correct) ...
     game_pins_by_type = {}
     tree = ET.parse('../InfoFiles/MapPins.xml'); root = tree.getroot()
     for mappin in root.findall('.//world[@code="NO"]/mappin'):
@@ -123,7 +110,15 @@ def visualize(transform_matrix):
         if pos is not None:
             if pin_type not in game_pins_by_type: game_pins_by_type[pin_type] = []
             game_pins_by_type[pin_type].append(Point(float(pos.get('x')), float(pos.get('y'))))
-    color_map = { 'RoadSign': 'yellow', 'Harbor': 'orange', 'Teleport': 'gold', 'Blacksmith': '#363636', 'Armorer': '#696969', 'Whetstone': '#A9A9A9', 'Merchant': '#DA70D6', 'Herbalist': '#32CD32', 'GwentPlayer': '#8A2BE2', 'NoticeBoard': '#D2691E', 'PlaceOfPower': '#00FFFF', 'MonsterNest': '#FF0000', 'BanditCamp': '#8B0000', 'SideQuest': '#FF00FF', 'TreasureHuntMappin': '#FFD700', 'Entrance': 'white', 'default': '#FF69B4' }
+    color_map = {
+        'RoadSign': 'yellow', 'Harbor': 'orange', 'Teleport': 'gold',
+        'Blacksmith': '#363636', 'Armorer': '#696969', 'Whetstone': '#A9A9A9',
+        'Merchant': '#DA70D6', 'Herbalist': '#32CD32', 'GwentPlayer': '#8A2BE2',
+        'NoticeBoard': '#D2691E', 'PlaceOfPower': '#00FFFF',
+        'MonsterNest': '#FF0000', 'BanditCamp': '#8B0000',
+        'SideQuest': '#FF00FF', 'TreasureHuntMappin': '#FFD700',
+        'Entrance': 'white', 'default': '#FF69B4'
+    }
     print("\nTransforming and plotting map pins by type...")
     for pin_type, points in sorted(game_pins_by_type.items()):
         transformed_pins = [Point(transform_point((p.x, p.y), transform_matrix)) for p in points]
@@ -132,6 +127,7 @@ def visualize(transform_matrix):
         ax.plot(xs, ys, 'o', color=color, markersize=5, label=pin_type, zorder=10, markeredgecolor='black', markeredgewidth=0.5)
 
     # --- Final plot styling (Unchanged) ---
+    # ... (This logic is correct) ...
     min_x, max_x = GIS_CONTROL_POINTS[0][0], GIS_CONTROL_POINTS[1][0]
     min_y, max_y = GIS_CONTROL_POINTS[0][1], GIS_CONTROL_POINTS[1][1]
     padding = 20
