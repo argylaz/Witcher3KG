@@ -34,10 +34,10 @@ GIS_CONTROL_POINTS = [
     (615.670143636147, -677.368416076594)   # Bottom-right corner
 ]
 GAME_CONTROL_POINTS = [
-    (-768.57, -1294.50), # In-game bottom-left
-    (2583.86, 2685.09),  # In-game top-right
-    (-768.57, 2685.09),  # In-game top-left
-    (2583.86, -1294.50)   # In-game bottom-right
+    (-890.57, -1424.50), # In-game bottom-left
+    (2763.86, 2585.09),  # In-game top-right
+    (-890.57, 2585.09),  # In-game top-left
+    (2763.86, -1424.50)   # In-game bottom-right
 ]
 
 # --- 3. DEFINITIVE Visualization Code with Correct MultiPolygon Parsing ---
@@ -143,7 +143,7 @@ def visualize(transform_matrix):
     ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0., fontsize=10)
     ax.set_aspect('equal', 'box')
     fig.tight_layout(pad=1.5)
-    plt.savefig('debug_map_final.png', bbox_inches='tight', dpi=200)
+    plt.savefig('debug_map.png', bbox_inches='tight', dpi=200)
     print("\n--- Final diagnostic plot saved to debug_map_final.png ---")
 
 if __name__ == '__main__':

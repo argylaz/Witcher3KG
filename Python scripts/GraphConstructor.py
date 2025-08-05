@@ -547,10 +547,10 @@ if gis_control_data:
 
     # We now create the control points automatically
     game_control_points = [
-        (-768.57, 2685.09),  # top left corner of playable area 
-        (2583.86, -1294.50), # bottom right corner of playable area
-        (-768.57, -1294.50), # bottom left corner of playable area
-        (2583.86, 2685.09)   # top right corner of playable area
+        (-890.57, 2585.09),  # In-game top-left
+        (2763.86, -1424.50),   # In-game bottom-right
+        (-890.57, -1424.50), # In-game bottom-left
+        (2763.86, 2585.09)  # In-game top-right
     ]
     gis_control_points = [
         (21.0036502117724, -21.0036501982966), # top left corner of playable area 
