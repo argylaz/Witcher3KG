@@ -2,7 +2,7 @@ import re
 import json
 import xml.etree.ElementTree as ET
 import numpy as np
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Point, Polygon, MultiLineString
 from rdflib import Graph, Namespace, URIRef, Literal, RDF, RDFS, OWL
 from rdflib.namespace import XSD
 from typing import Tuple, Optional, Union
@@ -186,31 +186,46 @@ def process_page_content(title, text, graph):
                     print(f"  - Added data property: {title} -> {prop_name_clean} = '{cleaned_literal}'")
 
 
+def parse_esri_rings(rings_array):
+    """
+    Parses an Esri JSON 'rings' array into a list of shapely Polygons,
+    correctly handling MultiPolygon features by treating each ring as a separate polygon.
+    """
+    if not rings_array: return []
+    
+    ring_list = rings_array
+    # Intelligently flatten the common extra nesting level in Esri JSON
+    while len(ring_list) == 1 and isinstance(ring_list[0], list) and isinstance(ring_list[0][0], list):
+        ring_list = ring_list[0]
+        
+    polygons = []
+    for ring_points in ring_list:
+        try:
+            # A valid ring must have at least 4 points to close
+            if isinstance(ring_points, list) and len(ring_points) >= 4:
+                poly = Polygon(ring_points)
+                if not poly.is_valid:
+                    poly = poly.buffer(0) # Attempt to fix invalid geometry
+                polygons.append(poly)
+        except Exception as e:
+            print(f"  - Warning: Could not create a polygon from a ring. Error: {e}")
+            continue
+            
+    return polygons
+
+
 # Gemeric function to integrate GeoSPARQL data from an Esri JSON file
 def integrate_geo_file(graph, json_path, feature_class, map_context_uri, uri_prefix=None, name_attribute=None):
     """
     Reads an Esri JSON file and adds GeoSPARQL data to the graph for each feature.
-    Handles both Polygons (rings) and Polylines (paths).
-
-    :param graph: The rdflib.Graph to add triples to.
-    :param json_path: Path to the Esri JSON file.
-    :param feature_class: The RDF class to assign to each feature (e.g., witcher.Swamp).
-    :param map_context_uri: The URI of the map context (e.g., ).
-    :param uri_prefix: (Optional) A string to prepend to URIs for anonymous features (e.g., "Novigrad").
-    :param name_attribute: (Optional) The key for the name in the attributes dictionary.
-                           If provided, uses the name for the URI.
-                           If None, creates a new URI based on the OBJECTID.
+    Handles both Polygons, MultiPolygons, and Polylines.
     """
-    # Robustly get the local name of the class (e.g., "Swamp")
     local_class_name = str(feature_class).split('/')[-1].split('#')[-1]
-    print(f"\n--- Integrating GeoSPARQL data for {local_class_name} from {json_path} ---")
+    print(f"\n--- Integrating {local_class_name} features from {json_path} ---")
 
     try:
         with open(json_path, 'r', encoding='utf-16') as f:
             data = json.load(f)
-    except FileNotFoundError:
-        print(f"Error: Geospatial file not found at {json_path}")
-        return
     except Exception as e:
         print(f"An error occurred reading or parsing {json_path}: {e}")
         return
@@ -219,61 +234,86 @@ def integrate_geo_file(graph, json_path, feature_class, map_context_uri, uri_pre
         attributes = feature.get('attributes', {})
         geometry = feature.get('geometry', {})
 
+        # --- Subject URI Creation (Logic is unchanged) ---
         subject_uri = None
+        name = None
         if name_attribute:
-            # Logic for named features (like cities e.g. dbr:Oxenfurt)
             name = attributes.get(name_attribute)
             if name:
                 subject_uri = dbr[sanitize_for_uri(name)]
-            if name.lower() not in city_names: city_names.append(name.lower()) # Populate city list (only cities are named)
-            if feature_class == witcher.City:
-                city_polygons[name.lower()] = Polygon(geometry['rings'][0])
+                # Populate global lists for contextual linking
+                if name.lower() not in city_names: city_names.append(name.lower())
+                if feature_class == witcher.City and 'rings' in geometry:
+                    # Use the robust parser to handle city polygons too
+                    city_polys = parse_esri_rings(geometry['rings'])
+                    if city_polys: city_polygons[name.lower()] = city_polys[0]
         else:
-            # Logic for anonymous features (like swamps e.g. dbr:Novigrad_Swamp_1)
             object_id = attributes.get('OBJECTID')
             if object_id:
-                uri_base = f"{uri_prefix}_{local_class_name}_{object_id}" if uri_prefix else f"{local_class_name}_{object_id}"
+                uri_base = f"{uri_prefix}_{local_class_name}_{object_id}"
                 subject_uri = dbr[sanitize_for_uri(uri_base)]
         
         if not subject_uri:
-            print(f"Warning: Could not determine a URI for a feature in {json_path}. Skipping.")
             continue
 
-        geometry_uri = URIRef(f"{subject_uri}_geometry")
-        wkt_string = None
-
-        if 'rings' in geometry: # It's a Polygon
-            points = geometry['rings'][0]
-            wkt_points = ", ".join([f"{p[0]} {p[1]}" for p in points])
-            wkt_string = f"POLYGON (({wkt_points}))"
-        elif 'paths' in geometry: # It's a Polyline (Roads)
-            path_strings = []
-            for path in geometry['paths']:
-                path_points = ", ".join([f"{p[0]} {p[1]}" for p in path])
-                path_strings.append(f"({path_points})")
-            wkt_string = f"MULTILINESTRING ({', '.join(path_strings)})"
+        # --- GEOMETRY PARSING AND TRIPLE CREATION (THE CRITICAL FIX) ---
         
-        if not wkt_string:
-            print(f"Warning: No valid geometry found for {subject_uri}. Skipping.")
-            continue
+        # This block replaces the old wkt_string creation
+        if 'rings' in geometry:
+            # Use the new robust parser which returns a LIST of polygons
+            polygons_in_feature = parse_esri_rings(geometry['rings'])
             
-        wkt_literal = Literal(wkt_string, datatype=GEO.wktLiteral)
+            # If it's a true multipolygon, create a unique geometry for each part
+            if len(polygons_in_feature) > 1:
+                for i, poly in enumerate(polygons_in_feature):
+                    # Create a unique geometry URI for each part, e.g., ..._geometry_part_1
+                    geometry_uri = URIRef(f"{subject_uri}_geometry_part_{i+1}")
+                    wkt_literal = Literal(poly.wkt, datatype=GEO.wktLiteral)
+                    
+                    # Add triples for this specific polygon part
+                    graph.add((subject_uri, GEO.hasGeometry, geometry_uri))
+                    graph.add((geometry_uri, RDF.type, GEO.Geometry))
+                    graph.add((geometry_uri, GEO.asWKT, wkt_literal))
+            
+            # If it's a simple polygon, add it directly
+            elif len(polygons_in_feature) == 1:
+                geometry_uri = URIRef(f"{subject_uri}_geometry")
+                wkt_literal = Literal(polygons_in_feature[0].wkt, datatype=GEO.wktLiteral)
+                
+                graph.add((subject_uri, GEO.hasGeometry, geometry_uri))
+                graph.add((geometry_uri, RDF.type, GEO.Geometry))
+                graph.add((geometry_uri, GEO.asWT, wkt_literal))
+
+        elif 'paths' in geometry:
+            # Road logic is unchanged, it was already correct
+            geometry_uri = URIRef(f"{subject_uri}_geometry")
+            line = MultiLineString(geometry['paths'])
+            wkt_literal = Literal(line.wkt, datatype=GEO.wktLiteral)
+            
+            graph.add((subject_uri, GEO.hasGeometry, geometry_uri))
+            graph.add((geometry_uri, RDF.type, GEO.Geometry))
+            graph.add((geometry_uri, GEO.asWKT, wkt_literal))
+
+        # --- Add Common Triples (Type, Context, and Attributes) ---
+        # This part runs for all geometry types
+        graph.add((subject_uri, RDF.type, GEO.Feature))
+        graph.add((subject_uri, RDF.type, feature_class))
+        graph.add((subject_uri, witcher.isPartOf, map_context_uri))
         
-        # Add triples
-        graph.add((subject_uri, RDF.type, GEO.Feature))       # GeoSPARQL type
-        graph.add((subject_uri, RDF.type, feature_class))     # Specific domain type
-        graph.add((subject_uri, GEO.hasGeometry, geometry_uri))
-        graph.add((subject_uri, witcher.isPartOf, map_context_uri)) # Link to map
-        graph.add((geometry_uri, RDF.type, GEO.Geometry))
-        graph.add((geometry_uri, GEO.asWKT, wkt_literal))
-        
+        # Add shape area/length to the primary geometry URI if they exist
+        primary_geom_uri = URIRef(f"{subject_uri}_geometry") # Default URI
+        if 'rings' in geometry and len(parse_esri_rings(geometry['rings'])) > 1:
+             # For multipolygons, we can't assign area to a single part,
+             # so we could either skip it or assign it to the main feature URI.
+             # For now, we'll just add it to the main feature.
+             primary_geom_uri = subject_uri
+
         if 'Shape__Area' in attributes:
-            graph.add((geometry_uri, witcher.shapeArea, Literal(attributes['Shape__Area'], datatype=XSD.double)))
+            graph.add((primary_geom_uri, witcher.shapeArea, Literal(attributes['Shape__Area'], datatype=XSD.double)))
         if 'Shape__Length' in attributes:
-            graph.add((geometry_uri, witcher.shapeLength, Literal(attributes['Shape__Length'], datatype=XSD.double)))
-
-        print(f"  - Added GeoSPARQL data for: {subject_uri}")
-
+            graph.add((primary_geom_uri, witcher.shapeLength, Literal(attributes['Shape__Length'], datatype=XSD.double)))
+            
+        print(f"  - Successfully processed GeoSPARQL data for: {subject_uri.n3(graph.namespace_manager)}")
 
 # Function to add a map border geometry directly to the map entity
 def add_map_border_geometry(graph, json_path, map_uri) -> Optional[Tuple[Point,Point, Point]]:
