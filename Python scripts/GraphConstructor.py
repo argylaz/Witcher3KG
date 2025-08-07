@@ -454,7 +454,7 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
             gis_x, gis_y = transform_point((game_x, game_y), transform_matrix)
             pin_point = Point(gis_x, gis_y)
 
-            # First, check if the pin has a generic name that requires spatial context
+            # 1. First, check if the pin has a generic name that requires spatial context
             if name.lower() in generic_pin_names:
                 # Spatially search for the containing city first
                 for city_name, city_poly in city_polygons.items():
@@ -468,14 +468,14 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
                         break
 
             else:
-                # If the name is NOT generic (e.g., a quest), do a direct match
+                # 2. If the name is NOT generic (e.g., a quest), do a direct match
                 if name.lower() in label_to_uri_map:
                     subject_uri = label_to_uri_map[name.lower()]
                     print(f"  - Matched unique pin '{name}' to existing entity: {subject_uri.n3(graph.namespace_manager)}")
      
             # Fallback: If no match was found by any method, create a new entity for the pin.
 
-            # No match found, create a new, clean URI for a generic pin
+            # 3. No match found, create a new, clean URI for a generic pin
             if not subject_uri:
                 # Create a clean, unique URI using coordinates to avoid name collisions
                 safe_x = str(game_x).replace('-', 'm').replace('.', 'p')
@@ -485,13 +485,13 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
                 
                 # Add the essential types and label for this new entity
                 graph.add((subject_uri, RDFS.label, Literal(name)))
-                graph.add((subject_uri, RDF.type, dbr[sanitize_for_uri(mappin_type)])) 
                 print(f"  - No match found. Created new pin entity '{name}': {subject_uri.n3(graph.namespace_manager)}")
  
 
             # --- Augment BOTH matched and new entities with pin info ---
             # 1. This entity is now a geo:Feature
             graph.add((subject_uri, RDF.type, GEO.Feature))
+            graph.add((subject_uri, RDF.type, dbr[sanitize_for_uri(mappin_type)])) 
             
             # 2. Add other pin-specific properties
             if internal_name:
