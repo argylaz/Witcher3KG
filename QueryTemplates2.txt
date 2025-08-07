@@ -4,8 +4,11 @@ User Prompt Example: "List all herbalists inside Novigrad."
 Required Inputs: {entity_type_A_uri}, {spatial_function}, {entity_B_uri}.
 SPARQL Template:
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX witcher: <http://cgi.di.uoa.gr/witcher/ontology#>
+PREFIX dbr: <http://cgi.di.uoa.gr/witcher/resource/>
+
 
 SELECT ?featureA ?featureALabel
 WHERE {
@@ -25,8 +28,11 @@ User Prompt Example: "What is the closest Place of Power to Kaer Morhen?"
 Required Inputs: {entity_type_A_uri}, {entity_B_uri}, {order_direction} (ASC or DESC).
 SPARQL Template:
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX witcher: <http://cgi.di.uoa.gr/witcher/ontology#>
+PREFIX dbr: <http://cgi.di.uoa.gr/witcher/resource/>
+
 
 SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance)
 WHERE {
@@ -46,11 +52,12 @@ User Prompt Example: "Which city is the Kingfisher Inn in?"
 Required Inputs: {entity_uri}, {container_type_uri}.
 SPARQL Template:
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX witcher: <http://cgi.di.uoa.gr/witcher/ontology#>
+PREFIX dbr: <http://cgi.di.uoa.gr/witcher/resource/>
 
-SELECT ?containerLabel
+SELECT DISTINCT ?containerLabel
 WHERE {
   # Handles geometric containment (e.g., point in polygon)
   {
@@ -61,7 +68,7 @@ WHERE {
     FILTER(geof:sfWithin(?pointWKT, ?polygonWKT))
   }
   UNION
-  # Handles direct relationship (e.g., isPartOf a map)
+  # Handles direct relationship (e.g., isPartOf a map) MIGHT NEED TO ADD region or location as a second/third relationship
   {
      <{entity_uri}> witcher:isPartOf ?container .
      ?container a <{container_type_uri}> ;
@@ -137,7 +144,7 @@ WHERE {
 
 Template 8: Composed Query (Spatial + Attribute Filter)
 Purpose: Finds entities that meet both a spatial condition and an attribute condition.
-User Prompt Example: "Which characters in Velen have white hair?"
+User Prompt Example: "Which quests in the Novigrad and Velen map involve fighting ghouls?"
 Required Inputs: {location_uri}, {entity_type_uri}, {property_uri}, {value_literal}.
 SPARQL Template:
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
@@ -163,7 +170,7 @@ User Prompt Example: "How many monster nests are there in Velen?"
 Required Inputs: {entity_type_uri}, {location_uri}.
 SPARQL Template:
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 
 SELECT (COUNT(?feature) as ?count)
 WHERE {
@@ -180,7 +187,7 @@ User Prompt Example: "Does Skellige have more Places of Power than Velen?"
 Required Inputs: {location_A_uri}, {location_B_uri}, {entity_type_uri}.
 SPARQL Template:
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 
 SELECT (IF(?countA > ?countB, "Yes", "No") AS ?result)
 WHERE {
@@ -238,7 +245,7 @@ User Prompt Example: "Which city has both a blacksmith and an armorer?"
 Required Inputs: {location_type_uri}, {feature_type_A_uri}, {feature_type_B_uri}.
 SPARQL Template:
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT DISTINCT ?locationLabel
@@ -278,13 +285,13 @@ User Prompt Example: "Is there a road that connects the Baron's castle to the In
 Required Inputs: {location_A_uri}, {location_B_uri}, {path_type_uri} (e.g., witcher:Road).
 SPARQL Template:
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX geof: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 
 ASK WHERE {
   <{location_A_uri}> geo:hasGeometry/geo:asWKT ?geomA.
   <{location_B_uri}> geo:hasGeometry/geo:asWKT ?geomB.
   
-  ?path a <{path_type_uri}> ;
+  ?path a witcher:Road ;                                                                                   // <{path_type_uri}> ;
         geo:hasGeometry/geo:asWKT ?pathGeom .
         
   FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB))

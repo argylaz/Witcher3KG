@@ -551,7 +551,7 @@ with open(input_file, 'r', encoding='utf-8') as file:
 
 
 # 1. Define the central URI for the map itself
-novigrad_map_uri = dbr.Novigrad_And_Velen_Map
+novigrad_map_uri = dbr.Velen_Novigrad_Map
 g.add((novigrad_map_uri, RDF.type, witcher.Maps))
 g.add((novigrad_map_uri, RDFS.label, Literal("Novigrad and Velen Map")))
 g.add((dbr.Novigrad, witcher.isPartOf, novigrad_map_uri))  # Link Novigrad to the map (with isPartOf)
