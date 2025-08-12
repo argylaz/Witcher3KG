@@ -415,6 +415,10 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
     # A list of generic names that REQUIRE spatial context for accurate linking
     generic_pin_names = ["blacksmith", "armorer", "merchant", "innkeep", "herbalist", "whetstone", "grindstone", "notice board"]
 
+    # --- Keep track of entities that have already had geometry added ---
+    # This prevents adding duplicate point geometries for multi-role entities (e.g. a herbalist might also be a gwent player)
+    entities_with_geometry = set()
+
     try:
         tree = ET.parse(xml_path)
         root = tree.getroot()
@@ -447,6 +451,7 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
             game_x, game_y = float(pos.get('x')), float(pos.get('y'))
             
             subject_uri = None
+            is_new_entity = False
 
             # --- Linking Logic ---
 
@@ -487,31 +492,41 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
                 graph.add((subject_uri, RDFS.label, Literal(name)))
                 print(f"  - No match found. Created new pin entity '{name}': {subject_uri.n3(graph.namespace_manager)}")
  
+            # Always add the type from the map pin. If the entity is pre-existing,
+            # this correctly adds its new role (e.g., GwentPlayer).
+            graph.add((subject_uri, RDF.type, witcher[sanitize_for_uri(mappin_type)]))
+            if is_new_entity:
+                 print(f"  - Created new pin '{name}' of type {mappin_type}: {subject_uri.n3(graph.namespace_manager)}")
+            else:
+                 print(f"  - Matched '{name}' and added/verified type {mappin_type}: {subject_uri.n3(graph.namespace_manager)}")
 
-            # --- Augment BOTH matched and new entities with pin info ---
-            # 1. This entity is now a geo:Feature
-            graph.add((subject_uri, RDF.type, GEO.Feature))
-            graph.add((subject_uri, RDF.type, dbr[sanitize_for_uri(mappin_type)])) 
-            
-            # 2. Add other pin-specific properties
-            if internal_name:
-                graph.add((subject_uri, witcher.hasInternalName, Literal(internal_name)))
-            
-            # Add relationship linking this feature to the map it's on
-            graph.add((subject_uri, witcher.isPartOf, world_map_uri))
+            # --- Augment the entity, but prevent duplicate geometries ---
+            if subject_uri not in entities_with_geometry:
+                # 1. This entity is now a geo:Feature
+                graph.add((subject_uri, RDF.type, GEO.Feature))
+                graph.add((subject_uri, RDF.type, dbr[sanitize_for_uri(mappin_type)])) 
+                
+                # 2. Add other pin-specific properties
+                if internal_name:
+                    graph.add((subject_uri, witcher.hasInternalName, Literal(internal_name)))
+                
+                # Add relationship linking this feature to the map it's on
+                graph.add((subject_uri, witcher.isPartOf, world_map_uri))
 
-            # 3. Create and add the point geometry, using the GIS coordinates
-            wkt_point = f"POINT ({gis_x} {gis_y})"
-            wkt_literal = Literal(wkt_point, datatype=GEO.wktLiteral)
-            # Using a new geometry URI to avoid conflicts
-            geometry_uri = URIRef(f"{subject_uri}_point_geometry")
+                # 3. Create and add the point geometry, using the GIS coordinates
+                wkt_point = f"POINT ({gis_x} {gis_y})"
+                wkt_literal = Literal(wkt_point, datatype=GEO.wktLiteral)
+                # Using a new geometry URI to avoid conflicts
+                geometry_uri = URIRef(f"{subject_uri}_point_geometry")
 
-            graph.add((subject_uri, GEO.hasGeometry, geometry_uri))
-            graph.add((geometry_uri, RDF.type, GEO.Geometry))
-            graph.add((geometry_uri, GEO.asWKT, wkt_literal))
+                graph.add((subject_uri, GEO.hasGeometry, geometry_uri))
+                graph.add((geometry_uri, RDF.type, GEO.Geometry))
+                graph.add((geometry_uri, GEO.asWKT, wkt_literal))
 
-            # Also add the in-game coordinates as a separate property
-            graph.add((subject_uri, witcher.hasInGameCoordinates, Literal(f"xy({game_x},{game_y})", datatype=XSD.string)))
+                # Also add the in-game coordinates as a separate property
+                graph.add((subject_uri, witcher.hasInGameCoordinates, Literal(f"xy({game_x},{game_y})", datatype=XSD.string)))
+                
+                entities_with_geometry.add(subject_uri)
 
     # print(city_polygons)
 
