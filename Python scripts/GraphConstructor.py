@@ -416,13 +416,13 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
     coords_to_uri_map = {} # Maps "(x,y)" string to an entity URI
 
     # List of keywords to check for in Gwent player names
-    profession_keywords = {
-        "blacksmith": witcher.Blacksmith,
-        "armorer": witcher.Armorer,
-        "merchant": witcher.Merchant,
-        "innkeep": witcher.Innkeep, # Assuming you have an Innkeep class
-        "herbalist": witcher.Herbalist
+    keyword_to_type = {
+        'blacksmith': witcher.Blacksmith,
+        'armorer': witcher.Armorer,
+        'merchant': witcher.Merchant,
+        'herbalist': witcher.Herbalist,
     }
+    generic_pin_names = list(keyword_to_type.keys())
 
     try:
         tree = ET.parse(xml_path)
@@ -451,6 +451,7 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
                 continue
 
             name = name_elem.text
+            name_lower = name.lower()
             internal_name = internal_name_elem.text if internal_name_elem is not None else ""
             game_x, game_y = float(pos.get('x')), float(pos.get('y'))
             coord_key = f"{game_x},{game_y}"
@@ -470,30 +471,37 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
                 # Spatial linking logic (same as before)
                 gis_x, gis_y = transform_point((game_x, game_y), transform_matrix)
                 pin_point = Point(gis_x, gis_y)
-                for city_name, city_poly in city_polygons.items():
-                    if pin_point.within(city_poly):
-                        contextual_label = f"{name} ({city_name})"
-                        if contextual_label.lower() in label_to_uri_map:
-                            subject_uri = label_to_uri_map[contextual_label.lower()]
-                            print(f"  - Spatially & contextually matched '{name}' in '{city_name}' to: {subject_uri.n3(graph.namespace_manager)}")
-                        break
+
+
+                # Tier 1: Spatially-aware contextual match (for generic names)
+                found_match = False
+                for generic_name in generic_pin_names:
+                    if generic_name in name_lower:
+                        for city_name, city_poly in city_polygons.items():
+                            if pin_point.within(city_poly):
+                                contextual_label = f"{name} ({city_name})"
+                                if contextual_label.lower() in label_to_uri_map:
+                                    subject_uri = label_to_uri_map[contextual_label.lower()]
+                                    print(f"  - Spatially & contextually matched '{name}' in '{city_name}' to: {subject_uri.n3(graph.namespace_manager)}")
+                                    found_match = True
+                                break # Found containing city
+                        if found_match: break
                 
-                # Fallback to direct name match for unique names
-                if not subject_uri and name.lower() not in profession_keywords:
-                    if name.lower() in label_to_uri_map:
-                        subject_uri = label_to_uri_map[name.lower()]
+                # Tier 2: Direct match for unique names
+                if not subject_uri:
+                    if name_lower in label_to_uri_map:
+                        subject_uri = label_to_uri_map[name_lower]
                         print(f"  - Matched unique pin '{name}' to existing entity: {subject_uri.n3(graph.namespace_manager)}")
                 
-                # Fallback to creating a new entity
+                # Tier 3: Fallback creation
                 if not subject_uri:
                     safe_x = str(game_x).replace('-', 'm').replace('.', 'p')
                     safe_y = str(game_y).replace('-', 'm').replace('.', 'p')
                     uri_base = f"{world_name}_{name}_Pin_{safe_x}_{safe_y}"
                     subject_uri = dbr[sanitize_for_uri(uri_base)]
                     graph.add((subject_uri, RDFS.label, Literal(name)))
-                    print(f"  - No specific match found. Created new pin entity '{name}': {subject_uri.n3(graph.namespace_manager)}")
-
-                # CRITICAL: This is the first pin here. Add its geometry and remember it.
+                
+                # Since this is the first pin here, add geometry and remember it.
                 coords_to_uri_map[coord_key] = subject_uri
                 graph.add((subject_uri, RDF.type, GEO.Feature))
                 graph.add((subject_uri, witcher.isPartOf, world_map_uri))
@@ -504,18 +512,16 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
                 graph.add((geometry_uri, RDF.type, GEO.Geometry))
                 graph.add((geometry_uri, GEO.asWKT, wkt_literal))
 
-            # --- Step C: Augment the entity with ALL its types ---
+            # --- Step C: Augment with ALL relevant types ---
             
-            # 1. Add the explicit type from the XML file
+            # 1. Add the type from the XML attribute (e.g., GwentPlayer)
             graph.add((subject_uri, RDF.type, witcher[sanitize_for_uri(mappin_type_str)]))
 
-            # 2. YOUR LOGIC: If it's a Gwent Player, check for an inferred profession type
-            if mappin_type_str == 'GwentPlayer':
-                for keyword, rdf_class in profession_keywords.items():
-                    if keyword in name.lower():
-                        graph.add((subject_uri, RDF.type, rdf_class))
-                        print(f"    - Inferred and added type '{keyword}' based on name.")
-                        break # Assume only one other profession
+            # 2. Infer a primary type from keywords in the name string
+            for keyword, rdf_class in keyword_to_type.items():
+                if keyword in name_lower:
+                    graph.add((subject_uri, RDF.type, rdf_class))
+                    print(f"    - Inferred and added type '{str(rdf_class).split('#')[-1]}' from name.")
 
 
 # ——————————————————————————————
