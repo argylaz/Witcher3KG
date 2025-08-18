@@ -399,97 +399,81 @@ def transform_point(point, matrix):
 # Map pin integration logic
 def integrate_map_pins(graph, xml_path, transform_matrix):
     """
-    Reads an XML file of map pins, performs spatial and contextual linking to existing
-    entities, and adds their point geometry to the graph
+    The definitive function to integrate map pins. It uses a multi-pass strategy to
+    correctly link entities, merge duplicate pins with multiple roles (e.g., Armorer + GwentPlayer),
+    and intelligently infer types from pin names.
     """
     print(f"\n--- Integrating and Linking Map Pins from {xml_path} ---")
 
-    # 1. Build a lookup map of {lowercase_label: uri} from the existing graph
-    label_to_uri_map = {
-        str(o).lower(): s
-        for s, o in graph.subject_objects(RDFS.label)
-        # if isinstance(o, Literal)
-    }
-    print(f"  - Built lookup map with {len(label_to_uri_map)} existing labels.")
-
-    # This map is the key to merging duplicate pins at the same location
+    # Pass 1: Pre-computation of lookup maps
+    label_to_uri_map = {str(o).lower(): s for s, o in graph.subject_objects(RDFS.label)}
+    print(f"  - Built label lookup map with {len(label_to_uri_map)} entries.")
+    
+    # This new map is the key to merging duplicate pins at the same location
     coords_to_uri_map = {} # Maps "(x,y)" string to an entity URI
 
-    # List of keywords to check for in Gwent player names
+    # The Keyword Dictionary for Type Inference from pin names
     keyword_to_type = {
         'blacksmith': witcher.Blacksmith,
         'armorer': witcher.Armorer,
         'merchant': witcher.Merchant,
+        'innkeep': witcher.Innkeep,
         'herbalist': witcher.Herbalist,
+        'whetstone': witcher.Whetstone,
+        'notice board': witcher.NoticeBoard,
+        'road sign': witcher.RoadSign
     }
-    generic_pin_names = list(keyword_to_type.keys())
 
     try:
         tree = ET.parse(xml_path)
         root = tree.getroot()
     except Exception as e:
-        print(f"Error reading or parsing {xml_path}: {e}")
-        return
+        print(f"Error parsing {xml_path}: {e}"); return
 
-    # Iterate through each <world> (e.g., White Orchard, Velen & Novigrad)
+    # Pass 2: The Main Linking Loop
     for world in root.findall('world'):
         world_name = world.get('name')
         world_map_uri = dbr[sanitize_for_uri(f"{world_name}_Map")]
-        
-        # Ensure the map entity exists
-        graph.add((world_map_uri, RDF.type, witcher.Maps))
+        graph.add((world_map_uri, RDF.type, witcher.Map))
         graph.add((world_map_uri, RDFS.label, Literal(f"{world_name} Map")))
 
-        # Iterate through each <mappin> in the world
         for mappin in world.findall('mappin'):
             name_elem = mappin.find('name'); pos = mappin.find('position'); mappin_type_str = mappin.get('type')
             if not all([name_elem, name_elem.text, pos, mappin_type_str]): continue
-            internal_name_elem = mappin.find('internalname')
 
-            # Skip pins with missing essential info
-            if name_elem is None or name_elem.text is None or pos is None:
-                continue
-
-            name = name_elem.text
+            name = name_elem.text.strip()
             name_lower = name.lower()
-            internal_name = internal_name_elem.text if internal_name_elem is not None else ""
             game_x, game_y = float(pos.get('x')), float(pos.get('y'))
             coord_key = f"{game_x},{game_y}"
             
             subject_uri = None
-
-            # --- Linking Logic ---
-
-            # Step A: Check if we've already processed a pin at this exact location.
-            # If so, we just need to add the new type to the existing entity.
+            
+            # Step A: Have we already processed a pin at this exact location?
             if coord_key in coords_to_uri_map:
                 subject_uri = coords_to_uri_map[coord_key]
                 print(f"  - Found duplicate pin at {coord_key}. Merging roles for: {subject_uri.n3(graph.namespace_manager)}")
             
-            # Step B: If not, this is a new location. Find or create its entity.
+            # Step B: If not, this is the first pin at this location. Find or create its entity.
             else:
-                # Spatial linking logic (same as before)
+                # This is a new location, so we find/create its URI and add its geometry
                 gis_x, gis_y = transform_point((game_x, game_y), transform_matrix)
                 pin_point = Point(gis_x, gis_y)
-
-
-                # Tier 1: Spatially-aware contextual match (for generic names)
-                found_match = False
-                for generic_name in generic_pin_names:
-                    if generic_name in name_lower:
-                        for city_name, city_poly in city_polygons.items():
-                            if pin_point.within(city_poly):
-                                contextual_label = f"{name} ({city_name})"
-                                if contextual_label.lower() in label_to_uri_map:
-                                    subject_uri = label_to_uri_map[contextual_label.lower()]
-                                    print(f"  - Spatially & contextually matched '{name}' in '{city_name}' to: {subject_uri.n3(graph.namespace_manager)}")
-                                    found_match = True
-                                break # Found containing city
-                        if found_match: break
                 
-                # Tier 2: Direct match for unique names
+                # Tier 1: Spatially-aware contextual match
+                found_match = False
+                for city_name, city_poly in city_polygons.items():
+                    if pin_point.within(city_poly):
+                        contextual_label = f"{name} ({city_name})"
+                        if contextual_label.lower() in label_to_uri_map:
+                            subject_uri = label_to_uri_map[contextual_label.lower()]
+                            print(f"  - Spatially & contextually matched '{name}' in '{city_name}' to: {subject_uri.n3(graph.namespace_manager)}")
+                            found_match = True
+                        break
+                
+                # Tier 2: Direct match for unique names (if no spatial match was made)
                 if not subject_uri:
-                    if name_lower in label_to_uri_map:
+                    is_generic = any(keyword in name_lower for keyword in keyword_to_type)
+                    if not is_generic and name_lower in label_to_uri_map:
                         subject_uri = label_to_uri_map[name_lower]
                         print(f"  - Matched unique pin '{name}' to existing entity: {subject_uri.n3(graph.namespace_manager)}")
                 
@@ -500,8 +484,9 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
                     uri_base = f"{world_name}_{name}_Pin_{safe_x}_{safe_y}"
                     subject_uri = dbr[sanitize_for_uri(uri_base)]
                     graph.add((subject_uri, RDFS.label, Literal(name)))
+                    print(f"  - No specific match found. Created new pin entity '{name}': {subject_uri.n3(graph.namespace_manager)}")
                 
-                # Since this is the first pin here, add geometry and remember it.
+                # CRITICAL: Add geometry only once and remember the URI for this location
                 coords_to_uri_map[coord_key] = subject_uri
                 graph.add((subject_uri, RDF.type, GEO.Feature))
                 graph.add((subject_uri, witcher.isPartOf, world_map_uri))
@@ -512,12 +497,11 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
                 graph.add((geometry_uri, RDF.type, GEO.Geometry))
                 graph.add((geometry_uri, GEO.asWKT, wkt_literal))
 
-            # --- Step C: Augment with ALL relevant types ---
-            
+            # --- Step C: Augment the found/created entity with ALL relevant types ---
             # 1. Add the type from the XML attribute (e.g., GwentPlayer)
             graph.add((subject_uri, RDF.type, witcher[sanitize_for_uri(mappin_type_str)]))
 
-            # 2. Infer a primary type from keywords in the name string
+            # 2. Infer and add a primary type from keywords in the name string
             for keyword, rdf_class in keyword_to_type.items():
                 if keyword in name_lower:
                     graph.add((subject_uri, RDF.type, rdf_class))
