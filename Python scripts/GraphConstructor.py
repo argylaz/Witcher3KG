@@ -412,12 +412,17 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
     }
     print(f"  - Built lookup map with {len(label_to_uri_map)} existing labels.")
 
-    # A list of generic names that REQUIRE spatial context for accurate linking
-    generic_pin_names = ["blacksmith", "armorer", "merchant", "innkeep", "herbalist", "whetstone", "grindstone", "notice board"]
+    # This map is the key to merging duplicate pins at the same location
+    coords_to_uri_map = {} # Maps "(x,y)" string to an entity URI
 
-    # --- Keep track of entities that have already had geometry added ---
-    # This prevents adding duplicate point geometries for multi-role entities (e.g. a herbalist might also be a gwent player)
-    entities_with_geometry = set()
+    # List of keywords to check for in Gwent player names
+    profession_keywords = {
+        "blacksmith": witcher.Blacksmith,
+        "armorer": witcher.Armorer,
+        "merchant": witcher.Merchant,
+        "innkeep": witcher.Innkeep, # Assuming you have an Innkeep class
+        "herbalist": witcher.Herbalist
+    }
 
     try:
         tree = ET.parse(xml_path)
@@ -437,10 +442,9 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
 
         # Iterate through each <mappin> in the world
         for mappin in world.findall('mappin'):
-            name_elem = mappin.find('name')
+            name_elem = mappin.find('name'); pos = mappin.find('position'); mappin_type_str = mappin.get('type')
+            if not all([name_elem, name_elem.text, pos, mappin_type_str]): continue
             internal_name_elem = mappin.find('internalname')
-            pos = mappin.find('position')
-            mappin_type = mappin.get('type')
 
             # Skip pins with missing essential info
             if name_elem is None or name_elem.text is None or pos is None:
@@ -449,86 +453,69 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
             name = name_elem.text
             internal_name = internal_name_elem.text if internal_name_elem is not None else ""
             game_x, game_y = float(pos.get('x')), float(pos.get('y'))
+            coord_key = f"{game_x},{game_y}"
             
             subject_uri = None
-            is_new_entity = False
 
             # --- Linking Logic ---
 
-            # Transform the pin's game coordinates into the GIS coordinate system
-            gis_x, gis_y = transform_point((game_x, game_y), transform_matrix)
-            pin_point = Point(gis_x, gis_y)
-
-            # 1. First, check if the pin has a generic name that requires spatial context
-            if name.lower() in generic_pin_names:
-                # Spatially search for the containing city first
+            # Step A: Check if we've already processed a pin at this exact location.
+            # If so, we just need to add the new type to the existing entity.
+            if coord_key in coords_to_uri_map:
+                subject_uri = coords_to_uri_map[coord_key]
+                print(f"  - Found duplicate pin at {coord_key}. Merging roles for: {subject_uri.n3(graph.namespace_manager)}")
+            
+            # Step B: If not, this is a new location. Find or create its entity.
+            else:
+                # Spatial linking logic (same as before)
+                gis_x, gis_y = transform_point((game_x, game_y), transform_matrix)
+                pin_point = Point(gis_x, gis_y)
                 for city_name, city_poly in city_polygons.items():
                     if pin_point.within(city_poly):
-                        # The pin is inside this city. Now look for a contextual label.
                         contextual_label = f"{name} ({city_name})"
                         if contextual_label.lower() in label_to_uri_map:
                             subject_uri = label_to_uri_map[contextual_label.lower()]
                             print(f"  - Spatially & contextually matched '{name}' in '{city_name}' to: {subject_uri.n3(graph.namespace_manager)}")
-                        # We found the containing city, so stop searching other cities
                         break
-
-            else:
-                # 2. If the name is NOT generic (e.g., a quest), do a direct match
-                if name.lower() in label_to_uri_map:
-                    subject_uri = label_to_uri_map[name.lower()]
-                    print(f"  - Matched unique pin '{name}' to existing entity: {subject_uri.n3(graph.namespace_manager)}")
-     
-            # Fallback: If no match was found by any method, create a new entity for the pin.
-
-            # 3. No match found, create a new, clean URI for a generic pin
-            if not subject_uri:
-                # Create a clean, unique URI using coordinates to avoid name collisions
-                safe_x = str(game_x).replace('-', 'm').replace('.', 'p')
-                safe_y = str(game_y).replace('-', 'm').replace('.', 'p')
-                uri_base = f"{world_name}_{name}_Pin_{safe_x}_{safe_y}"
-                subject_uri = dbr[sanitize_for_uri(uri_base)]
                 
-                # Add the essential types and label for this new entity
-                graph.add((subject_uri, RDFS.label, Literal(name)))
-                print(f"  - No match found. Created new pin entity '{name}': {subject_uri.n3(graph.namespace_manager)}")
- 
-            # Always add the type from the map pin. If the entity is pre-existing,
-            # this correctly adds its new role (e.g., GwentPlayer).
-            graph.add((subject_uri, RDF.type, witcher[sanitize_for_uri(mappin_type)]))
-            if is_new_entity:
-                 print(f"  - Created new pin '{name}' of type {mappin_type}: {subject_uri.n3(graph.namespace_manager)}")
-            else:
-                 print(f"  - Matched '{name}' and added/verified type {mappin_type}: {subject_uri.n3(graph.namespace_manager)}")
+                # Fallback to direct name match for unique names
+                if not subject_uri and name.lower() not in profession_keywords:
+                    if name.lower() in label_to_uri_map:
+                        subject_uri = label_to_uri_map[name.lower()]
+                        print(f"  - Matched unique pin '{name}' to existing entity: {subject_uri.n3(graph.namespace_manager)}")
+                
+                # Fallback to creating a new entity
+                if not subject_uri:
+                    safe_x = str(game_x).replace('-', 'm').replace('.', 'p')
+                    safe_y = str(game_y).replace('-', 'm').replace('.', 'p')
+                    uri_base = f"{world_name}_{name}_Pin_{safe_x}_{safe_y}"
+                    subject_uri = dbr[sanitize_for_uri(uri_base)]
+                    graph.add((subject_uri, RDFS.label, Literal(name)))
+                    print(f"  - No specific match found. Created new pin entity '{name}': {subject_uri.n3(graph.namespace_manager)}")
 
-            # --- Augment the entity, but prevent duplicate geometries ---
-            if subject_uri not in entities_with_geometry:
-                # 1. This entity is now a geo:Feature
+                # CRITICAL: This is the first pin here. Add its geometry and remember it.
+                coords_to_uri_map[coord_key] = subject_uri
                 graph.add((subject_uri, RDF.type, GEO.Feature))
-                graph.add((subject_uri, RDF.type, dbr[sanitize_for_uri(mappin_type)])) 
-                
-                # 2. Add other pin-specific properties
-                if internal_name:
-                    graph.add((subject_uri, witcher.hasInternalName, Literal(internal_name)))
-                
-                # Add relationship linking this feature to the map it's on
                 graph.add((subject_uri, witcher.isPartOf, world_map_uri))
-
-                # 3. Create and add the point geometry, using the GIS coordinates
-                wkt_point = f"POINT ({gis_x} {gis_y})"
-                wkt_literal = Literal(wkt_point, datatype=GEO.wktLiteral)
-                # Using a new geometry URI to avoid conflicts
                 geometry_uri = URIRef(f"{subject_uri}_point_geometry")
-
+                wkt_point = f"POINT ({game_x} {game_y})"
+                wkt_literal = Literal(wkt_point, datatype=GEO.wktLiteral)
                 graph.add((subject_uri, GEO.hasGeometry, geometry_uri))
                 graph.add((geometry_uri, RDF.type, GEO.Geometry))
                 graph.add((geometry_uri, GEO.asWKT, wkt_literal))
 
-                # Also add the in-game coordinates as a separate property
-                graph.add((subject_uri, witcher.hasInGameCoordinates, Literal(f"xy({game_x},{game_y})", datatype=XSD.string)))
-                
-                entities_with_geometry.add(subject_uri)
+            # --- Step C: Augment the entity with ALL its types ---
+            
+            # 1. Add the explicit type from the XML file
+            graph.add((subject_uri, RDF.type, witcher[sanitize_for_uri(mappin_type_str)]))
 
-    # print(city_polygons)
+            # 2. YOUR LOGIC: If it's a Gwent Player, check for an inferred profession type
+            if mappin_type_str == 'GwentPlayer':
+                for keyword, rdf_class in profession_keywords.items():
+                    if keyword in name.lower():
+                        graph.add((subject_uri, RDF.type, rdf_class))
+                        print(f"    - Inferred and added type '{keyword}' based on name.")
+                        break # Assume only one other profession
 
 
 # ——————————————————————————————
