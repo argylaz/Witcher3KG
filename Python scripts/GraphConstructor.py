@@ -399,8 +399,9 @@ def transform_point(point, matrix):
 # Map pin integration logic
 def integrate_map_pins(graph, xml_path, transform_matrix):
     """
-    Reads an XML file of map pins, performs spatial and contextual linking to existing
-    entities, and adds their point geometry to the graph
+    The definitive function to integrate map pins. It uses a multi-pass strategy to
+    correctly link entities, merge duplicate pins with multiple roles (e.g., Armorer + GwentPlayer),
+    and intelligently infer types from pin names.
     """
     print(f"\n--- Integrating and Linking Map Pins from {xml_path} ---")
 
@@ -425,52 +426,46 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
         tree = ET.parse(xml_path)
         root = tree.getroot()
     except Exception as e:
-        print(f"Error reading or parsing {xml_path}: {e}")
-        return
+        print(f"Error parsing {xml_path}: {e}"); return
 
-    # Iterate through each <world> (e.g., White Orchard, Velen & Novigrad)
+    # Pass 2: The Main Linking Loop
     for world in root.findall('world'):
         world_name = world.get('name')
         world_map_uri = dbr[sanitize_for_uri(f"{world_name}_Map")]
-        
-        # Ensure the map entity exists
-        graph.add((world_map_uri, RDF.type, witcher.Maps))
+        graph.add((world_map_uri, RDF.type, witcher.Map))
         graph.add((world_map_uri, RDFS.label, Literal(f"{world_name} Map")))
 
-        # Iterate through each <mappin> in the world
         for mappin in world.findall('mappin'):
-            name_elem = mappin.find('name')
-            internal_name_elem = mappin.find('internalname')
-            pos = mappin.find('position')
-            mappin_type = mappin.get('type')
+            name_elem = mappin.find('name'); pos = mappin.find('position'); mappin_type_str = mappin.get('type')
+            if not all([name_elem, name_elem.text, pos, mappin_type_str]): continue
 
-            # Skip pins with missing essential info
-            if name_elem is None or name_elem.text is None or pos is None:
-                continue
-
-            name = name_elem.text
-            internal_name = internal_name_elem.text if internal_name_elem is not None else ""
+            name = name_elem.text.strip()
+            name_lower = name.lower()
             game_x, game_y = float(pos.get('x')), float(pos.get('y'))
+            coord_key = f"{game_x},{game_y}"
             
             subject_uri = None
-
-            # --- Linking Logic ---
-
-            # Transform the pin's game coordinates into the GIS coordinate system
-            gis_x, gis_y = transform_point((game_x, game_y), transform_matrix)
-            pin_point = Point(gis_x, gis_y)
-
-            # 1. First, check if the pin has a generic name that requires spatial context
-            if name.lower() in generic_pin_names:
-                # Spatially search for the containing city first
+            
+            # Step A: Have we already processed a pin at this exact location?
+            if coord_key in coords_to_uri_map:
+                subject_uri = coords_to_uri_map[coord_key]
+                print(f"  - Found duplicate pin at {coord_key}. Merging roles for: {subject_uri.n3(graph.namespace_manager)}")
+            
+            # Step B: If not, this is the first pin at this location. Find or create its entity.
+            else:
+                # This is a new location, so we find/create its URI and add its geometry
+                gis_x, gis_y = transform_point((game_x, game_y), transform_matrix)
+                pin_point = Point(gis_x, gis_y)
+                
+                # Tier 1: Spatially-aware contextual match
+                found_match = False
                 for city_name, city_poly in city_polygons.items():
                     if pin_point.within(city_poly):
-                        # The pin is inside this city. Now look for a contextual label.
                         contextual_label = f"{name} ({city_name})"
                         if contextual_label.lower() in label_to_uri_map:
                             subject_uri = label_to_uri_map[contextual_label.lower()]
                             print(f"  - Spatially & contextually matched '{name}' in '{city_name}' to: {subject_uri.n3(graph.namespace_manager)}")
-                        # We found the containing city, so stop searching other cities
+                            found_match = True
                         break
 
             else:
@@ -520,10 +515,15 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
             graph.add((geometry_uri, RDF.type, GEO.Geometry))
             graph.add((geometry_uri, GEO.asWKT, wkt_literal))
 
-            # Also add the in-game coordinates as a separate property
-            graph.add((subject_uri, witcher.hasInGameCoordinates, Literal(f"xy({game_x},{game_y})", datatype=XSD.string)))
+            # --- Step C: Augment the found/created entity with ALL relevant types ---
+            # 1. Add the type from the XML attribute (e.g., GwentPlayer)
+            graph.add((subject_uri, RDF.type, witcher[sanitize_for_uri(mappin_type_str)]))
 
-    # print(city_polygons)
+            # 2. Infer and add a primary type from keywords in the name string
+            for keyword, rdf_class in keyword_to_type.items():
+                if keyword in name_lower:
+                    graph.add((subject_uri, RDF.type, rdf_class))
+                    print(f"    - Inferred and added type '{str(rdf_class).split('#')[-1]}' from name.")
 
 
 # ——————————————————————————————
