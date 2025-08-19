@@ -412,8 +412,14 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
     }
     print(f"  - Built lookup map with {len(label_to_uri_map)} existing labels.")
 
-    # A list of generic names that REQUIRE spatial context for accurate linking
-    generic_pin_names = ["blacksmith", "armorer", "merchant", "innkeep", "herbalist", "whetstone", "grindstone", "notice board"]
+    # The Keyword Dictionary for Type Inference from pin names
+    keyword_to_type = {
+        'blacksmith': witcher.Blacksmith, 'armorer': witcher.Armorer,
+        'merchant': witcher.Merchant, 'innkeep': witcher.Innkeep,
+        'herbalist': witcher.Herbalist, 'whetstone': witcher.Whetstone,
+        'notice board': witcher.NoticeBoard, 'road sign': witcher.RoadSign
+    }
+    generic_pin_names = list(keyword_to_type.keys())
 
     try:
         tree = ET.parse(xml_path)
@@ -496,6 +502,10 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
             # 2. Add other pin-specific properties
             if internal_name:
                 graph.add((subject_uri, witcher.hasInternalName, Literal(internal_name)))
+                for keyword, rdf_class in keyword_to_type.items():
+                    if keyword in name.lower():
+                        graph.add((subject_uri, RDF.type, rdf_class))
+                        print(f"    - Inferred and added type '{str(rdf_class).split('#')[-1]}' from name for {subject_uri.n3(graph.namespace_manager)}")
             
             # Add relationship linking this feature to the map it's on
             graph.add((subject_uri, witcher.isPartOf, world_map_uri))
