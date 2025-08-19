@@ -525,7 +525,6 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
 
     # print(city_polygons)
 
-
 # ——————————————————————————————
 # 4. Main Execution: Read XML and Build Graph
 # ——————————————————————————————
