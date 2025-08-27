@@ -112,7 +112,7 @@ WHERE {
   ?subject rdfs:label ?subjectLabel .
 }
 
-
+-----------------------------------------------------------------------------------------
 Template 6: Relationship Lookup
 Purpose: Finds subjects that have a specific relationship to a known object entity.
 User Prompt Example: "Who is affiliated with the School of the Cat?"
@@ -125,7 +125,7 @@ WHERE {
   ?subject <{relationship_uri}> <{object_uri}> .
   ?subject rdfs:label ?subjectLabel .
 }
-
+-----------------------------------------------------------------------------------------
 
 Template 7: Multi-Hop Query (Relationship -> Property)
 Purpose: Finds a property of an entity that is linked via an intermediate relationship.
