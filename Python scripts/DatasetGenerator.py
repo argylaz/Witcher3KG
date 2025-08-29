@@ -40,6 +40,24 @@ def format_sparql_term(term_dict):
         elif 'datatype' in term_dict:
             formatted_term += f"^^<{term_dict['datatype']}>"
         return formatted_term
+    
+
+def build_label_cache(namespaces):
+    """Fetches all rdfs:labels to create a fast URI-to-label mapping."""
+    print("Building label cache...")
+    label_cache = {}
+    query = f"{namespaces} SELECT ?s ?label WHERE {{ ?s rdfs:label ?label . }}"
+    results = execute_sparql_query(query)
+    if results:
+        for res in results:
+            label_cache[res['s']['value']] = res['label']['value']
+    print(f"Label cache built with {len(label_cache)} entries.")
+    return label_cache
+
+def get_property_name(uri):
+    """Converts a property URI into a human-readable name."""
+    if not uri: return ""
+    return uri.split('#')[-1].split('/')[-1].replace('_', ' ')
 
 # --- 2. SEEDING STAGE (DYNAMIC AND DATA-DRIVEN) ---
 print("Starting Data-Driven Seeding Stage...")
@@ -50,6 +68,8 @@ namespaces = """
     PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 """
+
+label_cache = build_label_cache(namespaces)
 
 def get_uris(query):
     results = execute_sparql_query(f"{namespaces} {query}")
@@ -153,7 +173,7 @@ print(f"  - T11: Found {len(valid_superlative_pairs)} properties with numeric va
 print(f"  - T13: Found {len(valid_combo_locations)} cities with multiple POI types.")
 
 
-# --- 3. TEMPLATE DEFINITIONS (Updated to use new guided lists) ---
+# --- 3. TEMPLATE DEFINITIONS  ---
 templates = [
     {
         "id": "T3_LocationContextDiscovery", "type": "SELECT", "inputs": valid_map_context_pairs,
@@ -228,6 +248,25 @@ templates = [
 ]
 
 
+NLQ_TEMPLATES = {
+    "T1_SpatialRelationship": "List all [poi_type_name] inside [location_name]?",
+    "T2_ProximitySearch": "What is the [direction] [poi_type_name] to [location_name]?",
+    "T3_LocationContextDiscovery": "Which map is [location_name] in?",
+    "T4_GeospatialVerification": "Is [location_name] inside [location_with_polygon_name]?",
+    "T5_PropertyLookup_Direct": "What is the [property_name] of [entity_name]?",
+    "T6_PropertyLookup_Inverse": "Which entities have [property_value] as their [property_name]?",
+    "T7_MultiHopQuery": "What is the [second_property_name] of entities related to [start_entity_name] via [first_relationship_name]?",
+    "T8_ComposedQuery": "Which entities in [location_name] have [property_value] as their [property_name]?",
+    "T9_SpatialCounting": "How many [poi_type_name] are in [location_with_polygon_name]?",
+    "T10_ComparativeCounting": "Does [location1_with_polygon_name] have more [poi_type_name] than [location2_with_polygon_name]?",
+    "T11_SuperlativeByAttribute": "What is the [direction] [class_name] by [property_name]?",
+    "T12_SchemaLookup": "What kind of thing is a [class_name]?",
+    "T13_FindLocationByFeatureCombination": "Which city has either a [poi_type1_name] or a [poi_type2_name]?",
+    "T14_InstanceListingByClass": "List all known [class_name].",
+    "T15_PathVerification": "Is there a road that connects [location1_name] and [location2_name]?",
+}
+
+
 # --- 4. GENERATION AND VALIDATION STAGE (Fortified Loop) ---
 print("\nStarting Generation and Validation Stage...")
 valid_queries = []
@@ -292,9 +331,76 @@ for t in templates:
             query_counter += 1
             template_valid_query_count += 1
             print(f"  > Found valid query #{query_counter} (template count: {template_valid_query_count})", end='\r')
+            
+            nlq_string = "N/A"
+            nlq_template = NLQ_TEMPLATES.get(template_id)
+            if nlq_template:
+                try:
+                    placeholders = {}
+                    # Populate placeholders based on the template ID
+                    if template_id == 'T1_SpatialRelationship':
+                        placeholders['[poi_type_name]'] = label_cache.get(combo[0], "Unknown POI Type")
+                        placeholders['[location_name]'] = label_cache.get(combo[1], "Unknown Location")
+                    elif template_id == 'T2_ProximitySearch':
+                        placeholders['[direction]'] = "closest" if combo[2] == "ASC" else "furthest"
+                        placeholders['[poi_type_name]'] = label_cache.get(combo[0], "Unknown POI Type")
+                        placeholders['[location_name]'] = label_cache.get(combo[1], "Unknown Location")
+                    elif template_id == 'T3_LocationContextDiscovery':
+                        placeholders['[location_name]'] = label_cache.get(combo[0], "this location")
+                    elif template_id == 'T4_GeospatialVerification':
+                        placeholders['[location_name]'] = label_cache.get(combo[0], "this location")
+                        placeholders['[location_with_polygon_name]'] = label_cache.get(combo[2], "this area")
+                    elif template_id == 'T5_PropertyLookup_Direct':
+                        placeholders['[entity_name]'] = label_cache.get(combo[0], "this entity")
+                        placeholders['[property_name]'] = get_property_name(combo[1])
+                    elif template_id == 'T6_PropertyLookup_Inverse':
+                        placeholders['[property_value]'] = combo[2]['value']
+                        placeholders['[property_name]'] = get_property_name(combo[1])
+                    elif template_id == 'T7_MultiHopQuery':
+                        placeholders['[second_property_name]'] = get_property_name(combo[2])
+                        placeholders['[start_entity_name]'] = label_cache.get(combo[0], "this entity")
+                        placeholders['[first_relationship_name]'] = get_property_name(combo[1])
+                    elif template_id == 'T8_ComposedQuery':
+                        placeholders['[location_name]'] = label_cache.get(combo[0], "this location")
+                        placeholders['[property_value]'] = combo[3]['value']
+                        placeholders['[property_name]'] = get_property_name(combo[2])
+                    elif template_id == 'T9_SpatialCounting':
+                        placeholders['[poi_type_name]'] = label_cache.get(combo[1], "entities")
+                        placeholders['[location_with_polygon_name]'] = label_cache.get(combo[0], "this area")
+                    elif template_id == 'T10_ComparativeCounting':
+                        placeholders['[location1_with_polygon_name]'] = label_cache.get(combo[0], "this area")
+                        placeholders['[poi_type_name]'] = label_cache.get(combo[1], "entities")
+                        placeholders['[location2_with_polygon_name]'] = label_cache.get(combo[2], "that area")
+                    elif template_id == 'T11_SuperlativeByAttribute':
+                        placeholders['[direction]'] = "highest" if combo[2] == "DESC" else "lowest"
+                        placeholders['[class_name]'] = label_cache.get(combo[0], "entity")
+                        placeholders['[property_name]'] = get_property_name(combo[1])
+                    elif template_id == 'T12_SchemaLookup':
+                        placeholders['[class_name]'] = label_cache.get(combo[0], "entity type")
+                    elif template_id == 'T13_FindLocationByFeatureCombination':
+                        placeholders['[poi_type1_name]'] = label_cache.get(combo[1], "entity type")
+                        placeholders['[poi_type2_name]'] = label_cache.get(combo[2], "another entity type")
+                    elif template_id == 'T14_InstanceListingByClass':
+                        placeholders['[class_name]'] = label_cache.get(combo[0], "entities")
+                    elif template_id == 'T15_PathVerification':
+                        placeholders['[location1_name]'] = label_cache.get(combo[0], "this location")
+                        placeholders['[location2_name]'] = label_cache.get(combo[1], "that location")
+                    
+                    # Replace placeholders
+                    temp_nlq = nlq_template
+                    for key, val in placeholders.items():
+                        temp_nlq = temp_nlq.replace(key, str(val))
+                    nlq_string = temp_nlq
+
+                except Exception as e:
+                    print(f"  - Failed to generate NLQ for {template_id}: {e}")
+
             valid_queries.append({
-                "query_id": f"{template_id}_{i}", "template_id": template_id,
-                "query_type": query_type, "query": " ".join(query.strip().split())
+                "query_id": f"{template_id}_{i}",
+                "template_id": template_id,
+                "query_type": query_type,
+                "query": " ".join(query.strip().split()),
+                "natural_language_question": nlq_string
             })
 
             if template_id in high_volume_templates and template_valid_query_count >= COMBINATORIAL_TEMPLATE_LIMIT:
