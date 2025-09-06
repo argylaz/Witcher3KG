@@ -2,6 +2,11 @@ import requests
 import json
 import argparse
 from typing import Optional
+import random
+from collections import defaultdict
+from tqdm import tqdm
+
+NAMELESS_KEYWORDS = ["terrain", "lake", "swamp"]
 
 class SPARQLTranslator:
     def __init__(self, api_key: str, model: str = "deepseek-chat"):
@@ -67,38 +72,97 @@ class SPARQLTranslator:
         except (KeyError, IndexError) as e:
             raise Exception(f"Failed to parse API response: {str(e)}")
 
+
+
 def main():
-    # Set up command line arguments
-    parser = argparse.ArgumentParser(description="Translate SPARQL queries to natural language using DeepSeek API")
-    parser.add_argument("--api-key", required=True, help="Your DeepSeek API key")
-    parser.add_argument("--query", required=True, help="SPARQL query to translate")
-    parser.add_argument("--context", help="Additional context about the dataset or domain")
-    parser.add_argument("--model", default="deepseek-chat", 
-                       choices=["deepseek-chat", "deepseek-reasoner"],
-                       help="DeepSeek model to use")
-    parser.add_argument("--output", help="Output file to save results (optional)")
+    parser = argparse.ArgumentParser(
+        description="Translate a curated list of SPARQL queries to natural language.",
+        formatter_class=argparse.RawTextHelpFormatter
+    )
+    parser.add_argument(
+        "--api-key", 
+        required=True, 
+        help="Your DeepSeek API key."
+    )
+    parser.add_argument(
+        "--input-file", 
+        default="curated_queries_for_translation.json",
+        help="The human-approved JSON file from the review script."
+    )
+    parser.add_argument(
+        "--output-file", 
+        default="translation_comparison_final.json",
+        help="The final JSON file with LLM translation comparisons."
+    )
     
     args = parser.parse_args()
-    
-    # Initialize the translator
-    translator = SPARQLTranslator(args.api_key, args.model)
-    
-    # Translate the query
+
+    # --- 1. Load the Curated Queries ---
+    print(f"Loading curated queries from '{args.input_file}'...")
     try:
-        natural_language_query = translator.translate_query(args.query, args.context)
-        
-        # Print and optionally save the result
-        print("Natural Language Translation:")
-        print(natural_language_query)
-        
-        if args.output:
-            with open(args.output, 'w') as f:
-                f.write(natural_language_query)
-            print(f"\nResult saved to {args.output}")
+        with open(args.input_file, 'r') as f:
+            curated_queries = json.load(f)
+    except FileNotFoundError:
+        print(f"Error: Input file not found at '{args.input_file}'.")
+        print("Please run the 'review_and_select.py' script first to create this file.")
+        return
+    except json.JSONDecodeError:
+        print(f"Error: The input file '{args.input_file}' is not a valid JSON file.")
+        return
+
+    if not curated_queries:
+        print("The input file is empty. No queries to translate.")
+        return
+
+    print(f"Successfully loaded {len(curated_queries)} curated queries for translation.")
+
+    # --- 2. Initialize Translator and Run Translations ---
+    translator = SPARQLTranslator(api_key=args.api_key) # sk-1277df808d8c4456993f333cade47fb1
+    results_for_comparison = []
+    
+    general_context = "This is for a knowledge graph about The Witcher 3 video game."
+
+    print("\nStarting translations...")
+    # The loop now directly iterates over the curated list
+    for item in tqdm(curated_queries, desc="Translating Queries"):
+        sparql_query = item['query']
+        template_nlq = item['natural_language_question']
+
+        # --- Method 1: Direct Translation ---
+        try:
+            direct_translation = translator.translate_query(sparql_query, context=general_context)
+        except Exception as e:
+            print(f"\nError during direct translation for query {item['query_id']}: {e}")
+            direct_translation = f"ERROR: {e}"
+
+        # --- Method 2: Context-Enhanced Translation ---
+        enhanced_context = (
+            f"{general_context}\n"
+            f"The ideal output should be a clear, natural question. "
+            f"Use this example as a guide for style and phrasing: '{template_nlq}'"
+        )
+        try:
+            context_enhanced_translation = translator.translate_query(sparql_query, context=enhanced_context)
+        except Exception as e:
+            print(f"\nError during enhanced translation for query {item['query_id']}: {e}")
+            context_enhanced_translation = f"ERROR: {e}"
             
-    except Exception as e:
-        print(f"Error: {str(e)}")
-        exit(1)
+        # Store all versions for comparison
+        results_for_comparison.append({
+            "query_id": item['query_id'],
+            "template_id": item['template_id'],
+            "sparql_query": sparql_query,
+            "template_generated_nlq": template_nlq,
+            "direct_llm_translation": direct_translation,
+            "context_enhanced_llm_translation": context_enhanced_translation
+        })
+
+    # --- 3. Save Results ---
+    print(f"\nAll translations complete. Saving results to '{args.output_file}'...")
+    with open(args.output_file, 'w') as f:
+        json.dump(results_for_comparison, f, indent=2)
+    
+    print("Done!")
 
 if __name__ == "__main__":
     main()
