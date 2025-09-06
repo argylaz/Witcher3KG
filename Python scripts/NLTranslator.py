@@ -117,10 +117,10 @@ def main():
     print(f"Successfully loaded {len(curated_queries)} curated queries for translation.")
 
     # --- 2. Initialize Translator and Run Translations ---
-    translator = SPARQLTranslator(api_key=args.api_key) # sk-1277df808d8c4456993f333cade47fb1
+    translator = SPARQLTranslator(api_key=args.api_key) 
     results_for_comparison = []
     
-    general_context = "This is for a knowledge graph about The Witcher 3 video game."
+    general_context = "This is for a knowledge graph about The Witcher video game franchise and all it's games and expansions."
 
     print("\nStarting translations...")
     # The loop now directly iterates over the curated list
