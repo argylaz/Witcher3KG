@@ -1,0 +1,1802 @@
+[
+  {
+    "query_id": "T10_ComparativeCounting_355",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#TreasureQuest> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Novigrad> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#TreasureQuest> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does the Velen/Novigrad Map have more Treasure Quests than Novigrad?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_480",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#HorseRacing> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Novigrad> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#HorseRacing> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does the Velen/Novigrad Map have more Horse Racing locations than Novigrad?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_85",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Plegmund> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oxenfurt_Outskirts> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Plegmund> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does Velen/Novigrad Map have more Plegmund than Oxenfurt Outskirts?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_249",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SpoilsOfWar> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Toderas> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#SpoilsOfWar> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does the Velen/Novigrad Map have more Spoils of War than Toderas?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_424",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Harbor> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Toderas> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Harbor> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does Velen/Novigrad Map have more Harbor than Toderas?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_293",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oxenfurt> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does the Velen/Novigrad Map have more Side Quests than Oxenfurt?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_40",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#PlaceOfPower> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Fyke_Isle> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#PlaceOfPower> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does Velen/Novigrad Map have more Places of Power than Fyke Isle?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_439",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#RoadSign> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Condyle> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#RoadSign> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does the Velen/Novigrad Map contain more Road Signs than Condyle?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_390",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Armorer> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Fyke_Isle> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Armorer> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does Velen/Novigrad Map have more Armorer than Fyke Isle?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_478",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#HorseRacing> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Midscope> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#HorseRacing> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does Velen/Novigrad Map have more Horse Racing than Midscope?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_4",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#PlayerStash> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Nilfgaardian_Garrison> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#PlayerStash> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does the Velen/Novigrad Map contain more Player Stash locations than the Nilfgaardian Garrison?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_26",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#PlaceOfPower> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Nilfgaardian_base> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#PlaceOfPower> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does the Velen/Novigrad Map contain more Places of Power than the Nilfgaardian base?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_437",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#RoadSign> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Kimbolt_way> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#RoadSign> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does Velen/Novigrad Map have more Road Signs than Kimbolt way?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_53",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#MonsterQuest> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Midscope> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#MonsterQuest> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does Velen/Novigrad Map have more Monster Quests than Midscope?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_316",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#DungeonCrawl> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Yantra> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#DungeonCrawl> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does the Velen/Novigrad Map have more DungeonCrawl locations than Yantra?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_244",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SpoilsOfWar> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#SpoilsOfWar> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does Velen/Novigrad Map have more Spoils of War than Claywitch?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_117",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Whetstone> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Codger_s_Quarry> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Whetstone> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does Velen/Novigrad Map have more Whetstone than Codger's Quarry?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_321",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#DungeonCrawl> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vegelbud_Residence> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#DungeonCrawl> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does Velen/Novigrad Map have more DungeonCrawl than Vegelbud Residence?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_185",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#TreasureHuntMappin> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oxenfurt_Outskirts> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#TreasureHuntMappin> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does Velen/Novigrad Map have more Treasure Hunt Map Pins than Oxenfurt Outskirts?"
+  },
+  {
+    "query_id": "T10_ComparativeCounting_112",
+    "template_id": "T10_ComparativeCounting",
+    "sparql_query": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Whetstone> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Kimbolt_way> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Whetstone> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "natural_language_question": "Does the Velen/Novigrad Map have more Whetstones than Kimbolt Way?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_101",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_quest_items> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#value> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest value Blood and Wine quest item?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_57",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_achievements> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#points> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest The Witcher 3 achievement by points?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_100",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_quest_items> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#value> ?value . } ORDER BY ASC(?value) LIMIT 1",
+    "natural_language_question": "What is the lowest value Blood and Wine quest item?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_133",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_ingredients> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#sell> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest selling The Witcher ingredient?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_83",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_trophies> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#sell> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest sell value for The Witcher 2 trophies?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_247",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_ingredients> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#sell> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest selling The Witcher 2 ingredient?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_123",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_notice_board_postings> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#value> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest value for The Witcher 3 notice board postings?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_32",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_books> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#buy> ?value . } ORDER BY ASC(?value) LIMIT 1",
+    "natural_language_question": "What is the lowest buy value for The Witcher books?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_177",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_steel_weapons> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#sell> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest selling The Witcher 3 steel weapon?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_292",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_items> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#value> ?value . } ORDER BY ASC(?value) LIMIT 1",
+    "natural_language_question": "What is the lowest value Blood and Wine item?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_233",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Caelum> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#buy> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest buy value for a Caelum?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_241",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_crafting_components> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#sell> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest sell value for a The Witcher 2 crafting component?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_237",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Caelum> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#buyh> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest Caelum by buyh?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_90",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_quest_items> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#weight> ?value . } ORDER BY ASC(?value) LIMIT 1",
+    "natural_language_question": "What is the lightest Blood and Wine quest item by weight?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_77",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_DLC> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#buy> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest The Witcher 2 DLC by buy?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_248",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_ingredients> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#buyh> ?value . } ORDER BY ASC(?value) LIMIT 1",
+    "natural_language_question": "What is the lowest The Witcher 2 ingredients by buyh?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_95",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_books> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#buy> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest buy value for The Witcher 3 books?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_97",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_quest_items> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#buy> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest buy value for The Witcher 3 quest items?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_217",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_items> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#sell> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "natural_language_question": "What is the highest sell value for The Witcher 3 items?"
+  },
+  {
+    "query_id": "T11_SuperlativeByAttribute_72",
+    "template_id": "T11_SuperlativeByAttribute",
+    "sparql_query": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Hearts_of_Stone_notice_board_postings> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#value> ?value . } ORDER BY ASC(?value) LIMIT 1",
+    "natural_language_question": "What is the lowest Hearts of Stone notice board postings by value?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_473",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Nilfgaardians> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What is the broader category that Nilfgaardians belong to?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_168",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Yrrhedes_locations> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is a Yrrhedes location?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_103",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_bestiary> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is a Blood and Wine bestiary?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_314",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_Adventure_Game> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What is the parent class of The Witcher Adventure Game?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_207",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_cut_characters> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What is the parent class of The Witcher 3 cut characters?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_225",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Redanian_Government> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is a Redanian Government?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_344",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_Thursdays> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What is the parent class of The Witcher Thursdays?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_482",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Thronebreaker> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is a Thronebreaker?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_318",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_Adventure_Game_characters> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What is the parent class of The Witcher Adventure Game characters?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_236",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_trophies> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is a Blood and Wine trophies?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_467",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Hearts_of_Stone_characters> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is a Hearts of Stone character?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_178",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#MutagenDismantle> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is a Mutagen Dismantle?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_22",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_horse_equipment> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is a Blood and Wine horse equipment?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_443",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_books> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is a Blood and Wine books?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_91",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#ChapterQuest> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of quest is a Chapter Quest?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_223",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Chapels_and_Temples> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is a Chapels and Temples?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_259",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Nilfgaardian_Empire> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What is the parent class of the Nilfgaardian Empire?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_341",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What is the parent class of The Witcher 3?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_332",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Comics> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is Comics?"
+  },
+  {
+    "query_id": "T12_SchemaLookup_284",
+    "template_id": "T12_SchemaLookup",
+    "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Hydragenum> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "natural_language_question": "What kind of thing is a Hydragenum?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_915",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentSeller> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Harbor> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Gwent Seller or a Harbor at the Inn at the Crossroads?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_4080",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#BanditCampfire> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#GwentSeller> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Bandit Campfire or a Gwent Seller at Reardon Manor?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_833",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Grindstone> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Harbor> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location contains either a Grindstone or a Harbor?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_4780",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Hideout> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#NoticeBoard> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location named Reardon Manor contains either a Hideout or a Notice Board?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_5605",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vegelbud_Residence> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Contraband> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Side Quest or Contraband within the Vegelbud Residence?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_1239",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Plegmund> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#SpoilsOfWar> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Plegmund or a Spoils of War within the Inn at the Crossroads?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_95",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#PlaceOfPower> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Harbor> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Place of Power or a Harbor within the area of the Inn at the Crossroads?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_2081",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Byways> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Enchant> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Entrance> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location contains either an Enchant or an Entrance?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_1242",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Plegmund> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#BanditCampfire> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Plegmund or a Bandit Campfire within the Inn at the Crossroads?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_1876",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Byways> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#PlayerStash> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Entrance> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location named \"Byways\" contains either a Player Stash or an Entrance?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_5490",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vegelbud_Residence> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#MonterNest> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a MonterNest or a Side Quest at the Vegelbud Residence?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_2573",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Byways> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Bed> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Entrance> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location contains either a Bed or an Entrance?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_1794",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Byways> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#PlaceOfPower> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Entrance> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Place of Power or an Entrance within its boundaries?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_2301",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Byways> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Entrance> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#AlchemyTable> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either an Entrance or an AlchemyTable?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_4809",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#MutagenDismantle> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#BanditCampfire> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Mutagen Dismantle or a Bandit Campfire within Reardon Manor?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_5578",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vegelbud_Residence> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Bed> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Side Quest or a Bed at the Vegelbud Residence?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_5769",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vegelbud_Residence> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#BanditCampfire> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Contraband> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Bandit Campfire or Contraband within the Vegelbud Residence?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_5591",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vegelbud_Residence> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#SignalingStake> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Side Quest or a Signaling Stake within the Vegelbud Residence?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_4903",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Contraband> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#NoticeBoard> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "What is the name of the location that contains either a Contraband or a Notice Board within Reardon Manor?"
+  },
+  {
+    "query_id": "T13_FindLocationByFeatureCombination_935",
+    "template_id": "T13_FindLocationByFeatureCombination",
+    "sparql_query": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentSeller> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Plegmund> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "natural_language_question": "Which location has either a Gwent Seller or a Plegmund at the Inn at the Crossroads?"
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_69",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#The_Lady_of_the_Lake_characters> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known The Lady of the Lake characters."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_121",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Nigredo> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Nigredo."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_214",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Gangs> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Gangs."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_409",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Lakes> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Lakes."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_473",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#MonsterNest> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Monster Nests."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_280",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Royal_family_members> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Royal family members."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_301",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Short_stories> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Short stories."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_96",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_DLC> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known The Witcher 2 DLC."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_424",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Netflix_The_Witcher_episodes> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Netflix The Witcher episodes."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_193",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Roads> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Roads."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_179",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_books> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known The Witcher 2 books."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_316",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_letters> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known The Witcher letters."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_200",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Sylvans> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Sylvans."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_455",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#The_Hexer_episodes> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known The Hexer episodes."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_239",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Hearts_of_Stone_keys> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Hearts of Stone keys."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_8",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Mercenaries> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Mercenaries."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_13",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Thronebreaker_camp> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Thronebreaker camps."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_285",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Organizations> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Organizations."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_443",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#InfestedVineyard> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Infested Vineyard."
+  },
+  {
+    "query_id": "T14_InstanceListingByClass_196",
+    "template_id": "T14_InstanceListingByClass",
+    "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Artbooks> . ?instance rdfs:label ?instanceLabel . }",
+    "natural_language_question": "List all known Artbooks."
+  },
+  {
+    "query_id": "T15_PathVerification_1849",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Claywitch and Blackbough?"
+  },
+  {
+    "query_id": "T15_PathVerification_3903",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Midscope> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Midscope and Claywitch?"
+  },
+  {
+    "query_id": "T15_PathVerification_3969",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Oreton> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Blackbough and Oreton?"
+  },
+  {
+    "query_id": "T15_PathVerification_4487",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Yantra> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Inn at the Crossroads and Yantra?"
+  },
+  {
+    "query_id": "T15_PathVerification_1809",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Oreton> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Claywitch and Oreton?"
+  },
+  {
+    "query_id": "T15_PathVerification_4316",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oxenfurt_Outskirts> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Nilfgaardian_Garrison> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Oxenfurt Outskirts and Nilfgaardian Garrison?"
+  },
+  {
+    "query_id": "T15_PathVerification_985",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oreton> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Oreton and Blackbough?"
+  },
+  {
+    "query_id": "T15_PathVerification_3217",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Byways> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Byways and Blackbough?"
+  },
+  {
+    "query_id": "T15_PathVerification_4280",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oxenfurt_Outskirts> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Oxenfurt Outskirts and Inn at the Crossroads?"
+  },
+  {
+    "query_id": "T15_PathVerification_1821",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Byways> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Claywitch and Byways?"
+  },
+  {
+    "query_id": "T15_PathVerification_3897",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Midscope> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Oreton> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Midscope and Oreton?"
+  },
+  {
+    "query_id": "T15_PathVerification_3981",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Byways> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Blackbough and Byways?"
+  },
+  {
+    "query_id": "T15_PathVerification_3937",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Midscope> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Midscope and Blackbough?"
+  },
+  {
+    "query_id": "T15_PathVerification_4532",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Nilfgaardian_Garrison> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Inn at the Crossroads and Nilfgaardian Garrison?"
+  },
+  {
+    "query_id": "T15_PathVerification_5180",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Yantra> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Nilfgaardian_Garrison> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Yantra and Nilfgaardian Garrison?"
+  },
+  {
+    "query_id": "T15_PathVerification_4784",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Novigrad> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Novigrad and Inn at the Crossroads?"
+  },
+  {
+    "query_id": "T15_PathVerification_5144",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Yantra> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Yantra and Inn at the Crossroads?"
+  },
+  {
+    "query_id": "T15_PathVerification_4820",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Novigrad> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Nilfgaardian_Garrison> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Novigrad and Nilfgaardian Garrison?"
+  },
+  {
+    "query_id": "T15_PathVerification_4021",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Midscope> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Blackbough and Midscope?"
+  },
+  {
+    "query_id": "T15_PathVerification_5136",
+    "template_id": "T15_PathVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Yantra> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Novigrad> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "natural_language_question": "Is there a road that connects Yantra and Novigrad?"
+  },
+  {
+    "query_id": "T1_SpatialRelationship_645",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#ArmorRepairTable> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Armor Repair Tables located within Crow's Perch."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_6",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Midscope> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/resource/Crafting_Station> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Crafting Stations located within Midscope?"
+  },
+  {
+    "query_id": "T1_SpatialRelationship_45",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Novigrad> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Blacksmith> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Blacksmiths located within the city of Novigrad?"
+  },
+  {
+    "query_id": "T1_SpatialRelationship_451",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Side Quests located within the area of Claywitch."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_185",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Whetstone> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Whetstones located within Crow's Perch."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_319",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#NoticeBoard> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Notice Boards located within Reardon Manor."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_64",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oxenfurt> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#BanditCampfire> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Bandit Campfires located within the city of Oxenfurt."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_294",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oxenfurt> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Crafting_Station> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Crafting Stations located within the city of Oxenfurt."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_555",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Toderas> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Contraband> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Contraband items located within the area of Toderas."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_283",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oreton> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Crafting_Station> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Crafting Stations located within the area of Oreton."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_206",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Novigrad> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Whetstone> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Whetstones located within Novigrad?"
+  },
+  {
+    "query_id": "T1_SpatialRelationship_175",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#PlaceOfPower> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Places of Power located within Claywitch."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_551",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Novigrad> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentPlayer> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Gwent Players located within Novigrad."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_1",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/resource/Crafting_Station> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Crafting Stations located within Crow's Perch."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_22",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Novigrad> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/resource/Crafting_Station> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Crafting Stations located within the geographical area of Novigrad."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_547",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oxenfurt> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentPlayer> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "Which Gwent players are located within the city of Oxenfurt?"
+  },
+  {
+    "query_id": "T1_SpatialRelationship_624",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Toderas> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#RoadSign> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Road Signs located within Toderas?"
+  },
+  {
+    "query_id": "T1_SpatialRelationship_574",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Novigrad> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Contraband> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Contraband items located within the city of Novigrad."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_182",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#PlaceOfPower> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Places of Power located within Blackbough."
+  },
+  {
+    "query_id": "T1_SpatialRelationship_452",
+    "template_id": "T1_SpatialRelationship",
+    "sparql_query": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vegelbud_Residence> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "natural_language_question": "List all Side Quests located within Vegelbud Residence."
+  },
+  {
+    "query_id": "T2_ProximitySearch_332",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Call_of_the_Wild> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SignalingStake> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Signaling Stake to Call of the Wild?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_377",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Byways> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SignalingStake> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY DESC(?distance) LIMIT 1",
+    "natural_language_question": "What is the furthest Signaling Stake from Byways?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_65",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY DESC(?distance) LIMIT 1",
+    "natural_language_question": "What is the furthest Side Quest from Reardon Manor?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_310",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1482p0_2209p0> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SignalingStake> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Signaling Stake to the Velen Novigrad Cave Entrance?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_84",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Skellige_Kaer_Trolde_armorer_Pin_m143p0_750p0> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Side Quest to the Kaer Trolde armorer?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_542",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Lindenvale> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentPlayer> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Gwent Player to Lindenvale?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_123",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Race_The_Great_Erasmus_Vegelbud_Memorial_Derby> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY DESC(?distance) LIMIT 1",
+    "natural_language_question": "What is the furthest Side Quest from Race: The Great Erasmus Vegelbud Memorial Derby?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_46",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1547p0_m34p0> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Side Quest to the Velen Novigrad Cave Entrance?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_555",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Race_The_Great_Erasmus_Vegelbud_Memorial_Derby> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentPlayer> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY DESC(?distance) LIMIT 1",
+    "natural_language_question": "What is the furthest Gwent Player from the location of Race: The Great Erasmus Vegelbud Memorial Derby?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_482",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_725p0_873p0> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentPlayer> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Gwent Player to the Velen Novigrad Cave Entrance?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_307",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SignalingStake> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY DESC(?distance) LIMIT 1",
+    "natural_language_question": "What is the furthest Signaling Stake from Crow's Perch?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_546",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Trading_Post> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentPlayer> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Gwent Player to Trading Post?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_492",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Alchemist_in_a_house_east_of_town_Pin_887p0_2060p0> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentPlayer> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Gwent Player to the Alchemist in a house east of town?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_453",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Eternal_Fire_Chapel> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentPlayer> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY DESC(?distance) LIMIT 1",
+    "natural_language_question": "What is the furthest Gwent Player from the Eternal Fire Chapel?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_552",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Fox_Hollow> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentPlayer> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Gwent Player to Fox Hollow?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_405",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Lurtch> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SignalingStake> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY DESC(?distance) LIMIT 1",
+    "natural_language_question": "What is the furthest Signaling Stake from Lurtch?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_502",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Orphans_of_Crookback_Bog_Pin_1347p0_m548p0> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentPlayer> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Gwent Player to Orphans of Crookback Bog?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_604",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Kimbolt_way> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Hideout> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Hideout to Kimbolt way?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_503",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Orphans_of_Crookback_Bog_Pin_1347p0_m548p0> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentPlayer> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY DESC(?distance) LIMIT 1",
+    "natural_language_question": "What is the furthest Gwent Player from the Orphans of Crookback Bog?"
+  },
+  {
+    "query_id": "T2_ProximitySearch_368",
+    "template_id": "T2_ProximitySearch",
+    "sparql_query": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Yantra> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SignalingStake> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "natural_language_question": "What is the closest Signaling Stake to Yantra?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_36",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Distillery> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Distillery in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_34",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Dorve_Ruins> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Dorve Ruins in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_48",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Lurthen> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Lurthen in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_148",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/A_Greedy_God> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is A Greedy God in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_177",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Fyke_Isle> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Fyke Isle in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_121",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Worthy_of_Trust> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Worthy of Trust part of?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_31",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Lofoten> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Lofoten in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_84",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Kaer_Trolde_Pin_m54p0_626p0> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is the Skellige Innkeeper in Kaer Trolde part of?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_122",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/X_Marks_the_Spot> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is X Marks the Spot in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_42",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/The_Tower_Outta_Nowheres> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is The Tower Outta Nowheres in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_90",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Skellige_Merchant_in_Blandare_Pin_638p0_27p0> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is the Skellige Merchant in Blandare Pin located on?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_179",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Midcopse> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Midcopse in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_98",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_1247p0_m9p0> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Skellige harbors in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_129",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Master_of_the_Arena> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Master of the Arena in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_144",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Hangman_s_Alley> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Hangman's Alley in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_70",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Skellige_Blacksmith_in_Harviken_Pin_1738p0_m1929p0> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is the Skellige Blacksmith in Harviken in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_113",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Skellige_Whetstone_Pin_1735p0_m1924p0> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Skellige Whetstone in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_189",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oreton> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Oreton in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_137",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Lofoten_Cemetery> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Lofoten Cemetery in?"
+  },
+  {
+    "query_id": "T3_LocationContextDiscovery_159",
+    "template_id": "T3_LocationContextDiscovery",
+    "sparql_query": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Brunwich> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> rdfs:label ?mapLabel . }",
+    "natural_language_question": "Which map is Brunwich in?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_488",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_with_Arachis_Pin_680p0_2016p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is the Merchant with Arachis Pin located within the Velen/Novigrad Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_465",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Skellige_Blacksmith_in_Svorlag_Pin_m1634p0_1431p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is the Skellige Blacksmith in Svorlag located within the Novigrad and Velen Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_990",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Hangman_s_Alley> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Hangman's Alley located within the Novigrad and Velen Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_2215",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Wild_Shore> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Wild Shore located within the Novigrad and Velen Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_1213",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oxenfurt_Gate> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Oxenfurt Gate located within the Velen/Novigrad Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_640",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Coast_of_Wrecks> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Coast of Wrecks located within the Novigrad and Velen Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_1513",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/The_Four_Faces_of_Hemdall> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is The Four Faces of Hemdall inside the Velen/Novigrad Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_1588",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yoana_in_Crow_s_Perch_Pin_225p0_159p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Yoana in Crow's Perch located within the Velen/Novigrad Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_515",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Harviken_Pin_1717p0_m1937p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is the Skellige Innkeeper in Harviken located within the Novigrad and Velen Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_2061",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Reardon Manor located within itself?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_2340",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Hazardous_Goods_II_Pin_1685p0_m149p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Hazardous Goods II located within the Novigrad and Velen Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_815",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Skellige_Blacksmith_Pin_m615p0_m200p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is the Skellige Blacksmith Pin located within the Novigrad and Velen Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_615",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad__harbor_district_noticeboard_Pin_557p0_1845p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is the harbor district noticeboard located within the Novigrad and Velen Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_1590",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yoana_in_Crow_s_Perch_Pin_225p0_159p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Yoana in Crow's Perch located within the Novigrad and Velen Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_1138",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Fort_Astre_Ruins> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Fort Astre Ruins located within the Velen/Novigrad Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_1663",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Pontar_Bridge_Noticeboard_Pin_820p0_964p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is the Pontar Bridge Noticeboard located within the Velen/Novigrad Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_713",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Pearls_of_the_Coast> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Pearls of the Coast located within the Velen/Novigrad Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_663",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Yantra> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Yantra inside the Velen/Novigrad Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_915",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vikk_Watchtower> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is Vikk Watchtower located within the Novigrad and Velen Map?"
+  },
+  {
+    "query_id": "T4_GeospatialVerification_2138",
+    "template_id": "T4_GeospatialVerification",
+    "sparql_query": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Lindenvale_notice_board_Pin_770p0_63p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "natural_language_question": "Is the Lindenvale notice board located within the Velen/Novigrad Map?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_59",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Medic_Oxenfurt_Morgue> <http://cgi.di.uoa.gr/witcher/ontology#gender> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the gender of Medic (Oxenfurt Morgue)?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_171",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Herbalist_Hangman_s_Alley> <http://cgi.di.uoa.gr/witcher/ontology#eye_color> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the eye color of Herbalist (Hangman's Alley)?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_69",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Dolores_Reardon> <http://cgi.di.uoa.gr/witcher/ontology#hair_color> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the hair color of Dolores Reardon?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_16",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Caspar> <http://cgi.di.uoa.gr/witcher/ontology#profession> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the profession of Caspar?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_147",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> <http://cgi.di.uoa.gr/witcher/ontology#titles> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What are the titles of Geralt of Rivia?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_101",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Trottheim> <http://cgi.di.uoa.gr/witcher/ontology#image> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the image of Trottheim?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_57",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Medic_Oxenfurt_Morgue> <http://cgi.di.uoa.gr/witcher/ontology#affiliations> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What are the affiliations of Medic (Oxenfurt Morgue)?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_54",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Liesje> <http://cgi.di.uoa.gr/witcher/ontology#partner> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the partner of Liesje?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_47",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Liesje> <http://cgi.di.uoa.gr/witcher/ontology#gender> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the gender of Liesje?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_136",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> <http://cgi.di.uoa.gr/witcher/ontology#aka> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What are the alternative names (aka) for Geralt of Rivia?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_172",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Herbalist_Hangman_s_Alley> <http://cgi.di.uoa.gr/witcher/ontology#hair_color> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the hair color of Herbalist (Hangman's Alley)?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_78",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Ben_of_Kovir> <http://cgi.di.uoa.gr/witcher/ontology#image> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the image of Ben of Kovir?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_0",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vagn> <http://cgi.di.uoa.gr/witcher/ontology#image> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the image of Vagn?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_73",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Dolores_Reardon> <http://cgi.di.uoa.gr/witcher/ontology#relative> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "Who is the relative of Dolores Reardon?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_63",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Medic_Oxenfurt_Morgue> <http://cgi.di.uoa.gr/witcher/ontology#race> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the race of Medic (Oxenfurt Morgue)?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_20",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Caspar> <http://cgi.di.uoa.gr/witcher/ontology#eye_color> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the eye color of Caspar?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_76",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Ben_of_Kovir> <http://cgi.di.uoa.gr/witcher/ontology#affiliations> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What are the affiliations of Ben of Kovir?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_14",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Caspar> <http://cgi.di.uoa.gr/witcher/ontology#image> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the image of Caspar?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_27",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vladimir_de_Cret> <http://cgi.di.uoa.gr/witcher/ontology#profession> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "What is the profession of Vladimir de Cret?"
+  },
+  {
+    "query_id": "T5_PropertyLookup_Direct_154",
+    "template_id": "T5_PropertyLookup_Direct",
+    "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> <http://cgi.di.uoa.gr/witcher/ontology#children> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "natural_language_question": "Who are the children of Geralt of Rivia?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_195",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#abilities> \"|appears_games =\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which entities have |appears_games = as their abilities?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_32",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Margrave> . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which characters in The Witcher franchise hold the title of Margrave?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_170",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#race> \"Human\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which characters in The Witcher universe have the race \"Human\"?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_1",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#gender> \"Male\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which characters in The Witcher universe are male?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_57",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#affiliations> \"|appears_games =\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which entities have |appears_games = as their affiliations?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_133",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#aka> \"Butcher of Blaviken\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which entities have \"Butcher of Blaviken\" as their alias?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_196",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#eye_color> \"Brown\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which characters in The Witcher universe have brown eyes?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_119",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#race> \"Human\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which characters in The Witcher universe have Human as their race?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_116",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#profession> \"Witcher\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which characters have the profession of Witcher?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_6",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#name> \"|image = Tw3 steingrim.png\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which entities have the name \"|image = Tw3 steingrim.png\"?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_190",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#gender> \"Male\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which characters in The Witcher universe are male?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_153",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#parents> \"Korin\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which entities have Korin as their parents?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_193",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/Dwarf> . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which characters in The Witcher universe have Dwarf as their race?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_114",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#name> \"Geralt of Rivia\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which entities have the name \"Geralt of Rivia\"?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_99",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#hasInGameCoordinates> \"xy(2145.0,-1934.0)\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which entities in The Witcher video game franchise have the in-game coordinates xy(2145.0,-1934.0)?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_33",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#titles> \"Margrave\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which characters in The Witcher franchise hold the title of Margrave?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_134",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#aka> \"White Wolf\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which entities have White Wolf as their aka?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_111",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#affiliations> <http://cgi.di.uoa.gr/witcher/resource/Wolf_School> . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which entities have Wolf School as their affiliation?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_168",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#profession> \"Herbalist\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which entities have Herbalist as their profession?"
+  },
+  {
+    "query_id": "T6_PropertyLookup_Inverse_148",
+    "template_id": "T6_PropertyLookup_Inverse",
+    "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#titles> \"Knight\" . ?subject rdfs:label ?subjectLabel . }",
+    "natural_language_question": "Which characters in The Witcher franchise have the title \"Knight\"?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_22",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/Human> . ?member <http://cgi.di.uoa.gr/witcher/ontology#aka> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What are the alternative names (aka) of entities that have the race Human?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_8",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/Human> . ?member <http://cgi.di.uoa.gr/witcher/ontology#abilities> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What are the abilities of entities that have the race Human?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_125",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#affiliations> <http://cgi.di.uoa.gr/witcher/resource/Arnout_Vester> . ?member <http://cgi.di.uoa.gr/witcher/ontology#hair_color> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What is the hair color of entities affiliated with Arnout Vester?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_10",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/Human> . ?member <http://cgi.di.uoa.gr/witcher/ontology#abilities> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What are the abilities of entities that have the race Human?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_82",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#lookalike> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What is the lookalike of entities related to Knight via titles?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_73",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#aka> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What are the alternative names (aka) of characters who hold the title of Knight?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_152",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#affiliations> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What are the affiliations of entities that are of the witcher race?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_176",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#aka> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What are the alternative names (aka) of entities that are of the witcher race?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_56",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#profession> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What is the profession of entities related to Knight via titles?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_21",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/Human> . ?member <http://cgi.di.uoa.gr/witcher/ontology#aka> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What are the alternative names (aka) of characters whose race is Human?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_93",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#partner> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What is the partner of entities related to Knight via titles?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_119",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#affiliations> <http://cgi.di.uoa.gr/witcher/resource/Arnout_Vester> . ?member <http://cgi.di.uoa.gr/witcher/ontology#name> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What are the names of entities affiliated with Arnout Vester?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_29",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/Human> . ?member <http://cgi.di.uoa.gr/witcher/ontology#lookalike> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What is the lookalike of entities related to Human via race?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_158",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#profession> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What is the profession of entities that are of the witcher race?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_94",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#partner> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What is the partner of entities related to Knight via titles?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_169",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#eye_color> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What is the eye color of entities related to witcher via race?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_117",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#profession> <http://cgi.di.uoa.gr/witcher/resource/Medic> . ?member <http://cgi.di.uoa.gr/witcher/ontology#race> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What is the race of entities related to Medic via profession?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_160",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#abilities> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What are the abilities of entities that are of the witcher race?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_123",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#affiliations> <http://cgi.di.uoa.gr/witcher/resource/Arnout_Vester> . ?member <http://cgi.di.uoa.gr/witcher/ontology#race> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What is the race of entities affiliated with Arnout Vester?"
+  },
+  {
+    "query_id": "T7_MultiHopQuery_74",
+    "template_id": "T7_MultiHopQuery",
+    "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#aka> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "natural_language_question": "What are the alternative names (aka) of characters who hold the title of Knight?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_147",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#Mappin> ; <http://cgi.di.uoa.gr/witcher/ontology#hasInGameCoordinates> \"xy(-225.0,168.0)\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which Mappin entities in Blackbough have the in-game coordinates xy(-225.0,168.0)?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_14",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Codger_s_Quarry> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://www.opengis.net/ont/geosparql#Feature> ; <http://cgi.di.uoa.gr/witcher/ontology#location> <http://cgi.di.uoa.gr/witcher/resource/Blandare> ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which entities located in Blandare are found within the area of Codger's Quarry?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_43",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Codger_s_Quarry> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/resource/RoadSign> ; <http://cgi.di.uoa.gr/witcher/ontology#hasInternalName> \"miners_camp\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which road signs in Codger's Quarry have \"miners_camp\" as their internal name?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_92",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_locations> ; <http://cgi.di.uoa.gr/witcher/ontology#hasInGameCoordinates> \"xy(-163.0,194.0)\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which entities located within the boundaries of Blackbough have the in-game coordinates xy(-163.0,194.0)?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_102",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_locations> ; <http://cgi.di.uoa.gr/witcher/ontology#type> \"Village\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which villages are located within the boundaries of Blackbough?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_181",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#Settlements> ; <http://cgi.di.uoa.gr/witcher/ontology#region> \"Crow's Perch (region)|Crow's Perch\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which settlements located within the boundaries of Blackbough have Crow's Perch as their region?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_154",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://www.opengis.net/ont/geosparql#Feature> ; <http://cgi.di.uoa.gr/witcher/ontology#country> \"Temeria\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which entities located within the boundaries of Blackbough have Temeria as their country?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_51",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Codger_s_Quarry> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/resource/RoadSign> ; <http://cgi.di.uoa.gr/witcher/ontology#region> <http://cgi.di.uoa.gr/witcher/resource/Ard_Skellig> ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which roadsigns in Codger's Quarry are located in the Ard Skellig region?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_124",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/resource/RoadSign> ; <http://cgi.di.uoa.gr/witcher/ontology#country> <http://cgi.di.uoa.gr/witcher/resource/Temeria> ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which road signs in Blackbough are located within Temeria?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_174",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#Settlements> ; <http://cgi.di.uoa.gr/witcher/ontology#image> \"Tw3 Village Blackbough.png\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which settlements located within the boundaries of Blackbough have the image \"Tw3 Village Blackbough.png\"?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_20",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Codger_s_Quarry> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://www.opengis.net/ont/geosparql#Feature> ; <http://cgi.di.uoa.gr/witcher/ontology#region> \"Ard Skellig\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which entities in Codger's Quarry are located within the Ard Skellig region?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_22",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Codger_s_Quarry> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://www.opengis.net/ont/geosparql#Feature> ; <http://cgi.di.uoa.gr/witcher/ontology#owner> <http://cgi.di.uoa.gr/witcher/resource/Clan_an_Craite> ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which entities located within Codger's Quarry have Clan an Craite as their owner?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_184",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#Settlements> ; <http://cgi.di.uoa.gr/witcher/ontology#geo_map> \"Tw3 map crows perch 02.png\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which settlements located within the boundaries of Blackbough have \"Tw3 map crows perch 02.png\" as their geo map?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_164",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://www.opengis.net/ont/geosparql#Feature> ; <http://cgi.di.uoa.gr/witcher/ontology#region> \"Crow's Perch (region)|Crow's Perch\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which entities located within the region of Blackbough have Crow's Perch as their region?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_26",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Codger_s_Quarry> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_locations> ; <http://cgi.di.uoa.gr/witcher/ontology#hasInGameCoordinates> \"xy(497.0,357.0)\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which entities in Codger's Quarry have xy(497.0,357.0) as their hasInGameCoordinates?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_98",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_locations> ; <http://cgi.di.uoa.gr/witcher/ontology#location> \"Northwest of Crow's Perch\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which entities located in Blackbough have the specific location \"Northwest of Crow's Perch\"?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_194",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_locations> ; <http://cgi.di.uoa.gr/witcher/ontology#location> <http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch> ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which entities located in Crow's Perch are geographically within the area of Blackbough?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_83",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#Settlements> ; <http://cgi.di.uoa.gr/witcher/ontology#region> <http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch_region> ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which settlements in Blackbough are located within the Crow's Perch region?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_33",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Codger_s_Quarry> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_locations> ; <http://cgi.di.uoa.gr/witcher/ontology#location> \"North of Blandare, south of Rogne, and west of Kaer Gelen\" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which entities in Codger's Quarry have the location description \"North of Blandare, south of Rogne, and west of Kaer Gelen\"?"
+  },
+  {
+    "query_id": "T8_ComposedQuery_95",
+    "template_id": "T8_ComposedQuery",
+    "sparql_query": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_locations> ; <http://cgi.di.uoa.gr/witcher/ontology#isPartOf> <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "Which entities located within the area of Blackbough are part of the Velen/Novigrad Map?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_358",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Side Quests are in Claywitch?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_352",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#DungeonCrawl> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many DungeonCrawl are in Claywitch?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_142",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Crafting_Station> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Crafting Stations are in Crow's Perch?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_159",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#RoadSign> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Road Signs are in Crow's Perch?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_404",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Kimbolt_way> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#AlchemyTable> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many AlchemyTable are in Kimbolt way?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_208",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#GwentSeller> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Gwent Sellers are located within the Inn at the Crossroads?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_373",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Kimbolt_way> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#PlaceOfPower> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Places of Power are in Kimbolt way?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_338",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#ArmorRepairTable> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Armor Repair Tables are in Claywitch?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_370",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Kimbolt_way> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Merchant> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Merchants are in Kimbolt way?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_161",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#MonsterQuest> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Monster Quests are in Crow's Perch?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_438",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#BossAndTreasure> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Boss And Treasure are in the Novigrad and Velen Map?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_39",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Lindenvale> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#SignalingStake> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Signaling Stakes are in Lindenvale?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_56",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Toderas> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Herbalist> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Herbalists are in Toderas?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_14",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Lindenvale> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Harbor> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Harbor are in Lindenvale?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_291",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Byways> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#PlaceOfPower> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Places of Power are in Byways?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_112",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Side Quests are in the Velen/Novigrad Map?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_139",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Enchant> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Enchant are in Crow's Perch?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_489",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#MonsterQuest> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Monster Quests are located within the area of Blackbough?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_250",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Fyke_Isle> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#PlaceOfPower> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Places of Power are in Fyke Isle?"
+  },
+  {
+    "query_id": "T9_SpatialCounting_289",
+    "template_id": "T9_SpatialCounting",
+    "sparql_query": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Byways> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Whetstone> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "natural_language_question": "How many Whetstone are in Byways?"
+  }
+]

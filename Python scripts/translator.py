@@ -1,3 +1,5 @@
+# This translator script is used for the translation experiments in the benchmark creation process.
+# It uses the DeepSeek API to translate SPARQL queries into natural language questions.
 import requests
 import json
 import argparse
