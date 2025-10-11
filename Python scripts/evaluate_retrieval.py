@@ -1,140 +1,85 @@
-# evaluate_retrieval.py
-
 import json
 import argparse
 import re
+import math
 from tqdm import tqdm
 from collections import defaultdict
 from llama_index.core import load_index_from_storage, StorageContext, Settings
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 import warnings
-import math
 
 warnings.filterwarnings("ignore", category=FutureWarning, module="sentence_transformers.SentenceTransformer")
 
 def extract_and_categorize_ground_truth(sparql_query, uri_to_type_map):
     """
-    Parses a SPARQL query and categorizes the found URIs into entity, class,
-    and property sets based on the pre-built lookup map.
+    Parses a SPARQL query with smarter regex to correctly identify the role
+    of each URI (entity, class, or property).
     """
-    # Extract URIs from the SPARQL query using this regex pattern
-    uris = re.findall(r'<(http://cgi\.di\.uoa\.gr/witcher/.*?/.*?)>', sparql_query)
-    
     categorized_uris = defaultdict(set)
-    for uri in uris:
-        uri_type = uri_to_type_map.get(uri)
-        if uri_type:
-            categorized_uris[uri_type].add(uri)
-            
+    base_uri_pattern = "http://cgi.di.uoa.gr/witcher/"
+
+    # Pattern 1: Find classes (URIs that follow `a` or `rdf:type`)
+    # This pattern is robust and correct.
+    class_uris = re.findall(r'\s+a\s+<(' + base_uri_pattern + r'[^>]+)>', sparql_query)
+    for uri in class_uris:
+        if uri_to_type_map.get(uri) == 'class':
+            categorized_uris['class'].add(uri)
+
+    # Pattern 2: Find properties (URIs in the predicate position)
+    # This new, simpler pattern looks for subject <URI> object.
+    prop_uris = re.findall(r'[\?\w\s<][\w:]+\s+<(' + base_uri_pattern + r'[^>]+)>\s+[\?\w"<\.]', sparql_query)
+    for uri in prop_uris:
+        if uri_to_type_map.get(uri) == 'property':
+            categorized_uris['property'].add(uri)
+
+    # Pattern 3: Find all other URIs and assume they are entities
+    all_uris = re.findall(r'<(' + base_uri_pattern + r'[^>]+)>', sparql_query)
+    for uri in all_uris:
+        # If we haven't already classified it, and it's a resource, it's an entity.
+        if 'resource' in uri and uri not in categorized_uris['class'] and uri not in categorized_uris['property']:
+             categorized_uris['entity'].add(uri)
+    
     return categorized_uris
 
-
-def calculate_mrr(retrieved_items, ground_truth_names):
-    """Reciprocal Rank."""
-    for i, item in enumerate(retrieved_items):
-        rank = i + 1
-        retrieved_name = item.metadata.get('name', '')
-        if retrieved_name in ground_truth_names:
-            return 1.0 / rank
-    return 0.0
-
-
-def calculate_hits_at_k(retrieved_items, ground_truth_names, k):
-    """Hits@k (Recall@k): 1 if any relevant item is in top-k, else 0."""
-    for item in retrieved_items[:k]:
-        if item.metadata.get('name', '') in ground_truth_names:
-            return 1.0
-    return 0.0
-
-
-def calculate_precision_at_k(retrieved_items, ground_truth_names, k):
-    """Precision@k: relevant retrieved / k."""
-    retrieved_k = [item.metadata.get('name', '') for item in retrieved_items[:k]]
-    correct = sum(1 for name in retrieved_k if name in ground_truth_names)
-    return correct / k if k > 0 else 0.0
-
-
-def calculate_recall_at_k(retrieved_items, ground_truth_names, k):
-    """Recall@k: relevant retrieved / total relevant."""
+def calculate_all_metrics_at_k(retrieved_names, ground_truth_names, k):
+    """
+    Calculates all key retrieval metrics for a single query at a specific k.
+    This function now correctly receives an ordered list of retrieved names.
+    """
     if not ground_truth_names:
-        return 0.0
-    retrieved_k = [item.metadata.get('name', '') for item in retrieved_items[:k]]
-    correct = sum(1 for name in retrieved_k if name in ground_truth_names)
-    return correct / len(ground_truth_names)
+        precision = 1.0 if not retrieved_names else 0.0
+        return {'precision': precision, 'recall': 1.0, 'f1': 0.0, 'mrr': 0.0}
 
-
-def calculate_f1_at_k(retrieved_items, ground_truth_names, k):
-    """F1@k: harmonic mean of precision@k and recall@k."""
-    precision = calculate_precision_at_k(retrieved_items, ground_truth_names, k)
-    recall = calculate_recall_at_k(retrieved_items, ground_truth_names, k)
-    if precision + recall == 0:
-        return 0.0
-    return 2 * (precision * recall) / (precision + recall)
-
-
-def calculate_ndcg_at_k(retrieved_items, ground_truth_names, k):
-    """nDCG@k: Normalized Discounted Cumulative Gain."""
-    dcg = 0.0
-    for i, item in enumerate(retrieved_items[:k]):
-        rank = i + 1
-        if item.metadata.get('name', '') in ground_truth_names:
-            dcg += 1.0 / math.log2(rank + 1)
-
-    # Ideal DCG (best possible ranking)
-    ideal_hits = min(len(ground_truth_names), k)
-    idcg = sum(1.0 / math.log2(i + 2) for i in range(ideal_hits))
-
-    return dcg / idcg if idcg > 0 else 0.0
-
-
-# USED BY THE FAILURE ANALYSIS MAIN
-def calculate_metrics(retrieved_uris, ground_truth_uris):
-    """
-
-    Calculates Precision, Recall, F1, and Reciprocal Rank for a single query.
-    Takes lists of URIs as input.
-    """
-    if not ground_truth_uris:
-        # If there's nothing to find, it's a perfect score by default.
-        return {'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'rr': 0.0}
-
-    # Use sets for efficient intersection
-    retrieved_set = set(retrieved_uris)
-    ground_truth_set = set(ground_truth_uris)
+    retrieved_k_names = retrieved_names[:k]
+    retrieved_set = set(retrieved_k_names)
+    ground_truth_set = set(ground_truth_names)
     
     true_positives = retrieved_set.intersection(ground_truth_set)
     
-    precision = len(true_positives) / len(retrieved_set) if retrieved_set else 0
+    precision = len(true_positives) / k if k > 0 else 0
     recall = len(true_positives) / len(ground_truth_set)
     f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
 
-    # Calculate Reciprocal Rank
     reciprocal_rank = 0.0
-    for i, uri in enumerate(retrieved_uris):
+    for i, name in enumerate(retrieved_k_names):
         rank = i + 1
-        if uri in ground_truth_set:
+        if name in ground_truth_set:
             reciprocal_rank = 1.0 / rank
-            break # Found the first correct item
+            break
             
-    return {'precision': precision, 'recall': recall, 'f1': f1, 'rr': reciprocal_rank}
+    return {'precision': precision, 'recall': recall, 'f1': f1, 'mrr': reciprocal_rank}
 
 
-
-
-# THIS MAIN IS FOR EVALUATING AGAINST A VALIDATION SET AND LOGGING FAILURES
 
 def main():
-    parser = argparse.ArgumentParser(description="Evaluate retrieval performance with per-index failure analysis.")
+    parser = argparse.ArgumentParser(description="Evaluate retrieval performance across different k values.")
     parser.add_argument("--validation-file", default="../WitcherBenchmark/test_set.json", help="The validation set to evaluate against.")
-    parser.add_argument("--top-k", type=int, default=10, help="The number of results to retrieve for evaluation.")
     args = parser.parse_args()
 
-    # --- 1. Setup LlamaIndex ---
+    # --- 1. Setup LlamaIndex & Load Indexes ---
     print("--- Setting up LlamaIndex embedding model ---")
     Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-large-en-v1.5")
     Settings.llm = None
-
-    # --- 2. Load Indexes and Create Retrievers ---
     print("--- Loading indexes from storage ---")
     try:
         entity_index = load_index_from_storage(StorageContext.from_defaults(persist_dir="./storage/entity_index"))
@@ -144,242 +89,84 @@ def main():
         print("Error: Could not load indexes. Please run 'build_indexes.py' first.")
         return
 
-    entity_retriever = entity_index.as_retriever(similarity_top_k=args.top_k)
-    class_retriever = class_index.as_retriever(similarity_top_k=args.top_k)
-    prop_retriever = prop_index.as_retriever(similarity_top_k=args.top_k)
-
-    # --- 3. Create a master lookup map of all URIs to their index type ---
+    # --- 2. Create URI-to-Type Lookup Map ---
     print("--- Building URI-to-Type lookup map ---")
     uri_to_type_map = {}
+    all_docs = {}
     for doc in entity_index.docstore.docs.values():
         uri_to_type_map[doc.metadata['uri']] = 'entity'
+        all_docs[doc.metadata['uri']] = doc
     for doc in class_index.docstore.docs.values():
         uri_to_type_map[doc.metadata['uri']] = 'class'
+        all_docs[doc.metadata['uri']] = doc
     for doc in prop_index.docstore.docs.values():
         uri_to_type_map[doc.metadata['uri']] = 'property'
+        all_docs[doc.metadata['uri']] = doc
     print(f"Lookup map created with {len(uri_to_type_map)} entries.")
 
-    # --- 4. Load Validation Set ---
+    # --- 3. Load Validation Set ---
     print(f"--- Loading validation set from '{args.validation_file}' ---")
     with open(args.validation_file, 'r') as f:
         validation_set = json.load(f)
-     
-    # --- 5. Run Evaluation Loop with Per-Index Ground Truth ---
-    all_metrics = defaultdict(lambda: defaultdict(list))
-    retrieval_failures = defaultdict(list)
+    
+    # --- 4. K-Sweep Evaluation Loop ---
+    k_values_to_test = [10]
+    sweep_results = {"k_values": k_values_to_test, "metrics": defaultdict(lambda: defaultdict(list))}
 
-    for item in tqdm(validation_set, desc="Evaluating Retrieval"):
-        nlq = item['natural_language_question']
-        sparql = item['sparql_query']
+    for k in k_values_to_test:
+        print(f"\n--- Running evaluation for k={k} ---")
         
-        # Categorize all ground truth URIs found in the SPARQL query
-        categorized_gt_uris = extract_and_categorize_ground_truth(sparql, uri_to_type_map)
+        entity_retriever = entity_index.as_retriever(similarity_top_k=k)
+        class_retriever = class_index.as_retriever(similarity_top_k=k)
+        prop_retriever = prop_index.as_retriever(similarity_top_k=k)
         
-        if not categorized_gt_uris:
-            continue
+        # This dict will hold scores ONLY from relevant queries
+        current_k_metrics = defaultdict(lambda: defaultdict(list))
+        
+        for item in tqdm(validation_set, desc=f"Evaluating @k={k}"):
+            nlq = item['natural_language_question']
+            sparql = item['sparql_query']
+            
+            categorized_gt_uris = extract_and_categorize_ground_truth(sparql, uri_to_type_map)
+            
+            # We still retrieve for all, as a router would not have this ground truth
+            entity_results = [node.metadata.get('uri') for node in entity_retriever.retrieve(nlq)]
+            class_results = [node.metadata.get('uri') for node in class_retriever.retrieve(nlq)]
+            prop_results = [node.metadata.get('uri') for node in prop_retriever.retrieve(nlq)]
 
-        # Retrieve from each index
-        entity_results = entity_retriever.retrieve(nlq)
-        class_results = class_retriever.retrieve(nlq)
-        prop_results = prop_retriever.retrieve(nlq)
+            retrieved_uris = {
+                'entity': entity_results, 'class': class_results, 'property': prop_results
+            }
 
-        retrieved_uris = {
-            'entity': [node.metadata.get('uri') for node in entity_results],
-            'class': [node.metadata.get('uri') for node in class_results],
-            'property': [node.metadata.get('uri') for node in prop_results]
-        }
+            # --- THE CRITICAL FIX IS HERE ---
+            # We only calculate and append metrics for an index if the query was relevant to it.
+            for index_name in ['entity', 'class', 'property']:
+                gt_for_index = categorized_gt_uris.get(index_name)
+                
+                # Only proceed if there's a ground truth for this index on this query
+                if gt_for_index:
+                    metrics = calculate_all_metrics_at_k(retrieved_uris[index_name], gt_for_index, k)
+                    
+                    for key, value in metrics.items():
+                        current_k_metrics[index_name][key].append(value)
 
-        # Calculate metrics and log failures for each index separately
+        # Average the scores for the current k. This is now a true average over relevant queries.
         for index_name in ['entity', 'class', 'property']:
-            gt_for_index = categorized_gt_uris.get(index_name, set()) # Use .get() for safety
-            
-            # The calculation is now always performed.
-            # If gt_for_index is empty, calculate_metrics will handle it correctly.
-            metrics = calculate_metrics(retrieved_uris[index_name], gt_for_index)
-            
-            # Store all metrics for averaging
-            for key, value in metrics.items():
-                all_metrics[index_name][key].append(value)
-            
-            # We only log a "failure" if there was something to find and we missed it.
-            if gt_for_index and metrics['recall'] < 1.0:
-                retrieved_set = set(retrieved_uris[index_name])
-                missed_uris = gt_for_index - retrieved_set
-                retrieval_failures[index_name].append({
-                    "query_id": item['query_id'],
-                    "question": nlq,
-                    "expected_to_find_uris": list(gt_for_index),
-                    "actually_retrieved_uris": retrieved_uris[index_name],
-                    "missed_uris": list(missed_uris)
-                })
+            # Handle the case where an index had ZERO relevant queries in the entire set
+            if not current_k_metrics[index_name]:
+                print(f"  - No relevant queries found for {index_name.capitalize()} Index in this run.")
+                for metric in ['precision', 'recall', 'f1', 'mrr']:
+                     sweep_results["metrics"][index_name][metric].append(0.0)
+                continue
 
-    # --- 6. Calculate and Report Final Metrics & Failures ---
-    print("\n--- Retrieval Evaluation Summary ---")
-    final_metrics = defaultdict(dict)
-    for index_name, metric_values in all_metrics.items():
-        if metric_values:
-            for metric, scores in metric_values.items():
+            for metric, scores in current_k_metrics[index_name].items():
                 avg_score = sum(scores) / len(scores) if scores else 0
-                final_metrics[index_name][metric] = avg_score
-                print(f"  - {index_name.capitalize()} Index Average {metric.upper()}: {avg_score:.4f}")
+                sweep_results["metrics"][index_name][metric].append(avg_score)
+
+    # --- 5. Save and Report Results ---
+    print("\n--- Retrieval Evaluation Summary ---")
+    print(json.dumps(sweep_results, indent=2))
     
-    # Save the main metrics
-    with open("retrieval_metrics.json", 'w') as f:
-        json.dump(final_metrics, f, indent=2)
-    print("\nOverall metrics saved to retrieval_metrics.json")
-    
-    # Save the detailed, per-index failure report
-    if retrieval_failures:
-        with open("retrieval_failures_by_index.json", 'w') as f:
-            json.dump(retrieval_failures, f, indent=2)
-        print(f"\nFound retrieval failures. Detailed report saved to retrieval_failures_by_index.json")
-    else:
-        print("\nCongratulations! No retrieval failures found.")
-
-
-
-# THIS MAIN IS FOR EVALUATING AGAINST A VALIDATION SET AND REPORTING METRICS
-
-# def main():
-#     parser = argparse.ArgumentParser(description="Evaluate retrieval performance (MRR, Hits@k, Precision, Recall, F1, nDCG).")
-#     parser.add_argument("--validation-file", default="../WitcherBenchmark/validation_set.json", help="Validation set file.")
-#     parser.add_argument("--top-k", type=int, default=10, help="Number of results to retrieve.")
-#     args = parser.parse_args()
-
-#     # --- 1. Setup LlamaIndex ---
-#     print("--- Setting up LlamaIndex embedding model ---")
-#     Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-large-en-v1.5")
-#     Settings.llm = None
-
-#     # --- 2. Load Indexes ---
-#     print("--- Loading indexes from storage ---")
-#     try:
-#         entity_index = load_index_from_storage(StorageContext.from_defaults(persist_dir="./storage/entity_index"))
-#         class_index = load_index_from_storage(StorageContext.from_defaults(persist_dir="./storage/class_index"))
-#         prop_index = load_index_from_storage(StorageContext.from_defaults(persist_dir="./storage/prop_index"))
-#     except FileNotFoundError:
-#         print("Error: Could not load indexes. Please run 'build_indexes.py' first.")
-#         return
-
-#     entity_retriever = entity_index.as_retriever(similarity_top_k=args.top_k)
-#     class_retriever = class_index.as_retriever(similarity_top_k=args.top_k)
-#     prop_retriever = prop_index.as_retriever(similarity_top_k=args.top_k)
-
-#     # --- 3. Load Validation ---
-#     print(f"--- Loading validation set from '{args.validation_file}' ---")
-#     with open(args.validation_file, 'r') as f:
-#         validation_set = json.load(f)
-    
-#     # --- 4. Run Evaluation ---
-#     metrics = defaultdict(lambda: defaultdict(list))
-    
-#     for item in tqdm(validation_set, desc="Evaluating Retrieval"):
-#         nlq = item['natural_language_question']
-#         sparql = item['sparql_query']
-        
-#         ground_truth_names = extract_ground_truth_uris(sparql)
-#         if not ground_truth_names:
-#             continue
-
-#         # Retrieve results
-#         retrieved = {
-#             'entity': [node.node for node in entity_retriever.retrieve(nlq)],
-#             'class': [node.node for node in class_retriever.retrieve(nlq)],
-#             'property': [node.node for node in prop_retriever.retrieve(nlq)],
-#         }
-
-#         # Compute metrics
-#         for index_name, results in retrieved.items():
-#             metrics[index_name]['MRR'].append(calculate_mrr(results, ground_truth_names))
-#             metrics[index_name]['Hits@k'].append(calculate_hits_at_k(results, ground_truth_names, args.top_k))
-#             metrics[index_name]['Precision@k'].append(calculate_precision_at_k(results, ground_truth_names, args.top_k))
-#             metrics[index_name]['Recall@k'].append(calculate_recall_at_k(results, ground_truth_names, args.top_k))
-#             metrics[index_name]['F1@k'].append(calculate_f1_at_k(results, ground_truth_names, args.top_k))
-#             metrics[index_name]['nDCG@k'].append(calculate_ndcg_at_k(results, ground_truth_names, args.top_k))
-
-#     # --- 5. Report ---
-#     print("\n--- Retrieval Evaluation Results ---")
-#     final_metrics = {}
-#     for index_name, metric_dict in metrics.items():
-#         final_metrics[index_name] = {}
-#         for metric_name, scores in metric_dict.items():
-#             if scores:
-#                 avg_score = sum(scores) / len(scores)
-#                 final_metrics[index_name][metric_name] = avg_score
-#                 print(f"  - {index_name.capitalize()} {metric_name}: {avg_score:.4f}")
-#             else:
-#                 final_metrics[index_name][metric_name] = None
-#                 print(f"  - {index_name.capitalize()} {metric_name}: N/A")
-
-#     with open("retrieval_metrics.json", "w") as f:
-#         json.dump(final_metrics, f, indent=2)
-#     print("\nMetrics saved to retrieval_metrics.json")
-
-
-
-# THIS MAIN IS FOR EVALUATING A SINGLE QUERY AND PRINTING RESULTS
-
-# def main():
-#     parser = argparse.ArgumentParser(
-#         description="Test information retrieval from specialized LlamaIndex vector indexes.",
-#         formatter_class=argparse.RawTextHelpFormatter
-#     )
-#     parser.add_argument(
-#         "query", 
-#         type=str, 
-#         help="The natural language question to test, enclosed in quotes."
-#     )
-#     parser.add_argument(
-#         "--top-k", 
-#         type=int, 
-#         default=10,
-#         help="The number of top results to retrieve from each index."
-#     )
-    
-#     args = parser.parse_args()
-
-#     # --- 1. Configure LlamaIndex for Retrieval-Only ---
-#     print("--- Setting up LlamaIndex embedding model ---")
-#     # We only need the embedding model for this task, not a full LLM.
-#     try:
-#         Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-large-en-v1.5")
-#     except Exception as e:
-#         print(f"Error initializing embedding model. Is sentence-transformers installed? Error: {e}")
-#         return
-        
-#     Settings.llm = None
-
-#     # --- 2. Load the Persisted Indexes ---
-#     print("--- Loading indexes from storage ---")
-#     try:
-#         entity_index = load_index_from_storage(StorageContext.from_defaults(persist_dir="./storage/entity_index"))
-#         class_index = load_index_from_storage(StorageContext.from_defaults(persist_dir="./storage/class_index"))
-#         prop_index = load_index_from_storage(StorageContext.from_defaults(persist_dir="./storage/prop_index"))
-#     except FileNotFoundError as e:
-#         print("Error: Could not load indexes. Did you run 'build_indexes.py' with the enriched data first?")
-#         print(f"Details: {e}")
-#         return
-
-#     # --- 3. Create a Retriever for each Index ---
-#     # A retriever's only job is to find the most similar documents.
-#     entity_retriever = entity_index.as_retriever(similarity_top_k=args.top_k)
-#     class_retriever = class_index.as_retriever(similarity_top_k=args.top_k)
-#     prop_retriever = prop_index.as_retriever(similarity_top_k=args.top_k)
-
-#     # --- 4. Query each Retriever and Display All Results ---
-#     print("\n" + "="*50)
-#     print(f"Querying with: \"{args.query}\"")
-#     print("="*50 + "\n")
-
-#     # Query and display results for each index
-#     for name, retriever in [("Entity", entity_retriever), ("Class", class_retriever), ("Property", prop_retriever)]:
-#         results = retriever.retrieve(args.query)
-#         print(f"--- Results from {name} Index ---")
-#         if not results:
-#             print("  No results found.")
-#         for i, node_with_score in enumerate(results):
-#             print(f"  {i+1}. Score: {node_with_score.score:.4f} | Name: {node_with_score.metadata.get('name', 'N/A')}")
-#             print(f"     Text: \"{node_with_score.get_content().replace('\n', ' ')}\"")
-
-if __name__ == "__main__":
-    main()
+    with open("retrieval_k_sweep_results.json", 'w') as f:
+        json.dump(sweep_results, f, indent=2)
+    print("\nMetrics sweep results saved to retrieval_k_sweep_results.json")
