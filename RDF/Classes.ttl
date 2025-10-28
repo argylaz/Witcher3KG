@@ -1318,10 +1318,6 @@ witcher:Northern_Realms_gwent_deck_cards a owl:Class ;
     rdfs:label "Northern Realms gwent deck cards" ;
     rdfs:subClassOf witcher:The_Witcher_3_gwent .
 
-witcher:NoticeBoard rdfs:label "Notice Board" ;
-    rdfs:subClassOf witcher:Mappin ;
-    owl:sameAs witcher:The_Witcher_3_notice_boards .
-
 witcher:Novigrad a owl:Class ;
     rdfs:label "Novigrad" ;
     rdfs:subClassOf witcher:Redania,
@@ -1484,10 +1480,6 @@ witcher:Rivians a owl:Class ;
 witcher:RoadSign rdfs:label "Road Sign" ;
     rdfs:subClassOf witcher:Mappin .
 
-witcher:Roads a owl:Class ;
-    rdfs:label "Roads" ;
-    rdfs:subClassOf witcher:Geography .
-
 witcher:Royal_dynasties a owl:Class ;
     rdfs:label "Royal dynasties" ;
     rdfs:subClassOf witcher:Families .
@@ -1523,10 +1515,6 @@ witcher:Ships a owl:Class ;
 witcher:Short_stories a owl:Class ;
     rdfs:label "Short stories" ;
     rdfs:subClassOf witcher:Books .
-
-witcher:SideQuest rdfs:label "Side Quest" ;
-    rdfs:subClassOf witcher:Mappin ;
-    owl:sameAs witcher:The_Witcher_3_secondary_quests .
 
 witcher:Side_Effects_books a owl:Class ;
     rdfs:label "Side Effects books" ;
@@ -2647,10 +2635,6 @@ witcher:Transformation_spells a owl:Class ;
 witcher:TreasureHuntMappin rdfs:label "Treasure Hunt Map Pin" ;
     rdfs:subClassOf witcher:Mappin .
 
-witcher:TreasureQuest rdfs:label "Treasure Quest" ;
-    rdfs:subClassOf witcher:Mappin ;
-    owl:sameAs witcher:The_Witcher_3_treasure_hunts .
-
 witcher:Trolls a owl:Class ;
     rdfs:label "Trolls" ;
     rdfs:subClassOf witcher:Races .
@@ -2815,12 +2799,10 @@ witcher:Armed_Forces a owl:Class ;
     rdfs:label "Armed Forces" ;
     rdfs:subClassOf witcher:Organizations .
 
-witcher:Armorer rdfs:subClassOf dbr:Crafting_Station ;
-    owl:sameAs witcher:Armorers .
-
 witcher:Armorers a owl:Class ;
     rdfs:label "Armorers" ;
-    rdfs:subClassOf witcher:Occupations .
+    rdfs:subClassOf witcher:Occupations ;
+    owl:sameAs witcher:Armorer .
 
 witcher:Article_Management_templates a owl:Class ;
     rdfs:label "Article Management templates" ;
@@ -2830,12 +2812,10 @@ witcher:Audio a owl:Class ;
     rdfs:label "Audio" ;
     rdfs:subClassOf witcher:Media .
 
-witcher:Blacksmith rdfs:subClassOf dbr:Crafting_Station ;
-    owl:sameAs witcher:Blacksmiths .
-
 witcher:Blacksmiths a owl:Class ;
     rdfs:label "Blacksmiths" ;
-    rdfs:subClassOf witcher:Occupations .
+    rdfs:subClassOf witcher:Occupations ;
+    owl:sameAs witcher:Blacksmith .
 
 witcher:Blood_and_Wine_armor a owl:Class ;
     rdfs:label "Blood and Wine armor" ;
@@ -3020,6 +3000,17 @@ witcher:Music a owl:Class ;
     rdfs:label "Music" ;
     rdfs:subClassOf witcher:Adaptations .
 
+witcher:NoticeBoard rdfs:label "Notice Board" ;
+    rdfs:subClassOf witcher:Mappin ;
+    owl:sameAs witcher:The_Witcher_3_notice_boards .
+
+witcher:Road owl:sameAs witcher:Roads .
+
+witcher:Roads a owl:Class ;
+    rdfs:label "Roads" ;
+    rdfs:subClassOf witcher:Geography ;
+    owl:sameAs witcher:Road .
+
 witcher:Romance_cards a owl:Class ;
     rdfs:label "Romance cards" ;
     rdfs:subClassOf witcher:The_Witcher_mini_games .
@@ -3028,6 +3019,10 @@ witcher:Schools a owl:Class ;
     rdfs:label "Schools" ;
     rdfs:subClassOf witcher:Locations,
         witcher:Organizations .
+
+witcher:SideQuest rdfs:label "Side Quest" ;
+    rdfs:subClassOf witcher:Mappin ;
+    owl:sameAs witcher:The_Witcher_3_secondary_quests .
 
 witcher:Side_Effects_quests a owl:Class ;
     rdfs:label "Side Effects quests" ;
@@ -3133,11 +3128,13 @@ witcher:The_Witcher_3_mini_games a owl:Class ;
 
 witcher:The_Witcher_3_secondary_quests a owl:Class ;
     rdfs:label "The Witcher 3 secondary quests" ;
-    rdfs:subClassOf witcher:The_Witcher_3_quests .
+    rdfs:subClassOf witcher:The_Witcher_3_quests ;
+    owl:sameAs witcher:SideQuest .
 
 witcher:The_Witcher_3_treasure_hunts a owl:Class ;
     rdfs:label "The Witcher 3 treasure hunts" ;
-    rdfs:subClassOf witcher:The_Witcher_3_quests .
+    rdfs:subClassOf witcher:The_Witcher_3_quests ;
+    owl:sameAs witcher:TreasureQuest .
 
 witcher:The_Witcher_Battle_Arena_images a owl:Class ;
     rdfs:label "The Witcher Battle Arena images" ;
@@ -3214,6 +3211,10 @@ witcher:Toussaint a owl:Class ;
     rdfs:label "Toussaint" ;
     rdfs:subClassOf witcher:Nilfgaardian_Empire .
 
+witcher:TreasureQuest rdfs:label "Treasure Quest" ;
+    rdfs:subClassOf witcher:Mappin ;
+    owl:sameAs witcher:The_Witcher_3_treasure_hunts .
+
 witcher:Vineyards a owl:Class ;
     rdfs:label "Vineyards" ;
     rdfs:subClassOf witcher:Locations .
@@ -3236,6 +3237,10 @@ witcher:Witchers a owl:Class ;
     rdfs:label "Witchers" ;
     rdfs:subClassOf witcher:Humans .
 
+dbr:Novigrad_and_Velen_Map owl:sameAs dbr:Velen_Novigrad_Map .
+
+dbr:Velen_Novigrad_Map owl:sameAs dbr:Novigrad_and_Velen_Map .
+
 witcher:Add_ons a owl:Class ;
     rdfs:label "Add-ons" ;
     rdfs:subClassOf witcher:The_Witcher__computer_game_ .
@@ -3244,6 +3249,12 @@ witcher:Andrzej_Sapkowski a owl:Class ;
     rdfs:label "Andrzej Sapkowski" ;
     rdfs:subClassOf witcher:People,
         witcher:Witcher_Wiki__A .
+
+witcher:Armorer rdfs:subClassOf dbr:Crafting_Station ;
+    owl:sameAs witcher:Armorers .
+
+witcher:Blacksmith rdfs:subClassOf dbr:Crafting_Station ;
+    owl:sameAs witcher:Blacksmiths .
 
 witcher:Characters_in_the_screen_adaptations a owl:Class ;
     rdfs:label "Characters in the screen adaptations" ;
@@ -3636,7 +3647,8 @@ witcher:The_Witcher_3_images___Maps a owl:Class ;
 
 witcher:The_Witcher_3_notice_boards a owl:Class ;
     rdfs:label "The Witcher 3 notice boards" ;
-    rdfs:subClassOf witcher:The_Witcher_3_books .
+    rdfs:subClassOf witcher:The_Witcher_3_books ;
+    owl:sameAs witcher:NoticeBoard .
 
 witcher:The_Witcher_Adventure_Game a owl:Class ;
     rdfs:label "The Witcher Adventure Game" ;

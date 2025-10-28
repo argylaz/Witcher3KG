@@ -1,0 +1,107 @@
+{
+  "T10_ComparativeCounting": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 0.0,
+      "macro_f1_score": 50.0
+    }
+  },
+  "T11_SuperlativeByAttribute": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 0.0,
+      "macro_f1_score": 45.0
+    }
+  },
+  "T12_SchemaLookup": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 0.0,
+      "macro_f1_score": 32.5
+    }
+  },
+  "T13_FindLocationByFeatureCombination": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 0.0,
+      "macro_f1_score": 27.534271284271284
+    }
+  },
+  "T14_InstanceListingByClass": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 0.0,
+      "macro_f1_score": 97.0689655172414
+    }
+  },
+  "T15_PathVerification": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 95.0,
+      "macro_f1_score": 75.0
+    }
+  },
+  "T1_SpatialRelationship": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 0.0,
+      "macro_f1_score": 82.87037037037037
+    }
+  },
+  "T2_ProximitySearch": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 0.0,
+      "macro_f1_score": 45.0
+    }
+  },
+  "T3_LocationContextDiscovery": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 55.00000000000001,
+      "macro_f1_score": 85.0
+    }
+  },
+  "T4_GeospatialVerification": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 95.0,
+      "macro_f1_score": 75.0
+    }
+  },
+  "T5_PropertyLookup": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 0.0,
+      "macro_f1_score": 78.33333333333333
+    }
+  },
+  "T6_PropertyLookup": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 0.0,
+      "macro_f1_score": 68.20728832725733
+    }
+  },
+  "T7_MultiHopQuery": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 0.0,
+      "macro_f1_score": 5.304287690179806
+    }
+  },
+  "T8_ComposedQuery": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 10.0,
+      "macro_f1_score": 69.76190476190476
+    }
+  },
+  "T9_SpatialCounting": {
+    "query_count": 20,
+    "pipeline_C": {
+      "execution_accuracy": 65.0,
+      "macro_f1_score": 95.0
+    }
+  }
+}

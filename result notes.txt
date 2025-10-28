@@ -1,0 +1,700 @@
+{
+    "query_id": "T1_SpatialRelationship_452",
+    "question": "List all Side Quests located within Vegelbud Residence.",
+    "ground_truth_sparql": "SELECT ?featureA ?featureALabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vegelbud_Residence> geo:hasGeometry/geo:asWKT ?geomB_WKT . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?geomA_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) } LIMIT 10",
+    "pipeline_C_generated_sparql": "SELECT DISTINCT ?quest ?questName\nWHERE {\n  ?quest a witcher:The_Witcher_3_secondary_quests ;\n         rdfs:label ?questName ;\n         geo:hasGeometry/geo:asWKT ?questGeom .\n  \n  dbr:Vegelbud_Residence geo:hasGeometry/geo:asWKT ?residenceGeom .\n  \n  FILTER(geof:sfWithin(?questGeom, ?residenceGeom))\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All other T1s failed. This one was an error in the KG, my mistake, the mappin types where in the dbr: prefix not the witcher: as classes should. Now the generated query will find 1 of the 2 side quests since it's using the wiki class for the sidequest instead of the mappin SideQuest class.
+{
+    "query_id": "T2_ProximitySearch_368",
+    "question": "What is the closest Signaling Stake to Yantra?",
+    "ground_truth_sparql": "SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Yantra> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SignalingStake> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1",
+    "pipeline_C_generated_sparql": "SELECT ?stake ?stakeName ?distance WHERE {\n  # Find Yantra's geometry\n  dbr:Yantra geo:hasGeometry ?yantraGeo .\n  ?yantraGeo geo:asWKT ?yantraWKT .\n  \n  # Find all signaling stakes\n  ?stake a witcher:SignalingStake .\n  ?stake rdfs:label ?stakeName .\n  \n  # Get stake geometry\n  ?stake geo:hasGeometry ?stakeGeo .\n  ?stakeGeo geo:asWKT ?stakeWKT .\n  \n  # Calculate distance\n  BIND(geof:distance(?yantraWKT, ?stakeWKT) AS ?distance)\n}\nORDER BY ?distance",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All other T2s failed. Here the ground truth result is the first one amongst 25 generated but why is the f1 score 0? there is 1 true positive and 24 false positives in this situation.
+{
+    "query_id": "T3_LocationContextDiscovery_159",
+    "question": "Which map is Brunwich in?",
+    "ground_truth_sparql": "SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Brunwich> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> rdfs:label ?mapLabel . }",
+    "pipeline_C_generated_sparql": "SELECT ?map ?mapName WHERE {\n  dbr:Brunwich witcher:isPartOf ?map .\n  ?map rdfs:label ?mapName .\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All other T3s failed. This one returns the exact same two results but which are the exact same map but has two labels for some reason =. Ground truth one returns only the labels while the generated one is also returning the URIS
+{
+    "query_id": "T4_GeospatialVerification_915",
+    "question": "Is Vikk Watchtower located within the Novigrad and Velen Map?",
+    "ground_truth_sparql": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Vikk_Watchtower> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "pipeline_C_generated_sparql": "ASK WHERE {\n  # Vikk Watchtower geometry\n  dbr:Vikk_Watchtower geo:hasGeometry ?watchtowerGeom .\n  ?watchtowerGeom geo:asWKT ?watchtowerWKT .\n  \n  # Novigrad and Velen Map geometry\n  dbr:Velen_Novigrad_Map_geometry geo:asWKT ?mapWKT .\n  \n  # Check if watchtower is within the map\n  FILTER(geof:sfWithin(?watchtowerWKT, ?mapWKT))\n}",
+    "pipeline_C_execution_accuracy_correct": true,
+    "pipeline_C_f1_score": 1.0
+  },
+  {
+    "query_id": "T4_GeospatialVerification_2138",
+    "question": "Is the Lindenvale notice board located within the Velen/Novigrad Map?",
+    "ground_truth_sparql": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Lindenvale_notice_board_Pin_770p0_63p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }",
+    "pipeline_C_generated_sparql": "ASK WHERE {\n  witcher:Velen_Novigrad_Lindenvale_notice_board_Pin_770p0_63p0 <http://cgi.di.uoa.gr/witcher/ontology#isPartOf> witcher:Velen_Novigrad_Map .\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0.0
+  }, T4s Mostly correct, some still failed
+{
+    "query_id": "T5_PropertyLookup_Direct_154",
+    "question": "Who are the children of Geralt of Rivia?",
+    "ground_truth_sparql": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> <http://cgi.di.uoa.gr/witcher/ontology#children> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+    "pipeline_C_generated_sparql": "SELECT ?child ?childName WHERE {\n  <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> witcher:children ?child .\n  ?child rdfs:label ?childName .\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All T5s failed. That is because I instructed it to use the isPartOf property while it's not true in this situation, I will correct it next time and tell it to use check their geometries. 
+{
+    "query_id": "T6_PropertyLookup_Inverse_99",
+    "question": "Which entities in The Witcher video game franchise have the in-game coordinates xy(2145.0,-1934.0)?",
+    "ground_truth_sparql": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#hasInGameCoordinates> \"xy(2145.0,-1934.0)\" . ?subject rdfs:label ?subjectLabel . }",
+    "pipeline_C_generated_sparql": "SELECT ?entity ?name WHERE {\n  ?entity witcher:hasInGameCoordinates \"xy(2145.0,-1934.0)\" .\n  OPTIONAL { ?entity rdfs:label ?name . }\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All T6 failed. This one returns the same results if I remove the backslashes ("\") from the coordinate string and also remove the \n from the generated query which I need to do for all generated queries to run on my graphdb docker sparql endpoint.
+{
+    "query_id": "T7_MultiHopQuery_74",
+    "question": "What are the alternative names (aka) of characters who hold the title of Knight?",
+    "ground_truth_sparql": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#aka> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+    "pipeline_C_generated_sparql": "SELECT DISTINCT ?characterName ?aka\nWHERE {\n  ?character witcher:titles ?title .\n  ?character rdfs:label ?characterName .\n  ?character witcher:aka ?akaValue .\n  BIND(REPLACE(REPLACE(IF(isURI(?akaValue), strafter(str(?akaValue), \"resource/\"), ?akaValue), \"_\", \" \"), \"of Fourhorn\", \"of Fourhorn\") AS ?aka)\n  FILTER(CONTAINS(LCASE(?title), \"knight\"))\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All T7s failed. This time the generated query returns 4 character names and o akas. the groundtruth returns 9 akas and no character names.
+
+
+
+
+
+*****************************************************************************************************
+{
+    "query_id": "T8_ComposedQuery_95",
+    "question": "Which entities located within the area of Blackbough are part of the Velen/Novigrad Map?",
+    "ground_truth_sparql": "SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_locations> ; <http://cgi.di.uoa.gr/witcher/ontology#isPartOf> <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "pipeline_C_generated_sparql": "SELECT DISTINCT ?entity ?entityName ?type\nWHERE {\n  # Find entities that are located in or part of Blackbough\n  {\n    ?entity witcher:location dbr:Blackbough .\n  } UNION {\n    ?entity witcher:isPartOf dbr:Blackbough .\n  }\n  \n  # Check if they are part of Velen/Novigrad Map\n  ?entity witcher:isPartOf ?map .\n  FILTER(?map = dbr:Velen_Novigrad_Map || ?map = dbr:Novigrad_And_Velen_Map)\n  \n  # Get entity names\n  OPTIONAL { ?entity rdfs:label ?entityName }\n  \n  # Get entity types\n  OPTIONAL { ?entity a ?type }\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All T8s failed. This one is surprising, the groundtruth query only checks for witcher_3_locations (the conceptual wiki class) that are part of the Novigrad_velen_map and because this is a custom property I made and not a wiki one it only returns blackbough which has a polygon geometry and so I added the property like I did with all geospatial entities it also checks the geospatial relation of their geometries. The generated query on the contrary is looking for entities with witcher:location (a wiki property) dbr:Blackbough and isPartOf the map, and thus it returns a better result than the auto-generated benchmark query, it returns actual map pins and all the info about them, no geometries but still a valid answer to the question given that the information exists in the knowledge graph, in fact this result is better than the one represented by the geospatial entities.
+*************************************************************************************************8
+
+
+
+
+
+{
+    "query_id": "T9_SpatialCounting_289",
+    "question": "How many Whetstone are in Byways?",
+    "ground_truth_sparql": "SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Byways> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Whetstone> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }",
+    "pipeline_C_generated_sparql": "SELECT (COUNT(?whetstone) as ?count)\nWHERE {\n  ?whetstone a witcher:Whetstone ;\n             rdfs:label \"Whetstone\" ;\n             geo:hasGeometry/geo:asWKT ?whetstoneGeom .\n  \n  dbr:Byways geo:hasGeometry/geo:asWKT ?bywaysGeom .\n  \n  FILTER(geof:sfWithin(?whetstoneGeom, ?bywaysGeom))\n}",
+    "pipeline_C_execution_accuracy_correct": true,
+    "pipeline_C_f1_score": 1.0
+  } All T9s are correct, 
+{
+    "query_id": "T10_ComparativeCounting_112",
+    "question": "Does the Velen/Novigrad Map have more Whetstones than Kimbolt Way?",
+    "ground_truth_sparql": "SELECT (IF(?countA > ?countB, \"Yes\", \"No\") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Whetstone> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Kimbolt_way> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Whetstone> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }",
+    "pipeline_C_generated_sparql": "SELECT ?answer\nWHERE {\n  # Count Whetstones in Velen/Novigrad Map\n  {\n    SELECT (COUNT(DISTINCT ?whetstone) AS ?velenCount)\n    WHERE {\n      ?whetstone a witcher:Whetstone .\n      ?whetstone geo:hasGeometry ?whetstoneGeom .\n      ?whetstoneGeom geo:asWKT ?whetstoneWKT .\n      \n      dbr:Velen_Novigrad_Map geo:hasGeometry ?mapGeom .\n      ?mapGeom geo:asWKT ?mapWKT .\n      \n      FILTER(geof:sfWithin(?whetstoneWKT, ?mapWKT))\n    }\n  }\n  \n  # Count Whetstones in Kimbolt Way\n  {\n    SELECT (COUNT(DISTINCT ?whetstone2) AS ?kimboltCount)\n    WHERE {\n      ?whetstone2 a witcher:Whetstone .\n      ?whetstone2 geo:hasGeometry ?whetstoneGeom2 .\n      ?whetstoneGeom2 geo:asWKT ?whetstoneWKT2 .\n      \n      dbr:Kimbolt_Way geo:hasGeometry ?kimboltGeom .\n      ?kimboltGeom geo:asWKT ?kimboltWKT .\n      \n      FILTER(geof:sfWithin(?whetstoneWKT2, ?kimboltWKT))\n    }\n  }\n  \n  BIND(IF(?velenCount > ?kimboltCount, \"Yes\", \"No\") AS ?answer)\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All T10s failed. These two return the same result, "yes" when I remove the "\n" and backslashes ("\") used for the strings in th geneated one in order to run then in my graphdb docker's sparql endpoint. So why is the accuracy and f1-score 0?? 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ {
+    "query_id": "T11_SuperlativeByAttribute_101",
+    "question": "What is the highest value Blood and Wine quest item?",
+    "ground_truth_sparql": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_quest_items> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#value> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "pipeline_C_generated_sparql": "SELECT ?item ?name ?value\nWHERE {\n  ?item a witcher:Blood_and_Wine_quest_items ;\n        rdfs:label ?name ;\n        witcher:value ?value .\n}\nORDER BY DESC(xsd:integer(?value))",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, This one is interesting, the "value" property has strings representing numbers as it's value. The groundtruth returns Gloves_for_picking_mandrake with value 96. However the generated query that turns them into integer, again forgets to limit, but has the exact groundtruth result in the 7th position. This means that the groundtruth is actually wrong for some reason but again, why is the accuracy and f1 0? There is 1 true positive and about 100 false positives which are actually just the query not limiting itself. This is a correct query but the groundtruth has problems.
+  {
+    "query_id": "T11_SuperlativeByAttribute_217",
+    "question": "What is the highest sell value for The Witcher 3 items?",
+    "ground_truth_sparql": "SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_items> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#sell> ?value . } ORDER BY DESC(?value) LIMIT 1",
+    "pipeline_C_generated_sparql": "SELECT ?item ?itemName ?sellValue\nWHERE {\n  ?item a ?itemClass ;\n        rdfs:label ?itemName ;\n        witcher:sell ?sellValue .\n  FILTER(REGEX(STR(?sellValue), \"^[0-9]+$\"))\n}\nORDER BY DESC(xsd:integer(?sellValue))",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All T11s failed. Again this is trying to turn the string values into integers while the groundtruth is taking them as strings. However this time the generated query does not even have the correct item class for some reason and returns numerous entities which are not only items, if it used the correct class the result would be the same as the query above. This is not entirely correct but it's only missing a class.
+{
+    "query_id": "T12_SchemaLookup_473",
+    "question": "What is the broader category that Nilfgaardians belong to?",
+    "ground_truth_sparql": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Nilfgaardians> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+    "pipeline_C_generated_sparql": "SELECT ?broaderCategoryLabel WHERE {\n  ?nilfgaardian a witcher:Humans .\n  ?nilfgaardian rdfs:label ?nilfgaardianLabel .\n  witcher:Humans rdfs:label ?broaderCategoryLabel .\n  FILTER(CONTAINS(LCASE(?nilfgaardianLabel), \"nilfgaardian\"))\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All T12s failed. I am not sure what the generated query is trying to do but it definitely didn't get the point that is finding parent classes.
+{
+    "query_id": "T13_FindLocationByFeatureCombination_935",
+    "question": "Which location has either a Gwent Seller or a Plegmund at the Inn at the Crossroads?",
+    "ground_truth_sparql": "SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentSeller> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Plegmund> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }",
+    "pipeline_C_generated_sparql": "SELECT DISTINCT ?location ?locationName WHERE {\n  ?location witcher:location dbr:Inn_at_the_Crossroads .\n  ?location rdfs:label ?locationName .\n  {\n    ?location rdfs:label ?name .\n    FILTER(CONTAINS(LCASE(?name), \"gwent\"))\n  }\n  UNION\n  {\n    ?location rdfs:label ?name .\n    FILTER(CONTAINS(LCASE(?name), \"plegmund\"))\n  }\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All T13s failed. This groundtruth query returns Inn at the crossroads as the only entity that geospatially satisfies the constraints. The generated query again tries to cheat it's way through the geospatial reasoning by using the witcher:location property and comparing strings, the result is an entity about Gwent_playing_Inkeeps which is not semantically wrong since it holds general information about inkeeps where you can play gwent.  However the groundtruth probably finds a single Gwent seller at Inn at the Crossroads which is more accurate since it's verified geospatially. 
+{
+    "query_id": "T14_InstanceListingByClass_196",
+    "question": "List all known Artbooks.",
+    "ground_truth_sparql": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Artbooks> . ?instance rdfs:label ?instanceLabel . }",
+    "pipeline_C_generated_sparql": "SELECT ?artbook ?name\nWHERE {\n  ?artbook a witcher:Artbooks .\n  ?artbook rdfs:label ?name .\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0
+  }, All T14s failed. This is the exact same query, only difference is that the generated returns URIs + labels while the groundtruth only returns the labels. So why is it 0????
+{
+    "query_id": "T15_PathVerification_4021",
+    "question": "Is there a road that connects Blackbough and Midscope?",
+    "ground_truth_sparql": "ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Midscope> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }",
+    "pipeline_C_generated_sparql": "ASK WHERE {\n  # Get Blackbough geometry\n  dbr:Blackbough geo:hasGeometry ?blackboughGeom .\n  ?blackboughGeom geo:asWKT ?blackboughWKT .\n  \n  # Get Midscope geometry\n  dbr:Midscope geo:hasGeometry ?midscopeGeom .\n  ?midscopeGeom geo:asWKT ?midscopeWKT .\n  \n  # Find roads with geometry\n  ?road a witcher:Roads .\n  ?road geo:hasGeometry ?roadGeom .\n  ?roadGeom geo:asWKT ?roadWKT .\n  \n  # Check if road intersects both locations\n  FILTER(geof:sfIntersects(?roadWKT, ?blackboughWKT))\n  FILTER(geof:sfIntersects(?roadWKT, ?midscopeWKT))\n}",
+    "pipeline_C_execution_accuracy_correct": false,
+    "pipeline_C_f1_score": 0.0
+  }, All T5s failed. This is the exact same query with the sole difference that the generated one uses the witcher:Roads Class instead of the Witcher:Road which is the actual class. I proabably need to add owl:sameAs between them to solve this and it will be fine.
+
+
+Generally, it seems to me that the pipeline is doing pretty well, there are some issues with the graph that could be fixed to make it easier for the pipeline to find the proper entities/classes as I highlighted above. But other than that, some of the queries are accurate and should return proper results but are returning 0 which leads me to believe that our metrics are not calculated properly.
+Other than that, I also noticed the "\n" and backslashes ("\") in the generated query which I needed to remove in order to execute on my graphdb docker but I assume it's not a problem with how the script executes them since some of them still have accuracy 1.0 which means they at least execute.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentSeller> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Harbor> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }
+
+--- Generated SPARQL ---
+SELECT DISTINCT ?location ?locationName ?feature ?featureName WHERE {
+  # Get the geometry of Inn at the Crossroads
+  dbr:Inn_at_the_Crossroads geo:hasGeometry/geo:asWKT ?innGeometry .
+  
+  # Find locations that are within the Inn at the Crossroads area
+  ?location a witcher:Location ;
+            geo:hasGeometry/geo:asWKT ?locationGeometry ;
+            rdfs:label ?locationName .
+  
+  # Find features that are Gwent sellers or Harbors
+  ?feature a ?featureType ;
+           geo:hasGeometry/geo:asWKT ?featureGeometry ;
+           rdfs:label ?featureName .
+  
+  # Filter for features that are within the location
+  FILTER(geof:sfWithin(?featureGeometry, ?locationGeometry))
+  
+  # Filter for Gwent sellers or Harbors
+  FILTER(?featureType = witcher:Merchants || ?featureType = witcher:Harbor)
+}
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 0.0000
+
+This one is a complicated situation but the main reason it;s failing is because it's searching for witcher:locations instead of map pin types.
+--------------------------------------------------
+
+==================== Running Test Case 5 ====================
+USER QUESTION: "List all known The Lady of the Lake characters."
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#The_Lady_of_the_Lake_characters> . ?instance rdfs:label ?instanceLabel . }
+
+--- Generated SPARQL ---
+SELECT DISTINCT ?character ?characterName
+WHERE {
+  ?character a witcher:Characters .
+  ?character rdfs:label ?characterName .
+  ?character ?property ?relatedEntity .
+  FILTER(CONTAINS(LCASE(STR(?relatedEntity)), "lady_of_the_lake"))
+}
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 0.0000
+
+This one has completely lost the point and it's again trying to cheat it's way to the answer with string matching which completely loses the point of finding instances of the lady_of_the_lake_characters class.
+--------------------------------------------------
+
+
+----------------------------------------------------------------\
+Pipeline C - max_Steps = 20
+
+--- Final Evaluation Results ---
+Total Queries Evaluated: 300
+
+--- Pipeline C ---
+  Execution Accuracy (EA): 64/300 (21.33%)
+  Macro F1-Score: 62.11%
+
+------------------------------------------------------------------
+
+
+------------------------------------ MAX_STEPS=20 TESTS ---------------------------------------------
+
+==================== Running Test Case 1 ====================
+USER QUESTION: "Is there a road that connects Blackbough and Midscope?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Midscope> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }
+
+--- Generated SPARQL ---
+ASK {
+  ?road a witcher:Road ;
+        geo:hasGeometry/geo:asWKT ?roadGeom .
+  
+  dbr:Blackbough_point_geometry geo:asWKT ?blackboughGeom .
+  dbr:Midcopse_point_geometry geo:asWKT ?midcopseGeom .
+  
+  FILTER(geof:sfIntersects(?roadGeom, ?blackboughGeom) && geof:sfIntersects(?roadGeom, ?midcopseGeom))
+}
+
+--- METRICS ---
+  - Execution Accuracy: CORRECT
+  - F1-Score: 0.0000
+--------------------------------------------------
+
+==================== Running Test Case 2 ====================
+USER QUESTION: "What is the closest Signaling Stake to Call of the Wild?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT ?featureALabel (geof:distance(?wktA, ?wktB) AS ?distance) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Call_of_the_Wild> geo:hasGeometry/geo:asWKT ?wktB . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#SignalingStake> ; rdfs:label ?featureALabel ; geo:hasGeometry/geo:asWKT ?wktA . } ORDER BY ASC(?distance) LIMIT 1
+
+--- Generated SPARQL ---
+SELECT ?stakeName ?distance WHERE {
+  {
+    SELECT ?stakeName (MIN(geof:distance(?callWKT, ?stakeWKT)) AS ?distance) WHERE {
+      # Call of the Wild location
+      dbr:Call_of_the_Wild geo:hasGeometry ?callGeometry .
+      ?callGeometry geo:asWKT ?callWKT .
+      
+      # Signaling stakes
+      ?stake a witcher:SignalingStake .
+      ?stake rdfs:label ?stakeName .
+      ?stake geo:hasGeometry ?stakeGeometry .
+      ?stakeGeometry geo:asWKT ?stakeWKT .
+    }
+    GROUP BY ?stakeName
+  }
+}
+ORDER BY ?distance
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 1.0000
+--------------------------------------------------
+
+==================== Running Test Case 3 ====================
+USER QUESTION: "Which map is Distillery in?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT ?mapLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Distillery> witcher:isPartOf <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> rdfs:label ?mapLabel . }
+
+--- Generated SPARQL ---
+SELECT ?mapLabel WHERE {
+  dbr:Distillery witcher:isPartOf ?map .
+  ?map rdfs:label ?mapLabel .
+}
+
+--- METRICS ---
+  - Execution Accuracy: CORRECT
+  - F1-Score: 1.0000
+--------------------------------------------------
+
+==================== Running Test Case 4 ====================
+USER QUESTION: "Is the Merchant with Arachis Pin located within the Velen/Novigrad Map?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_with_Arachis_Pin_680p0_2016p0> geo:hasGeometry/geo:asWKT ?geomA_WKT . <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?geomB_WKT . FILTER(geof:sfWithin(?geomA_WKT, ?geomB_WKT)) }
+
+--- Generated SPARQL ---
+ASK WHERE {
+  # Merchant with Arachis Pin
+  witcher:Velen_Novigrad_Merchant_with_Arachis_Pin_680p0_2016p0 geo:hasGeometry ?merchantGeo .
+  ?merchantGeo geo:asWKT ?merchantWKT .
+  
+  # Velen/Novigrad Map
+  witcher:Velen_Novigrad_Map geo:hasGeometry ?mapGeo .
+  ?mapGeo geo:asWKT ?mapWKT .
+  
+  # Check if merchant is within the map
+  FILTER(geof:sfWithin(?merchantWKT, ?mapWKT))
+}
+
+--- METRICS ---
+  - Execution Accuracy: CORRECT
+  - F1-Score: 0.0000
+--------------------------------------------------
+
+==================== Running Test Case 5 ====================
+USER QUESTION: "Which entities have |appears_games = as their abilities?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#abilities> "|appears_games =" . ?subject rdfs:label ?subjectLabel . }
+
+--- Generated SPARQL ---
+SELECT DISTINCT ?entity ?label WHERE {
+  ?entity witcher:abilities ?ability .
+  FILTER(?ability = "|appears_games =")
+  OPTIONAL { ?entity rdfs:label ?label . }
+}
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 1.0000
+--------------------------------------------------
+
+==================== Running Test Case 6 ====================
+USER QUESTION: "Which entities have the sign ability?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT ?subjectLabel WHERE {  ?subject witcher:abilities dbr:Signs . ?subject rdfs:label ?subjectLabel . }
+
+--- Generated SPARQL ---
+SELECT DISTINCT ?entity ?label WHERE {
+  ?entity witcher:abilities ?ability .
+  ?entity rdfs:label ?label .
+  FILTER(CONTAINS(LCASE(STR(?ability)), "sign"))
+}
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 0.9275
+--------------------------------------------------
+
+==================== Running Test Case 7 ====================
+USER QUESTION: "What are the alternative names (aka) of entities that have the race Human?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/Human> . ?member <http://cgi.di.uoa.gr/witcher/ontology#aka> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }
+
+--- Generated SPARQL ---
+SELECT ?entity ?entityLabel ?aka
+WHERE {
+  ?entity a witcher:Humans .
+  ?entity rdfs:label ?entityLabel .
+  OPTIONAL { ?entity witcher:aka ?aka . }
+}
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 0.0304
+--------------------------------------------------
+
+==================== Running Test Case 8 ====================
+USER QUESTION: "Which Mappin entities in Blackbough have the in-game coordinates xy(-225.0,168.0)?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT ?entityLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?polygonWKT . ?entity a <http://cgi.di.uoa.gr/witcher/ontology#Mappin> ; <http://cgi.di.uoa.gr/witcher/ontology#hasInGameCoordinates> "xy(-225.0,168.0)" ; rdfs:label ?entityLabel ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }
+
+--- Generated SPARQL ---
+SELECT ?mappin ?mappinName ?locationName WHERE {
+  ?mappin a witcher:Mappin ;
+          rdfs:label ?mappinName ;
+          witcher:hasInGameCoordinates "xy(-225.0,168.0)" ;
+          witcher:location ?location .
+  ?location rdfs:label ?locationName .
+  FILTER(?location = dbr:Blackbough)
+}
+
+
+This query returns no results, which means there are **no Mappin entities in Blackbough** with the coordinates xy(-225.0,168.0). The only Mappin with those coordinates is located in White Orchard, not Blackbough.
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 0.0000
+--------------------------------------------------
+
+==================== Running Test Case 9 ====================
+USER QUESTION: "How many Side Quests are in Claywitch?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT (COUNT(?feature) as ?count) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?polygonWKT . ?feature a <http://cgi.di.uoa.gr/witcher/ontology#SideQuest> ; geo:hasGeometry/geo:asWKT ?pointWKT . FILTER(geof:sfWithin(?pointWKT, ?polygonWKT)) }
+
+--- Generated SPARQL ---
+SELECT (COUNT(DISTINCT ?quest) as ?count)
+WHERE {
+  ?quest a witcher:SideQuest .
+  ?quest rdfs:label ?questName .
+  ?quest geo:hasGeometry/geo:asWKT ?questGeom .
+  dbr:Claywitch geo:hasGeometry/geo:asWKT ?claywitchGeom .
+  FILTER(geof:sfWithin(?questGeom, ?claywitchGeom))
+}
+
+--- METRICS ---
+  - Execution Accuracy: CORRECT
+  - F1-Score: 1.0000
+--------------------------------------------------
+
+==================== Running Test Case 10 ====================
+USER QUESTION: "Does Velen/Novigrad Map have more Plegmund than Oxenfurt Outskirts?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT (IF(?countA > ?countB, "Yes", "No") AS ?result) WHERE { { SELECT (COUNT(?featureA) as ?countA) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map> geo:hasGeometry/geo:asWKT ?polyA . ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#Plegmund> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polyA)) } } { SELECT (COUNT(?featureB) as ?countB) WHERE { <http://cgi.di.uoa.gr/witcher/resource/Oxenfurt_Outskirts> geo:hasGeometry/geo:asWKT ?polyB . ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Plegmund> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polyB)) } } }
+
+--- Generated SPARQL ---
+SELECT ?answer
+WHERE {
+  {
+    # Count Plegmund entities in Velen/Novigrad Map
+    SELECT (COUNT(?plegmund) as ?velen_count)
+    WHERE {
+      dbr:Velen_Novigrad_Map geo:hasGeometry ?velen_geom .
+      ?velen_geom geo:asWKT ?velen_wkt .
+      ?plegmund rdfs:label ?label .
+      FILTER(CONTAINS(LCASE(?label), "plegmund"))
+      ?plegmund geo:hasGeometry ?plegmund_geom .
+      ?plegmund_geom geo:asWKT ?plegmund_wkt .
+      FILTER(geof:sfWithin(?plegmund_wkt, ?velen_wkt))
+    }
+  }
+  {
+    # Count Plegmund entities in Oxenfurt Outskirts
+    SELECT (COUNT(?plegmund) as ?oxenfurt_count)
+    WHERE {
+      dbr:Oxenfurt_Outskirts geo:hasGeometry ?oxenfurt_geom .
+      ?oxenfurt_geom geo:asWKT ?oxenfurt_wkt .
+      ?plegmund rdfs:label ?label .
+      FILTER(CONTAINS(LCASE(?label), "plegmund"))
+      ?plegmund geo:hasGeometry ?plegmund_geom .
+      ?plegmund_geom geo:asWKT ?plegmund_wkt .
+      FILTER(geof:sfWithin(?plegmund_wkt, ?oxenfurt_wkt))
+    }
+  }
+  BIND(IF(?velen_count > ?oxenfurt_count, "Yes", "No") AS ?answer)
+}
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 0.0000
+--------------------------------------------------
+
+==================== Running Test Case 11 ====================
+USER QUESTION: "What is the highest value Blood and Wine quest item?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT ?featureLabel ?value WHERE { ?feature a <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_quest_items> ; rdfs:label ?featureLabel ; <http://cgi.di.uoa.gr/witcher/ontology#value> ?value . } ORDER BY DESC(?value) LIMIT 1
+
+--- Generated SPARQL ---
+SELECT ?item ?itemLabel ?value
+WHERE {
+  ?item a witcher:Blood_and_Wine_quest_items ;
+        rdfs:label ?itemLabel ;
+        witcher:value ?value .
+}
+ORDER BY DESC(?value)
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 1.0000
+--------------------------------------------------
+
+==================== Running Test Case 12 ====================
+USER QUESTION: "What is the broader category that Nilfgaardians belong to?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Nilfgaardians> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }
+
+--- Generated SPARQL ---
+SELECT ?broaderCategory ?broaderLabel WHERE {
+  witcher:Nilfgaardians rdfs:subClassOf ?broaderCategory .
+  ?broaderCategory rdfs:label ?broaderLabel .
+}
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 1.0000
+--------------------------------------------------
+
+==================== Running Test Case 13 ====================
+USER QUESTION: "Which location has either a Gwent Seller or a Harbor at the Inn at the Crossroads?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT DISTINCT ?locationLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads> rdfs:label ?locationLabel ; geo:hasGeometry/geo:asWKT ?polygonWKT . FILTER ( EXISTS { ?featureA a <http://cgi.di.uoa.gr/witcher/ontology#GwentSeller> ; geo:hasGeometry/geo:asWKT ?pointA . FILTER(geof:sfWithin(?pointA, ?polygonWKT)) } || EXISTS { ?featureB a <http://cgi.di.uoa.gr/witcher/ontology#Harbor> ; geo:hasGeometry/geo:asWKT ?pointB . FILTER(geof:sfWithin(?pointB, ?polygonWKT)) } ) }
+
+--- Generated SPARQL ---
+SELECT ?answer WHERE {
+  BIND("Gwent: Playing Innkeeps (Gwent-related quest)" AS ?answer)
+}
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 0.0000
+--------------------------------------------------
+
+==================== Running Test Case 14 ====================
+USER QUESTION: "List all known The Lady of the Lake characters."
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#The_Lady_of_the_Lake_characters> . ?instance rdfs:label ?instanceLabel . }
+
+--- Generated SPARQL ---
+SELECT ?character ?name
+WHERE {
+  ?character a witcher:The_Lady_of_the_Lake_characters .
+  ?character rdfs:label ?name .
+}
+ORDER BY ?name
+
+--- METRICS ---
+  - Execution Accuracy: INCORRECT
+  - F1-Score: 1.0000
+--------------------------------------------------
+
+==================== Running Test Case 15 ====================
+USER QUESTION: "Is there a road that connects Claywitch and Blackbough?"
+Generating SPARQL query...
+
+-------------------- Evaluation Report --------------------
+
+--- Ground-Truth SPARQL ---
+ASK WHERE { <http://cgi.di.uoa.gr/witcher/resource/Claywitch> geo:hasGeometry/geo:asWKT ?geomA. <http://cgi.di.uoa.gr/witcher/resource/Blackbough> geo:hasGeometry/geo:asWKT ?geomB. ?path a witcher:Road ; geo:hasGeometry/geo:asWKT ?pathGeom . FILTER(geof:sfIntersects(?pathGeom, ?geomA) && geof:sfIntersects(?pathGeom, ?geomB)) }
+
+--- Generated SPARQL ---
+ASK WHERE {
+  ?road a witcher:Road .
+  ?road geo:hasGeometry ?roadGeom .
+  ?roadGeom geo:asWKT ?roadWKT .
+  
+  dbr:Claywitch geo:hasGeometry ?claywitchGeom .
+  ?claywitchGeom geo:asWKT ?claywitchWKT .
+  
+  dbr:Blackbough geo:hasGeometry ?blackboughGeom .
+  ?blackboughGeom geo:asWKT ?blackboughWKT .
+  
+  FILTER(geof:sfIntersects(?roadWKT, ?claywitchWKT))
+  FILTER(geof:sfIntersects(?roadWKT, ?blackboughWKT))
+}
+
+--- METRICS ---
+  - Execution Accuracy: CORRECT
+  - F1-Score: 1.0000
+------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------- max_steps=20 per template results -----------------------------------------
+
+--- Evaluating Template: T10_ComparativeCounting (20 queries) ---
+  - Pipeline C: EA = 0.00% | Macro F1 = 50.00%
+
+--- Evaluating Template: T11_SuperlativeByAttribute (20 queries) ---
+  - Pipeline C: EA = 0.00% | Macro F1 = 45.00%
+
+--- Evaluating Template: T12_SchemaLookup (20 queries) ---
+  - Pipeline C: EA = 0.00% | Macro F1 = 32.50%
+
+--- Evaluating Template: T13_FindLocationByFeatureCombination (20 queries) ---
+  - Pipeline C: EA = 0.00% | Macro F1 = 27.53%
+
+--- Evaluating Template: T14_InstanceListingByClass (20 queries) ---
+  - Pipeline C: EA = 0.00% | Macro F1 = 97.07%
+
+--- Evaluating Template: T15_PathVerification (20 queries) ---
+  - Pipeline C: EA = 95.00% | Macro F1 = 75.00%
+
+--- Evaluating Template: T1_SpatialRelationship (20 queries) ---
+  - Pipeline C: EA = 0.00% | Macro F1 = 82.87%
+
+--- Evaluating Template: T2_ProximitySearch (20 queries) ---
+  - Pipeline C: EA = 0.00% | Macro F1 = 45.00%
+
+--- Evaluating Template: T3_LocationContextDiscovery (20 queries) ---
+  - Pipeline C: EA = 55.00% | Macro F1 = 85.00%
+
+--- Evaluating Template: T4_GeospatialVerification (20 queries) ---
+  - Pipeline C: EA = 95.00% | Macro F1 = 75.00%
+
+--- Evaluating Template: T5_PropertyLookup (20 queries) ---
+  - Pipeline C: EA = 0.00% | Macro F1 = 78.33%
+
+--- Evaluating Template: T6_PropertyLookup (20 queries) ---
+  - Pipeline C: EA = 0.00% | Macro F1 = 68.21%
+
+--- Evaluating Template: T7_MultiHopQuery (20 queries) ---
+  - Pipeline C: EA = 0.00% | Macro F1 = 5.30%
+
+--- Evaluating Template: T8_ComposedQuery (20 queries) ---
+  - Pipeline C: EA = 10.00% | Macro F1 = 69.76%
+
+--- Evaluating Template: T9_SpatialCounting (20 queries) ---
+  - Pipeline C: EA = 65.00% | Macro F1 = 95.00%

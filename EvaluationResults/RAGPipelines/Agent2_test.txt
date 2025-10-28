@@ -1,0 +1,82 @@
+
+==================== Testing Pipeline B (Agentic RAG) ====================
+--- Agent Conversation Log ---
+USER: List all Blacksmiths inside Novigrad
+
+--- Step 1: Sending conversation to API ---
+ASSISTANT (Decision): The model decided to call a tool.
+  -> Raw Tool Calls: [{'index': 0, 'id': 'call_00_8HlZ3SpwYw4037ld3xHQuNhY', 'type': 'function', 'function': {'name': 'search_for_class', 'arguments': '{"query": "Blacksmith"}'}}]
+  -> Executing tool: search_for_class(query='Blacksmith')
+TOOL RESPONSE: [{"name": "Blacksmiths", "uri": "http://cgi.di.uoa.gr/witcher/ontology#Blacksmiths"}, {"name": "Alchemists", "uri": "http://cgi.di.uoa.gr/witcher/ontology#Alchemists"}, {"name": "Armorers", "uri": "http://cgi.di.uoa.gr/witcher/ontology#Armorers"}, {"name": "Mercenaries", "uri": "http://cgi.di.uoa.gr/witcher/ontology#Mercenaries"}, {"name": "Spymasters", "uri": "http://cgi.di.uoa.gr/witcher/ontology#Spymasters"}]
+
+--- Step 2: Sending conversation to API ---
+ASSISTANT (Decision): The model decided to call a tool.
+  -> Raw Tool Calls: [{'index': 0, 'id': 'call_00_eMeWB4X0saCXfABPpJhdjIlF', 'type': 'function', 'function': {'name': 'search_for_entity', 'arguments': '{"query": "Novigrad"}'}}]
+  -> Executing tool: search_for_entity(query='Novigrad')
+TOOL RESPONSE: [{"name": "Novigrad", "uri": "http://cgi.di.uoa.gr/witcher/resource/Novigrad"}, {"name": "Novigrad, Closed City", "uri": "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Closed_City"}, {"name": "Novigrad Gate", "uri": "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Gate"}, {"name": "Novigrad, Closed City II", "uri": "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_II_Pin_531p0_1927p0"}, {"name": "Novigrad geometry", "uri": "http://cgi.di.uoa.gr/witcher/resource/Novigrad_geometry"}]
+
+--- Step 3: Sending conversation to API ---
+ASSISTANT (Decision): The model decided to call a tool.
+  -> Raw Tool Calls: [{'index': 0, 'id': 'call_00_S9q7YNKvxobIiaVM0whrAESz', 'type': 'function', 'function': {'name': 'search_for_geospatial_function', 'arguments': '{"query": "inside"}'}}]
+  -> Executing tool: search_for_geospatial_function(query='inside')
+TOOL RESPONSE: [{"name": "sfWithin", "description": "Used to find if a geometry is completely inside another geometry. Usage: FILTER(geof:sfWithin(?geomA, ?geomB))"}]
+
+--- Step 4: Sending conversation to API ---
+ASSISTANT (Final Answer/Thought):
+**Step 3: Decide the Query Type**
+This is clearly a spatial query since we need to find entities that are spatially "inside" Novigrad.
+
+**Step 4: Construct the SPARQL Query**
+Now I'll construct the query using the URIs and spatial function I found:
+
+```sparql
+PREFIX witcher: <http://cgi.di.uoa.gr/witcher/ontology#>
+PREFIX dbr: <http://cgi.di.uoa.gr/witcher/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+
+SELECT ?blacksmith ?name
+WHERE {
+  ?blacksmith a witcher:Blacksmiths ;
+              rdfs:label ?name ;
+              geo:hasGeometry/geo:asWKT ?blacksmithGeom .
+  
+  dbr:Novigrad_geometry geo:asWKT ?novigradGeom .
+  
+  FILTER(geof:sfWithin(?blacksmithGeom, ?novigradGeom))
+}
+```
+
+**Step 5: Final Review**
+The query correctly:
+- Finds all entities of class `witcher:Blacksmiths`
+- Gets their human-readable names using `rdfs:label`
+- Retrieves their geometries
+- Uses the Novigrad geometry to filter for blacksmiths that are spatially within Novigrad
+- Uses the correct `geof:sfWithin` function for the "inside" spatial relationship
+
+This should return all blacksmiths located inside Novigrad with their names.
+
+--- Pipeline B Generated SPARQL ---
+SELECT ?blacksmith ?name
+WHERE {
+  ?blacksmith a witcher:Blacksmiths ;
+              rdfs:label ?name ;
+              geo:hasGeometry/geo:asWKT ?blacksmithGeom .
+  
+  dbr:Novigrad_geometry geo:asWKT ?novigradGeom .
+  
+  FILTER(geof:sfWithin(?blacksmithGeom, ?novigradGeom))
+}
+
+
+**Step 5: Final Review**
+The query correctly:
+- Finds all entities of class `witcher:Blacksmiths`
+- Gets their human-readable names using `rdfs:label`
+- Retrieves their geometries
+- Uses the Novigrad geometry to filter for blacksmiths that are spatially within Novigrad
+- Uses the correct `geof:sfWithin` function for the "inside" spatial relationship
+
+This should return all blacksmiths located inside Novigrad with their names.

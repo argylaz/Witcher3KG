@@ -1,0 +1,1380 @@
+{
+  "entity": [
+    {
+      "query_id": "T10_ComparativeCounting_293",
+      "question": "Does the Velen/Novigrad Map have more Side Quests than Oxenfurt?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_Oxenfurt_Pin_1787p0_928p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_Oxenfurt_across_from_armorer_Pin_1689p0_1071p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_II_Pin_531p0_1927p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Gate",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Armorer_in_Oxenfurt_Pin_1721p0_1043p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_I_Pin_612p0_2094p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_Oxenfurt_Pin_1787p0_928p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_oxenfurt_harbor_Pin_1637p0_1035p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Herbalist_at_Herbalist_s_Hut_NE_of_Oxenfurt_Pin_1935p0_1234p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_Oxenfurt_across_from_armorer_Pin_1689p0_1071p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T10_ComparativeCounting_437",
+      "question": "Does Velen/Novigrad Map have more Road Signs than Kimbolt way?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crossroads_Pin_2072p0_782p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Kimbolt_Way",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crossroads_Pin_1585p0_m921p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_gr27_Pin_1632p0_702p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blackbough_Merchant_near_roadsign__Pin_m152p0_197p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_gr11_b_Pin_1939p0_432p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_II_Pin_531p0_1927p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_gr12_town_Pin_1178p0_342p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_inn_crossroads_notice_board_Pin_513p0_544p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_de29_Pin_1110p0_64p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T10_ComparativeCounting_117",
+      "question": "Does Velen/Novigrad Map have more Whetstone than Codger's Quarry?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Codger_s_Quarry_Pin_1217p0_886p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Codger_s_Quarry_Pin_1217p0_886p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_599p0_1705p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_1455p0_m1208p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_2048p0_1169p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_559p0_1574p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_blacksmith_whetstone_gp_nov_07_Pin_757p0_112p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_blacksmith_whetstone_gp_nov_05_Pin_588p0_1932p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_blacksmith_whetstone_gp_nov_01_Pin_1734p0_74p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_blacksmith_whetstone_gp_nov_12_Pin_104p0_m220p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T10_ComparativeCounting_185",
+      "question": "Does Velen/Novigrad Map have more Treasure Hunt Map Pins than Oxenfurt Outskirts?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_de6_mp_nml_Pin_2234p0_64p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_sb101_nml_mp_2_Pin_m215p0_m701p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_ep1_poi_26_mp_Pin_2732p0_1708p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_ep1_poi02_mp_Pin_2200p0_1603p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_oxenfurt_harbor_Pin_1637p0_1035p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_gr15b_mp_Pin_1743p0_440p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_cb17_mp_Pin_1993p0_m774p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_Oxenfurt_Pin_1787p0_928p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_gr41_Pin_1270p0_1282p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_gr34_Pin_552p0_986p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T10_ComparativeCounting_112",
+      "question": "Does the Velen/Novigrad Map have more Whetstones than Kimbolt Way?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_559p0_1574p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_2048p0_1169p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_599p0_1705p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_1455p0_m1208p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_599p0_1705p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_1455p0_m1208p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_2048p0_1169p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_559p0_1574p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_blacksmith_whetstone_gp_nov_11_Pin_457p0_1208p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_blacksmith_whetstone_gp_nov_13_Pin_m290p0_955p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T13_FindLocationByFeatureCombination_833",
+      "question": "Which location contains either a Grindstone or a Harbor?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Harbor",
+        "http://cgi.di.uoa.gr/witcher/resource/Blacksmith_Urialla_Harbor_Store",
+        "http://cgi.di.uoa.gr/witcher/resource/Urialla_Harbor",
+        "http://cgi.di.uoa.gr/witcher/resource/Fireburst_Harbor",
+        "http://cgi.di.uoa.gr/witcher/resource/Innkeep_Urialla_Harbor_Store",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_Flovive_Harbor_Pin_250p0_m1070p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Harborside",
+        "http://cgi.di.uoa.gr/witcher/resource/Kaer_Trolde_Harbor",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Fyresdal_harbor_Pin_433p0_m795p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Harbor_Gate"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads"
+      ]
+    },
+    {
+      "query_id": "T13_FindLocationByFeatureCombination_2081",
+      "question": "Which location contains either an Enchant or an Entrance?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Byways"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_cave_passage_Pin_m899p0_m1144p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_cave_passage2_Pin_m913p0_m1190p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_147p0_182p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_small_treasure_cave_Pin_m847p0_m89p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_219p0_1312p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1918p0_46p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_725p0_873p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1185p0_2644p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_2451p0_1001p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1476p0_2380p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Byways"
+      ]
+    },
+    {
+      "query_id": "T13_FindLocationByFeatureCombination_2573",
+      "question": "Which location contains either a Bed or an Entrance?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Byways"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_147p0_182p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_313p0_207p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1918p0_46p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_219p0_1312p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1185p0_2644p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1083p0_666p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_725p0_873p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1937p0_247p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_m320p0_342p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1911p0_86p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Byways"
+      ]
+    },
+    {
+      "query_id": "T13_FindLocationByFeatureCombination_1794",
+      "question": "Which location has either a Place of Power or an Entrance within its boundaries?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Byways"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_quen_0002_Pin_636p0_m1484p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_yrden_0002_Pin_m184p0_723p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Place_of_Power",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_axii_0001_Pin_m1095p0_m1073p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_aard_0001_Pin_m643p0_m1865p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_igni_0001_Pin_1090p0_m854p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_yrden_0002_Pin_m184p0_723p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_quen_0002_Pin_636p0_m1484p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_hansa_1_Pin_m1085p0_m27p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_igni_0001_Pin_1090p0_m854p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Byways"
+      ]
+    },
+    {
+      "query_id": "T13_FindLocationByFeatureCombination_2301",
+      "question": "Which location has either an Entrance or an AlchemyTable?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Byways"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_mq7024_alchemy_table_Pin_m405p0_m798p0",
+        "http://cgi.di.uoa.gr/witcher/resource/The_Alchemy",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_cave_passage2_Pin_m913p0_m1190p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_amphi_theater_Pin_m752p0_m1649p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_cave_passage_Pin_m899p0_m1144p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_mq7024_alchemy_table_Pin_m405p0_m798p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_elven_chef_Pin_819p0_21p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_shaelmaar_cave2_Pin_238p0_m742p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_cave_thing2_Pin_28p0_364p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_elven_chef_Pin_819p0_21p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Byways"
+      ]
+    },
+    {
+      "query_id": "T13_FindLocationByFeatureCombination_4809",
+      "question": "Which location has either a Mutagen Dismantle or a Bandit Campfire within Reardon Manor?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_bandits_sanctuary_Pin_410p0_m95p0",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_bandit_campfire_Pin_260p0_m120p0",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_bandits_camp_Pin_359p0_298p0",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_bandit_campfire2_Pin_m376p0_145p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_bm2_Pin_1517p0_m962p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_gf42_Pin_2092p0_708p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_de102_Pin_1369p0_217p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_pit_camp_nml_mp_Pin_1107p0_634p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_de2_Pin_1713p0_m268p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_de101_Pin_1017p0_27p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor"
+      ]
+    },
+    {
+      "query_id": "T13_FindLocationByFeatureCombination_5769",
+      "question": "Which location has either a Bandit Campfire or Contraband within the Vegelbud Residence?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Vegelbud_Residence"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_sb5b_mp_nml_yet_Pin_m673p0_m490p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_sb7_camp_mp_Pin_m634p0_m635p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_pit_camp_nml_mp_Pin_1107p0_634p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_bm2_Pin_1517p0_m962p0",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_bandits_sanctuary_Pin_410p0_m95p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_sb7_Pin_m673p0_m396p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_ep1_poi09_mp_Pin_2618p0_2191p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_de101_Pin_1017p0_27p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Bandits_Camp",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_de102_Pin_1369p0_217p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Vegelbud_Residence"
+      ]
+    },
+    {
+      "query_id": "T15_PathVerification_4487",
+      "question": "Is there a road that connects Inn at the Crossroads and Yantra?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads",
+        "http://cgi.di.uoa.gr/witcher/resource/Yantra"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads",
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_Crossroads_Pin_475p0_47p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_inn_crossroads_notice_board_Pin_513p0_544p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Innkeep_Inn_at_the_Crossroads_Store",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crossroads_Pin_2072p0_782p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crossroads_Pin_1585p0_m921p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Inn_at_the_Crossroads",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Crossroads_Pin_71p0_251p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Yantra"
+      ]
+    },
+    {
+      "query_id": "T15_PathVerification_4784",
+      "question": "Is there a road that connects Novigrad and Inn at the Crossroads?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Crossroads_Novigrad",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crossroads_Pin_2072p0_782p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crossroads_Pin_1585p0_m921p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_inn_crossroads_notice_board_Pin_513p0_544p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_inn_crossroads_notice_board_Pin_513p0_544p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crossroads_Pin_2072p0_782p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crossroads_Pin_1585p0_m921p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Inn_at_the_Crossroads"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ]
+    },
+    {
+      "query_id": "T15_PathVerification_5144",
+      "question": "Is there a road that connects Yantra and Inn at the Crossroads?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads",
+        "http://cgi.di.uoa.gr/witcher/resource/Yantra"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads",
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Inn_at_the_Crossroads_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_inn_crossroads_notice_board_Pin_513p0_544p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Innkeep_Inn_at_the_Crossroads_Store",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crossroads_Pin_2072p0_782p0",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_Crossroads_Pin_475p0_47p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crossroads_Pin_1585p0_m921p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Inn_at_the_Crossroads",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Crossroads_Pin_71p0_251p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Yantra"
+      ]
+    },
+    {
+      "query_id": "T15_PathVerification_4820",
+      "question": "Is there a road that connects Novigrad and Nilfgaardian Garrison?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Nilfgaardian_Garrison",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Nilfgaardian_Army_Group_Pin_2414p0_m977p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Nilfgaardian_Garrison",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Road_1",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Road_2",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Road_1_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Gate",
+        "http://cgi.di.uoa.gr/witcher/resource/Nilfgaardian_Garrison_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Quartermaster_in_Nilfgaardian_camp_Pin_2387p0_m1050p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Road_2_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Nilfgaardian_Garrison_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ]
+    },
+    {
+      "query_id": "T15_PathVerification_5136",
+      "question": "Is there a road that connects Yantra and Novigrad?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Yantra",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Road_1",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Road_2",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Road_1_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yantra_Notice_board_Pin_1121p0_2379p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Road_2_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yantra_Notice_board_Pin_1121p0_2379p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Yantra",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_I_Pin_612p0_2094p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Closed_City",
+        "http://cgi.di.uoa.gr/witcher/resource/Crossroads_Novigrad"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ]
+    },
+    {
+      "query_id": "T1_SpatialRelationship_645",
+      "question": "List all Armor Repair Tables located within Crow's Perch.",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Quartermaster_Crow_s_Perch_Store",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_armor_repair_table_gp_nov_05_Pin_587p0_1931p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_armor_repair_table_gp_nov_07_Pin_175p0_m473p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_armor_repair_table_gp_nov_08_Pin_1697p0_1084p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_armor_repair_table_gp_nov_02_Pin_m204p0_167p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_Repair_Table_Pin_644p0_m822p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_armor_repair_table_gp_nov_04_Pin_206p0_151p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_armor_repair_table_gp_nov_06_Pin_758p0_112p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_Repair_Table_Pin_m20p0_285p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_armor_repair_table_gp_nov_01_Pin_1732p0_77p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch"
+      ]
+    },
+    {
+      "query_id": "T1_SpatialRelationship_45",
+      "question": "List all Blacksmiths located within the city of Novigrad?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Blacksmith_Novigrad",
+        "http://cgi.di.uoa.gr/witcher/resource/Blacksmith_Novigrad_Store",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_South_central_Pin_627p0_1853p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_South_central_Pin_627p0_1853p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_west_central_Pin_568p0_1946p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_Oxenfurt_Pin_1787p0_928p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_west_central_Pin_568p0_1946p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_Oxenfurt_Pin_1787p0_928p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Square_Armorer_Pin_624p0_1893p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Closed_City"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ]
+    },
+    {
+      "query_id": "T1_SpatialRelationship_319",
+      "question": "List all Notice Boards located within Reardon Manor.",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Harborside",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Mulbrydale",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Oreton",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Hierarch_Square",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Brunwich",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_White_Orchard",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_q602_village_noticeboard_Pin_2248p0_2475p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Downwarren",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Svorlag"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Reardon_Manor"
+      ]
+    },
+    {
+      "query_id": "T1_SpatialRelationship_64",
+      "question": "List all Bandit Campfires located within the city of Oxenfurt.",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Oxenfurt"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_bandit_campfire_Pin_260p0_m120p0",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_bandits_camp_Pin_359p0_298p0",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_bandits_road_Pin_399p0_10p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Campfires",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_bandit_campfire2_Pin_m376p0_145p0",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_bandit_campfire3_Pin_m178p0_m334p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Bandit_camp",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_ep1_poi09_mp_Pin_2618p0_2191p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_ep1_poi_ofir_camp_mp_Pin_211p0_2436p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Bandits_Camp"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Oxenfurt"
+      ]
+    },
+    {
+      "query_id": "T1_SpatialRelationship_206",
+      "question": "List all Whetstones located within Novigrad?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_2048p0_1169p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_599p0_1705p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_559p0_1574p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_1455p0_m1208p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_2048p0_1169p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_559p0_1574p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_blacksmith_whetstone_gp_nov_01_Pin_1734p0_74p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_blacksmith_whetstone_gp_nov_07_Pin_757p0_112p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_blacksmith_whetstone_gp_nov_05_Pin_588p0_1932p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_599p0_1705p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ]
+    },
+    {
+      "query_id": "T1_SpatialRelationship_551",
+      "question": "List all Gwent Players located within Novigrad.",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_central_SE_Novigrad_Pin_763p0_1824p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_central_E_Novigrad_Pin_820p0_1928p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Gwent_Big_City_Players",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Elihil_in_Novigrad_Pin_834p0_1727p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Players_of_the_One_and_Only_True_Gwent_Wanted",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Herbalist_in_South_Novigrad_Pin_655p0_1779p0",
+        "http://cgi.di.uoa.gr/witcher/resource/The_Gangs_of_Novigrad",
+        "http://cgi.di.uoa.gr/witcher/resource/Gwent_players",
+        "http://cgi.di.uoa.gr/witcher/resource/Gwent_Velen_Players",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_herbalist_Pin_1935p0_1234p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ]
+    },
+    {
+      "query_id": "T1_SpatialRelationship_22",
+      "question": "List all Crafting Stations located within the geographical area of Novigrad.",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Square_Armorer_Pin_624p0_1893p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Blacksmith_Novigrad_Store",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Docks",
+        "http://cgi.di.uoa.gr/witcher/resource/Shop_Gildorf",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_South_central_Pin_627p0_1853p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_armor_repair_table_gp_nov_05_Pin_587p0_1931p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_sewers",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_armor_repair_table_gp_nov_08_Pin_1697p0_1084p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_armor_repair_table_gp_nov_04_Pin_206p0_151p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Docks_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ]
+    },
+    {
+      "query_id": "T1_SpatialRelationship_574",
+      "question": "List all Contraband items located within the city of Novigrad.",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_I_Pin_612p0_2094p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Closed_City",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_II_Pin_531p0_1927p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_gf43_Pin_965p0_1760p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_sb26_Pin_m836p0_m344p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_cp39_Pin_34p0_1474p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_gf44_Pin_676p0_1642p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Hazardous_Goods_II_Pin_1685p0_m149p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Security_Bureau",
+        "http://cgi.di.uoa.gr/witcher/resource/The_Gangs_of_Novigrad"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad"
+      ]
+    },
+    {
+      "query_id": "T2_ProximitySearch_310",
+      "question": "What is the closest Signaling Stake to the Velen Novigrad Cave Entrance?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1482p0_2209p0"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_725p0_873p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1451p0_m207p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_147p0_182p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1876p0_1404p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1476p0_2380p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1057p0_m716p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_219p0_1312p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1695p0_927p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_949p0_61p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_2153p0_1468p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1482p0_2209p0"
+      ]
+    },
+    {
+      "query_id": "T2_ProximitySearch_46",
+      "question": "What is the closest Side Quest to the Velen Novigrad Cave Entrance?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1547p0_m34p0"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_I_Pin_612p0_2094p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_II_Pin_531p0_1927p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_219p0_1312p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1695p0_927p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_725p0_873p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1876p0_1404p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_2153p0_1468p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_949p0_61p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1476p0_2380p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_2451p0_1001p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1547p0_m34p0"
+      ]
+    },
+    {
+      "query_id": "T2_ProximitySearch_482",
+      "question": "What is the closest Gwent Player to the Velen Novigrad Cave Entrance?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_725p0_873p0"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_725p0_873p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_219p0_1312p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1876p0_1404p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_949p0_61p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1695p0_927p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1543p0_m673p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_2153p0_1468p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_1451p0_m207p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_2451p0_1001p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_313p0_207p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Cave_Entrance_Pin_725p0_873p0"
+      ]
+    },
+    {
+      "query_id": "T2_ProximitySearch_307",
+      "question": "What is the furthest Signaling Stake from Crow's Perch?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_notice_board_Pin_240p0_136p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_notice_board_Pin_240p0_136p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_Fight_Pin_177p0_86p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_poi_bar_a_01_signal_stake_Pin_926p0_m459p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_Fight_Pin_177p0_86p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_poi_bar_a_01_signal_stake_Pin_926p0_m459p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Crow_s_Perch",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_Merchant_Pin_220p0_137p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yoana_in_Crow_s_Perch_Pin_225p0_159p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch_region"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch"
+      ]
+    },
+    {
+      "query_id": "T2_ProximitySearch_405",
+      "question": "What is the furthest Signaling Stake from Lurtch?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Lurtch"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_poi_bar_a_01_signal_stake_Pin_926p0_m459p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_poi_bar_a_01_signal_stake_Pin_926p0_m459p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_poi_ved_a_01_stake_mp_Pin_m267p0_656p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_poi_ved_a_01_stake_mp_Pin_m267p0_656p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_sb24_swamp_Pin_m330p0_m420p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_sb5b_mp_nml_yet_Pin_m673p0_m490p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_tufo_vineyard_noticeboard_Pin_287p0_m994p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_sb20_Pin_m521p0_m187p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_coronata_vineyard_noticeboard_Pin_m430p0_m74p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_sb30_Pin_m487p0_m126p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Lurtch"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_36",
+      "question": "Which map is Distillery in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Distillery",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Distillery",
+        "http://cgi.di.uoa.gr/witcher/resource/Distillery_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Milka_s_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Peasant_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Old_map_of_Toussaint",
+        "http://cgi.di.uoa.gr/witcher/resource/Cecil_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_q002_herbalist_mappin_Pin_m237p0_3p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Jean_Louis_Ludovic_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Malcolm_s_map"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_34",
+      "question": "Which map is Dorve Ruins in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Dorve_Ruins",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Dorve_Ruins",
+        "http://cgi.di.uoa.gr/witcher/resource/Dorve_Ruins_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Ruins",
+        "http://cgi.di.uoa.gr/witcher/resource/Ruins_Hidden_Treasure_You_Know_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Fort_Ussar_Ruins_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Termes_Palace_Ruins_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_entrance_pop_ruins_Pin_1067p0_m857p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Fort_Astre_Ruins_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Arthach_Palace_Ruins_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Burned_Ruins_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_48",
+      "question": "Which map is Lurthen in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Lurthen",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Lurthen",
+        "http://cgi.di.uoa.gr/witcher/resource/Lurthen_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Luverten",
+        "http://cgi.di.uoa.gr/witcher/resource/Map_of_Verden",
+        "http://cgi.di.uoa.gr/witcher/resource/Jean_Louis_Ludovic_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Lurtch",
+        "http://cgi.di.uoa.gr/witcher/resource/Peasant_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Lurtch_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Malcolm_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Cedric_s_map"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_148",
+      "question": "Which map is A Greedy God in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/A_Greedy_God"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/A_Greedy_God",
+        "http://cgi.di.uoa.gr/witcher/resource/A_Greedy_God_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Greedy_Forktail_Thronebreaker_card",
+        "http://cgi.di.uoa.gr/witcher/resource/Peasant_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Milka_s_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Bandit_loot_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Bogan_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Malcolm_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Don_t_Play_with_the_Gods",
+        "http://cgi.di.uoa.gr/witcher/resource/Thronebreaker_treasure_maps"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_177",
+      "question": "Which map is Fyke Isle in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Fyke_Isle"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Fyke_Isle",
+        "http://cgi.di.uoa.gr/witcher/resource/Fyke_Isle_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Fyke_Isle_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Faroe_Isle",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_sk20_seagull_island_mp_Pin_m361p0_m13p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Ingdalen_Isle",
+        "http://cgi.di.uoa.gr/witcher/resource/Bogan_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Milka_s_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/North_Sea"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_121",
+      "question": "Which map is Worthy of Trust part of?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Worthy_of_Trust"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Worthy_of_Trust_II_Pin_370p0_m703p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Worthy_of_Trust_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Worthy_of_Trust",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Worthy_of_Trust_II_Pin_370p0_m703p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Never_Trust_Children_II_Pin_m467p0_m304p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Milka_s_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Never_Trust_Children_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Malcolm_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Never_Trust_Children_II_Pin_m467p0_m304p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Bogan_s_map"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_122",
+      "question": "Which map is X Marks the Spot in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/X_Marks_the_Spot",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/X_Marks_the_Spot_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/X_Marks_the_Spot",
+        "http://cgi.di.uoa.gr/witcher/resource/Spot_Missing",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_axii_0001_Pin_m1095p0_m1073p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_yrden_0002_Pin_m184p0_723p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_quen_0002_Pin_636p0_m1484p0",
+        "http://cgi.di.uoa.gr/witcher/resource/World_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_bob_place_of_power_aard_0001_Pin_m643p0_m1865p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Milka_s_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_sk77_map_skl_Pin_512p0_2110p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_42",
+      "question": "Which map is The Tower Outta Nowheres in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/The_Tower_Outta_Nowheres",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/The_Tower_Outta_Nowheres",
+        "http://cgi.di.uoa.gr/witcher/resource/The_Tower_Outta_Nowheres_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Abandoned_Tower_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Abandoned_Tower",
+        "http://cgi.di.uoa.gr/witcher/resource/Tor_Gvalch_ca",
+        "http://cgi.di.uoa.gr/witcher/resource/A_Mysterious_Tower",
+        "http://cgi.di.uoa.gr/witcher/resource/Collapsed_tower",
+        "http://cgi.di.uoa.gr/witcher/resource/Executioner_s_tower",
+        "http://cgi.di.uoa.gr/witcher/resource/Old_tower",
+        "http://cgi.di.uoa.gr/witcher/resource/Solitary_tower"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_90",
+      "question": "Which map is the Skellige Merchant in Blandare Pin located on?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Merchant_in_Blandare_Pin_638p0_27p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Merchant_in_Blandare_Pin_638p0_27p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Merchant_in_Blandare_Pin_638p0_27p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_blandare_notice_board_Pin_651p0_30p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Merchant_in_Larvik_Pin_2767p0_59p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_blandare_notice_board_Pin_651p0_30p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_sk58_mp_skellige_Pin_2106p0_m2043p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_sk59_mp_skellige_Pin_1692p0_1552p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_sk78_mp_skl_Pin_329p0_2311p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_sk76_mp_skl_Pin_660p0_2182p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Merchant_in_Fayrlund_Pin_70p0_m152p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_179",
+      "question": "Which map is Midcopse in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Midcopse",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Midcopse_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Midcopse",
+        "http://cgi.di.uoa.gr/witcher/resource/Midscope_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Midcopse_Armorer_Pin_m392p0_m231p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Midcopse",
+        "http://cgi.di.uoa.gr/witcher/resource/Merchant_Midcopse_Store",
+        "http://cgi.di.uoa.gr/witcher/resource/Midscope",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_Midcopse_Pin_m376p0_m233p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Armorer_Midcopse_Store",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Armorer_in_Midcopse_Pin_m392p0_m231p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_98",
+      "question": "Which map is Skellige harbors in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_1247p0_m9p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_2791p0_126p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_m149p0_570p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_96p0_83p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_1797p0_m1856p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_1498p0_1820p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_m2236p0_390p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_1236p0_m746p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_m395p0_m1046p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_629p0_m866p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Skellige_harbors_Pin_1247p0_m9p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_129",
+      "question": "Which map is Master of the Arena in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Master_of_the_Arena",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Master_of_the_Arena",
+        "http://cgi.di.uoa.gr/witcher/resource/Master_of_the_Arena_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Arena_in_Claremont",
+        "http://cgi.di.uoa.gr/witcher/resource/Milka_s_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/The_Witcher_2_Arena",
+        "http://cgi.di.uoa.gr/witcher/resource/Brawl_Master",
+        "http://cgi.di.uoa.gr/witcher/resource/Peasant_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Master_Master_Master_Master",
+        "http://cgi.di.uoa.gr/witcher/resource/Master_Topical_s_hut",
+        "http://cgi.di.uoa.gr/witcher/resource/Whoreson_Junior_s_arena"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_144",
+      "question": "Which map is Hangman's Alley in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Hangman_s_Alley",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Hangman_s_Alley",
+        "http://cgi.di.uoa.gr/witcher/resource/Hangman_s_Alley_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_hangmans_ave_Pin_m391p0_198p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Hanged_Man_s_Tree_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Hanged_man_s_tree",
+        "http://cgi.di.uoa.gr/witcher/resource/Hanged_Man_s_Tree",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_hangmans_ave_Pin_m391p0_198p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Herbalist_Hangman_s_Alley",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_poi_ved_a_01_mp_Pin_m261p0_624p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Hanged_man"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_189",
+      "question": "Which map is Oreton in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Oreton"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Oreton",
+        "http://cgi.di.uoa.gr/witcher/resource/Oreton_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Oreton_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Trader_in_Oreton_Pin_164p0_m425p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Blacksmith_Oreton_Store",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Oreton",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Trader_in_Oreton_Pin_164p0_m425p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Map_of_Verden",
+        "http://cgi.di.uoa.gr/witcher/resource/Merchant_Oreton_Store",
+        "http://cgi.di.uoa.gr/witcher/resource/Blacksmith_Oreton"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T3_LocationContextDiscovery_159",
+      "question": "Which map is Brunwich in?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Brunwich",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Brunwich",
+        "http://cgi.di.uoa.gr/witcher/resource/Brunwich_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Abandoned_site_Brunwich",
+        "http://cgi.di.uoa.gr/witcher/resource/Prayer_Services_in_Brunwich",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Brunwich",
+        "http://cgi.di.uoa.gr/witcher/resource/World_map",
+        "http://cgi.di.uoa.gr/witcher/resource/Malcolm_s_map",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Milka_s_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Claywich_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_488",
+      "question": "Is the Merchant with Arachis Pin located within the Velen/Novigrad Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_with_Arachis_Pin_680p0_2016p0"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_with_Arachis_Pin_680p0_2016p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_with_Arachis_Pin_680p0_2016p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_central_SE_Novigrad_Pin_763p0_1824p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_central_E_Novigrad_Pin_820p0_1928p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_south_central_Pin_596p0_1839p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_central_E_Novigrad_Pin_820p0_1928p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_west_central_Pin_524p0_1901p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_west_central_Pin_524p0_1901p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_west_central_Pin_543p0_1949p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_central_SE_Novigrad_Pin_763p0_1824p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_465",
+      "question": "Is the Skellige Blacksmith in Svorlag located within the Novigrad and Velen Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Blacksmith_in_Svorlag_Pin_m1634p0_1431p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Blacksmith_in_Svorlag_Pin_m1634p0_1431p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_South_central_Pin_627p0_1853p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_South_central_Pin_627p0_1853p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_west_central_Pin_568p0_1946p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_Oxenfurt_Pin_1787p0_928p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_west_central_Pin_568p0_1946p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Blacksmith_in_Larvik_Pin_2828p0_79p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Blacksmith_in_Svorlag_Pin_m1634p0_1431p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Blacksmith_in_Urialla_Harbor_Pin_1482p0_1924p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Blacksmith_in_Fayrlund_Pin_26p0_m135p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_990",
+      "question": "Is Hangman's Alley located within the Novigrad and Velen Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Hangman_s_Alley",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_hangmans_ave_Pin_m391p0_198p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_hangmans_ave_Pin_m391p0_198p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Hangman_s_Alley",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_South_central_Pin_627p0_1853p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_west_central_Pin_524p0_1901p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_south_central_Pin_596p0_1839p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_west_central_Pin_543p0_1949p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_west_central_Pin_568p0_1946p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_I_Pin_612p0_2094p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_1213",
+      "question": "Is Oxenfurt Gate located within the Velen/Novigrad Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Oxenfurt_Gate",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_Gate",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_Oxenfurt_Pin_1787p0_928p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Armorer_in_Oxenfurt_Pin_1721p0_1043p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Oxenfurt_Gate",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_oxenfurt_harbor_Pin_1637p0_1035p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Merchant_in_Oxenfurt_across_from_armorer_Pin_1689p0_1071p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_oxenfurt_harbor_Pin_1637p0_1035p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_Oxenfurt_Pin_1787p0_928p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Oxenfurt_Armorer_Pin_1721p0_1043p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Herbalist_at_Herbalist_s_Hut_NE_of_Oxenfurt_Pin_1935p0_1234p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_1588",
+      "question": "Is Yoana in Crow's Perch located within the Velen/Novigrad Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yoana_in_Crow_s_Perch_Pin_225p0_159p0"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yoana_in_Crow_s_Perch_Pin_225p0_159p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yoana_in_Crow_s_Perch_Pin_225p0_159p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Quartermaster_in_Crow_s_Perch_Pin_221p0_133p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_notice_board_Pin_240p0_136p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch_region",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_Fight_Pin_177p0_86p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_Merchant_Pin_220p0_137p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_Merchant_Pin_220p0_137p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_Fight_Pin_177p0_86p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_notice_board_Pin_240p0_136p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_515",
+      "question": "Is the Skellige Innkeeper in Harviken located within the Novigrad and Velen Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Harviken_Pin_1717p0_m1937p0"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Harviken_Pin_1717p0_m1937p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Harviken_Pin_1717p0_m1937p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Larvik_Pin_2790p0_63p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Svorlag_Pin_m1655p0_1381p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Larvik_Pin_2790p0_63p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Urialla_Harbor_Pin_1534p0_1922p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Kaer_Trolde_Pin_m54p0_626p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Urialla_Harbor_Pin_1534p0_1922p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Kaer_Trolde_Pin_m54p0_626p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Innkeeper_in_Svorlag_Pin_m1655p0_1381p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_815",
+      "question": "Is the Skellige Blacksmith Pin located within the Novigrad and Velen Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Blacksmith_Pin_m615p0_m200p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_South_central_Pin_627p0_1853p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_South_central_Pin_627p0_1853p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_west_central_Pin_568p0_1946p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_west_central_Pin_568p0_1946p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_gr15b_mp_Pin_1743p0_440p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_gr33_Pin_933p0_1272p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_bm1_b_Pin_1422p0_m1147p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blacksmith_in_Oxenfurt_Pin_1787p0_928p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_herbalist_Pin_1935p0_1234p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_hs22_mp_nml_Pin_252p0_1313p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Blacksmith_Pin_m615p0_m200p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_615",
+      "question": "Is the harbor district noticeboard located within the Novigrad and Velen Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad__harbor_district_noticeboard_Pin_557p0_1845p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad__harbor_district_noticeboard_Pin_557p0_1845p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad__harbor_district_noticeboard_Pin_557p0_1845p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_novigrad_rich_district_noticeboard_Pin_689p0_2015p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_novigrad_rich_district_noticeboard_Pin_689p0_2015p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_q602_village_noticeboard_Pin_2248p0_2475p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_rudnik_notice_board_Pin_199p0_m457p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_novigrad_piers_Pin_378p0_1751p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_toderas_noticeboard_Pin_617p0_1557p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Mulbrydale_Notice_board_Pin_930p0_590p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_borrows_notice_board_Pin_1409p0_m319p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_1590",
+      "question": "Is Yoana in Crow's Perch located within the Novigrad and Velen Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yoana_in_Crow_s_Perch_Pin_225p0_159p0"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yoana_in_Crow_s_Perch_Pin_225p0_159p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yoana_in_Crow_s_Perch_Pin_225p0_159p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Quartermaster_in_Crow_s_Perch_Pin_221p0_133p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_notice_board_Pin_240p0_136p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_Fight_Pin_177p0_86p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_Merchant_Pin_220p0_137p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Crow_s_Perch_region",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_Merchant_Pin_220p0_137p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_Fight_Pin_177p0_86p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Crow_s_Perch_notice_board_Pin_240p0_136p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_1663",
+      "question": "Is the Pontar Bridge Noticeboard located within the Velen/Novigrad Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Pontar_Bridge_Noticeboard_Pin_820p0_964p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Pontar_Bridge_Noticeboard_Pin_820p0_964p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Pontar_Bridge_Noticeboard_Pin_820p0_964p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_whitebridge_noticeboard_Pin_1705p0_1042p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_q602_village_noticeboard_Pin_2248p0_2475p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad__harbor_district_noticeboard_Pin_557p0_1845p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_inn_crossroads_notice_board_Pin_513p0_544p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_whitebridge_noticeboard_Pin_1705p0_1042p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_toderas_noticeboard_Pin_617p0_1557p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_toderas_noticeboard_Pin_617p0_1557p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_inn_crossroads_notice_board_Pin_513p0_544p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_713",
+      "question": "Is Pearls of the Coast located within the Velen/Novigrad Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Pearls_of_the_Coast"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Pearls_of_the_North_Novigrad",
+        "http://cgi.di.uoa.gr/witcher/resource/Pearls_of_the_Coast",
+        "http://cgi.di.uoa.gr/witcher/resource/Pearls_of_the_Coast_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_novigrad_piers_Pin_378p0_1751p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_shipwreck_shore_Pin_m641p0_m11p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_shipwreck_shore_Pin_m641p0_m11p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Loan_Shark_in_central_E_Novigrad_Pin_848p0_1946p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_oxenfurt_harbor_Pin_1637p0_1035p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Herbalist_in_South_Novigrad_Pin_655p0_1779p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Pearls_of_the_North_Oxenfurt"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T4_GeospatialVerification_2138",
+      "question": "Is the Lindenvale notice board located within the Velen/Novigrad Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Lindenvale_notice_board_Pin_770p0_63p0"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Lindenvale_notice_board_Pin_770p0_63p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Lindenvale_notice_board_Pin_770p0_63p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Innkeep_in_Lindenvale_Pin_788p0_64p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Trader_in_Lindenvale_Pin_756p0_122p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Mulbrydale_Notice_board_Pin_930p0_590p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Notice_board_Lindenvale",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_q602_village_noticeboard_Pin_2248p0_2475p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Yantra_Notice_board_Pin_1121p0_2379p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Mulbrydale_Notice_board_Pin_930p0_590p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Innkeep_in_Lindenvale_Pin_788p0_64p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map"
+      ]
+    },
+    {
+      "query_id": "T8_ComposedQuery_147",
+      "question": "Which Mappin entities in Blackbough have the in-game coordinates xy(-225.0,168.0)?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Blackbough"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Blackbough_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Blackbough_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blackbough_Blacksmith_Pin_m196p0_172p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blackbough_Blacksmith_Pin_m201p0_185p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blackbough_Merchant_near_roadsign__Pin_m152p0_197p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blackbough_Blacksmith_Pin_m196p0_172p0",
+        "http://cgi.di.uoa.gr/witcher/resource/White_Orchard_q002_herbalist_mappin_Pin_m237p0_3p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blackbough_Merchant_near_roadsign__Pin_m152p0_197p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_sk38_mp_skl_mappin_Pin_m1305p0_1272p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Skellige_Abandoned_Sawmill_Pin_857p0_161p0_point_geometry"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Blackbough"
+      ]
+    },
+    {
+      "query_id": "T8_ComposedQuery_95",
+      "question": "Which entities located within the area of Blackbough are part of the Velen/Novigrad Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Blackbough"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blackbough_Merchant_near_roadsign__Pin_m152p0_197p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Herbalist_in_South_Novigrad_Pin_655p0_1779p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Map_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_I_Pin_612p0_2094p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Novigrad_Closed_City_II_Pin_531p0_1927p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blackbough_Blacksmith_Pin_m196p0_172p0_point_geometry",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Blackbough_Blacksmith_Pin_m196p0_172p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Blackbough"
+      ]
+    },
+    {
+      "query_id": "T9_SpatialCounting_438",
+      "question": "How many Boss And Treasure are in the Novigrad and Velen Map?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_gr15b_mp_Pin_1743p0_440p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_bm1_b_Pin_1422p0_m1147p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_ep1_poi_33_mp_Pin_2682p0_1431p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_gr33_Pin_933p0_1272p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_ep1_poi_35_mp_Pin_2001p0_2532p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_ep1_poi03_mp_Pin_1663p0_2559p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_bm1_a_Pin_1446p0_m1209p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_de27_Pin_2300p0_m664p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_nml_mp_cb19_Pin_1661p0_m448p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_ep1_poi_24_mp_Pin_1089p0_2743p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Novigrad_And_Velen_Map"
+      ]
+    },
+    {
+      "query_id": "T9_SpatialCounting_289",
+      "question": "How many Whetstone are in Byways?",
+      "expected_to_find_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Byways"
+      ],
+      "actually_retrieved_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_1455p0_m1208p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Whetstone",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_2048p0_1169p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_559p0_1574p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Velen_Novigrad_Whetstone_Pin_599p0_1705p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_whetstone_bob_8_Pin_m15p0_284p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_whetstone_bob_2_Pin_m464p0_m955p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_whetstone_bob_4_Pin_31p0_m1747p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_whetstone_bob_1_Pin_m273p0_640p0",
+        "http://cgi.di.uoa.gr/witcher/resource/Touissant_whetstone_bob_7_Pin_m510p0_m311p0"
+      ],
+      "missed_uris": [
+        "http://cgi.di.uoa.gr/witcher/resource/Byways"
+      ]
+    }
+  ]
+}
