@@ -36,7 +36,7 @@ city_polygons = {} # For storing city polygons
 
 # Load ontology to get existing OWL classes for typing instances
 try:
-    g.parse('../RDF/Classes.ttl', format='turtle')
+    g.parse('../../RDF/Classes.ttl', format='turtle')
     existing_classes = set()
     for s in g.subjects(RDF.type, OWL.Class):
         if isinstance(s, URIRef) and s.startswith(str(witcher)):
@@ -127,64 +127,97 @@ def clean_value(value: str) -> str:
     return value.strip()
 
 
+def to_typed_literal(value_str: str):
+    """
+    Intelligently attempts to convert a cleaned string to a typed rdflib.Literal
+    (integer or float). If the string contains non-numeric characters (after cleaning),
+    it remains a string.
+    """
+    # First, perform a general cleanup of wiki markup
+    cleaned_value = clean_value(value_str)
+    
+    # Create a test string to check if it's purely numeric (allowing for ., -)
+    numeric_test_str = cleaned_value.strip()
+    
+    # Regex to check if the string contains any letters or symbols that disqualify it from being a number.
+    # We allow digits, '.', '-', and ',' (which we will remove).
+    if re.search(r'[a-zA-Z!@#$%^&*()_+=?<>;:"\'\[\]\{\}\\\|]', numeric_test_str):
+        # If it contains letters etc., it's definitely a string.
+        return Literal(cleaned_value)
+
+    # If it passed the character check, now try to convert it
+    try:
+        # Remove commas that are sometimes used as thousands separators
+        numeric_test_str = numeric_test_str.replace(',', '')
+        
+        # Try to convert to an integer first if no decimal is present
+        if '.' not in numeric_test_str:
+            return Literal(int(numeric_test_str))
+        # Otherwise, try to convert to a float
+        else:
+            return Literal(float(numeric_test_str))
+    except (ValueError, TypeError):
+        # If conversion fails for any other reason, fall back to a string literal
+        return Literal(cleaned_value)
+
+
 def process_page_content(title, text, graph):
     """
-    Extracts categories and infobox data from a wiki page's text and adds triples to the graph.
+    The definitive version. Extracts categories and infobox data, with DYNAMIC
+    type detection and correct handling of multiple wikilinks in a single value.
     """
-    if not title or not text:
-        return
+    if not title or not text: return
 
     subject_uri = dbr[sanitize_for_uri(title)]
-    
-    # --- Process Categories to assign rdf:type ---
+
+    # --- Category Processing (Unchanged) ---
     categories = category_pattern.findall(text)
     is_instance_created = False
-    for cat in categories:
-        cat_name = cat.split('|')[0].strip().replace('_', ' ')
-        if cat_name.lower() in existing_classes:
-            # Clean category name for URI
-            class_uri = witcher[cat_name.replace(' ', '_')]
-            graph.add((subject_uri, RDF.type, class_uri))
-            
-            # Add the label only once
-            if not is_instance_created:
-                graph.add((subject_uri, RDFS.label, Literal(title)))
-                print(f"Created instance: {title} -> rdf:type witcher:{cat_name.replace(' ', '_')}")
-                is_instance_created = True
- 
-    # --- Process Infobox ---
+    for cat_text in categories:
+        cat_name = cat_text.split('|')[0].strip().replace('_', ' ')
+        class_uri = witcher[sanitize_for_uri(cat_name)]
+        graph.add((subject_uri, RDF.type, class_uri))
+        if not is_instance_created:
+            graph.add((subject_uri, RDFS.label, Literal(title)))
+            is_instance_created = True
+
+    # --- Infobox Processing with THE DEFINITIVE FIX ---
     infobox_body = find_infobox_content(text)
     if infobox_body:
         if not is_instance_created:
             graph.add((subject_uri, RDFS.label, Literal(title)))
 
-        # The infobox_property_pattern can now run on the *complete* and correct body
         for prop_name, raw_value in infobox_property_pattern.findall(infobox_body):
             prop_name_clean = prop_name.strip()
             prop_uri = witcher[sanitize_for_uri(prop_name_clean)]
             
-            values = [v.strip() for v in br_split_pattern.split(raw_value) if v.strip()] # Split value by <br> tags and clean whitespace
+            values = [v.strip() for v in br_split_pattern.split(raw_value) if v.strip()]
 
             for value in values:
-                # 1. Try to find all linkable entities within the value
+                if not value: continue
+
+                # --- Wikilink and Literal Handling ---
+                # First, try to find ALL linkable entities within the value string.
                 found_links = wikilink_find_pattern.findall(value)
                 
-                # 2. For each link found, create a separate object property (a structured link)
-                # This correctly loops over a list of strings.
-                for link_target in found_links:
-                    link_target = link_target.strip()
-                    if link_target:
-                        linked_uri = dbr[sanitize_for_uri(link_target)]
-                        graph.add((subject_uri, prop_uri, linked_uri)) 
-                        print(f"  - Added object property: {title} -> {prop_name_clean} -> {link_target}")
-
-                # 3. ALWAYS clean the original value and add it as a single data property.
-                # This preserves the full human-readable text context.
-                cleaned_literal = clean_value(value)
-                if cleaned_literal:
-                    graph.add((subject_uri, prop_uri, Literal(cleaned_literal)))
-                    print(f"  - Added data property: {title} -> {prop_name_clean} = '{cleaned_literal}'")
-
+                # If the regex finds any links, we treat this property as an object property.
+                if found_links:
+                    # found_links will be a list of tuples, e.g., [('Geralt of Rivia', '|Geralt')]
+                    for link_tuple in found_links:
+                        # The link target is the first item in the tuple
+                        page = link_tuple[0]
+                        linked_uri = dbr[sanitize_for_uri(page.strip())]
+                        graph.add((subject_uri, prop_uri, linked_uri))
+                
+                # If NO links are found, we process it as a data property.
+                else:
+                    # Pass the value to our intelligent type-casting function.
+                    # This will automatically create an integer, float, or string literal.
+                    literal_obj = to_typed_literal(value)
+                    
+                    # Only add the triple if the resulting literal is not empty
+                    if str(literal_obj):
+                        graph.add((subject_uri, prop_uri, literal_obj))
 
 def parse_esri_feature(feature):
     """
@@ -498,7 +531,7 @@ def integrate_map_pins(graph, xml_path, transform_matrix):
 # 4. Main Execution: Read XML and Build Graph
 # ——————————————————————————————
 
-input_file = '../Wiki_Dump_Namespaces/namespace_0_main.xml'
+input_file = '../../Wiki_Dump_Namespaces/namespace_0_main.xml'
 print(f"\nStarting processing of {input_file}...")
 
 with open(input_file, 'r', encoding='utf-8') as file:
@@ -536,23 +569,23 @@ g.add((dbr.Novigrad, witcher.isPartOf, novigrad_map_uri))  # Link Novigrad to th
 g.add((dbr.Velen, witcher.isPartOf, novigrad_map_uri))  # Link Velen to the map (with isPartOf)
 
 # 2. Add the border geometry TO the map URI
-borders_file = '../InfoFiles/novigrad_borders.json'
+borders_file = '../../InfoFiles/novigrad_borders.json'
 gis_control_data = add_map_border_geometry(g, borders_file, novigrad_map_uri)
 
 # 3. Integrate all other features and link them TO the map URI
-swamps_file = '../InfoFiles/novigrad_swamps.json'
+swamps_file = '../../InfoFiles/novigrad_swamps.json'
 integrate_geo_file(g, swamps_file, witcher.Swamp, novigrad_map_uri, uri_prefix="Novigrad")
 
-lakes_file = '../InfoFiles/novigrad_lakes.json'
+lakes_file = '../../InfoFiles/novigrad_lakes.json'
 integrate_geo_file(g, lakes_file, witcher.Lake, novigrad_map_uri, uri_prefix="Novigrad")
 
-terrain_file = '../InfoFiles/novigrad_terrain.json'
+terrain_file = '../../InfoFiles/novigrad_terrain.json'
 integrate_geo_file(g, terrain_file, witcher.Terrain, novigrad_map_uri, uri_prefix="Novigrad")
 
-roads_file = '../InfoFiles/novigrad_roads.json'
+roads_file = '../../InfoFiles/novigrad_roads.json'
 integrate_geo_file(g, roads_file, witcher.Road, novigrad_map_uri, uri_prefix="Novigrad")
 
-cities_file = '../InfoFiles/novigrad_cities.json'
+cities_file = '../../InfoFiles/novigrad_cities.json'
 integrate_geo_file(g, cities_file, witcher.City, novigrad_map_uri, name_attribute='name')
 
 # 4. Define control points for auto-calibration and calculate the transformation matrix
@@ -584,14 +617,14 @@ if gis_control_data:
     transformation_matrix = calculate_affine_transform(game_control_points, gis_control_points)
  
 # 5. Integrate and Spatially Link Map Pins using the calculated matrix
-mappins_xml_file = '../InfoFiles/MapPins.xml'
+mappins_xml_file = '../../InfoFiles/MapPins.xml'
 integrate_map_pins(g, mappins_xml_file, transformation_matrix)
 
 # ——————————————————————————————
 # 5. Save Final RDF Output
 # ——————————————————————————————
 
-output_file = '../RDF/main_linked_geo.n3'
+output_file = '../../RDF/main_linked_geo.n3'
 g.serialize(output_file, format='n3')
 
 print("\n-------------------------------------------")

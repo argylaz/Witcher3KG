@@ -87,14 +87,13 @@ def calculate_label_f1_score(gen_bindings: list, gt_bindings: list, gen_query: s
     f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
     return f1
 
-# --- 2. DEFINE YOUR TEST CASES HERE ---
+# --- 2. TEST CASES ---
 TEST_CASES = [
     {
         "question": "What's the strongest sword in the witcher 3 game?",
         "ground_truth_sparql": "SELECT ?subjectLabel WHERE { ?subject witcher:abilities dbr:Signs . ?subject rdfs:label ?subjectLabel . }",
         "template_id": "T6_PropertyLookup"
     },
-    # Add more test cases here
 ]
 
 def main():

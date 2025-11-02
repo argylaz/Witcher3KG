@@ -10,7 +10,7 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 # Import your final, definitive pipeline class
 from pipelines import ExecutionGuidedAgent
 
-# --- 1. DEFINE YOUR TEST CASES HERE ---
+# --- 1. TEST CASES ---
 # Add the specific, challenging queries you want to analyze, including their ground truth.
 TEST_CASES = [
     {

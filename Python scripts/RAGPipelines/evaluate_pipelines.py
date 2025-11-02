@@ -44,7 +44,6 @@ def extract_answer_keys(sparql_query: str) -> list:
     if not all_variables:
         return []
 
-    # --- THE CRITICAL LOGIC ---
     # Prioritize any variable that contains 'label' or 'name'
     for var in all_variables:
         if 'label' in var.lower() or 'name' in var.lower():

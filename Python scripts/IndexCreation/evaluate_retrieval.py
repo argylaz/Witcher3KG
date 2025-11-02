@@ -19,7 +19,6 @@ def extract_and_categorize_ground_truth(sparql_query, uri_to_type_map):
     base_uri_pattern = "http://cgi.di.uoa.gr/witcher/"
 
     # Pattern 1: Find classes (URIs that follow `a` or `rdf:type`)
-    # This pattern is robust and correct.
     class_uris = re.findall(r'\s+a\s+<(' + base_uri_pattern + r'[^>]+)>', sparql_query)
     for uri in class_uris:
         if uri_to_type_map.get(uri) == 'class':
@@ -139,7 +138,6 @@ def main():
                 'entity': entity_results, 'class': class_results, 'property': prop_results
             }
 
-            # --- THE CRITICAL FIX IS HERE ---
             # We only calculate and append metrics for an index if the query was relevant to it.
             for index_name in ['entity', 'class', 'property']:
                 gt_for_index = categorized_gt_uris.get(index_name)

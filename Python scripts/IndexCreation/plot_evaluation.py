@@ -21,7 +21,6 @@ def plot_metrics():
     k_values = data['k_values']
     metrics_data = data['metrics']
     
-    # --- ADDED 'mrr' to the list of metrics to plot ---
     metrics_to_plot = ['precision', 'recall', 'f1', 'mrr']
     
     # Define display names for professional-looking titles and labels
