@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 import re
-from rdflib import Graph, Namespace, URIRef, Literal, RDF, RDFS, OWL
+from rdflib import Graph, Namespace, URIRef, Literal, RDF, RDFS, OWL, XSD
 
 # --- Configuration ---
 ONTOLOGY_PREFIX = "witcher"
@@ -16,6 +16,7 @@ g.bind("witcher", witcher)
 g.bind("dbr", dbr)
 g.bind("owl", OWL)
 g.bind("rdfs", RDFS)
+g.bind("xsd", XSD)
 
 # --- Helper Functions ---
 def sanitize_for_uri(title):
@@ -30,7 +31,7 @@ def extract_full_text(element):
 # --- 1. Generate Class Hierarchy from Wiki Categories ---
 print("Parsing wiki categories to build class hierarchy...")
 try:
-    tree = ET.parse('../Wiki_Dump_Namespaces/namespace_14_Category.xml')
+    tree = ET.parse('../../Wiki_Dump_Namespaces/namespace_14_Category.xml')
     root = tree.getroot()
 
     for page in root.findall('page'):
@@ -51,6 +52,40 @@ try:
 
 except FileNotFoundError:
     print("Warning: Category XML file not found. No class hierarchy will be built.")
+
+
+###################### Ontology explicit property additions ######################
+# For values that are ranges (e.g. the buy value of an item can be between X and Y),
+# we need to explicitly define the ontology classes and properties to represent this. We chose a blank node that connects to min and max values.
+print("Adding explicit ontology definitions...")
+
+
+# ---  Define the RangeValue Class ---
+# This is a generic class for any value that represents a range.
+range_value_class = witcher.RangeValue
+g.add((range_value_class, RDF.type, OWL.Class))
+g.add((range_value_class, RDFS.label, Literal("Range Value")))
+g.add((range_value_class, RDFS.comment, Literal("A structured class to represent a value that is a range between a minimum and a maximum.")))
+
+# ---  Define the Datatype Properties with XSD Facets ---
+# These properties will connect a RangeValue instance to its min and max values.
+
+# -- minInclusive property --
+min_value_prop = witcher.minValue
+g.add((min_value_prop, RDF.type, OWL.DatatypeProperty))
+g.add((min_value_prop, RDFS.label, Literal("minimum value")))
+g.add((min_value_prop, RDFS.comment, Literal("The minimum inclusive value of a range.")))
+# Define the range of this property. It can accept any numeric literal.
+# Using a general number type is more flexible than just xsd:integer.
+g.add((min_value_prop, RDFS.range, XSD.decimal)) 
+
+# -- maxInclusive property --
+max_value_prop = witcher.maxValue
+g.add((max_value_prop, RDF.type, OWL.DatatypeProperty))
+g.add((max_value_prop, RDFS.label, Literal("maximum value")))
+g.add((max_value_prop, RDFS.comment, Literal("The maximum inclusive value of a range.")))
+g.add((max_value_prop, RDFS.range, XSD.decimal))
+
 
 # --- 2. Manually Define Mappin Ontology and Relationships ---
 print("Adding specific axioms for map pins and game concepts...")
@@ -218,7 +253,7 @@ g.add((witcher.Roads, OWL.sameAs, witcher.Road))
 print("Ontology augmentation complete.")
 
 # --- 3. Save the Combined Ontology ---
-with open('../RDF/Classes.ttl', 'w', encoding='utf-8') as f:
+with open('../../RDF/Classes.ttl', 'w', encoding='utf-8') as f:
     f.write(g.serialize(format='turtle'))
 
-print(f"\nSuccessfully generated enriched ontology file at '../RDF/Classes.ttl'")
+print(f"\nSuccessfully generated enriched ontology file at '../../RDF/Classes.ttl'")

@@ -3,6 +3,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix witcher: <http://cgi.di.uoa.gr/witcher/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 witcher:Actor_photos a owl:Class ;
     rdfs:label "Actor photos" ;
@@ -1428,6 +1429,10 @@ witcher:Quebrith a owl:Class ;
     rdfs:subClassOf witcher:The_Witcher_2_alchemy,
         witcher:The_Witcher_alchemy .
 
+witcher:RangeValue a owl:Class ;
+    rdfs:label "Range Value" ;
+    rdfs:comment "A structured class to represent a value that is a range between a minimum and a maximum." .
+
 witcher:Ranks_and_titles a owl:Class ;
     rdfs:label "Ranks and titles" ;
     rdfs:subClassOf witcher:Occupations .
@@ -2777,6 +2782,16 @@ witcher:Yrrhedes_locations a owl:Class ;
 witcher:Zerrikanians a owl:Class ;
     rdfs:label "Zerrikanians" ;
     rdfs:subClassOf witcher:Nationalities .
+
+witcher:maxValue a owl:DatatypeProperty ;
+    rdfs:label "maximum value" ;
+    rdfs:comment "The maximum inclusive value of a range." ;
+    rdfs:range xsd:decimal .
+
+witcher:minValue a owl:DatatypeProperty ;
+    rdfs:label "minimum value" ;
+    rdfs:comment "The minimum inclusive value of a range." ;
+    rdfs:range xsd:decimal .
 
 witcher:usesMappinType a owl:ObjectProperty ;
     rdfs:label "uses mappin type" .

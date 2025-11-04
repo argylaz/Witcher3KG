@@ -3,7 +3,7 @@ import json
 import xml.etree.ElementTree as ET
 import numpy as np
 from shapely.geometry import Point, Polygon, MultiLineString
-from rdflib import Graph, Namespace, URIRef, Literal, RDF, RDFS, OWL
+from rdflib import Graph, Namespace, URIRef, Literal, RDF, RDFS, OWL, BNode, XSD
 from rdflib.namespace import XSD
 from typing import Tuple, Optional, Union
 
@@ -161,27 +161,74 @@ def to_typed_literal(value_str: str):
         return Literal(cleaned_value)
 
 
+def create_rdf_object(graph, value_str: str):
+    """
+    Intelligently creates an RDF object. It can be a typed Literal (int, float),
+    a plain string Literal, or a structured Blank Node for any range like "X-Y".
+    """
+    cleaned_value = clean_value(value_str)
+    
+    # --- 1. Check for a Range Pattern (e.g., "92-356", "10 - 20") ---
+    # This regex is more flexible, allowing for spaces around the hyphen.
+    range_match = re.match(r'^\s*([0-9.]+)\s*-\s*([0-9.]+)\s*$', cleaned_value)
+    if range_match:
+        try:
+            # Determine if the values are floats or integers
+            min_str = range_match.group(1)
+            max_str = range_match.group(2)
+            
+            min_val = float(min_str) if '.' in min_str else int(min_str)
+            max_val = float(max_str) if '.' in max_str else int(max_str)
+            
+            # Create a new Blank Node for the RangeValue structure
+            range_node = BNode()
+            graph.add((range_node, RDF.type, witcher.RangeValue))
+            graph.add((range_node, witcher.minValue, Literal(min_val)))
+            graph.add((range_node, witcher.maxValue, Literal(max_val)))
+            return range_node # Return the node itself to be used as the object
+        except (ValueError, TypeError):
+            # If conversion to number fails, fall back to a simple string
+            return Literal(cleaned_value)
+
+    # --- 2. If not a range, process as a single numeric or string literal ---
+    numeric_test_str = cleaned_value.strip()
+    if re.search(r'[a-zA-Z]', numeric_test_str):
+        return Literal(cleaned_value)
+
+    try:
+        numeric_test_str = numeric_test_str.replace(',', '')
+        if '.' not in numeric_test_str:
+            return Literal(int(numeric_test_str))
+        else:
+            return Literal(float(numeric_test_str))
+    except (ValueError, TypeError):
+        return Literal(cleaned_value)
+
+
+# --- This is the definitive version of the function ---
 def process_page_content(title, text, graph):
     """
-    The definitive version. Extracts categories and infobox data, with DYNAMIC
-    type detection and correct handling of multiple wikilinks in a single value.
+    The definitive version. It combines the robust dual-creation logic (creating both
+    object properties from links AND a full-text data property) with dynamic
+    type detection for all literals.
     """
-    if not title or not text: return
+    if not title or not text:
+        return
 
     subject_uri = dbr[sanitize_for_uri(title)]
-
+    
     # --- Category Processing (Unchanged) ---
     categories = category_pattern.findall(text)
     is_instance_created = False
-    for cat_text in categories:
-        cat_name = cat_text.split('|')[0].strip().replace('_', ' ')
+    for cat in categories:
+        cat_name = cat.split('|')[0].strip().replace('_', ' ')
         class_uri = witcher[sanitize_for_uri(cat_name)]
         graph.add((subject_uri, RDF.type, class_uri))
         if not is_instance_created:
             graph.add((subject_uri, RDFS.label, Literal(title)))
             is_instance_created = True
 
-    # --- Infobox Processing with THE DEFINITIVE FIX ---
+    # --- Infobox Processing ---
     infobox_body = find_infobox_content(text)
     if infobox_body:
         if not is_instance_created:
@@ -190,34 +237,26 @@ def process_page_content(title, text, graph):
         for prop_name, raw_value in infobox_property_pattern.findall(infobox_body):
             prop_name_clean = prop_name.strip()
             prop_uri = witcher[sanitize_for_uri(prop_name_clean)]
-            
             values = [v.strip() for v in br_split_pattern.split(raw_value) if v.strip()]
 
             for value in values:
                 if not value: continue
-
-                # --- Wikilink and Literal Handling ---
-                # First, try to find ALL linkable entities within the value string.
+                
+                # First, check for and create all object properties from wikilinks
                 found_links = wikilink_find_pattern.findall(value)
-                
-                # If the regex finds any links, we treat this property as an object property.
                 if found_links:
-                    # found_links will be a list of tuples, e.g., [('Geralt of Rivia', '|Geralt')]
-                    for link_tuple in found_links:
-                        # The link target is the first item in the tuple
-                        page = link_tuple[0]
-                        linked_uri = dbr[sanitize_for_uri(page.strip())]
-                        graph.add((subject_uri, prop_uri, linked_uri))
+                    for link_target in found_links:
+                        if link_target:
+                            linked_uri = dbr[sanitize_for_uri(link_target.strip())]
+                            graph.add((subject_uri, prop_uri, linked_uri))
+
+                # SEPARATELY, process the value to create the data property.
+                # This will create a simple literal OR a structured RangeValue blank node.
+                rdf_object = create_rdf_object(graph, value)
                 
-                # If NO links are found, we process it as a data property.
-                else:
-                    # Pass the value to our intelligent type-casting function.
-                    # This will automatically create an integer, float, or string literal.
-                    literal_obj = to_typed_literal(value)
-                    
-                    # Only add the triple if the resulting literal is not empty
-                    if str(literal_obj):
-                        graph.add((subject_uri, prop_uri, literal_obj))
+                # Only add the triple if the object is not an empty string literal
+                if not (isinstance(rdf_object, Literal) and not str(rdf_object)):
+                    graph.add((subject_uri, prop_uri, rdf_object))
 
 def parse_esri_feature(feature):
     """
