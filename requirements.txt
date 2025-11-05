@@ -1,0 +1,31 @@
+# requirements.txt
+
+# Core library for making HTTP requests to the DeepSeek API
+requests
+
+# The official DeepSeek Python library (good practice to include)
+deepseek
+
+# Core library for interacting with SPARQL endpoints
+SPARQLWrapper
+
+# The main library for the RAG pipeline (indexing, retrieval)
+llama-index
+
+# Specific LlamaIndex integration for using Hugging Face embedding models
+llama-index-embeddings-huggingface
+
+# For running local LLMs like Llama 3 (even if not used, it's part of the setup)
+llama-index-llms-ollama
+
+# The underlying library for Hugging Face models, required by the embedding integration
+sentence-transformers
+
+# For creating progress bars in the scripts
+tqdm
+
+# For generating the evaluation plots
+matplotlib
+
+# For numerical operations in the plotting script (e.g., calculating averages)
+numpy
