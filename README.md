@@ -83,12 +83,18 @@ cd "Python scripts"
 
 # 1. Create the core ontology from category structures
 python KG/Category_to_RDF.py
+# This produces the Classes.ttl file
 
 # 2. Populate the ontology to create the full knowledge graph
 python KG/GraphConstructor.py
+# This produces the Witcher3KG.n3 file
 
 # 3. (Optional) Visualize and debug the geospatial data
 python KG/geo_debug.py
+
+# 4. From the same directory, run the property definition script
+python Define_Properties.py
+
 ```
 
 - **Primary Output:** data/main_linked_geo.n3 (The final Knowledge Graph).
