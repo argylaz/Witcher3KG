@@ -24,6 +24,9 @@ witcher:Aether a owl:Class ;
     rdfs:subClassOf witcher:The_Witcher_2_alchemy,
         witcher:The_Witcher_alchemy .
 
+witcher:Affiliation a owl:ObjectProperty ;
+    rdfs:label "Affiliation" .
+
 witcher:Air_magic a owl:Class ;
     rdfs:label "Air magic" ;
     rdfs:subClassOf witcher:Magic .
@@ -611,6 +614,9 @@ witcher:Deserts a owl:Class ;
     rdfs:label "Deserts" ;
     rdfs:subClassOf witcher:Geography .
 
+witcher:Developers a owl:DatatypeProperty ;
+    rdfs:label "Developers" .
+
 witcher:Disambiguation a owl:Class ;
     rdfs:label "Disambiguation" ;
     rdfs:subClassOf witcher:Witcher_Wiki .
@@ -660,6 +666,9 @@ witcher:Ebbingers a owl:Class ;
 
 witcher:Enchant rdfs:label "Enchant" ;
     rdfs:subClassOf witcher:Mappin .
+
+witcher:Enemies a owl:DatatypeProperty ;
+    rdfs:label "Enemies" .
 
 witcher:Entrance rdfs:label "Entrance" ;
     rdfs:subClassOf witcher:Mappin .
@@ -803,6 +812,9 @@ witcher:Game_music_composers a owl:Class ;
 witcher:Gemmerians a owl:Class ;
     rdfs:label "Gemmerians" ;
     rdfs:subClassOf witcher:Nationalities .
+
+witcher:Genre a owl:DatatypeProperty ;
+    rdfs:label "Genre" .
 
 witcher:Geso a owl:Class ;
     rdfs:label "Geso" ;
@@ -1092,6 +1104,12 @@ witcher:Icons a owl:Class ;
     rdfs:label "Icons" ;
     rdfs:subClassOf witcher:Images .
 
+witcher:Illustrators a owl:DatatypeProperty ;
+    rdfs:label "Illustrators" .
+
+witcher:Image a owl:DatatypeProperty ;
+    rdfs:label "Image" .
+
 witcher:Image_needed a owl:Class ;
     rdfs:label "Image needed" ;
     rdfs:subClassOf witcher:Site_Maintenance .
@@ -1225,6 +1243,9 @@ witcher:Mind_magic a owl:Class ;
     rdfs:label "Mind magic" ;
     rdfs:subClassOf witcher:Magic .
 
+witcher:Module a owl:ObjectProperty ;
+    rdfs:label "Module" .
+
 witcher:Monarchs a owl:Class ;
     rdfs:label "Monarchs" ;
     rdfs:subClassOf witcher:Royal_family_members .
@@ -1240,6 +1261,9 @@ witcher:MonterNest rdfs:subClassOf witcher:Mappin .
 
 witcher:MutagenDismantle rdfs:label "Mutagen Dismantle" ;
     rdfs:subClassOf witcher:Mappin .
+
+witcher:Name a owl:DatatypeProperty ;
+    rdfs:label "Name" .
 
 witcher:Nationality_templates a owl:Class ;
     rdfs:label "Nationality templates" ;
@@ -1296,6 +1320,9 @@ witcher:Netflix_images___Screenshots a owl:Class ;
 witcher:Neutral_gwent_cards a owl:Class ;
     rdfs:label "Neutral gwent cards" ;
     rdfs:subClassOf witcher:The_Witcher_3_gwent .
+
+witcher:Next a owl:DatatypeProperty ;
+    rdfs:label "Next" .
 
 witcher:Nigredo a owl:Class ;
     rdfs:label "Nigredo" ;
@@ -1451,9 +1478,18 @@ witcher:Redanians a owl:Class ;
     rdfs:label "Redanians" ;
     rdfs:subClassOf witcher:Nationalities .
 
+witcher:Region a owl:DatatypeProperty ;
+    rdfs:label "Region" .
+
 witcher:Regions a owl:Class ;
     rdfs:label "Regions" ;
     rdfs:subClassOf witcher:Geography .
+
+witcher:Relatives a owl:ObjectProperty ;
+    rdfs:label "Relatives" .
+
+witcher:Release_date a owl:DatatypeProperty ;
+    rdfs:label "Release Date" .
 
 witcher:Relict a owl:Class ;
     rdfs:label "Relict" .
@@ -1464,6 +1500,9 @@ witcher:Replace a owl:Class ;
 
 witcher:RescuingTown rdfs:label "Rescuing Town" ;
     rdfs:subClassOf witcher:Mappin .
+
+witcher:Reward a owl:ObjectProperty ;
+    rdfs:label "Reward" .
 
 witcher:Rings a owl:Class ;
     rdfs:label "Rings" ;
@@ -1580,6 +1619,9 @@ witcher:Soothsayers a owl:Class ;
     rdfs:label "Soothsayers" ;
     rdfs:subClassOf witcher:Occupations .
 
+witcher:Source a owl:ObjectProperty ;
+    rdfs:label "Source" .
+
 witcher:Special_ingredients a owl:Class ;
     rdfs:label "Special ingredients" ;
     rdfs:subClassOf witcher:The_Witcher_ingredients .
@@ -1605,6 +1647,9 @@ witcher:Stubs a owl:Class ;
 witcher:Subpages a owl:Class ;
     rdfs:label "Subpages" ;
     rdfs:subClassOf witcher:Witcher_Wiki .
+
+witcher:Successor a owl:DatatypeProperty ;
+    rdfs:label "Successor" .
 
 witcher:Succubi a owl:Class ;
     rdfs:label "Succubi" ;
@@ -2644,6 +2689,9 @@ witcher:Trolls a owl:Class ;
     rdfs:label "Trolls" ;
     rdfs:subClassOf witcher:Races .
 
+witcher:Type a owl:ObjectProperty ;
+    rdfs:label "Type" .
+
 witcher:Unions a owl:Class ;
     rdfs:label "Unions" ;
     rdfs:subClassOf witcher:Locations .
@@ -2655,6 +2703,9 @@ witcher:User_images a owl:Class ;
 witcher:Valleys a owl:Class ;
     rdfs:label "Valleys" ;
     rdfs:subClassOf witcher:Geography .
+
+witcher:Value a owl:DatatypeProperty ;
+    rdfs:label "Value" .
 
 witcher:Vampires a owl:Class ;
     rdfs:label "Vampires" ;
@@ -2713,6 +2764,9 @@ witcher:Water_magic a owl:Class ;
     rdfs:label "Water magic" ;
     rdfs:subClassOf witcher:Magic .
 
+witcher:Weight a owl:DatatypeProperty ;
+    rdfs:label "Weight" .
+
 witcher:Weights_and_measures a owl:Class ;
     rdfs:label "Weights and measures" ;
     rdfs:subClassOf witcher:Culture .
@@ -2767,6 +2821,9 @@ witcher:Worlds a owl:Class ;
     rdfs:label "Worlds" ;
     rdfs:subClassOf witcher:Geography .
 
+witcher:Worshiped a owl:DatatypeProperty ;
+    rdfs:label "Worshiped" .
+
 witcher:Yrrhedes_bestiary a owl:Class ;
     rdfs:label "Yrrhedes bestiary" ;
     rdfs:subClassOf witcher:Creatures .
@@ -2783,18 +2840,783 @@ witcher:Zerrikanians a owl:Class ;
     rdfs:label "Zerrikanians" ;
     rdfs:subClassOf witcher:Nationalities .
 
+witcher:abilities a owl:DatatypeProperty ;
+    rdfs:label "Abilities" .
+
+witcher:additional a owl:ObjectProperty ;
+    rdfs:label "Additional" .
+
+witcher:adjective a owl:DatatypeProperty ;
+    rdfs:label "Adjective" .
+
+witcher:affiliations a owl:ObjectProperty ;
+    rdfs:label "Affiliations" .
+
+witcher:aka a owl:DatatypeProperty ;
+    rdfs:label "Aka" .
+
+witcher:alchemy a owl:DatatypeProperty ;
+    rdfs:label "Alchemy" .
+
+witcher:alchemy_formula a owl:DatatypeProperty ;
+    rdfs:label "Alchemy Formula" .
+
+witcher:alchemy_ingredients a owl:DatatypeProperty ;
+    rdfs:label "Alchemy Ingredients" .
+
+witcher:among a owl:DatatypeProperty ;
+    rdfs:label "Among" .
+
+witcher:anthem a owl:DatatypeProperty ;
+    rdfs:label "Anthem" .
+
+witcher:appears_books a owl:DatatypeProperty ;
+    rdfs:label "Appears Books" .
+
+witcher:appears_games a owl:ObjectProperty ;
+    rdfs:label "Appears Games" .
+
+witcher:appears_other a owl:DatatypeProperty ;
+    rdfs:label "Appears Other" .
+
+witcher:appears_tv a owl:DatatypeProperty ;
+    rdfs:label "Appears Tv" .
+
+witcher:area_served a owl:DatatypeProperty ;
+    rdfs:label "Area Served" .
+
+witcher:armor a owl:DatatypeProperty ;
+    rdfs:label "Armor" .
+
+witcher:armor_source a owl:DatatypeProperty ;
+    rdfs:label "Armor Source" .
+
+witcher:authors a owl:DatatypeProperty ;
+    rdfs:label "Authors" .
+
+witcher:average_height a owl:DatatypeProperty ;
+    rdfs:label "Average Height" .
+
+witcher:badge a owl:DatatypeProperty ;
+    rdfs:label "Badge" .
+
+witcher:banner a owl:DatatypeProperty ;
+    rdfs:label "Banner" .
+
+witcher:base a owl:ObjectProperty ;
+    rdfs:label "Base" .
+
+witcher:based_on a owl:ObjectProperty ;
+    rdfs:label "Based On" .
+
+witcher:battles a owl:DatatypeProperty ;
+    rdfs:label "Battles" .
+
+witcher:benefits a owl:DatatypeProperty ;
+    rdfs:label "Benefits" .
+
+witcher:birth a owl:DatatypeProperty ;
+    rdfs:label "Birth" .
+
+witcher:born a owl:ObjectProperty ;
+    rdfs:label "Born" .
+
+witcher:budget a owl:DatatypeProperty ;
+    rdfs:label "Budget" .
+
+witcher:buy a owl:ObjectProperty ;
+    rdfs:label "Buy" .
+
+witcher:buyh a owl:DatatypeProperty ;
+    rdfs:label "Buyh" .
+
+witcher:buymm a owl:DatatypeProperty ;
+    rdfs:label "Buymm" .
+
+witcher:buymmh a owl:DatatypeProperty ;
+    rdfs:label "Buymmh" .
+
+witcher:capital a owl:DatatypeProperty ;
+    rdfs:label "Capital" .
+
+witcher:captain a owl:DatatypeProperty ;
+    rdfs:label "Captain" .
+
+witcher:caption a owl:DatatypeProperty ;
+    rdfs:label "Caption" .
+
+witcher:casualties a owl:DatatypeProperty ;
+    rdfs:label "Casualties" .
+
+witcher:category a owl:DatatypeProperty ;
+    rdfs:label "Category" .
+
+witcher:center a owl:DatatypeProperty ;
+    rdfs:label "Center" .
+
+witcher:chapter a owl:ObjectProperty ;
+    rdfs:label "Chapter" .
+
+witcher:charge a owl:DatatypeProperty ;
+    rdfs:label "Charge" .
+
+witcher:charges a owl:DatatypeProperty ;
+    rdfs:label "Charges" .
+
+witcher:children a owl:DatatypeProperty ;
+    rdfs:label "Children" .
+
+witcher:city_map a owl:DatatypeProperty ;
+    rdfs:label "City Map" .
+
+witcher:civilizations a owl:ObjectProperty ;
+    rdfs:label "Civilizations" .
+
+witcher:class a owl:DatatypeProperty ;
+    rdfs:label "Class" .
+
+witcher:classification a owl:ObjectProperty ;
+    rdfs:label "Classification" .
+
+witcher:coa a owl:DatatypeProperty ;
+    rdfs:label "Coa" .
+
+witcher:colors a owl:DatatypeProperty ;
+    rdfs:label "Colors" .
+
+witcher:combatant_leaders_1 a owl:DatatypeProperty ;
+    rdfs:label "Combatant Leaders 1" .
+
+witcher:combatant_leaders_2 a owl:DatatypeProperty ;
+    rdfs:label "Combatant Leaders 2" .
+
+witcher:combatants_1 a owl:DatatypeProperty ;
+    rdfs:label "Combatants 1" .
+
+witcher:combatants_2 a owl:ObjectProperty ;
+    rdfs:label "Combatants 2" .
+
+witcher:commander a owl:ObjectProperty ;
+    rdfs:label "Commander" .
+
+witcher:companies a owl:DatatypeProperty ;
+    rdfs:label "Companies" .
+
+witcher:components a owl:ObjectProperty ;
+    rdfs:label "Components" .
+
+witcher:composers a owl:DatatypeProperty ;
+    rdfs:label "Composers" .
+
+witcher:conditions a owl:DatatypeProperty ;
+    rdfs:label "Conditions" .
+
+witcher:consultants a owl:DatatypeProperty ;
+    rdfs:label "Consultants" .
+
+witcher:cooldown a owl:DatatypeProperty ;
+    rdfs:label "Cooldown" .
+
+witcher:country a owl:ObjectProperty ;
+    rdfs:label "Country" .
+
+witcher:craftsman a owl:DatatypeProperty ;
+    rdfs:label "Craftsman" .
+
+witcher:creator a owl:ObjectProperty ;
+    rdfs:label "Creator" .
+
+witcher:culture a owl:ObjectProperty ;
+    rdfs:label "Culture" .
+
+witcher:currency a owl:DatatypeProperty ;
+    rdfs:label "Currency" .
+
+witcher:cutoff_quest a owl:DatatypeProperty ;
+    rdfs:label "Cutoff Quest" .
+
+witcher:damage a owl:DatatypeProperty ;
+    rdfs:label "Damage" .
+
+witcher:damage_received a owl:DatatypeProperty ;
+    rdfs:label "Damage Received" .
+
+witcher:date a owl:DatatypeProperty ;
+    rdfs:label "Date" .
+
+witcher:death a owl:DatatypeProperty ;
+    rdfs:label "Death" .
+
+witcher:deck a owl:DatatypeProperty ;
+    rdfs:label "Deck" .
+
+witcher:defacto a owl:DatatypeProperty ;
+    rdfs:label "Defacto" .
+
+witcher:demonym a owl:DatatypeProperty ;
+    rdfs:label "Demonym" .
+
+witcher:description a owl:ObjectProperty ;
+    rdfs:label "Description" .
+
+witcher:designers a owl:DatatypeProperty ;
+    rdfs:label "Designers" .
+
+witcher:developers a owl:DatatypeProperty ;
+    rdfs:label "Developers" .
+
+witcher:diagram a owl:DatatypeProperty ;
+    rdfs:label "Diagram" .
+
+witcher:diagram_components a owl:ObjectProperty ;
+    rdfs:label "Diagram Components" .
+
+witcher:directors a owl:DatatypeProperty ;
+    rdfs:label "Directors" .
+
+witcher:dismantle a owl:DatatypeProperty ;
+    rdfs:label "Dismantle" .
+
+witcher:distinctions a owl:DatatypeProperty ;
+    rdfs:label "Distinctions" .
+
+witcher:drawbacks a owl:DatatypeProperty ;
+    rdfs:label "Drawbacks" .
+
+witcher:duration a owl:DatatypeProperty ;
+    rdfs:label "Duration" .
+
+witcher:editors a owl:DatatypeProperty ;
+    rdfs:label "Editors" .
+
+witcher:effects a owl:DatatypeProperty ;
+    rdfs:label "Effects" .
+
+witcher:element a owl:DatatypeProperty ;
+    rdfs:label "Element" .
+
+witcher:emblem a owl:DatatypeProperty ;
+    rdfs:label "Emblem" .
+
+witcher:enemies a owl:ObjectProperty ;
+    rdfs:label "Enemies" .
+
+witcher:enemy a owl:DatatypeProperty ;
+    rdfs:label "Enemy" .
+
+witcher:engine a owl:DatatypeProperty ;
+    rdfs:label "Engine" .
+
+witcher:english_publish_date a owl:DatatypeProperty ;
+    rdfs:label "English Publish Date" .
+
+witcher:episode_number a owl:DatatypeProperty ;
+    rdfs:label "Episode Number" .
+
+witcher:established a owl:DatatypeProperty ;
+    rdfs:label "Established" .
+
+witcher:executive_producers a owl:DatatypeProperty ;
+    rdfs:label "Executive Producers" .
+
+witcher:eye_color a owl:DatatypeProperty ;
+    rdfs:label "Eye Color" .
+
+witcher:family a owl:ObjectProperty ;
+    rdfs:label "Family" .
+
+witcher:final a owl:ObjectProperty ;
+    rdfs:label "Final" .
+
+witcher:flag a owl:DatatypeProperty ;
+    rdfs:label "Flag" .
+
+witcher:followed_by a owl:ObjectProperty ;
+    rdfs:label "Followed By" .
+
+witcher:founder a owl:ObjectProperty ;
+    rdfs:label "Founder" .
+
+witcher:gender a owl:DatatypeProperty ;
+    rdfs:label "Gender" .
+
+witcher:genie a owl:DatatypeProperty ;
+    rdfs:label "Genie" .
+
+witcher:genre a owl:DatatypeProperty ;
+    rdfs:label "Genre" .
+
+witcher:geo_map a owl:DatatypeProperty ;
+    rdfs:label "Geo Map" .
+
+witcher:given_by a owl:DatatypeProperty ;
+    rdfs:label "Given By" .
+
+witcher:government_type a owl:DatatypeProperty ;
+    rdfs:label "Government Type" .
+
+witcher:hair_color a owl:DatatypeProperty ;
+    rdfs:label "Hair Color" .
+
+witcher:hasInGameCoordinates a owl:DatatypeProperty ;
+    rdfs:label "Has In Game Coordinates" .
+
+witcher:hasInternalName a owl:DatatypeProperty ;
+    rdfs:label "Has Internal Name" .
+
+witcher:head_of_government a owl:DatatypeProperty ;
+    rdfs:label "Head Of Government" .
+
+witcher:head_of_state a owl:ObjectProperty ;
+    rdfs:label "Head Of State" .
+
+witcher:headquarters a owl:DatatypeProperty ;
+    rdfs:label "Headquarters" .
+
+witcher:height a owl:DatatypeProperty ;
+    rdfs:label "Height" .
+
+witcher:hint a owl:DatatypeProperty ;
+    rdfs:label "Hint" .
+
+witcher:holiday a owl:ObjectProperty ;
+    rdfs:label "Holiday" .
+
+witcher:icon a owl:DatatypeProperty ;
+    rdfs:label "Icon" .
+
+witcher:id a owl:DatatypeProperty ;
+    rdfs:label "Id" .
+
+witcher:illustrators a owl:DatatypeProperty ;
+    rdfs:label "Illustrators" .
+
+witcher:image a owl:DatatypeProperty ;
+    rdfs:label "Image" .
+
+witcher:immunity a owl:ObjectProperty ;
+    rdfs:label "Immunity" .
+
+witcher:ingredients a owl:DatatypeProperty ;
+    rdfs:label "Ingredients" .
+
+witcher:intelligence a owl:DatatypeProperty ;
+    rdfs:label "Intelligence" .
+
+witcher:invented a owl:ObjectProperty ;
+    rdfs:label "Invented" .
+
+witcher:isPartOf a owl:ObjectProperty ;
+    rdfs:label "Is Part Of" .
+
+witcher:isbn a owl:DatatypeProperty ;
+    rdfs:label "Isbn" .
+
+witcher:judicial a owl:DatatypeProperty ;
+    rdfs:label "Judicial" .
+
+witcher:language a owl:DatatypeProperty ;
+    rdfs:label "Language" .
+
+witcher:languages a owl:DatatypeProperty ;
+    rdfs:label "Languages" .
+
+witcher:leader a owl:DatatypeProperty ;
+    rdfs:label "Leader" .
+
+witcher:legislative a owl:ObjectProperty ;
+    rdfs:label "Legislative" .
+
+witcher:letters a owl:DatatypeProperty ;
+    rdfs:label "Letters" .
+
+witcher:level a owl:DatatypeProperty ;
+    rdfs:label "Level" .
+
+witcher:lifespan a owl:DatatypeProperty ;
+    rdfs:label "Lifespan" .
+
+witcher:location a owl:DatatypeProperty ;
+    rdfs:label "Location" .
+
+witcher:location_map a owl:DatatypeProperty ;
+    rdfs:label "Location Map" .
+
+witcher:locations a owl:ObjectProperty ;
+    rdfs:label "Locations" .
+
+witcher:lookalike a owl:DatatypeProperty ;
+    rdfs:label "Lookalike" .
+
+witcher:loot a owl:DatatypeProperty ;
+    rdfs:label "Loot" .
+
+witcher:loyalty a owl:ObjectProperty ;
+    rdfs:label "Loyalty" .
+
+witcher:manufactured a owl:DatatypeProperty ;
+    rdfs:label "Manufactured" .
+
 witcher:maxValue a owl:DatatypeProperty ;
     rdfs:label "maximum value" ;
     rdfs:comment "The maximum inclusive value of a range." ;
     rdfs:range xsd:decimal .
+
+witcher:members a owl:ObjectProperty ;
+    rdfs:label "Members" .
+
+witcher:military a owl:DatatypeProperty ;
+    rdfs:label "Military" .
 
 witcher:minValue a owl:DatatypeProperty ;
     rdfs:label "minimum value" ;
     rdfs:comment "The minimum inclusive value of a range." ;
     rdfs:range xsd:decimal .
 
+witcher:mode a owl:DatatypeProperty ;
+    rdfs:label "Mode" .
+
+witcher:module a owl:DatatypeProperty ;
+    rdfs:label "Module" .
+
+witcher:name a owl:DatatypeProperty ;
+    rdfs:label "Name" .
+
+witcher:nationality a owl:DatatypeProperty ;
+    rdfs:label "Nationality" .
+
+witcher:neighbors a owl:DatatypeProperty ;
+    rdfs:label "Neighbors" .
+
+witcher:network a owl:DatatypeProperty ;
+    rdfs:label "Network" .
+
+witcher:next a owl:ObjectProperty ;
+    rdfs:label "Next" .
+
+witcher:next_show a owl:DatatypeProperty ;
+    rdfs:label "Next Show" .
+
+witcher:no_of_episodes a owl:DatatypeProperty ;
+    rdfs:label "No Of Episodes" .
+
+witcher:no_of_pages a owl:DatatypeProperty ;
+    rdfs:label "No Of Pages" .
+
+witcher:no_of_seasons a owl:DatatypeProperty ;
+    rdfs:label "No Of Seasons" .
+
+witcher:no_of_soldiers a owl:DatatypeProperty ;
+    rdfs:label "No Of Soldiers" .
+
+witcher:occupation a owl:DatatypeProperty ;
+    rdfs:label "Occupation" .
+
+witcher:occurrence a owl:ObjectProperty ;
+    rdfs:label "Occurrence" .
+
+witcher:official_language a owl:ObjectProperty ;
+    rdfs:label "Official Language" .
+
+witcher:original_air a owl:DatatypeProperty ;
+    rdfs:label "Original Air" .
+
+witcher:original_title a owl:DatatypeProperty ;
+    rdfs:label "Original Title" .
+
+witcher:owner a owl:ObjectProperty ;
+    rdfs:label "Owner" .
+
+witcher:parents a owl:ObjectProperty ;
+    rdfs:label "Parents" .
+
+witcher:partner a owl:ObjectProperty ;
+    rdfs:label "Partner" .
+
+witcher:path a owl:DatatypeProperty ;
+    rdfs:label "Path" .
+
+witcher:patron_for a owl:ObjectProperty ;
+    rdfs:label "Patron For" .
+
+witcher:plane a owl:DatatypeProperty ;
+    rdfs:label "Plane" .
+
+witcher:platform a owl:DatatypeProperty ;
+    rdfs:label "Platform" .
+
+witcher:player a owl:ObjectProperty ;
+    rdfs:label "Player" .
+
+witcher:points a owl:DatatypeProperty ;
+    rdfs:label "Points" .
+
+witcher:popular_among a owl:DatatypeProperty ;
+    rdfs:label "Popular Among" .
+
+witcher:population a owl:DatatypeProperty ;
+    rdfs:label "Population" .
+
+witcher:preceded_by a owl:DatatypeProperty ;
+    rdfs:label "Preceded By" .
+
+witcher:predecessor a owl:DatatypeProperty ;
+    rdfs:label "Predecessor" .
+
+witcher:prefix a owl:DatatypeProperty ;
+    rdfs:label "Prefix" .
+
+witcher:previous a owl:DatatypeProperty ;
+    rdfs:label "Previous" .
+
+witcher:previous_show a owl:ObjectProperty ;
+    rdfs:label "Previous Show" .
+
+witcher:producers a owl:DatatypeProperty ;
+    rdfs:label "Producers" .
+
+witcher:produces a owl:ObjectProperty ;
+    rdfs:label "Produces" .
+
+witcher:profession a owl:DatatypeProperty ;
+    rdfs:label "Profession" .
+
+witcher:provisions a owl:DatatypeProperty ;
+    rdfs:label "Provisions" .
+
+witcher:publication_date a owl:DatatypeProperty ;
+    rdfs:label "Publication Date" .
+
+witcher:published_in a owl:DatatypeProperty ;
+    rdfs:label "Published In" .
+
+witcher:publishers a owl:ObjectProperty ;
+    rdfs:label "Publishers" .
+
+witcher:purpose a owl:ObjectProperty ;
+    rdfs:label "Purpose" .
+
+witcher:qualities a owl:DatatypeProperty ;
+    rdfs:label "Qualities" .
+
+witcher:quest a owl:ObjectProperty ;
+    rdfs:label "Quest" .
+
+witcher:quest_item a owl:DatatypeProperty ;
+    rdfs:label "Quest Item" .
+
+witcher:quickslots a owl:DatatypeProperty ;
+    rdfs:label "Quickslots" .
+
+witcher:race a owl:DatatypeProperty ;
+    rdfs:label "Race" .
+
+witcher:range a owl:DatatypeProperty ;
+    rdfs:label "Range" .
+
+witcher:ranks a owl:DatatypeProperty ;
+    rdfs:label "Ranks" .
+
+witcher:rarity a owl:DatatypeProperty ;
+    rdfs:label "Rarity" .
+
+witcher:rating a owl:DatatypeProperty ;
+    rdfs:label "Rating" .
+
+witcher:reach a owl:DatatypeProperty ;
+    rdfs:label "Reach" .
+
+witcher:region a owl:ObjectProperty ;
+    rdfs:label "Region" .
+
+witcher:related a owl:DatatypeProperty ;
+    rdfs:label "Related" .
+
+witcher:relative a owl:DatatypeProperty ;
+    rdfs:label "Relative" .
+
+witcher:release_date a owl:DatatypeProperty ;
+    rdfs:label "Release Date" .
+
+witcher:religion a owl:DatatypeProperty ;
+    rdfs:label "Religion" .
+
+witcher:religion_center a owl:ObjectProperty ;
+    rdfs:label "Religion Center" .
+
+witcher:requirements a owl:ObjectProperty ;
+    rdfs:label "Requirements" .
+
+witcher:residence a owl:ObjectProperty ;
+    rdfs:label "Residence" .
+
+witcher:result a owl:DatatypeProperty ;
+    rdfs:label "Result" .
+
+witcher:reward a owl:DatatypeProperty ;
+    rdfs:label "Reward" .
+
+witcher:row a owl:DatatypeProperty ;
+    rdfs:label "Row" .
+
+witcher:ruler a owl:DatatypeProperty ;
+    rdfs:label "Ruler" .
+
+witcher:runes a owl:DatatypeProperty ;
+    rdfs:label "Runes" .
+
+witcher:running_time a owl:DatatypeProperty ;
+    rdfs:label "Running Time" .
+
+witcher:season_number a owl:DatatypeProperty ;
+    rdfs:label "Season Number" .
+
+witcher:second_type a owl:DatatypeProperty ;
+    rdfs:label "Second Type" .
+
+witcher:sell a owl:DatatypeProperty ;
+    rdfs:label "Sell" .
+
+witcher:shapeArea a owl:DatatypeProperty ;
+    rdfs:label "Shape Area" .
+
+witcher:shapeLength a owl:DatatypeProperty ;
+    rdfs:label "Shape Length" .
+
+witcher:skin_color a owl:DatatypeProperty ;
+    rdfs:label "Skin Color" .
+
+witcher:slots a owl:DatatypeProperty ;
+    rdfs:label "Slots" .
+
+witcher:source a owl:DatatypeProperty ;
+    rdfs:label "Source" .
+
+witcher:spec_ability a owl:ObjectProperty ;
+    rdfs:label "Spec Ability" .
+
+witcher:special_rules a owl:DatatypeProperty ;
+    rdfs:label "Special Rules" .
+
+witcher:species a owl:DatatypeProperty ;
+    rdfs:label "Species" .
+
+witcher:starring a owl:DatatypeProperty ;
+    rdfs:label "Starring" .
+
+witcher:starting_icon a owl:DatatypeProperty ;
+    rdfs:label "Starting Icon" .
+
+witcher:status a owl:DatatypeProperty ;
+    rdfs:label "Status" .
+
+witcher:story_cards a owl:DatatypeProperty ;
+    rdfs:label "Story Cards" .
+
+witcher:strength a owl:DatatypeProperty ;
+    rdfs:label "Strength" .
+
+witcher:strength_1 a owl:ObjectProperty ;
+    rdfs:label "Strength 1" .
+
+witcher:strength_2 a owl:DatatypeProperty ;
+    rdfs:label "Strength 2" .
+
+witcher:sub_races a owl:DatatypeProperty ;
+    rdfs:label "Sub Races" .
+
+witcher:successor a owl:ObjectProperty ;
+    rdfs:label "Successor" .
+
+witcher:susceptibility a owl:DatatypeProperty ;
+    rdfs:label "Susceptibility" .
+
+witcher:symbol a owl:DatatypeProperty ;
+    rdfs:label "Symbol" .
+
+witcher:symbols a owl:DatatypeProperty ;
+    rdfs:label "Symbols" .
+
+witcher:tactics a owl:DatatypeProperty ;
+    rdfs:label "Tactics" .
+
+witcher:tags a owl:DatatypeProperty ;
+    rdfs:label "Tags" .
+
+witcher:tier a owl:DatatypeProperty ;
+    rdfs:label "Tier" .
+
+witcher:tier_3_Armor_10000_XP_related a owl:DatatypeProperty ;
+    rdfs:label "Tier 3  Armor 10000 Xp Related" .
+
+witcher:title a owl:ObjectProperty ;
+    rdfs:label "Title" .
+
+witcher:titles a owl:ObjectProperty ;
+    rdfs:label "Titles" .
+
+witcher:toxicity a owl:DatatypeProperty ;
+    rdfs:label "Toxicity" .
+
+witcher:translators a owl:DatatypeProperty ;
+    rdfs:label "Translators" .
+
+witcher:trophy_quests_br_Small_Problems_id a owl:DatatypeProperty ;
+    rdfs:label "Trophy Quests Br  Small  Problems Id" .
+
+witcher:trophy_quests_id a owl:DatatypeProperty ;
+    rdfs:label "Trophy Quests Id" .
+
+witcher:tw1_symbol a owl:DatatypeProperty ;
+    rdfs:label "Tw1 Symbol" .
+
+witcher:tw2_symbol a owl:DatatypeProperty ;
+    rdfs:label "Tw2 Symbol" .
+
+witcher:type a owl:DatatypeProperty ;
+    rdfs:label "Type" .
+
+witcher:user a owl:DatatypeProperty ;
+    rdfs:label "User" .
+
 witcher:usesMappinType a owl:ObjectProperty ;
     rdfs:label "uses mappin type" .
+
+witcher:value a owl:DatatypeProperty ;
+    rdfs:label "Value" .
+
+witcher:variants a owl:ObjectProperty ;
+    rdfs:label "Variants" .
+
+witcher:variations a owl:DatatypeProperty ;
+    rdfs:label "Variations" .
+
+witcher:version a owl:DatatypeProperty ;
+    rdfs:label "Version" .
+
+witcher:voice a owl:DatatypeProperty ;
+    rdfs:label "Voice" .
+
+witcher:wages a owl:DatatypeProperty ;
+    rdfs:label "Wages" .
+
+witcher:website a owl:DatatypeProperty ;
+    rdfs:label "Website" .
+
+witcher:weight a owl:DatatypeProperty ;
+    rdfs:label "Weight" .
+
+witcher:witcher_work a owl:ObjectProperty ;
+    rdfs:label "Witcher Work" .
+
+witcher:worshiped a owl:ObjectProperty ;
+    rdfs:label "Worshiped" .
+
+witcher:worshiped_by a owl:DatatypeProperty ;
+    rdfs:label "Worshiped By" .
+
+witcher:writers a owl:ObjectProperty ;
+    rdfs:label "Writers" .
 
 dbr:Armorer witcher:usesMappinType witcher:Armorer .
 
