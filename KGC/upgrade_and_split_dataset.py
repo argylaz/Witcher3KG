@@ -1,13 +1,7 @@
 import os
 import random
-from collections import defaultdict, Counter
-from SPARQLWrapper import SPARQLWrapper, JSON
-
-# --- 1. CONFIGURATION ---
-
-# Input/Output Files
-INPUT_FILES = ["train.tsv", "valid.tsv", "test.tsv", "all_triples.tsv"] # Will load whatever exists
-OUTPUT_DIR = "dataset_v2" # Save new files here to avoid overwriting immediately
+from collections import defaultdict
+import pandas as pd # Using pandas for easier data handling
 
 # SPARQL Setup
 SPARQL_ENDPOINT_URL = "http://localhost:7200/repositories/da4dte_final"
@@ -17,180 +11,134 @@ NAMESPACES = """
     PREFIX dbr: <http://cgi.di.uoa.gr/witcher/resource/>
 """
 
-# --- CLEANING RULES ---
-# Map bad/typo relation names to the correct ones
-RELATION_FIXES = {
-    "http://cgi.di.uoa.gr/witcher/ontology#Region": "http://cgi.di.uoa.gr/witcher/ontology#region",
-    "http://cgi.di.uoa.gr/witcher/ontology#Tittles": "http://cgi.di.uoa.gr/witcher/ontology#titles", 
+
+# --- 1. CONFIGURATION ---
+# The single source of truth for our curated dataset
+CURATED_FILE_PATH = 'dataset_v2/all_triples_combined.tsv' 
+OUTPUT_DIR = "dataset_v3" # New version for a clean slate
+
+# --- RELATION MERGING RULES ---
+# Define the new, unified relation
+UNIFIED_FAMILY_RELATION = "http://cgi.di.uoa.gr/witcher/ontology#family_relationship"
+# Define which relations should be merged into it
+RELATIONS_TO_MERGE = {
+    "http://cgi.di.uoa.gr/witcher/ontology#parents",
+    "http://cgi.di.uoa.gr/witcher/ontology#children",
+    "http://cgi.di.uoa.gr/witcher/ontology#relative",
+    "http://cgi.di.uoa.gr/witcher/ontology#family",
+    # Add any other family-related predicates here, e.g., siblings
 }
 
-# --- DENSIFICATION TARGETS ---
-# If a relation has fewer than X triples, fetch more from the KG until X is reached.
-# Use the FULL URI of the property.
-TARGET_COUNTS = {
-    "http://cgi.di.uoa.gr/witcher/ontology#abilities": 100,
-    "http://cgi.di.uoa.gr/witcher/ontology#species": 100,
-    "http://cgi.di.uoa.gr/witcher/ontology#nationality": 50,
-    "http://cgi.di.uoa.gr/witcher/ontology#parents": 50,
-    "http://cgi.di.uoa.gr/witcher/ontology#children": 50,
-    "http://cgi.di.uoa.gr/witcher/ontology#partner": 30,
-    "http://cgi.di.uoa.gr/witcher/ontology#loot": 50, 
-}
-
-# --- SPLIT CONFIG ---
+# --- SPLIT CONFIG (Unchanged) ---
 VALID_SPLIT = 0.1
 TEST_SPLIT = 0.1
-MIN_SPLIT_THRESHOLD = 5 # Relations with fewer than this go 100% to Train
+MIN_SPLIT_THRESHOLD = 5
 
-# --- HELPER FUNCTIONS ---
-
-def execute_sparql(query):
-    sparql = SPARQLWrapper(SPARQL_ENDPOINT_URL)
-    sparql.setQuery(NAMESPACES + query)
-    sparql.setReturnFormat(JSON)
-    try:
-        return sparql.query().convert()["results"]["bindings"]
-    except Exception as e:
-        print(f"  [!] SPARQL Query failed: {e}")
-        return []
-
-def load_existing_triples():
-    triples = set()
-    for fname in INPUT_FILES:
-        if os.path.exists(fname):
-            print(f"Loading {fname}...")
-            with open(fname, 'r', encoding='utf-8') as f:
-                for line in f:
-                    parts = line.strip().split('\t')
-                    if len(parts) == 3:
-                        h, r, t = parts
-                        # Apply Cleaning Rules Immediately
-                        if r in RELATION_FIXES:
-                            r = RELATION_FIXES[r]
-                        triples.add((h, r, t))
-    return triples
-
-def fetch_new_triples(relation_uri, current_count, target_count, existing_triples):
-    needed = target_count - current_count
-    if needed <= 0:
-        return []
-
-    print(f"  -> Fetching ~{needed} new triples for {relation_uri.split('#')[-1]}...")
-    
-    # Query to get random triples for this relation
-    # Note: We fetch more than needed to account for duplicates we already have
-    query = f"""
-    SELECT DISTINCT ?h ?t WHERE {{
-        ?h <{relation_uri}> ?t .
-        FILTER(isIRI(?t)) 
-    }} LIMIT {needed * 2}
-    """
-    
-    results = execute_sparql(query)
-    new_triples = []
-    
-    for res in results:
-        h = res['h']['value']
-        t = res['t']['value']
-        triple = (h, relation_uri, t)
-        
-        if triple not in existing_triples:
-            new_triples.append(triple)
-            # Add to existing set immediately to prevent duplicates in this loop
-            existing_triples.add(triple) 
-            if len(new_triples) >= needed:
-                break
-                
-    print(f"     Found {len(new_triples)} new unique triples.")
-    return new_triples
-
-# --- MAIN LOGIC ---
-
+# --- MAIN LOGIC (Completely Re-architected) ---
 def main():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
 
-    # 1. Load and Clean
-    print("--- Step 1: Loading and Cleaning Data ---")
-    all_triples = load_existing_triples()
-    print(f"Total unique triples after loading and cleaning: {len(all_triples)}")
+    # --- Step 1: Load the single, complete, curated dataset ---
+    print(f"--- Step 1: Loading curated triples from {CURATED_FILE_PATH} ---")
+    try:
+        df = pd.read_csv(CURATED_FILE_PATH, sep='\t', header=None, names=['head', 'relation', 'tail'])
+        all_triples = [tuple(x) for x in df.to_numpy()]
+        print(f"  - Successfully loaded {len(all_triples)} curated triples.")
+    except FileNotFoundError:
+        print(f"!!! FATAL ERROR: Curated file not found at '{CURATED_FILE_PATH}'. Please run previous scripts first. !!!")
+        return
+    except Exception as e:
+        print(f"!!! FATAL ERROR: Could not read the curated file. Error: {e} !!!")
+        return
+    
+        # --- Step 1: Load the curated dataset ---
+    print(f"--- Step 1: Loading curated triples from {CURATED_FILE_PATH} ---")
+    try:
+        df = pd.read_csv(CURATED_FILE_PATH, sep='\t', header=None, names=['head', 'relation', 'tail'])
+        all_triples = [tuple(x) for x in df.to_numpy()]
+        print(f"  - Successfully loaded {len(all_triples)} curated triples.")
+    except Exception as e:
+        print(f"!!! FATAL ERROR: Could not read the curated file. Error: {e} !!!"); return
 
-    # 2. Analyze and Densify
-    print("\n--- Step 2: Analyzing and Densifying ---")
-    # Count current relations
-    relation_counts = Counter([r for h, r, t in all_triples])
-    
-    triples_to_add = []
-    
-    for relation, target in TARGET_COUNTS.items():
-        current = relation_counts[relation]
-        print(f"Checking {relation.split('#')[-1]}: Current {current} / Target {target}")
-        
-        if current < target:
-            new_data = fetch_new_triples(relation, current, target, all_triples)
-            triples_to_add.extend(new_data)
-    
-    # Add new triples to main list
-    for t in triples_to_add:
-        all_triples.add(t)
-        
-    print(f"\nTotal triples after densification: {len(all_triples)}")
-
-    # 3. Stratified Split
-    print("\n--- Step 3: Performing Stratified Split ---")
-    
-    # Group by relation
-    triples_by_relation = defaultdict(list)
+    # --- Step 1.5: Merge Family Relations ---
+    print("\n--- Step 1.5: Merging family-related relations ---")
+    merged_triples = []
+    merge_count = 0
     for h, r, t in all_triples:
+        if r in RELATIONS_TO_MERGE:
+            merged_triples.append((h, UNIFIED_FAMILY_RELATION, t))
+            merge_count += 1
+        else:
+            merged_triples.append((h, r, t))
+    print(f"  - Merged {merge_count} triples into the unified '{UNIFIED_FAMILY_RELATION.split('#')[-1]}' relation.")
+    print(f"  - Total triples after merging: {len(merged_triples)}")
+    
+    # All subsequent steps will now use the `merged_triples` list
+    all_triples = merged_triples
+
+    # --- Step 2: Isolate the Geralt Case Study from the curated set ---
+    geralt_uri_string = "http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia"
+    print(f"\n--- Step 2: Isolating Geralt of Rivia case study (subject only) ---")
+    
+    geralt_triples = []
+    other_triples = []
+    for h, r, t in all_triples:
+        if str(h) == geralt_uri_string: # Ensure we are comparing strings
+            geralt_triples.append((h, r, t))
+        else:
+            other_triples.append((h, r, t))
+            
+    print(f"  - Isolated {len(geralt_triples)} triples with Geralt as the subject.")
+    print(f"  - {len(other_triples)} triples remain for train/valid split.")
+
+    # --- Step 3: Stratified Split on the Non-Geralt Data ---
+    print("\n--- Step 3: Performing Stratified Split on the remaining triples ---")
+    triples_by_relation = defaultdict(list)
+    for h, r, t in other_triples:
         triples_by_relation[r].append((h, r, t))
 
     train_set = []
     valid_set = []
-    test_set = []
+    test_set = [] # This will be the non-Geralt part of the test set
 
     for relation, triples in triples_by_relation.items():
-        rel_name = relation.split('#')[-1]
-        
         if len(triples) < MIN_SPLIT_THRESHOLD:
-            # Too small to split safely, put all in train
             train_set.extend(triples)
-            # print(f"  - {rel_name}: All {len(triples)} -> Train (Sparse)")
         else:
-            # Random split
             random.shuffle(triples)
             n_val = max(1, int(len(triples) * VALID_SPLIT))
             n_test = max(1, int(len(triples) * TEST_SPLIT))
+            if len(triples) - n_val - n_test < 1: n_val = 0
             
-            # Mathematical safety check
-            if len(triples) - n_val - n_test < 1:
-                # If dataset is small, prioritize train > test > valid
-                n_val = 0
-            
-            valid_subset = triples[:n_val]
-            test_subset = triples[n_val : n_val + n_test]
-            train_subset = triples[n_val + n_test :]
-            
-            train_set.extend(train_subset)
-            valid_set.extend(valid_subset)
-            test_set.extend(test_subset)
-            # print(f"  - {rel_name}: {len(train_subset)} train, {len(valid_subset)} valid, {len(test_subset)} test")
+            valid_set.extend(triples[:n_val])
+            test_set.extend(triples[n_val : n_val + n_test])
+            train_set.extend(triples[n_val + n_test :])
 
-    # 4. Save
-    print("\n--- Step 4: Saving Files ---")
+    # --- Step 4: Augment the Test Set with the Geralt Case Study ---
+    print(f"\n--- Step 4: Augmenting test set with {len(geralt_triples)} Geralt triples... ---")
+    test_set.extend(geralt_triples)
+
+    # --- Step 5: Save Files ---
+    print("\n--- Step 5: Saving Files ---")
     
     def save_file(name, data):
         path = os.path.join(OUTPUT_DIR, name)
-        with open(path, 'w', encoding='utf-8') as f:
-            for h, r, t in data:
-                f.write(f"{h}\t{r}\t{t}\n")
+        # Convert to DataFrame for easy, standardized saving
+        df_to_save = pd.DataFrame(data, columns=['head', 'relation', 'tail'])
+        df_to_save.sort_values(by=['head', 'relation', 'tail'], inplace=True)
+        df_to_save.to_csv(path, sep='\t', header=False, index=False)
         print(f"Saved {path} ({len(data)} triples)")
 
     save_file("train.tsv", train_set)
     save_file("valid.tsv", valid_set)
     save_file("test.tsv", test_set)
-    save_file("all_triples_combined.tsv", list(all_triples))
-
+    
     print("\nProcess Complete. You are ready to train.")
+    print("\nFinal Split Counts:")
+    print(f"  - Train: {len(train_set)} triples")
+    print(f"  - Valid: {len(valid_set)} triples")
+    print(f"  - Test:  {len(test_set)} triples (now includes the subject-only Geralt case study)")
 
 if __name__ == "__main__":
     main()
