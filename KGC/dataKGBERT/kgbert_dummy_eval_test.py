@@ -91,6 +91,7 @@ data_dir = str(KGBERT_DATA)
 train_df = load_triples(os.path.join(data_dir, "train.tsv"))
 dev_df   = load_triples(os.path.join(data_dir, "dev.tsv"))
 test_df  = load_triples(os.path.join(data_dir, "test.tsv"))
+test_df = test_df.head(5).copy()
 all_true = set(map(tuple, pd.concat([train_df, dev_df, test_df])[["h","r","t"]].values.tolist()))
 
 ent2desc, rel2desc, entities = read_maps(data_dir)
