@@ -7,7 +7,7 @@ import json
 import glob
 
 # --- Configuration ---
-OPENROUTER_API_KEY = ""
+OPENROUTER_API_KEY = "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"
 
 # The graph is our source of truth for text
 KG_FULL_PATH = '../RDF/Witcher3KG_full.ttl' 
@@ -174,23 +174,39 @@ def process_knowledge_graph():
                 print(f"  - FAILED to generate summary for {label}")
 
     # --- Step 3: Generate Descriptions for TARGET RELATIONS ---
-    print("\n--- Generating descriptions for Relations ---")
-    print("  - Pre-fetching a sample triple for all properties in the graph...")
+    print("\n--- Generating descriptions for KGC Relations ---")
+
+    # --- Pre-fetch a sample triple's TYPE information for all properties ---
+    print("  - Pre-fetching sample type information for all properties...")
     example_query = """
-        SELECT ?p (SAMPLE(?s_label) as ?s_label) (SAMPLE(?o_label) as ?o_label)
+        SELECT ?p 
+               (SAMPLE(?s_type_label) as ?s_type_label)
+               (SAMPLE(?o_type_label) as ?o_type_label)
         WHERE {
             ?s ?p ?o .
-            FILTER(isIRI(?o)) # Focus on object properties for better examples
-            ?s rdfs:label ?s_label .
-            ?o rdfs:label ?o_label .
+            FILTER(isIRI(?o))
+            # Get the most specific type label available
+            OPTIONAL {
+              ?s a ?s_type .
+              ?s_type rdfs:label ?s_type_label .
+              FILTER(!isBlank(?s_type) && ?s_type != owl:NamedIndividual)
+            }
+            OPTIONAL {
+              ?o a ?o_type .
+              ?o_type rdfs:label ?o_type_label .
+              FILTER(!isBlank(?o_type) && ?o_type != owl:NamedIndividual)
+            }
         }
         GROUP BY ?p
     """
-    example_triples_map = {}
-    results = g.query(example_query, initNs={"rdfs": RDFS})
+    example_types_map = {}
+    results = g.query(example_query, initNs={"rdfs": RDFS, "owl": OWL})
     for row in results:
-        example_triples_map[str(row.p)] = (str(row.s_label), str(row.o_label))
-    print(f"  - Cached examples for {len(example_triples_map)} properties.")
+        example_types_map[str(row.p)] = {
+            "s_type": str(row.s_type_label) if row.s_type_label else "entity",
+            "o_type": str(row.o_type_label) if row.o_type_label else "entity"
+        }
+    print(f"  - Cached type contexts for {len(example_types_map)} properties.")
     
     processed_rels = set()
     if os.path.exists(RELATION_DESC_PATH):
@@ -201,68 +217,44 @@ def process_knowledge_graph():
     with open(RELATION_DESC_PATH, 'a', encoding='utf-8') as f:
         if not processed_rels: f.write("uri\tdescription\n")
         
-        results = g.query(relation_query, initNs={"owl": OWL, "rdfs": RDFS})
+        results = g.query(example_query, initNs={"owl": OWL, "rdfs": RDFS})
         total_relations = len(results)
-        print(f"Processing {total_relations} target relations.")
+        print(f"Processing {results} target relations.")
 
-        for i, row in enumerate(results):
-            rel_uri, label = str(row.rel), str(row.label)
-
-            if rel_uri in processed_rels:
-                continue
-
+       
+        for i, rel_uri_str in enumerate(sorted(list(target_relations))):
+            if rel_uri_str in processed_rels: continue
+            
+            rel_uri = URIRef(rel_uri_str)
+            label = str(g.value(rel_uri, RDFS.label, default=rel_uri_str.split('#')[-1]))
             print(f"Processing Relation {i+1}/{total_relations}: {label}")
 
-            # --- MODIFICATION: CONTEXT-RICH SPARQL QUERY ---
-            # This query now fetches the TYPE of the subject and object
-            example_query = """
-                SELECT ?s_label ?o_label ?s_type_label ?o_type_label
-                WHERE {
-                    ?s ?p ?o .
-                    ?s rdfs:label ?s_label .
-                    ?o rdfs:label ?o_label .
-                    
-                    # Get the most specific type label available for subject and object
-                    OPTIONAL {
-                      ?s a ?s_type .
-                      ?s_type rdfs:label ?s_type_label .
-                      FILTER(!isBlank(?s_type))
-                    }
-                    OPTIONAL {
-                      ?o a ?o_type .
-                      ?o_type rdfs:label ?o_type_label .
-                      FILTER(!isBlank(?o_type))
-                    }
-                } LIMIT 1
-            """
-            example = list(g.query(example_query, initBindings={'p': row.rel}))
-
-            example_text = ""
-            if example:
-                ex = example[0]
-                s_label, o_label = str(ex.s_label), str(ex.o_label)
-                # Use the type labels if they were found
-                s_type = f" of type '{ex.s_type_label}'" if ex.s_type_label else ""
-                o_type = f" of type '{ex.o_type_label}'" if ex.o_type_label else ""
-                
-                example_text = (
-                    f"This relationship connects a subject{s_type} to an object{o_type}. "
-                    f"For example, it connects '{s_label}' to '{o_label}'."
-                )
-
-            # --- MODIFICATION: CONTEXT-RICH PROMPT ---
-            prompt = (
-                f"Generate a short, domain-specific, encyclopedic description for the relationship type '{label}' "
-                f"from the universe of The Witcher 3. {example_text} "
-                f"The description should be a single, concise sentence of about 15-25 words, "
-                f"reflecting the specific context if available (e.g., for quests, characters, etc.)."
-            )
+            # --- THE DEFINITIVE PROMPT: Use TYPE context, not INSTANCE context ---
+            context_text = ""
+            if rel_uri_str in example_types_map:
+                ex = example_types_map[rel_uri_str]
+                # Provide the types of the subject and object for context
+                context_text = f"This relationship connects a subject of type '{ex['s_type']}' to an object of type '{ex['o_type']}'."
             
+            prompt = f"""
+                      Your role is to act as an ontologist documenting a knowledge graph for The Witcher 3 universe.
+                      Your task is to write a short, general, and reusable description for the relationship type provided below.
+
+                      The description must be a single, concise sentence that explains the general meaning of the relationship based on the types of things it connects. Do not use specific examples.
+
+                      --- CONTEXT ---
+                      Relationship Name: {label}
+                      Context: {context_text}
+                      --- END CONTEXT ---
+
+                      Description:
+                      """
+        
             summary = generate_llm_summary(prompt)
             if summary:
                 summary = summary.replace('"', '').replace('\n', ' ').strip()
-                f.write(f"{rel_uri}\t{summary}\n")
-                print(f"  - Context-Rich Description: {summary}")
+                f.write(f"{rel_uri_str}\t{summary}\n")
+                print(f"  - Generated Description: {summary}")
             else:
                  print(f"  - FAILED to generate description for {label}")
 
