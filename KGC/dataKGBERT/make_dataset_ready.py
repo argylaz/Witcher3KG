@@ -23,7 +23,7 @@ def main():
     ap.add_argument("--valid_file", default="valid.tsv")
     ap.add_argument("--test_file", default="test.tsv")
     ap.add_argument("--entity_desc", default="entity_desc.tsv")
-    ap.add_argument("--relation_desc", default="relation_desc_1st.tsv")
+    ap.add_argument("--relation_desc", default="relation_desc.tsv")
     args = ap.parse_args()
 
     data_dir = args.data_dir
