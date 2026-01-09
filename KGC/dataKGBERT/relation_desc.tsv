@@ -1,3 +1,5 @@
+uri	description
+http://cgi.di.uoa.gr/witcher/ontology#Enemies	The Scavenger Hunt: Grandmaster Wolven Gear quest links to the Barghest as Enemies, detailing hostile encounters during the Bloody Frost event.
 http://cgi.di.uoa.gr/witcher/ontology#abilities	The Abilities relationship links characters to creatures by describing the specific skills, attributes, or powers that the characters possess which are associated with or influence the creatures.
 http://cgi.di.uoa.gr/witcher/ontology#affiliations	A human's connection to a group of people through their participation in a shared event or common cause.
 http://cgi.di.uoa.gr/witcher/ontology#aka	The Aka relationship denotes that a Hearts of Stone character is the true or real name of an Elf.
@@ -9,8 +11,6 @@ http://cgi.di.uoa.gr/witcher/ontology#family_relationship	A connection between i
 http://cgi.di.uoa.gr/witcher/ontology#image	A link or connection between a human and a Blood of Elves character.
 http://cgi.di.uoa.gr/witcher/ontology#location	The Location relationship links a Side Quest to a specific geographic or narrative location within the game's world.
 http://cgi.di.uoa.gr/witcher/ontology#lookalike	The Lookalike relationship indicates that an actor closely resembles a comic book character in physical appearance.
-http://cgi.di.uoa.gr/witcher/ontology#loot	Loot is a relationship that connects a subject from the Blood and Wine bestiary to an object in The Witcher 3 ingredients, indicating the association between a creature's entry and the items that can be looted from it.
-http://cgi.di.uoa.gr/witcher/ontology#name	A human's connection to a principality through their role, residence, or influence within the region.
 http://cgi.di.uoa.gr/witcher/ontology#nationality	The Nationality relationship denotes the kingdom or nation to which an Elf is affiliated or belongs.
 http://cgi.di.uoa.gr/witcher/ontology#next	The Next relationship denotes a sequential progression from the subject to the object within the story's timeline.
 http://cgi.di.uoa.gr/witcher/ontology#occurrence	The relationship indicates the presence or appearance of a subject in a specific location.
@@ -21,6 +21,8 @@ http://cgi.di.uoa.gr/witcher/ontology#race	The Race relationship links a Baptism
 http://cgi.di.uoa.gr/witcher/ontology#region	The relationship indicates that a settlement belongs to a particular region in The Witcher 3.
 http://cgi.di.uoa.gr/witcher/ontology#reward	The Reward relationship links a Side Quest to a Pages with tables, indicating the latter contains information about the reward obtained from the former.
 http://cgi.di.uoa.gr/witcher/ontology#source	The Source relationship indicates that a book is the origin or source of an alchemy formula.
-http://cgi.di.uoa.gr/witcher/ontology#species	The Species relationship links a subject from the Hearts of Stone bestiary to the animal species it represents.
 http://cgi.di.uoa.gr/witcher/ontology#status	Indicates the status or role a human holds in connection to a Baptism of Fire character.
 http://cgi.di.uoa.gr/witcher/ontology#titles	The Titles relationship connects a Baptism of Fire character to a Kingdom through an official title or designation.
+http://cgi.di.uoa.gr/witcher/ontology#loot	Loot is a relationship that connects a subject from the Blood and Wine bestiary to an object in The Witcher 3 ingredients, indicating the association between a creature's entry and the items that can be looted from it.
+http://cgi.di.uoa.gr/witcher/ontology#name	A human's connection to a principality through their role, residence, or influence within the region.
+http://cgi.di.uoa.gr/witcher/ontology#species	The Species relationship links a subject from the Hearts of Stone bestiary to the animal species it represents.

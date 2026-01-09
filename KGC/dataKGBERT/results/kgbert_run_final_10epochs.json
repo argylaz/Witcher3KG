@@ -1,0 +1,275 @@
+{
+  "run_name": "kgbert_run_final_10epochs",
+  "task": "TRIPLE_CLASSIFICATION",
+  "method": "KG-BERT (HF cross-encoder)",
+  "data_dir": "/content/drive/MyDrive/Witcher3KG/KGC/dataKGBERT",
+  "model_name": "bert-base-uncased",
+  "device": "cuda",
+  "seed": 42,
+  "params": {
+    "epochs": 10,
+    "lr": 2e-05,
+    "train_batch": 16,
+    "eval_batch": 32,
+    "max_len": 512,
+    "neg_per_pos": 3,
+    "eval_every": 1,
+    "threshold": 0.5
+  },
+  "best_dev_f1": 0.5673758865248227,
+  "history": {
+    "epochs": [
+      {
+        "epoch": 1,
+        "train_loss": 0.5693805565994777
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.5693892575381847
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.5634418444687062
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.5471154223667102
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.4988006956121895
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.4456800182213944
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.3921896420168073
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.31496340438221276
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.24762312682826867
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.18709193287270792
+      }
+    ],
+    "dev": [
+      {
+        "epoch": 1,
+        "accuracy": 0.75,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion": {
+          "tp": 0,
+          "tn": 231,
+          "fp": 0,
+          "fn": 77
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1043
+      },
+      {
+        "epoch": 2,
+        "accuracy": 0.75,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion": {
+          "tp": 0,
+          "tn": 231,
+          "fp": 0,
+          "fn": 77
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1044
+      },
+      {
+        "epoch": 3,
+        "accuracy": 0.75,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion": {
+          "tp": 0,
+          "tn": 231,
+          "fp": 0,
+          "fn": 77
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1045
+      },
+      {
+        "epoch": 4,
+        "accuracy": 0.7792207792207793,
+        "precision": 1.0,
+        "recall": 0.11688311688311688,
+        "f1": 0.20930232558139536,
+        "confusion": {
+          "tp": 9,
+          "tn": 231,
+          "fp": 0,
+          "fn": 68
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1046
+      },
+      {
+        "epoch": 5,
+        "accuracy": 0.7922077922077922,
+        "precision": 0.782608695652174,
+        "recall": 0.23376623376623376,
+        "f1": 0.36,
+        "confusion": {
+          "tp": 18,
+          "tn": 226,
+          "fp": 5,
+          "fn": 59
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1047
+      },
+      {
+        "epoch": 6,
+        "accuracy": 0.801948051948052,
+        "precision": 0.9,
+        "recall": 0.23376623376623376,
+        "f1": 0.37113402061855666,
+        "confusion": {
+          "tp": 18,
+          "tn": 229,
+          "fp": 2,
+          "fn": 59
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1048
+      },
+      {
+        "epoch": 7,
+        "accuracy": 0.7792207792207793,
+        "precision": 0.576271186440678,
+        "recall": 0.44155844155844154,
+        "f1": 0.5,
+        "confusion": {
+          "tp": 34,
+          "tn": 206,
+          "fp": 25,
+          "fn": 43
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1049
+      },
+      {
+        "epoch": 8,
+        "accuracy": 0.775974025974026,
+        "precision": 0.58,
+        "recall": 0.37662337662337664,
+        "f1": 0.4566929133858268,
+        "confusion": {
+          "tp": 29,
+          "tn": 210,
+          "fp": 21,
+          "fn": 48
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1050
+      },
+      {
+        "epoch": 9,
+        "accuracy": 0.7727272727272727,
+        "precision": 0.5522388059701493,
+        "recall": 0.4805194805194805,
+        "f1": 0.5138888888888888,
+        "confusion": {
+          "tp": 37,
+          "tn": 201,
+          "fp": 30,
+          "fn": 40
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1051
+      },
+      {
+        "epoch": 10,
+        "accuracy": 0.801948051948052,
+        "precision": 0.625,
+        "recall": 0.5194805194805194,
+        "f1": 0.5673758865248227,
+        "confusion": {
+          "tp": 40,
+          "tn": 207,
+          "fp": 24,
+          "fn": 37
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1052
+      }
+    ],
+    "test": {
+      "accuracy": 0.7560240963855421,
+      "precision": 0.5147058823529411,
+      "recall": 0.42168674698795183,
+      "f1": 0.46357615894039733,
+      "confusion": {
+        "tp": 35,
+        "tn": 216,
+        "fp": 33,
+        "fn": 48
+      },
+      "threshold": 0.5,
+      "num_pos": 83,
+      "num_neg": 249,
+      "num_total": 332,
+      "neg_per_pos": 3,
+      "neg_seed": 2042
+    }
+  },
+  "timestamp_unix": 1767915646
+}

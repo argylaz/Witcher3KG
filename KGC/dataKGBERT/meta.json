@@ -1,11 +1,11 @@
 {
   "counts": {
-    "train_triples": 713,
-    "dev_triples": 74,
-    "test_triples": 82,
+    "train_triples": 709,
+    "dev_triples": 77,
+    "test_triples": 83,
     "all_unique_triples": 869,
     "entities": 1006,
-    "relations": 29
+    "relations": 26
   },
   "files": {
     "train": "train.tsv",
@@ -13,7 +13,7 @@
     "dev": "dev.tsv",
     "test": "test.tsv",
     "entity_desc": "entity_desc.tsv",
-    "relation_desc": "relation_desc_1st.tsv",
+    "relation_desc": "relation_desc.tsv",
     "entity2textlong": "entity2textlong.tsv",
     "relation2text": "relation2text.txt",
     "entities_list": "entities.txt",
