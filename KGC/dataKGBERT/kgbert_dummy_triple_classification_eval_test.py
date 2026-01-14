@@ -1,9 +1,9 @@
 import os, json, time, random, argparse
 import pandas as pd
 import torch
-from torch.utils.data import Dataset, DataLoader
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-#utils
+
+# ------------------ utils (ΙΔΙΑ ΜΕ ΤΟΝ ΒΑΣΙΚΟ ΚΩΔΙΚΑ) ------------------
 def set_seed(seed: int):
     random.seed(seed)
     torch.manual_seed(seed)
@@ -32,15 +32,13 @@ def make_labeled_samples(pos_df, all_true_set, entities, ent2desc, rel2desc, neg
     samples = []
     for _, row in pos_df.iterrows():
         h, r, t = row["h"], row["r"], row["t"]
-        # positive
         samples.append((triple_to_text(h, r, t, ent2desc, rel2desc), 1))
-        # negatives
         for _ in range(neg_per_pos):
-            if rng.random() < 0.5: # corrupt tail
+            if rng.random() < 0.5:
                 tt = rng.choice(entities)
                 while (h, r, tt) in all_true_set: tt = rng.choice(entities)
                 samples.append((triple_to_text(h, r, tt, ent2desc, rel2desc), 0))
-            else: # corrupt head
+            else:
                 hh = rng.choice(entities)
                 while (hh, r, t) in all_true_set: hh = rng.choice(entities)
                 samples.append((triple_to_text(hh, r, t, ent2desc, rel2desc), 0))
@@ -82,24 +80,22 @@ def classification_metrics(y_true, y_prob, threshold=0.5):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data_dir", required=True)
+    ap.add_argument("--run_name", default="kgbert_dummy_baseline") # Default όνομα για το JSON
     ap.add_argument("--model_name", default="bert-base-uncased")
     ap.add_argument("--eval_batch", type=int, default=64)
     ap.add_argument("--max_len", type=int, default=256)
     ap.add_argument("--neg_per_pos", type=int, default=3)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--threshold", type=float, default=0.5)
+    ap.add_argument("--out_dir", default="results") # Πού να σωθεί
     args = ap.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Running Dummy Baseline on {device}...")
     set_seed(args.seed)
 
-    # 1. Load Data (Χρησιμοποιώντας τις ίδιες ονομασίες)
     ent2desc, rel2desc, entities = read_maps(args.data_dir)
-    
-    # Χρειαζόμαστε όλα τα triples για να μην φτιάξουμε negatives που είναι αληθινά
     train_df = load_triples(os.path.join(args.data_dir, "train.tsv"))
-    # Ελεγχος για valid/dev όπως στον βασικό κώδικα
     dev_path = os.path.join(args.data_dir, "dev.tsv")
     if not os.path.exists(dev_path): dev_path = os.path.join(args.data_dir, "valid.tsv")
     dev_df = load_triples(dev_path)
@@ -107,11 +103,9 @@ def main():
 
     all_true_set = set(map(tuple, pd.concat([train_df, dev_df, test_df])[["h","r","t"]].values.tolist()))
 
-    # 2. Load Model (Untrained / Pre-trained only)
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
     model = AutoModelForSequenceClassification.from_pretrained(args.model_name, num_labels=2).to(device)
 
-    # 3. Eval on Test
     samples = make_labeled_samples(
         test_df, all_true_set, entities, ent2desc, rel2desc, 
         neg_per_pos=args.neg_per_pos, seed=args.seed + 2000
@@ -125,13 +119,31 @@ def main():
     
     metrics.update({
         "num_pos": int(sum(labels)),
-        "num_neg": int(len(labels) - sum(labels))
+        "num_neg": int(len(labels) - sum(labels)),
+        "num_total": int(len(labels))
     })
 
     print("-" * 40)
     print("ZERO-SHOT (DUMMY) BASELINE METRICS:")
     print(json.dumps(metrics, indent=2))
     print("-" * 40)
+
+    # Αποθήκευση JSON
+    os.makedirs(args.out_dir, exist_ok=True)
+    out_path = os.path.join(args.out_dir, f"{args.run_name}.json")
+    
+    payload = {
+        "run_name": args.run_name,
+        "task": "TRIPLE_CLASSIFICATION_BASELINE",
+        "method": "Zero-Shot BERT (No Training)",
+        "model_name": args.model_name,
+        "metrics": metrics,
+        "timestamp_unix": int(time.time())
+    }
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+    print("Saved Baseline Results:", out_path)
 
 if __name__ == "__main__":
     main()
