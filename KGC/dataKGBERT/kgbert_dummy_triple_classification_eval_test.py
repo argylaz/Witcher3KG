@@ -1,16 +1,14 @@
-import os, json, time, random
+import os, json, time, random, argparse
 import pandas as pd
 import torch
+from torch.utils.data import Dataset, DataLoader
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-from pathlib import Path
-
-REPO = Path("/content/drive/MyDrive/Witcher3KG/KGC")
-KGBERT_DATA = REPO / "dataKGBERT"
-OUT_DIR = KGBERT_DATA / "results"
-OUT_DIR.mkdir(exist_ok=True)
-
-device = "cuda" if torch.cuda.is_available() else "cpu"
-print("Device:", device)
+#utils
+def set_seed(seed: int):
+    random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
 
 def load_triples(path: str):
     return pd.read_csv(path, sep="\t", header=None, names=["h","r","t"]).dropna()
@@ -34,17 +32,17 @@ def make_labeled_samples(pos_df, all_true_set, entities, ent2desc, rel2desc, neg
     samples = []
     for _, row in pos_df.iterrows():
         h, r, t = row["h"], row["r"], row["t"]
+        # positive
         samples.append((triple_to_text(h, r, t, ent2desc, rel2desc), 1))
+        # negatives
         for _ in range(neg_per_pos):
-            if rng.random() < 0.5:
+            if rng.random() < 0.5: # corrupt tail
                 tt = rng.choice(entities)
-                while (h, r, tt) in all_true_set:
-                    tt = rng.choice(entities)
+                while (h, r, tt) in all_true_set: tt = rng.choice(entities)
                 samples.append((triple_to_text(h, r, tt, ent2desc, rel2desc), 0))
-            else:
+            else: # corrupt head
                 hh = rng.choice(entities)
-                while (hh, r, t) in all_true_set:
-                    hh = rng.choice(entities)
+                while (hh, r, t) in all_true_set: hh = rng.choice(entities)
                 samples.append((triple_to_text(hh, r, t, ent2desc, rel2desc), 0))
     return samples
 
@@ -64,7 +62,7 @@ def predict_probs(model, tokenizer, texts, device, batch_size=64, max_len=256):
 def classification_metrics(y_true, y_prob, threshold=0.5):
     y_true = list(map(int, y_true))
     y_pred = [1 if p >= threshold else 0 for p in y_prob]
-
+    
     tp = sum((yt==1 and yp==1) for yt, yp in zip(y_true, y_pred))
     tn = sum((yt==0 and yp==0) for yt, yp in zip(y_true, y_pred))
     fp = sum((yt==0 and yp==1) for yt, yp in zip(y_true, y_pred))
@@ -76,69 +74,64 @@ def classification_metrics(y_true, y_prob, threshold=0.5):
     f1 = 0.0 if (prec + rec) == 0 else (2 * prec * rec) / (prec + rec)
 
     return {
-        "accuracy": acc,
-        "precision": prec,
-        "recall": rec,
-        "f1": f1,
+        "accuracy": acc, "precision": prec, "recall": rec, "f1": f1,
         "confusion": {"tp": tp, "tn": tn, "fp": fp, "fn": fn},
         "threshold": threshold
     }
 
-# ---- load data ----
-data_dir = str(KGBERT_DATA)
-train_df = load_triples(os.path.join(data_dir, "train.tsv"))
-dev_df   = load_triples(os.path.join(data_dir, "dev.tsv"))
-test_df  = load_triples(os.path.join(data_dir, "test.tsv"))
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--data_dir", required=True)
+    ap.add_argument("--model_name", default="bert-base-uncased")
+    ap.add_argument("--eval_batch", type=int, default=64)
+    ap.add_argument("--max_len", type=int, default=256)
+    ap.add_argument("--neg_per_pos", type=int, default=3)
+    ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--threshold", type=float, default=0.5)
+    args = ap.parse_args()
 
-# take a small subset for quick dummy run
-test_df = test_df.head(20).copy()
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"Running Dummy Baseline on {device}...")
+    set_seed(args.seed)
 
-all_true_set = set(map(tuple, pd.concat([train_df, dev_df, test_df])[["h","r","t"]].values.tolist()))
-ent2desc, rel2desc, entities = read_maps(data_dir)
+    # 1. Load Data (Χρησιμοποιώντας τις ίδιες ονομασίες)
+    ent2desc, rel2desc, entities = read_maps(args.data_dir)
+    
+    # Χρειαζόμαστε όλα τα triples για να μην φτιάξουμε negatives που είναι αληθινά
+    train_df = load_triples(os.path.join(args.data_dir, "train.tsv"))
+    # Ελεγχος για valid/dev όπως στον βασικό κώδικα
+    dev_path = os.path.join(args.data_dir, "dev.tsv")
+    if not os.path.exists(dev_path): dev_path = os.path.join(args.data_dir, "valid.tsv")
+    dev_df = load_triples(dev_path)
+    test_df = load_triples(os.path.join(args.data_dir, "test.tsv"))
 
-print("Triples:", len(train_df), len(dev_df), len(test_df))
-print("Entities:", len(entities))
+    all_true_set = set(map(tuple, pd.concat([train_df, dev_df, test_df])[["h","r","t"]].values.tolist()))
 
-# ---- build labeled eval set (pos + sampled neg) ----
-neg_per_pos = 5
-seed = 42
-threshold = 0.5
+    # 2. Load Model (Untrained / Pre-trained only)
+    tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+    model = AutoModelForSequenceClassification.from_pretrained(args.model_name, num_labels=2).to(device)
 
-samples = make_labeled_samples(test_df, all_true_set, entities, ent2desc, rel2desc, neg_per_pos=neg_per_pos, seed=seed)
-texts = [s[0] for s in samples]
-labels = [s[1] for s in samples]
+    # 3. Eval on Test
+    samples = make_labeled_samples(
+        test_df, all_true_set, entities, ent2desc, rel2desc, 
+        neg_per_pos=args.neg_per_pos, seed=args.seed + 2000
+    )
+    texts = [s[0] for s in samples]
+    labels = [s[1] for s in samples]
+    
+    print(f"Evaluating on {len(texts)} test samples (Zero-Shot)...")
+    probs = predict_probs(model, tokenizer, texts, device, args.eval_batch, args.max_len)
+    metrics = classification_metrics(labels, probs, threshold=args.threshold)
+    
+    metrics.update({
+        "num_pos": int(sum(labels)),
+        "num_neg": int(len(labels) - sum(labels))
+    })
 
-# ---- load model (NO TRAINING) ----
-model_name = "bert-base-uncased"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=2).to(device)
+    print("-" * 40)
+    print("ZERO-SHOT (DUMMY) BASELINE METRICS:")
+    print(json.dumps(metrics, indent=2))
+    print("-" * 40)
 
-probs = predict_probs(model, tokenizer, texts, device=device, batch_size=64, max_len=256)
-metrics = classification_metrics(labels, probs, threshold=threshold)
-
-metrics.update({
-    "num_pos": int(sum(labels)),
-    "num_neg": int(len(labels) - sum(labels)),
-    "num_total": int(len(labels)),
-    "neg_per_pos": int(neg_per_pos),
-    "neg_seed": int(seed)
-})
-
-print("DUMMY TRIPLE-CLS METRICS:", metrics)
-
-out_path = OUT_DIR / "kgbert_dummy_triple_cls.json"
-payload = {
-    "run_name": "kgbert_dummy_triple_cls",
-    "task": "TRIPLE_CLASSIFICATION",
-    "note": "Eval-only sanity check with pretrained BERT + random classification head (no fine-tuning). Metrics are not meaningful.",
-    "data_dir": str(KGBERT_DATA),
-    "model_name": model_name,
-    "device": device,
-    "metrics": metrics,
-    "timestamp_unix": int(time.time())
-}
-
-with open(out_path, "w", encoding="utf-8") as f:
-    json.dump(payload, f, ensure_ascii=False, indent=2)
-
-print("Saved:", out_path)
+if __name__ == "__main__":
+    main()
