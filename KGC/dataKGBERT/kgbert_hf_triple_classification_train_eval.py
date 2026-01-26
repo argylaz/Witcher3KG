@@ -6,7 +6,6 @@ from torch.optim import AdamW
 from torch.cuda.amp import autocast, GradScaler
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-# ------------------ utils ------------------
 def set_seed(seed: int):
     random.seed(seed)
     torch.manual_seed(seed)
@@ -135,7 +134,6 @@ def eval_triple_classification(model, tokenizer, pos_df, all_true_set, entities,
     })
     return metrics
 
-# ------------------ main ------------------
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data_dir", required=True)
@@ -168,7 +166,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
     model = AutoModelForSequenceClassification.from_pretrained(args.model_name, num_labels=2).to(device)
 
-    # Build training samples ONCE (for simplicity). If you want harder training, regenerate per epoch.
+    # Build training samples once for simplicity
     train_samples = make_labeled_samples(
         pos_df=train_df,
         all_true_set=all_true_set,
@@ -176,16 +174,14 @@ def main():
         ent2desc=ent2desc,
         rel2desc=rel2desc,
         neg_per_pos=args.neg_per_pos,
-        seed=args.seed
-    )
+        seed=args.seed)
     train_ds = TextClsDataset(train_samples)
     loader = DataLoader(
         train_ds,
         batch_size=args.train_batch,
         shuffle=True,
         pin_memory=(device == "cuda"),
-        collate_fn=lambda b: collate_fn(b, tokenizer, args.max_len),
-    )
+        collate_fn=lambda b: collate_fn(b, tokenizer, args.max_len))
 
     optim = AdamW(model.parameters(), lr=args.lr)
     scaler = GradScaler(enabled=use_amp)
@@ -227,7 +223,7 @@ def main():
             history["dev"].append({"epoch": ep, **dev_metrics})
             print(f"[{args.run_name}] DEV (triple classification) {dev_metrics}")
 
-            # Select best model by dev F1 (more robust than accuracy with class imbalance)
+            # Select best model by dev F1
             if dev_metrics["f1"] > best_dev_f1:
                 best_dev_f1 = dev_metrics["f1"]
                 model.save_pretrained(best_ckpt_dir)
@@ -240,8 +236,7 @@ def main():
     test_metrics = eval_triple_classification(
         best_model, best_tok, test_df, all_true_set, entities, ent2desc, rel2desc,
         device=device, eval_batch=args.eval_batch, max_len=args.max_len,
-        neg_per_pos=args.neg_per_pos, seed=args.seed + 2000, threshold=args.threshold
-    )
+        neg_per_pos=args.neg_per_pos, seed=args.seed + 2000, threshold=args.threshold)
     history["test"] = test_metrics
     print(f"[{args.run_name}] TEST (triple classification) {test_metrics}")
 

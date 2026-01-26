@@ -3,7 +3,6 @@ import pandas as pd
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-# ------------------ utils (ΙΔΙΑ ΜΕ ΤΟΝ ΒΑΣΙΚΟ ΚΩΔΙΚΑ) ------------------
 def set_seed(seed: int):
     random.seed(seed)
     torch.manual_seed(seed)
@@ -60,22 +59,18 @@ def predict_probs(model, tokenizer, texts, device, batch_size=64, max_len=256):
 def classification_metrics(y_true, y_prob, threshold=0.5):
     y_true = list(map(int, y_true))
     y_pred = [1 if p >= threshold else 0 for p in y_prob]
-    
     tp = sum((yt==1 and yp==1) for yt, yp in zip(y_true, y_pred))
     tn = sum((yt==0 and yp==0) for yt, yp in zip(y_true, y_pred))
     fp = sum((yt==0 and yp==1) for yt, yp in zip(y_true, y_pred))
     fn = sum((yt==1 and yp==0) for yt, yp in zip(y_true, y_pred))
-
     acc = (tp + tn) / max(1, (tp + tn + fp + fn))
     prec = tp / max(1, (tp + fp))
     rec  = tp / max(1, (tp + fn))
     f1 = 0.0 if (prec + rec) == 0 else (2 * prec * rec) / (prec + rec)
-
     return {
         "accuracy": acc, "precision": prec, "recall": rec, "f1": f1,
         "confusion": {"tp": tp, "tn": tn, "fp": fp, "fn": fn},
-        "threshold": threshold
-    }
+        "threshold": threshold}
 
 def main():
     ap = argparse.ArgumentParser()
@@ -89,9 +84,8 @@ def main():
     ap.add_argument("--threshold", type=float, default=0.5)
     ap.add_argument("--out_dir", default="results") # Πού να σωθεί
     args = ap.parse_args()
-
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"Running Dummy Baseline on {device}...")
+    print(f"Running Dummy Baseline on {device}.")
     set_seed(args.seed)
 
     ent2desc, rel2desc, entities = read_maps(args.data_dir)
@@ -108,42 +102,33 @@ def main():
 
     samples = make_labeled_samples(
         test_df, all_true_set, entities, ent2desc, rel2desc, 
-        neg_per_pos=args.neg_per_pos, seed=args.seed + 2000
-    )
+        neg_per_pos=args.neg_per_pos, seed=args.seed + 2000)
     texts = [s[0] for s in samples]
     labels = [s[1] for s in samples]
-    
-    print(f"Evaluating on {len(texts)} test samples (Zero-Shot)...")
+    print(f"Evaluating on {len(texts)} test samples.")
+
     probs = predict_probs(model, tokenizer, texts, device, args.eval_batch, args.max_len)
     metrics = classification_metrics(labels, probs, threshold=args.threshold)
-    
     metrics.update({
         "num_pos": int(sum(labels)),
         "num_neg": int(len(labels) - sum(labels)),
-        "num_total": int(len(labels))
-    })
-
+        "num_total": int(len(labels))})
     print("-" * 40)
     print("ZERO-SHOT (DUMMY) BASELINE METRICS:")
     print(json.dumps(metrics, indent=2))
     print("-" * 40)
-
-    # Αποθήκευση JSON
+    #Save JSON
     os.makedirs(args.out_dir, exist_ok=True)
     out_path = os.path.join(args.out_dir, f"{args.run_name}.json")
-    
     payload = {
         "run_name": args.run_name,
         "task": "TRIPLE_CLASSIFICATION_BASELINE",
         "method": "Zero-Shot BERT (No Training)",
         "model_name": args.model_name,
         "metrics": metrics,
-        "timestamp_unix": int(time.time())
-    }
-
+        "timestamp_unix": int(time.time())}
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
     print("Saved Baseline Results:", out_path)
-
 if __name__ == "__main__":
     main()
