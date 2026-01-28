@@ -1,0 +1,275 @@
+{
+  "run_name": "GS_len128_lr1e-05_neg1",
+  "task": "TRIPLE_CLASSIFICATION",
+  "method": "KG-BERT (HF cross-encoder)",
+  "data_dir": "/content/drive/MyDrive/Witcher3KG/KGC/dataKGBERT",
+  "model_name": "bert-base-uncased",
+  "device": "cuda",
+  "seed": 42,
+  "params": {
+    "epochs": 10,
+    "lr": 1e-05,
+    "train_batch": 16,
+    "eval_batch": 32,
+    "max_len": 128,
+    "neg_per_pos": 1,
+    "eval_every": 1,
+    "threshold": 0.5
+  },
+  "best_dev_f1": 0.6666666666666666,
+  "history": {
+    "epochs": [
+      {
+        "epoch": 1,
+        "train_loss": 0.6941154224149296
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.6802896221032303
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.6669038581044486
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.6392737399326281
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.5997798275411799
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.5175416154807873
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.4527974805135406
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.3850086405036155
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.34729030293025326
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.2948501706123352
+      }
+    ],
+    "dev": [
+      {
+        "epoch": 1,
+        "accuracy": 0.5194805194805194,
+        "precision": 0.8,
+        "recall": 0.05194805194805195,
+        "f1": 0.0975609756097561,
+        "confusion": {
+          "tp": 4,
+          "tn": 76,
+          "fp": 1,
+          "fn": 73
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77,
+        "num_total": 154,
+        "neg_per_pos": 1,
+        "neg_seed": 1043
+      },
+      {
+        "epoch": 2,
+        "accuracy": 0.538961038961039,
+        "precision": 0.5375,
+        "recall": 0.5584415584415584,
+        "f1": 0.5477707006369427,
+        "confusion": {
+          "tp": 43,
+          "tn": 40,
+          "fp": 37,
+          "fn": 34
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77,
+        "num_total": 154,
+        "neg_per_pos": 1,
+        "neg_seed": 1044
+      },
+      {
+        "epoch": 3,
+        "accuracy": 0.5064935064935064,
+        "precision": 0.5036496350364964,
+        "recall": 0.8961038961038961,
+        "f1": 0.6448598130841121,
+        "confusion": {
+          "tp": 69,
+          "tn": 9,
+          "fp": 68,
+          "fn": 8
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77,
+        "num_total": 154,
+        "neg_per_pos": 1,
+        "neg_seed": 1045
+      },
+      {
+        "epoch": 4,
+        "accuracy": 0.6298701298701299,
+        "precision": 0.6666666666666666,
+        "recall": 0.5194805194805194,
+        "f1": 0.5839416058394159,
+        "confusion": {
+          "tp": 40,
+          "tn": 57,
+          "fp": 20,
+          "fn": 37
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77,
+        "num_total": 154,
+        "neg_per_pos": 1,
+        "neg_seed": 1046
+      },
+      {
+        "epoch": 5,
+        "accuracy": 0.6168831168831169,
+        "precision": 0.59,
+        "recall": 0.7662337662337663,
+        "f1": 0.6666666666666666,
+        "confusion": {
+          "tp": 59,
+          "tn": 36,
+          "fp": 41,
+          "fn": 18
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77,
+        "num_total": 154,
+        "neg_per_pos": 1,
+        "neg_seed": 1047
+      },
+      {
+        "epoch": 6,
+        "accuracy": 0.6883116883116883,
+        "precision": 0.7543859649122807,
+        "recall": 0.5584415584415584,
+        "f1": 0.6417910447761195,
+        "confusion": {
+          "tp": 43,
+          "tn": 63,
+          "fp": 14,
+          "fn": 34
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77,
+        "num_total": 154,
+        "neg_per_pos": 1,
+        "neg_seed": 1048
+      },
+      {
+        "epoch": 7,
+        "accuracy": 0.6493506493506493,
+        "precision": 0.6619718309859155,
+        "recall": 0.6103896103896104,
+        "f1": 0.6351351351351351,
+        "confusion": {
+          "tp": 47,
+          "tn": 53,
+          "fp": 24,
+          "fn": 30
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77,
+        "num_total": 154,
+        "neg_per_pos": 1,
+        "neg_seed": 1049
+      },
+      {
+        "epoch": 8,
+        "accuracy": 0.6168831168831169,
+        "precision": 0.5918367346938775,
+        "recall": 0.7532467532467533,
+        "f1": 0.6628571428571429,
+        "confusion": {
+          "tp": 58,
+          "tn": 37,
+          "fp": 40,
+          "fn": 19
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77,
+        "num_total": 154,
+        "neg_per_pos": 1,
+        "neg_seed": 1050
+      },
+      {
+        "epoch": 9,
+        "accuracy": 0.6298701298701299,
+        "precision": 0.75,
+        "recall": 0.38961038961038963,
+        "f1": 0.5128205128205129,
+        "confusion": {
+          "tp": 30,
+          "tn": 67,
+          "fp": 10,
+          "fn": 47
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77,
+        "num_total": 154,
+        "neg_per_pos": 1,
+        "neg_seed": 1051
+      },
+      {
+        "epoch": 10,
+        "accuracy": 0.6168831168831169,
+        "precision": 0.6022727272727273,
+        "recall": 0.6883116883116883,
+        "f1": 0.6424242424242423,
+        "confusion": {
+          "tp": 53,
+          "tn": 42,
+          "fp": 35,
+          "fn": 24
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77,
+        "num_total": 154,
+        "neg_per_pos": 1,
+        "neg_seed": 1052
+      }
+    ],
+    "test": {
+      "accuracy": 0.6626506024096386,
+      "precision": 0.6483516483516484,
+      "recall": 0.7108433734939759,
+      "f1": 0.67816091954023,
+      "confusion": {
+        "tp": 59,
+        "tn": 51,
+        "fp": 32,
+        "fn": 24
+      },
+      "threshold": 0.5,
+      "num_pos": 83,
+      "num_neg": 83,
+      "num_total": 166,
+      "neg_per_pos": 1,
+      "neg_seed": 2042
+    }
+  },
+  "timestamp_unix": 1768833910
+}

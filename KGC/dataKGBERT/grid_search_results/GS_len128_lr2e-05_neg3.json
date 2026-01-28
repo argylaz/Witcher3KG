@@ -1,0 +1,275 @@
+{
+  "run_name": "GS_len128_lr2e-05_neg3",
+  "task": "TRIPLE_CLASSIFICATION",
+  "method": "KG-BERT (HF cross-encoder)",
+  "data_dir": "/content/drive/MyDrive/Witcher3KG/KGC/dataKGBERT",
+  "model_name": "bert-base-uncased",
+  "device": "cuda",
+  "seed": 42,
+  "params": {
+    "epochs": 10,
+    "lr": 2e-05,
+    "train_batch": 16,
+    "eval_batch": 32,
+    "max_len": 128,
+    "neg_per_pos": 3,
+    "eval_every": 1,
+    "threshold": 0.5
+  },
+  "best_dev_f1": 0.5,
+  "history": {
+    "epochs": [
+      {
+        "epoch": 1,
+        "train_loss": 0.568252542045679
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.5656100926774271
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.565619993745611
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.5647039734915401
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.5526325140106544
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.4952706272682447
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.4472369933396243
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.3660002625390385
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.2844155457582367
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.23202660277988132
+      }
+    ],
+    "dev": [
+      {
+        "epoch": 1,
+        "accuracy": 0.75,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion": {
+          "tp": 0,
+          "tn": 231,
+          "fp": 0,
+          "fn": 77
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1043
+      },
+      {
+        "epoch": 2,
+        "accuracy": 0.75,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion": {
+          "tp": 0,
+          "tn": 231,
+          "fp": 0,
+          "fn": 77
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1044
+      },
+      {
+        "epoch": 3,
+        "accuracy": 0.75,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion": {
+          "tp": 0,
+          "tn": 231,
+          "fp": 0,
+          "fn": 77
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1045
+      },
+      {
+        "epoch": 4,
+        "accuracy": 0.75,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion": {
+          "tp": 0,
+          "tn": 231,
+          "fp": 0,
+          "fn": 77
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1046
+      },
+      {
+        "epoch": 5,
+        "accuracy": 0.788961038961039,
+        "precision": 0.8333333333333334,
+        "recall": 0.19480519480519481,
+        "f1": 0.31578947368421056,
+        "confusion": {
+          "tp": 15,
+          "tn": 228,
+          "fp": 3,
+          "fn": 62
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1047
+      },
+      {
+        "epoch": 6,
+        "accuracy": 0.775974025974026,
+        "precision": 0.6818181818181818,
+        "recall": 0.19480519480519481,
+        "f1": 0.30303030303030304,
+        "confusion": {
+          "tp": 15,
+          "tn": 224,
+          "fp": 7,
+          "fn": 62
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1048
+      },
+      {
+        "epoch": 7,
+        "accuracy": 0.8084415584415584,
+        "precision": 0.8214285714285714,
+        "recall": 0.2987012987012987,
+        "f1": 0.4380952380952381,
+        "confusion": {
+          "tp": 23,
+          "tn": 226,
+          "fp": 5,
+          "fn": 54
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1049
+      },
+      {
+        "epoch": 8,
+        "accuracy": 0.7857142857142857,
+        "precision": 0.6037735849056604,
+        "recall": 0.4155844155844156,
+        "f1": 0.4923076923076923,
+        "confusion": {
+          "tp": 32,
+          "tn": 210,
+          "fp": 21,
+          "fn": 45
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1050
+      },
+      {
+        "epoch": 9,
+        "accuracy": 0.7532467532467533,
+        "precision": 0.5066666666666667,
+        "recall": 0.4935064935064935,
+        "f1": 0.5,
+        "confusion": {
+          "tp": 38,
+          "tn": 194,
+          "fp": 37,
+          "fn": 39
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1051
+      },
+      {
+        "epoch": 10,
+        "accuracy": 0.7272727272727273,
+        "precision": 0.4606741573033708,
+        "recall": 0.5324675324675324,
+        "f1": 0.49397590361445787,
+        "confusion": {
+          "tp": 41,
+          "tn": 183,
+          "fp": 48,
+          "fn": 36
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 231,
+        "num_total": 308,
+        "neg_per_pos": 3,
+        "neg_seed": 1052
+      }
+    ],
+    "test": {
+      "accuracy": 0.7349397590361446,
+      "precision": 0.4576271186440678,
+      "recall": 0.3253012048192771,
+      "f1": 0.38028169014084506,
+      "confusion": {
+        "tp": 27,
+        "tn": 217,
+        "fp": 32,
+        "fn": 56
+      },
+      "threshold": 0.5,
+      "num_pos": 83,
+      "num_neg": 249,
+      "num_total": 332,
+      "neg_per_pos": 3,
+      "neg_seed": 2042
+    }
+  },
+  "timestamp_unix": 1768837615
+}
