@@ -210,7 +210,7 @@ def main():
             dev_metrics = eval_triple_classification(
                 model, tokenizer, dev_df, all_true_set, entities, ent2desc, rel2desc,
                 device=device, eval_batch=args.eval_batch, max_len=args.max_len,
-                neg_per_pos=args.neg_per_pos, seed=args.seed + 1000 + ep, threshold=args.threshold)
+                neg_per_pos=args.neg_per_pos, seed=args.seed + 1000, threshold=args.threshold)
             history["dev"].append({"epoch": ep, **dev_metrics})
             print(f"[{args.run_name}] DEV (Triple Cls) {dev_metrics}")
 

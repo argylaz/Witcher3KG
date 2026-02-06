@@ -75,14 +75,14 @@ def classification_metrics(y_true, y_prob, threshold=0.5):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data_dir", required=True)
-    ap.add_argument("--run_name", default="kgbert_dummy_baseline") # Default όνομα για το JSON
+    ap.add_argument("--run_name", default="kgbert_dummy_baseline")
     ap.add_argument("--model_name", default="bert-base-uncased")
     ap.add_argument("--eval_batch", type=int, default=64)
     ap.add_argument("--max_len", type=int, default=256)
     ap.add_argument("--neg_per_pos", type=int, default=3)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--threshold", type=float, default=0.5)
-    ap.add_argument("--out_dir", default="results") # Πού να σωθεί
+    ap.add_argument("--out_dir", default="results")
     args = ap.parse_args()
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Running Dummy Baseline on {device}.")
