@@ -51,32 +51,11 @@ class TrainDataset(Dataset):
 
 def collate_train(batch, tokenizer, ent2desc, rel2desc, max_len):
     hs, rs, ts = zip(*batch)
-    
-    # Get the raw text strings separately
-    h_desc_list = [ent2desc.get(h, h) for h in hs]
-    r_desc_list = [rel2desc.get(r, r) for r in rs]
-    t_desc_list = [build_entity_text(t, ent2desc) for t in ts]
+    q_texts = [build_query_text(h, r, ent2desc, rel2desc) for h, r in zip(hs, rs)]
+    t_texts = [build_entity_text(t, ent2desc) for t in ts]
+    q_enc = tokenizer(q_texts, padding=True, truncation=True, max_length=max_len, return_tensors="pt")
+    t_enc = tokenizer(t_texts, padding=True, truncation=True, max_length=max_len, return_tensors="pt")
 
-    # Pass them as pairs. This enables [SEP] AND Segment IDs (0 vs 1)
-    q_enc = tokenizer(
-        text=h_desc_list, 
-        text_pair=r_desc_list, # This will create a single input with [CLS] h_desc [SEP] r_desc [SEP]
-        padding=True, 
-        truncation=True, 
-        max_length=max_len, 
-        return_tensors="pt"
-    )
-    
-    # Tail is just single text
-    t_enc = tokenizer(
-        text=t_desc_list, 
-        padding=True, 
-        truncation=True, 
-        max_length=max_len, 
-        return_tensors="pt"
-    )
-    
-    return q_enc, t_enc
 
 # Evaluation Triple Classification
 def make_labeled_samples(pos_df, all_true_set, entities, neg_per_pos=1, seed=42):
