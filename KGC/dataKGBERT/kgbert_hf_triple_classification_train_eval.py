@@ -29,32 +29,37 @@ def triple_to_text(h, r, t, ent2desc, rel2desc):
     td = ent2desc.get(t, t)
     return f"HEAD: {hd}\nRELATION: {rd}\nTAIL: {td}"
 
+
 def make_labeled_samples(pos_df, all_true_set, entities, ent2desc, rel2desc, neg_per_pos=5, seed=42):
-    """
-    Returns list of (text, label). For each positive triple adds neg_per_pos negatives via head/tail corruption.
-    Negatives are guaranteed not to exist in all_true_set.
-    """
     rng = random.Random(seed)
     samples = []
     for _, row in pos_df.iterrows():
         h, r, t = row["h"], row["r"], row["t"]
-        # positive
-        samples.append((triple_to_text(h, r, t, ent2desc, rel2desc), 1))
+        
+        def get_pair(head, rel, tail):
+            # Sentence A: Head Description + Relation Description
+            text_a = f"{ent2desc.get(head, head)} {rel2desc.get(rel, rel)}"
+            # Sentence B: Tail Description
+            text_b = ent2desc.get(tail, tail)
+            return (text_a, text_b)
 
-        # negatives
+        # Positive
+        samples.append((get_pair(h, r, t), 1))
+
+        # Negatives
         for _ in range(neg_per_pos):
             if rng.random() < 0.5:
-                # corrupt tail
+                # Corrupt Tail
                 tt = rng.choice(entities)
-                while (h, r, tt) in all_true_set:
-                    tt = rng.choice(entities)
-                samples.append((triple_to_text(h, r, tt, ent2desc, rel2desc), 0))
+                while (h, r, tt) in all_true_set: tt = rng.choice(entities)
+                samples.append((get_pair(h, r, tt), 0))
             else:
-                # corrupt head
+                # Corrupt Head
                 hh = rng.choice(entities)
-                while (hh, r, t) in all_true_set:
-                    hh = rng.choice(entities)
-                samples.append((triple_to_text(hh, r, t, ent2desc, rel2desc), 0))
+                while (hh, r, t) in all_true_set: hh = rng.choice(entities)
+                # For KG-BERT, if we corrupt Head, the new Head goes into Sentence A
+                samples.append((get_pair(hh, r, t), 0))
+
     return samples
 
 class TextClsDataset(Dataset):
@@ -66,8 +71,23 @@ class TextClsDataset(Dataset):
         return self.samples[idx]
 
 def collate_fn(batch, tokenizer, max_len):
-    texts, labels = zip(*batch)
-    enc = tokenizer(list(texts), padding=True, truncation=True, max_length=max_len, return_tensors="pt")
+    # Batch is now a list of ((text_a, text_b), label)
+    inputs_labels = zip(*batch)
+    inputs, labels = inputs_labels
+    
+    # Unpack the pairs
+    text_a = [i[0] for i in inputs]
+    text_b = [i[1] for i in inputs]
+    
+    # Tokenize as a pair
+    enc = tokenizer(
+        text=text_a,
+        text_pair=text_b, 
+        padding=True, 
+        truncation=True, 
+        max_length=max_len, 
+        return_tensors="pt"
+    )
     return enc, torch.tensor(labels, dtype=torch.long)
 
 @torch.inference_mode()
