@@ -13,7 +13,7 @@ NAMESPACES = """
 
 
 # --- 1. CONFIGURATION ---
-# The single source of truth for our curated dataset
+# The combined curated tipples file from the previous curation step
 CURATED_FILE_PATH = 'dataset_v2/all_triples_combined.tsv' 
 OUTPUT_DIR = "dataset_v3" # New version for a clean slate
 
@@ -26,15 +26,14 @@ RELATIONS_TO_MERGE = {
     "http://cgi.di.uoa.gr/witcher/ontology#children",
     "http://cgi.di.uoa.gr/witcher/ontology#relative",
     "http://cgi.di.uoa.gr/witcher/ontology#family",
-    # Add any other family-related predicates here, e.g., siblings
 }
 
-# --- SPLIT CONFIG (Unchanged) ---
+# --- SPLIT CONFIG ---
 VALID_SPLIT = 0.1
 TEST_SPLIT = 0.1
 MIN_SPLIT_THRESHOLD = 5
 
-# --- MAIN LOGIC (Completely Re-architected) ---
+# --- MAIN LOGIC ---
 def main():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
@@ -51,15 +50,6 @@ def main():
     except Exception as e:
         print(f"!!! FATAL ERROR: Could not read the curated file. Error: {e} !!!")
         return
-    
-        # --- Step 1: Load the curated dataset ---
-    print(f"--- Step 1: Loading curated triples from {CURATED_FILE_PATH} ---")
-    try:
-        df = pd.read_csv(CURATED_FILE_PATH, sep='\t', header=None, names=['head', 'relation', 'tail'])
-        all_triples = [tuple(x) for x in df.to_numpy()]
-        print(f"  - Successfully loaded {len(all_triples)} curated triples.")
-    except Exception as e:
-        print(f"!!! FATAL ERROR: Could not read the curated file. Error: {e} !!!"); return
 
     # --- Step 1.5: Merge Family Relations ---
     print("\n--- Step 1.5: Merging family-related relations ---")
@@ -77,7 +67,7 @@ def main():
     # All subsequent steps will now use the `merged_triples` list
     all_triples = merged_triples
 
-    # --- Step 2: Isolate the Geralt Case Study from the curated set ---
+    # --- Step 2: Isolate the Geralt tripples from the curated set ---
     geralt_uri_string = "http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia"
     print(f"\n--- Step 2: Isolating Geralt of Rivia case study (subject only) ---")
     
@@ -115,7 +105,7 @@ def main():
             test_set.extend(triples[n_val : n_val + n_test])
             train_set.extend(triples[n_val + n_test :])
 
-    # --- Step 4: Augment the Test Set with the Geralt Case Study ---
+    # --- Step 4: Augment the Test Set with Geralt tripples ---
     print(f"\n--- Step 4: Augmenting test set with {len(geralt_triples)} Geralt triples... ---")
     test_set.extend(geralt_triples)
 

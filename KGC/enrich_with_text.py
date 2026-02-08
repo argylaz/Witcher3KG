@@ -6,7 +6,7 @@ import os
 KG_INPUT_PATH = '../RDF/Witcher3KG.n3'
 CLASSES_INPUT_PATH = '../RDF/Classes.ttl'
 ENTITIES_XML_PATH = '../../Wiki_Dump_Namespaces/namespace_0_main.xml'
-CATEGORIES_XML_PATH = '../../Wiki_Dump_Namespaces/namespace_14_Category.xml' # <-- Added path
+CATEGORIES_XML_PATH = '../../Wiki_Dump_Namespaces/namespace_14_Category.xml'
 KG_OUTPUT_PATH = '../RDF/Witcher3KG_full.ttl'
 CLASSES_OUTPUT_PATH = '../RDF/Classes_full.ttl'
 
@@ -81,7 +81,7 @@ def enrich_graphs_with_text():
     # Run the processor for Categories
     process_xml_for_full_text(classes, CATEGORIES_XML_PATH, lambda title: witcher[sanitize_for_uri(title.replace("Category:", ""))])
             
-    # --- Step 4: Generate and Add Descriptions to Properties (from examples) ---
+    # --- Step 4: Generate and Add Descriptions to Properties ---
     print("\n--- Generating and Enriching Properties with Descriptions ---")
     props_query = "SELECT ?p WHERE { ?p a ?type . FILTER(?type IN (owl:ObjectProperty, owl:DatatypeProperty)) }"
     for row in classes.query(props_query, initNs={"owl": OWL}):

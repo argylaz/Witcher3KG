@@ -10,12 +10,14 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 SPARQL_ENDPOINT_URL = "http://localhost:7200/repositories/da4dte_final"
 OUTPUT_FILE = "accepted_triples.tsv"
 PROGRESS_FILE = "curation_progress.txt"
-# Add the classes you want to focus on here
+
+# Define the target classes we want to focus on for our benchmark
 TARGET_CLASSES = [
     "witcher:The_Witcher_3_characters",
     "witcher:The_Witcher_3_quests",
     "witcher:The_Witcher_3_items"
 ]
+
 # Define properties to exclude (e.g., ones that aren't factual relationships)
 PROPERTIES_TO_EXCLUDE = [
     "rdf:type",
@@ -23,7 +25,7 @@ PROPERTIES_TO_EXCLUDE = [
     "geo:hasGeometry",
     "geo:asWKT",
     "witcher:hasInGameCoordinates",
-    "witcher:isPartOf" # Often too generic
+    "witcher:isPartOf"
 ]
 
 # --- 2. HELPER FUNCTIONS ---
@@ -151,7 +153,7 @@ def main():
             while True:
                 choice = input("Accept (a) / Reject (r) / Quit (q): ").lower().strip()
                 if choice == 'a':
-                    # Save in the required head<TAB>relation<TAB>tail format using URIs
+                    # Save in head<TAB>relation<TAB>tail format using URIs
                     output_file_handle.write(f"{h_uri}\t{r_uri}\t{t_uri}\n")
                     accepted_count += 1
                     print("  -> Accepted.")

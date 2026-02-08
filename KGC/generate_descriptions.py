@@ -9,11 +9,11 @@ import glob
 # --- Configuration ---
 OPENROUTER_API_KEY = "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"
 
-# The graph is our source of truth for text
+# The graph the version of the graph that contains the full text descriptions
 KG_FULL_PATH = '../RDF/Witcher3KG_full.ttl' 
 
-# The KGC dataset files define our scope
-KGC_DATASET_DIR = './dataset_v3/' # Assumes train.tsv, etc., are in the same directory
+# The KGC dataset files
+KGC_DATASET_DIR = './dataset_v3/'
 
 # Output files
 ENTITY_DESC_PATH = 'entity_desc.tsv'
@@ -26,26 +26,21 @@ dbr = Namespace("http://cgi.di.uoa.gr/witcher/resource/")
 # Model
 MODEL_NAME = "qwen/qwen3-4b:free" 
 
-# --- Helper Functions (Unchanged) ---
+# --- Helper Functions ---
 def prepare_text_for_summarization(full_text: str):
     MAX_CHARS = 150000
     if len(full_text) <= MAX_CHARS: return full_text
     print(f"  - WARNING: Text extremely long ({len(full_text)} chars). Truncating.")
     return (full_text[:75000] + "\n\n--- [CONTENT TRUNCATED] ---\n\n" + full_text[-75000:])
 
-import requests # Make sure this is imported at the top of your file
-import json
-import time
 
-# ... (keep the rest of your script, including configuration and other helpers) ...
 def generate_llm_summary(prompt_text, max_retries=4): # Increased retries to 4
     """
     Sends a prompt to the LLM with robust error handling, a universal delay,
     and aggressive exponential backoff for rate limiting.
     """
     
-    # --- The Universal Delay ---
-    # ALWAYS wait before making a request. This is the most critical fix.
+    # ALWAYS wait before making a request
     time.sleep(2) # Wait 2 seconds between every single attempt.
 
     for attempt in range(max_retries):
@@ -76,7 +71,7 @@ def generate_llm_summary(prompt_text, max_retries=4): # Increased retries to 4
             result = response.json()
             summary = result['choices'][0]['message']['content'].strip()
             
-            return summary # Success!
+            return summary
             
         except requests.exceptions.HTTPError as http_err:
             # This is a specific error from the server (e.g., 429, 503)
@@ -96,7 +91,7 @@ def generate_llm_summary(prompt_text, max_retries=4): # Increased retries to 4
     # If all retries fail, return None
     return None
 
-# --- NEW Helper to get target URIs ---
+# --- Helper to get target URIs ---
 def load_kgc_dataset_uris(dataset_dir):
     """Reads all .tsv files in a directory to get a unique set of entities and relations."""
     target_entities = set()
@@ -229,7 +224,7 @@ def process_knowledge_graph():
             label = str(g.value(rel_uri, RDFS.label, default=rel_uri_str.split('#')[-1]))
             print(f"Processing Relation {i+1}/{total_relations}: {label}")
 
-            # --- THE DEFINITIVE PROMPT: Use TYPE context, not INSTANCE context ---
+            #  Use TYPE context, not INSTANCE context
             context_text = ""
             if rel_uri_str in example_types_map:
                 ex = example_types_map[rel_uri_str]
