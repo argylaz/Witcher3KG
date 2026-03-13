@@ -1,0 +1,1071 @@
+[
+    {
+        "query_id": "T12_SchemaLookup_435",
+        "template_id": "T12_SchemaLookup",
+        "question": "What is the parent class of Families?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Families> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Families"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_469",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a Dryads?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Dryads> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Dryads"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_310",
+        "template_id": "T12_SchemaLookup",
+        "question": "What is the parent class of Alcohol?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Alcohol> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Alcohol"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_97",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a Battles?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Battles> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Battles"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_149",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a Thronebreaker letters and reports?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Thronebreaker_letters_and_reports> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Thronebreaker_letters_and_reports"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_384",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a The Witcher 2 books?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_books> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_books"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_359",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is The Witcher character development?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_character_development> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_character_development"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_181",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a Blood and Wine silver swords?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_silver_swords> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_silver_swords"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_210",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a The Witcher 3 secondary quests?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_secondary_quests> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_secondary_quests"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_44",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a Rivers?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Rivers> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Rivers"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_152",
+        "template_id": "T12_SchemaLookup",
+        "question": "What is the broader category that The Witcher cutscenes belong to?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_cutscenes> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_cutscenes"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_1",
+        "template_id": "T12_SchemaLookup",
+        "question": "What is the parent class of Mages?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Mages> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Mages"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_100",
+        "template_id": "T12_SchemaLookup",
+        "question": "What is the parent class of Counties?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Counties> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Counties"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_244",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a Criminals?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Criminals> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Criminals"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_465",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a Protection spell?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Protection_spells> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Protection_spells"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_234",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a Time of Contempt characters?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Time_of_Contempt_characters> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Time_of_Contempt_characters"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_140",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a The Witcher Monster Slayer bestiary?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_Monster_Slayer_bestiary> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_Monster_Slayer_bestiary"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_365",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a The Witcher 2 quest?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_quests> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_quests"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_135",
+        "template_id": "T12_SchemaLookup",
+        "question": "What kind of thing is a The Witcher 3 notice board?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_notice_boards> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_notice_boards"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T12_SchemaLookup_214",
+        "template_id": "T12_SchemaLookup",
+        "question": "What is the broader category that Witchers belong to?",
+        "sparql_query": "SELECT ?parentClassLabel WHERE { <http://cgi.di.uoa.gr/witcher/ontology#Witchers> rdfs:subClassOf ?parentClass . FILTER(isIRI(?parentClass)) ?parentClass rdfs:label ?parentClassLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Witchers"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_107",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Signs.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Signs> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Signs"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_87",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known The Witcher 3 main quests.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_main_quests> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_3_main_quests"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_346",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Alcohol.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Alcohol> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Alcohol"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_303",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Nilfgaardian Empire gwent deck cards.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Nilfgaardian_Empire_gwent_deck_cards> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Nilfgaardian_Empire_gwent_deck_cards"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_95",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known The Witcher 2 potions.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_potions> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_potions"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_119",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Divinations.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Divinations> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Divinations"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_113",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Oxenfurt.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Oxenfurt> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Oxenfurt"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_370",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known The Witcher 2 steel swords.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_steel_swords> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#The_Witcher_2_steel_swords"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_411",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Toussaintois.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Toussaintois> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Toussaintois"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_321",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Witcher series.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Witcher_series> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Witcher_series"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_327",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Lyrian Governments.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Lyrian_Government> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Lyrian_Government"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_77",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known White Orchard.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#White_Orchard> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#White_Orchard"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_463",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Mages.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Mages> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Mages"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_105",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Blood and Wine items.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_items> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Blood_and_Wine_items"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_251",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known The Price of Neutrality items.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#The_Price_of_Neutrality_items> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#The_Price_of_Neutrality_items"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_372",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Ebbingers.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Ebbingers> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Ebbingers"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_97",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Thronebreaker patches.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Thronebreaker_patches> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Thronebreaker_patches"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_26",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Ebbing.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Ebbing> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Ebbing"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_122",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Entrance.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Entrance> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Entrance"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T14_InstanceListingByClass_242",
+        "template_id": "T14_InstanceListingByClass",
+        "question": "List all known Valleys.",
+        "sparql_query": "SELECT ?instanceLabel WHERE { ?instance a <http://cgi.di.uoa.gr/witcher/ontology#Valleys> . ?instance rdfs:label ?instanceLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#Valleys"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_52",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the hair color of Liesje?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Liesje> <http://cgi.di.uoa.gr/witcher/ontology#hair_color> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Liesje",
+            "http://cgi.di.uoa.gr/witcher/ontology#hair_color"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_138",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the alias of Geralt of Rivia?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> <http://cgi.di.uoa.gr/witcher/ontology#aka> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia",
+            "http://cgi.di.uoa.gr/witcher/ontology#aka"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_7",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the gender of Steingrim?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Steingrim> <http://cgi.di.uoa.gr/witcher/ontology#gender> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Steingrim",
+            "http://cgi.di.uoa.gr/witcher/ontology#gender"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_144",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the lookalike of Geralt of Rivia?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> <http://cgi.di.uoa.gr/witcher/ontology#lookalike> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia",
+            "http://cgi.di.uoa.gr/witcher/ontology#lookalike"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_53",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the partner of Liesje?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Liesje> <http://cgi.di.uoa.gr/witcher/ontology#partner> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#partner",
+            "http://cgi.di.uoa.gr/witcher/resource/Liesje"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_121",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What are the abilities of Geralt of Rivia?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> <http://cgi.di.uoa.gr/witcher/ontology#abilities> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#abilities",
+            "http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_158",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "Who is the partner of Geralt of Rivia?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> <http://cgi.di.uoa.gr/witcher/ontology#partner> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia",
+            "http://cgi.di.uoa.gr/witcher/ontology#partner"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_108",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the type of Trottheim?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Trottheim> <http://cgi.di.uoa.gr/witcher/ontology#type> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Trottheim",
+            "http://cgi.di.uoa.gr/witcher/ontology#type"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_198",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the image of Jutta an Dimun?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Jutta_an_Dimun> <http://cgi.di.uoa.gr/witcher/ontology#image> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Jutta_an_Dimun",
+            "http://cgi.di.uoa.gr/witcher/ontology#image"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_115",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the gender of Geralt of Rivia?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> <http://cgi.di.uoa.gr/witcher/ontology#gender> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia",
+            "http://cgi.di.uoa.gr/witcher/ontology#gender"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_68",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the eye color of Dolores Reardon?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Dolores_Reardon> <http://cgi.di.uoa.gr/witcher/ontology#eye_color> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#eye_color",
+            "http://cgi.di.uoa.gr/witcher/resource/Dolores_Reardon"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_77",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What are the affiliations of Ben of Kovir?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Ben_of_Kovir> <http://cgi.di.uoa.gr/witcher/ontology#affiliations> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Ben_of_Kovir",
+            "http://cgi.di.uoa.gr/witcher/ontology#affiliations"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_38",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the name of Yamurlak (spy)?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Yamurlak_spy> <http://cgi.di.uoa.gr/witcher/ontology#name> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#name",
+            "http://cgi.di.uoa.gr/witcher/resource/Yamurlak_spy"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_192",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the profession of Willis?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Willis> <http://cgi.di.uoa.gr/witcher/ontology#profession> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Willis",
+            "http://cgi.di.uoa.gr/witcher/ontology#profession"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_60",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the profession of Medic (Oxenfurt Morgue)?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Medic_Oxenfurt_Morgue> <http://cgi.di.uoa.gr/witcher/ontology#profession> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Medic_Oxenfurt_Morgue",
+            "http://cgi.di.uoa.gr/witcher/ontology#profession"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_162",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the voice of Geralt of Rivia?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> <http://cgi.di.uoa.gr/witcher/ontology#voice> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia",
+            "http://cgi.di.uoa.gr/witcher/ontology#voice"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_155",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "Who are the children of Geralt of Rivia?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia> <http://cgi.di.uoa.gr/witcher/ontology#children> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#children",
+            "http://cgi.di.uoa.gr/witcher/resource/Geralt_of_Rivia"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_174",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the name of Helma?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Helma> <http://cgi.di.uoa.gr/witcher/ontology#name> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#name",
+            "http://cgi.di.uoa.gr/witcher/resource/Helma"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_41",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the profession of Yamurlak (spy)?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Yamurlak_spy> <http://cgi.di.uoa.gr/witcher/ontology#profession> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Yamurlak_spy",
+            "http://cgi.di.uoa.gr/witcher/ontology#profession"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T5_PropertyLookup_Direct_93",
+        "template_id": "T5_PropertyLookup_Direct",
+        "question": "What is the race of Olaf (guardsman)?",
+        "sparql_query": "SELECT ?objectLabel WHERE { <http://cgi.di.uoa.gr/witcher/resource/Olaf_guardsman> <http://cgi.di.uoa.gr/witcher/ontology#race> ?object . OPTIONAL { ?object rdfs:label ?objLabel . } BIND(IF(isURI(?object), ?objLabel, ?object) AS ?objectLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#race",
+            "http://cgi.di.uoa.gr/witcher/resource/Olaf_guardsman"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_102",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which entities have Skellige Map as their isPartOf?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#isPartOf> <http://cgi.di.uoa.gr/witcher/resource/Skellige_Map> . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Skellige_Map",
+            "http://cgi.di.uoa.gr/witcher/ontology#isPartOf"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_122",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which characters or entities have Signs as their abilities?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#abilities> <http://cgi.di.uoa.gr/witcher/resource/Signs> . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#abilities",
+            "http://cgi.di.uoa.gr/witcher/resource/Signs"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_55",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which entities have Bastien Vildenvert as their relative?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#relative> <http://cgi.di.uoa.gr/witcher/resource/Bastien_Vildenvert> . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#relative",
+            "http://cgi.di.uoa.gr/witcher/resource/Bastien_Vildenvert"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_110",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which entities have Clan Dimun as their owner?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#owner> \"Clan Dimun\" . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#owner"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_12",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which entities have Royal Redanian Army as their affiliations?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#affiliations> <http://cgi.di.uoa.gr/witcher/resource/Royal_Redanian_Army> . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Royal_Redanian_Army",
+            "http://cgi.di.uoa.gr/witcher/ontology#affiliations"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_194",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which characters have Dwarf as their race?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#race> \"Dwarf\" . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#race"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_199",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "What is the label for the entity named \"Jutta an Dimun\"?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#name> \"Jutta an Dimun\" . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#name"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_24",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which entities have \"Margrave Vladimir.png\" as their image?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#image> \"Margrave Vladimir.png\" . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#image"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_154",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which characters have Ciri as their child?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#children> <http://cgi.di.uoa.gr/witcher/resource/Ciri> . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#children",
+            "http://cgi.di.uoa.gr/witcher/resource/Ciri"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_144",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which entities in The Witcher franchise have Liam Hemsworth as their lookalike?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#lookalike> \"Liam Hemsworth\" . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#lookalike"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_70",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which entities have Roderick (Gors Velen) as their partner?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#partner> <http://cgi.di.uoa.gr/witcher/resource/Roderick_Gors_Velen> . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#partner",
+            "http://cgi.di.uoa.gr/witcher/resource/Roderick_Gors_Velen"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_140",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which entities have Geralt Roger Eric du Haute-Bellegarde as their aka?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#aka> \"Geralt Roger Eric du Haute-Bellegarde\" . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#aka"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_15",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which characters in The Witcher universe are male?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#gender> \"Male\" . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#gender"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_59",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which characters in The Witcher video game franchise are male?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#gender> \"Male\" . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#gender"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_42",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which characters in The Witcher franchise are Human?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/Human> . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Human",
+            "http://cgi.di.uoa.gr/witcher/ontology#race"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_177",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which characters in The Witcher universe have Human as their race?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#race> \"Human\" . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#race"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_92",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which characters have the profession Guardsman?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#profession> \"Guardsman\" . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#profession"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_35",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which entities have the Redanian Secret Service as their affiliation?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#affiliations> <http://cgi.di.uoa.gr/witcher/resource/Redanian_Secret_Service> . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#affiliations",
+            "http://cgi.di.uoa.gr/witcher/resource/Redanian_Secret_Service"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_117",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which characters have the profession of Witcher?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#profession> <http://cgi.di.uoa.gr/witcher/resource/Witcher> . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#profession",
+            "http://cgi.di.uoa.gr/witcher/resource/Witcher"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T6_PropertyLookup_Inverse_7",
+        "template_id": "T6_PropertyLookup_Inverse",
+        "question": "Which characters in The Witcher universe are male?",
+        "sparql_query": "SELECT ?subjectLabel WHERE { ?subject <http://cgi.di.uoa.gr/witcher/ontology#gender> \"Male\" . ?subject rdfs:label ?subjectLabel . }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#gender"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_126",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What are the parents of entities affiliated with Arnout Vester?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#affiliations> <http://cgi.di.uoa.gr/witcher/resource/Arnout_Vester> . ?member <http://cgi.di.uoa.gr/witcher/ontology#parents> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Arnout_Vester",
+            "http://cgi.di.uoa.gr/witcher/ontology#affiliations",
+            "http://cgi.di.uoa.gr/witcher/ontology#parents"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_121",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What is the profession of entities affiliated with Arnout Vester?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#affiliations> <http://cgi.di.uoa.gr/witcher/resource/Arnout_Vester> . ?member <http://cgi.di.uoa.gr/witcher/ontology#profession> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Arnout_Vester",
+            "http://cgi.di.uoa.gr/witcher/ontology#affiliations",
+            "http://cgi.di.uoa.gr/witcher/ontology#profession"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_194",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What is the partner of entities related to witcher via race?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#partner> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#partner",
+            "http://cgi.di.uoa.gr/witcher/ontology#race",
+            "http://cgi.di.uoa.gr/witcher/resource/witcher"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_175",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What are the alternative names (aka) of entities that are of the witcher race?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#aka> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#race",
+            "http://cgi.di.uoa.gr/witcher/ontology#aka",
+            "http://cgi.di.uoa.gr/witcher/resource/witcher"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_195",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What is the partner of entities related to witcher via race?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#partner> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#partner",
+            "http://cgi.di.uoa.gr/witcher/ontology#race",
+            "http://cgi.di.uoa.gr/witcher/resource/witcher"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_9",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What are the abilities of entities that have the race Human?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/Human> . ?member <http://cgi.di.uoa.gr/witcher/ontology#abilities> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#abilities",
+            "http://cgi.di.uoa.gr/witcher/resource/Human",
+            "http://cgi.di.uoa.gr/witcher/ontology#race"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_33",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What are the titles of entities that have the race Human?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/Human> . ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Human",
+            "http://cgi.di.uoa.gr/witcher/ontology#race",
+            "http://cgi.di.uoa.gr/witcher/ontology#titles"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_157",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What is the profession of entities that are of the witcher race?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#profession> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#race",
+            "http://cgi.di.uoa.gr/witcher/ontology#profession",
+            "http://cgi.di.uoa.gr/witcher/resource/witcher"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_72",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What is the hair color of entities related to Knight via titles?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#hair_color> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Knight",
+            "http://cgi.di.uoa.gr/witcher/ontology#titles",
+            "http://cgi.di.uoa.gr/witcher/ontology#hair_color"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_139",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What are the names of all entities whose profession is Herbalist?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#profession> <http://cgi.di.uoa.gr/witcher/resource/Herbalist> . ?member <http://cgi.di.uoa.gr/witcher/ontology#name> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#name",
+            "http://cgi.di.uoa.gr/witcher/resource/Herbalist",
+            "http://cgi.di.uoa.gr/witcher/ontology#profession"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_68",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What is the eye color of entities related to Knight via titles?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#eye_color> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#eye_color",
+            "http://cgi.di.uoa.gr/witcher/resource/Knight",
+            "http://cgi.di.uoa.gr/witcher/ontology#titles"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_179",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What is the lookalike of entities that have the race 'witcher'?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#lookalike> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#race",
+            "http://cgi.di.uoa.gr/witcher/ontology#lookalike",
+            "http://cgi.di.uoa.gr/witcher/resource/witcher"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_60",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What is the race of characters who hold the title of Knight?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#race> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#race",
+            "http://cgi.di.uoa.gr/witcher/resource/Knight",
+            "http://cgi.di.uoa.gr/witcher/ontology#titles"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_65",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What are the abilities of entities related to Knight via titles?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#abilities> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#abilities",
+            "http://cgi.di.uoa.gr/witcher/resource/Knight",
+            "http://cgi.di.uoa.gr/witcher/ontology#titles"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_153",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What are the affiliations of entities that have the race 'witcher'?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#affiliations> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#affiliations",
+            "http://cgi.di.uoa.gr/witcher/ontology#race",
+            "http://cgi.di.uoa.gr/witcher/resource/witcher"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_135",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What are the names of all entities located in the region of Faroe?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#region> <http://cgi.di.uoa.gr/witcher/resource/Faroe> . ?member <http://cgi.di.uoa.gr/witcher/ontology#name> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#name",
+            "http://cgi.di.uoa.gr/witcher/ontology#region",
+            "http://cgi.di.uoa.gr/witcher/resource/Faroe"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_168",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What is the eye color of entities related to witcher via race?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/witcher> . ?member <http://cgi.di.uoa.gr/witcher/ontology#eye_color> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#eye_color",
+            "http://cgi.di.uoa.gr/witcher/ontology#race",
+            "http://cgi.di.uoa.gr/witcher/resource/witcher"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_12",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What are the abilities of entities that have the race Human?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#race> <http://cgi.di.uoa.gr/witcher/resource/Human> . ?member <http://cgi.di.uoa.gr/witcher/ontology#abilities> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/ontology#abilities",
+            "http://cgi.di.uoa.gr/witcher/resource/Human",
+            "http://cgi.di.uoa.gr/witcher/ontology#race"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_98",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What is the voice of entities related to Knight via titles?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#voice> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Knight",
+            "http://cgi.di.uoa.gr/witcher/ontology#voice",
+            "http://cgi.di.uoa.gr/witcher/ontology#titles"
+        ],
+        "answer": null
+    },
+    {
+        "query_id": "T7_MultiHopQuery_57",
+        "template_id": "T7_MultiHopQuery",
+        "question": "What is the profession of entities related to Knight via titles?",
+        "sparql_query": "SELECT DISTINCT ?targetValueLabel WHERE { ?member <http://cgi.di.uoa.gr/witcher/ontology#titles> <http://cgi.di.uoa.gr/witcher/resource/Knight> . ?member <http://cgi.di.uoa.gr/witcher/ontology#profession> ?targetValue . OPTIONAL { ?targetValue rdfs:label ?label . } BIND(IF(isURI(?targetValue), ?label, ?targetValue) AS ?targetValueLabel) }",
+        "seed_entities": [
+            "http://cgi.di.uoa.gr/witcher/resource/Knight",
+            "http://cgi.di.uoa.gr/witcher/ontology#profession",
+            "http://cgi.di.uoa.gr/witcher/ontology#titles"
+        ],
+        "answer": null
+    }
+]
