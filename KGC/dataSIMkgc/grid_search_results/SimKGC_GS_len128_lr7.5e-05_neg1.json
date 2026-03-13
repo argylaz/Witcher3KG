@@ -1,0 +1,236 @@
+{
+  "run_name": "SimKGC_GS_len128_lr7.5e-05_neg1",
+  "task": "TRIPLE_CLASSIFICATION",
+  "method": "SimKGC (Bi-Encoder Contrastive)",
+  "params": {
+    "epochs": 10,
+    "lr": 7.5e-05,
+    "train_batch": 16,
+    "max_len": 128,
+    "neg_per_pos": 1,
+    "threshold": 0.5
+  },
+  "best_dev_f1": 0.7765957446808512,
+  "history": {
+    "epochs": [
+      {
+        "epoch": 1,
+        "train_loss": 2.5176578786638046
+      },
+      {
+        "epoch": 2,
+        "train_loss": 1.6260281138949924
+      },
+      {
+        "epoch": 3,
+        "train_loss": 1.1120146440135108
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.8415967325369517
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.7078795949618022
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.6166660891638862
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.4784654337912798
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.393989112890429
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.3811286283204228
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.3297428333097034
+      }
+    ],
+    "dev": [
+      {
+        "epoch": 1,
+        "accuracy": 0.525974025974026,
+        "precision": 0.5133333333333333,
+        "recall": 1.0,
+        "f1": 0.6784140969162996,
+        "confusion": {
+          "tp": 77,
+          "tn": 4,
+          "fp": 73,
+          "fn": 0
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77
+      },
+      {
+        "epoch": 2,
+        "accuracy": 0.564935064935065,
+        "precision": 0.5347222222222222,
+        "recall": 1.0,
+        "f1": 0.6968325791855203,
+        "confusion": {
+          "tp": 77,
+          "tn": 10,
+          "fp": 67,
+          "fn": 0
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77
+      },
+      {
+        "epoch": 3,
+        "accuracy": 0.5844155844155844,
+        "precision": 0.5467625899280576,
+        "recall": 0.987012987012987,
+        "f1": 0.7037037037037037,
+        "confusion": {
+          "tp": 76,
+          "tn": 14,
+          "fp": 63,
+          "fn": 1
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77
+      },
+      {
+        "epoch": 4,
+        "accuracy": 0.7272727272727273,
+        "precision": 0.6576576576576577,
+        "recall": 0.948051948051948,
+        "f1": 0.7765957446808512,
+        "confusion": {
+          "tp": 73,
+          "tn": 39,
+          "fp": 38,
+          "fn": 4
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77
+      },
+      {
+        "epoch": 5,
+        "accuracy": 0.7012987012987013,
+        "precision": 0.6448598130841121,
+        "recall": 0.8961038961038961,
+        "f1": 0.75,
+        "confusion": {
+          "tp": 69,
+          "tn": 39,
+          "fp": 38,
+          "fn": 8
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77
+      },
+      {
+        "epoch": 6,
+        "accuracy": 0.7272727272727273,
+        "precision": 0.6767676767676768,
+        "recall": 0.8701298701298701,
+        "f1": 0.7613636363636364,
+        "confusion": {
+          "tp": 67,
+          "tn": 45,
+          "fp": 32,
+          "fn": 10
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77
+      },
+      {
+        "epoch": 7,
+        "accuracy": 0.7467532467532467,
+        "precision": 0.7111111111111111,
+        "recall": 0.8311688311688312,
+        "f1": 0.7664670658682636,
+        "confusion": {
+          "tp": 64,
+          "tn": 51,
+          "fp": 26,
+          "fn": 13
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77
+      },
+      {
+        "epoch": 8,
+        "accuracy": 0.7467532467532467,
+        "precision": 0.7261904761904762,
+        "recall": 0.7922077922077922,
+        "f1": 0.7577639751552795,
+        "confusion": {
+          "tp": 61,
+          "tn": 54,
+          "fp": 23,
+          "fn": 16
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77
+      },
+      {
+        "epoch": 9,
+        "accuracy": 0.7207792207792207,
+        "precision": 0.6888888888888889,
+        "recall": 0.8051948051948052,
+        "f1": 0.7425149700598802,
+        "confusion": {
+          "tp": 62,
+          "tn": 49,
+          "fp": 28,
+          "fn": 15
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77
+      },
+      {
+        "epoch": 10,
+        "accuracy": 0.7142857142857143,
+        "precision": 0.6941176470588235,
+        "recall": 0.7662337662337663,
+        "f1": 0.7283950617283951,
+        "confusion": {
+          "tp": 59,
+          "tn": 51,
+          "fp": 26,
+          "fn": 18
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 77
+      }
+    ],
+    "test": {
+      "accuracy": 0.6746987951807228,
+      "precision": 0.6218487394957983,
+      "recall": 0.891566265060241,
+      "f1": 0.7326732673267327,
+      "confusion": {
+        "tp": 74,
+        "tn": 38,
+        "fp": 45,
+        "fn": 9
+      },
+      "threshold": 0.5,
+      "num_pos": 83,
+      "num_neg": 83
+    }
+  },
+  "timestamp_unix": 1769546383
+}

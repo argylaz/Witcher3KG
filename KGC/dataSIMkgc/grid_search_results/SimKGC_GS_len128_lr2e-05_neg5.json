@@ -1,0 +1,236 @@
+{
+  "run_name": "SimKGC_GS_len128_lr2e-05_neg5",
+  "task": "TRIPLE_CLASSIFICATION",
+  "method": "SimKGC (Bi-Encoder Contrastive)",
+  "params": {
+    "epochs": 10,
+    "lr": 2e-05,
+    "train_batch": 16,
+    "max_len": 128,
+    "neg_per_pos": 5,
+    "threshold": 0.5
+  },
+  "best_dev_f1": 0.48113207547169806,
+  "history": {
+    "epochs": [
+      {
+        "epoch": 1,
+        "train_loss": 2.778655189938015
+      },
+      {
+        "epoch": 2,
+        "train_loss": 1.9699117872450087
+      },
+      {
+        "epoch": 3,
+        "train_loss": 1.4299987879064349
+      },
+      {
+        "epoch": 4,
+        "train_loss": 1.0923902842733595
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.8953376478619046
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.7475352515776952
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.5842103567388323
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.4652988876733515
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.433638196454073
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.3662350379758411
+      }
+    ],
+    "dev": [
+      {
+        "epoch": 1,
+        "accuracy": 0.16666666666666666,
+        "precision": 0.16666666666666666,
+        "recall": 1.0,
+        "f1": 0.2857142857142857,
+        "confusion": {
+          "tp": 77,
+          "tn": 0,
+          "fp": 385,
+          "fn": 0
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 385
+      },
+      {
+        "epoch": 2,
+        "accuracy": 0.21861471861471862,
+        "precision": 0.17579908675799086,
+        "recall": 1.0,
+        "f1": 0.29902912621359223,
+        "confusion": {
+          "tp": 77,
+          "tn": 24,
+          "fp": 361,
+          "fn": 0
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 385
+      },
+      {
+        "epoch": 3,
+        "accuracy": 0.38095238095238093,
+        "precision": 0.20728291316526612,
+        "recall": 0.961038961038961,
+        "f1": 0.34101382488479265,
+        "confusion": {
+          "tp": 74,
+          "tn": 102,
+          "fp": 283,
+          "fn": 3
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 385
+      },
+      {
+        "epoch": 4,
+        "accuracy": 0.5822510822510822,
+        "precision": 0.268,
+        "recall": 0.8701298701298701,
+        "f1": 0.40978593272171254,
+        "confusion": {
+          "tp": 67,
+          "tn": 202,
+          "fp": 183,
+          "fn": 10
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 385
+      },
+      {
+        "epoch": 5,
+        "accuracy": 0.6168831168831169,
+        "precision": 0.2767857142857143,
+        "recall": 0.8051948051948052,
+        "f1": 0.4119601328903654,
+        "confusion": {
+          "tp": 62,
+          "tn": 223,
+          "fp": 162,
+          "fn": 15
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 385
+      },
+      {
+        "epoch": 6,
+        "accuracy": 0.70995670995671,
+        "precision": 0.3352601156069364,
+        "recall": 0.7532467532467533,
+        "f1": 0.4640000000000001,
+        "confusion": {
+          "tp": 58,
+          "tn": 270,
+          "fp": 115,
+          "fn": 19
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 385
+      },
+      {
+        "epoch": 7,
+        "accuracy": 0.6948051948051948,
+        "precision": 0.3160919540229885,
+        "recall": 0.7142857142857143,
+        "f1": 0.4382470119521913,
+        "confusion": {
+          "tp": 55,
+          "tn": 266,
+          "fp": 119,
+          "fn": 22
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 385
+      },
+      {
+        "epoch": 8,
+        "accuracy": 0.7619047619047619,
+        "precision": 0.37777777777777777,
+        "recall": 0.6623376623376623,
+        "f1": 0.48113207547169806,
+        "confusion": {
+          "tp": 51,
+          "tn": 301,
+          "fp": 84,
+          "fn": 26
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 385
+      },
+      {
+        "epoch": 9,
+        "accuracy": 0.7445887445887446,
+        "precision": 0.35251798561151076,
+        "recall": 0.6363636363636364,
+        "f1": 0.45370370370370366,
+        "confusion": {
+          "tp": 49,
+          "tn": 295,
+          "fp": 90,
+          "fn": 28
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 385
+      },
+      {
+        "epoch": 10,
+        "accuracy": 0.7683982683982684,
+        "precision": 0.3790322580645161,
+        "recall": 0.6103896103896104,
+        "f1": 0.46766169154228854,
+        "confusion": {
+          "tp": 47,
+          "tn": 308,
+          "fp": 77,
+          "fn": 30
+        },
+        "threshold": 0.5,
+        "num_pos": 77,
+        "num_neg": 385
+      }
+    ],
+    "test": {
+      "accuracy": 0.7068273092369478,
+      "precision": 0.3018867924528302,
+      "recall": 0.5783132530120482,
+      "f1": 0.396694214876033,
+      "confusion": {
+        "tp": 48,
+        "tn": 304,
+        "fp": 111,
+        "fn": 35
+      },
+      "threshold": 0.5,
+      "num_pos": 83,
+      "num_neg": 415
+    }
+  },
+  "timestamp_unix": 1769456289
+}

@@ -1,0 +1,125 @@
+import os
+import json
+import argparse
+from collections import defaultdict
+import pandas as pd
+from SPARQLWrapper import SPARQLWrapper, JSON
+
+# --- CONFIGURATION ---
+# The directory of your KG-BERT formatted dataset
+KGBERT_DATA_DIR = "../dataset_v3" 
+# The directory where the new SimKGC files will be saved
+SIMKGC_OUTPUT_DIR = "dataset_simkgc"
+# Your GraphDB SPARQL endpoint
+SPARQL_ENDPOINT_URL = "http://localhost:7200/repositories/da4dte_final"
+NAMESPACES = """
+    PREFIX witcher: <http://cgi.di.uoa.gr/witcher/ontology#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX dbr: <http://cgi.di.uoa.gr/witcher/resource/>
+"""
+
+# --- HELPER FUNCTIONS ---
+def execute_sparql(query):
+    """Executes a SPARQL query and returns results."""
+    sparql = SPARQLWrapper(SPARQL_ENDPOINT_URL)
+    sparql.setQuery(NAMESPACES + query)
+    sparql.setReturnFormat(JSON)
+    try:
+        return sparql.query().convert()["results"]["bindings"]
+    except Exception as e:
+        print(f"  [!] SPARQL Query failed for endpoint {SPARQL_ENDPOINT_URL}. Is it running? Error: {e}")
+        return None
+
+def read_triples_to_list(path: str):
+    """Reads a TSV file into a list of (h, r, t) tuples."""
+    if not os.path.exists(path):
+        print(f"Warning: File not found at {path}. Skipping.")
+        return []
+    df = pd.read_csv(path, sep='\t', header=None, names=["h", "r", "t"])
+    return [tuple(x) for x in df.to_numpy()]
+
+def convert_to_simkgc_format(triples, all_true_hr_map):
+    """Converts a list of triples to the SimKGC JSONL format."""
+    simkgc_data = []
+    for h, r, t in triples:
+        all_tails = all_true_hr_map.get((h, r), [t]) # Default to at least the triple's own tail
+        simkgc_data.append({"head": h, "relation": r, "tail": t, "tails": all_tails})
+    return simkgc_data
+
+def save_jsonl(data, path):
+    """Saves a list of dictionaries to a JSONL file."""
+    with open(path, 'w', encoding='utf-8') as f:
+        for item in data:
+            f.write(json.dumps(item) + '\n')
+    print(f"Saved {len(data)} records to {path}")
+
+# --- MAIN LOGIC ---
+def main():
+    if not os.path.exists(SIMKGC_OUTPUT_DIR):
+        os.makedirs(SIMKGC_OUTPUT_DIR)
+
+    # --- Step 1: Query the Full KG to Build the Ground-Truth Map ---
+    print("--- Step 1: Building ground-truth (h,r) -> [tails] map from SPARQL endpoint ---")
+    
+    # This query groups by ?h and ?r and aggregates all ?t values into a single string
+    ground_truth_query = """
+    SELECT ?h ?r (GROUP_CONCAT(?t; separator="|||") AS ?tails_str)
+    WHERE {
+        ?h ?r ?t .
+        FILTER(isIRI(?h) && isIRI(?t))
+    }
+    GROUP BY ?h ?r
+    """
+    
+    results = execute_sparql(ground_truth_query)
+    if results is None:
+        print("!!! FATAL: Could not connect to SPARQL endpoint. Aborting. !!!")
+        return
+        
+    hr_map = defaultdict(list)
+    for res in results:
+        h = res['h']['value']
+        r = res['r']['value']
+        # Split the concatenated string back into a list of tail URIs
+        tails = res['tails_str']['value'].split('|||')
+        hr_map[(h, r)] = tails
+        
+    print(f"  - Ground-truth map created. Found {len(hr_map)} unique (head, relation) pairs in the entire KG.")
+
+    # --- Step 2: Load the Curated Triples from your TSV splits ---
+    print("\n--- Step 2: Loading curated train/valid/test splits ---")
+    train_triples = read_triples_to_list(os.path.join(KGBERT_DATA_DIR, "train.tsv"))
+    valid_triples = read_triples_to_list(os.path.join(KGBERT_DATA_DIR, "valid.tsv"))
+    test_triples  = read_triples_to_list(os.path.join(KGBERT_DATA_DIR, "test.tsv"))
+    
+    # --- Step 3: Convert each split to the SimKGC JSONL format using the ground-truth map ---
+    print("\n--- Step 3: Converting splits to SimKGC format ---")
+    train_simkgc = convert_to_simkgc_format(train_triples, hr_map)
+    valid_simkgc = convert_to_simkgc_format(valid_triples, hr_map)
+    test_simkgc  = convert_to_simkgc_format(test_triples, hr_map)
+    
+    # --- Step 4: Save the new files ---
+    save_jsonl(train_simkgc, os.path.join(SIMKGC_OUTPUT_DIR, "train.jsonl"))
+    save_jsonl(valid_simkgc, os.path.join(SIMKGC_OUTPUT_DIR, "valid.jsonl"))
+    save_jsonl(test_simkgc, os.path.join(SIMKGC_OUTPUT_DIR, "test.jsonl"))
+    
+    # --- Step 5: Copy over the description files (Unchanged) ---
+    print("\n--- Step 5: Copying description files ---")
+    import shutil
+    try:
+        shutil.copyfile(
+            os.path.join(KGBERT_DATA_DIR, "entity2textlong.tsv"),
+            os.path.join(SIMKGC_OUTPUT_DIR, "entity2text.txt")
+        )
+        shutil.copyfile(
+            os.path.join(KGBERT_DATA_DIR, "relation2text.txt"),
+            os.path.join(SIMKGC_OUTPUT_DIR, "relation2text.txt")
+        )
+        print("  - Copied entity2text.txt and relation2text.txt.")
+    except FileNotFoundError as e:
+        print(f"  - WARNING: Could not copy description files. Make sure they exist in '{KGBERT_DATA_DIR}'. Error: {e}")
+
+    print("\nSimKGC dataset preparation complete.")
+
+if __name__ == "__main__":
+    main()
